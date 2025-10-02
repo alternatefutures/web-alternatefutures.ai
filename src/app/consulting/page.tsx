@@ -54,7 +54,7 @@ export default function ConsultingPage() {
                 </ul>
               </div>
               <div className="card-footer">
-                <a href="#contact" className="card-button">Let&apos;s talk agents</a>
+                <a href="mailto:system@alternatefutures.ai" className="card-button">Let&apos;s talk agents</a>
               </div>
             </div>
 
@@ -83,7 +83,7 @@ export default function ConsultingPage() {
                 </ul>
               </div>
               <div className="card-footer">
-                <a href="#contact" className="card-button">Let&apos;s talk strategy</a>
+                <a href="mailto:system@alternatefutures.ai" className="card-button">Let&apos;s talk strategy</a>
               </div>
             </div>
 
@@ -112,7 +112,7 @@ export default function ConsultingPage() {
                 </ul>
               </div>
               <div className="card-footer">
-                <a href="#contact" className="card-button">Let&apos;s design the future</a>
+                <a href="mailto:system@alternatefutures.ai" className="card-button">Let&apos;s design the future</a>
               </div>
             </div>
 
