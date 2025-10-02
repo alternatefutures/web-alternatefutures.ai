@@ -15,7 +15,7 @@ export default function ConsultingPage() {
             Guiding your business<br/>
             <span className="serif">into the AI era.</span>
           </h1>
-          <a href="#contact" className="cta-button">Talk to us</a>
+          <a href="mailto:system@alternatefutures.ai" className="cta-button">Talk to us</a>
         </div>
       </section>
 
