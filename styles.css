@@ -47,7 +47,7 @@ img {
     font-family: "Instrument Sans";
     font-style: normal;
     font-weight: 400;
-    src: local("Instrument Sans Regular"), url("fonts/instrument-sans-regular.woff2") format("woff2");
+    src: local("Instrument Sans Regular"), url("/fonts/InstrumentSans-Regular.ttf") format("truetype");
     font-display: swap;
 }
 
@@ -55,7 +55,7 @@ img {
     font-family: "Instrument Sans";
     font-style: normal;
     font-weight: 500;
-    src: local("Instrument Sans Medium"), url("fonts/instrument-sans-medium.woff2") format("woff2");
+    src: local("Instrument Sans Medium"), url("/fonts/InstrumentSans-Medium.ttf") format("truetype");
     font-display: swap;
 }
 
@@ -63,7 +63,7 @@ img {
     font-family: "Instrument Sans";
     font-style: normal;
     font-weight: 600;
-    src: local("Instrument Sans SemiBold"), url("fonts/instrument-sans-semibold.woff2") format("woff2");
+    src: local("Instrument Sans SemiBold"), url("/fonts/InstrumentSans-SemiBold.ttf") format("truetype");
     font-display: swap;
 }
 
@@ -92,23 +92,48 @@ img {
 .header-content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
+    position: relative;
 }
 
 .logo {
     flex-shrink: 0;
+    display: block;
 }
 
 .logo img {
     width: 58px;
     height: 47px;
+    display: block;
 }
 
 .nav {
     display: flex;
     align-items: center;
-    gap: 15px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-link {
+    font-family: "Instrument Sans", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #0026FF;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
 }
 
 .social-links {
@@ -139,6 +164,23 @@ img {
     justify-content: center;
     align-items: center;
     background-color: #F8F5EE;
+}
+
+.hero-with-wave {
+    position: relative;
+}
+
+.hero-with-wave::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 60' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,30 Q30,10 60,30 T120,30 T180,30 T240,30 T300,30 T360,30 T420,30 T480,30 T540,30 T600,30 T660,30 T720,30 T780,30 T840,30 T900,30 T960,30 T1020,30 T1080,30 T1140,30 T1200,30 L1200,60 L0,60 Z' fill='%230026FF' opacity='1'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 60px;
+    background-position: bottom;
 }
 
 .hero-content {
