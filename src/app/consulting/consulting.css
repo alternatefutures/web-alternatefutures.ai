@@ -33,11 +33,11 @@
 }
 
 .consulting-container .footer {
-  background-color: var(--color-primary);
+  background-color: var(--color-cream);
 }
 
 .consulting-container .copyright {
-  color: var(--color-cream);
+  color: var(--color-primary);
 }
 
 /* Hero Section */
