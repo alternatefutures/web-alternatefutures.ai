@@ -30,11 +30,14 @@ Next.js-based company website featuring homepage, consulting services, and produ
 - **Base Directory:** `./`
 - **Build Command:** `npm install && npm run build`
 - **Publish Directory:** `out`
+- **Docker Image:** `node:20-alpine`
 
 **Environment Variables:**
 Add the following environment variable in Fleek:
 - **Key:** `NODE_VERSION`
 - **Value:** `20`
+
+**Important:** The Docker Image setting is required for Next.js 15.5.3 to build successfully. Fleek's default image uses Node.js 18.17.1, which is incompatible with this version of Next.js.
 
 ### Requirements
 - Node.js version 20 or higher (specified in `.nvmrc`)
