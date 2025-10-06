@@ -69,3 +69,41 @@ Add the following environment variable in Fleek:
 - React 19
 - TypeScript
 - Static Export (SSG)
+
+## Performance Optimizations
+
+This site is optimized for fast loading:
+
+- **WOFF2 Fonts:** All fonts are served in WOFF2 format with TTF fallback (~60% smaller than TTF-only)
+- **Font Preloading:** Critical fonts are preloaded to prevent layout shifts
+- **Font Display Swap:** Uses `font-display: swap` to prevent invisible text during font loading
+- **DNS Prefetching:** External domains (LinkedIn, Twitter) are prefetched
+- **Compression:** Gzip compression enabled in Next.js config
+- **Optimized Assets:** SVG icons and images optimized for web delivery
+
+### Font Files
+
+Located in `public/fonts/`:
+- InstrumentSans (Regular, Medium, SemiBold) - Primary sans-serif font
+- InstrumentSerif (Regular, Italic) - Used for hero text on consulting page
+
+Both WOFF2 and TTF formats are included for maximum browser compatibility.
+
+## Development Notes
+
+### Email Links
+All contact buttons link to: `mailto:system@alternatefutures.ai`
+
+### Fonts
+To regenerate WOFF2 fonts from TTF (if fonts are updated):
+```bash
+npm install --save-dev ttf2woff2
+node convert-fonts.mjs  # (create this script if needed)
+```
+
+### Routing
+Clean URLs are enabled via `public/_redirects` file:
+- `/consulting` → `consulting.html`
+- `/products` → `products.html`
+
+This is required for proper routing on IPFS/Fleek deployments.
