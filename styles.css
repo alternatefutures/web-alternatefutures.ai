@@ -47,7 +47,9 @@ img {
     font-family: "Instrument Sans";
     font-style: normal;
     font-weight: 400;
-    src: local("Instrument Sans Regular"), url("/fonts/InstrumentSans-Regular.ttf") format("truetype");
+    src: local("Instrument Sans Regular"),
+         url("/fonts/InstrumentSans-Regular.woff2") format("woff2"),
+         url("/fonts/InstrumentSans-Regular.ttf") format("truetype");
     font-display: swap;
 }
 
@@ -55,7 +57,9 @@ img {
     font-family: "Instrument Sans";
     font-style: normal;
     font-weight: 500;
-    src: local("Instrument Sans Medium"), url("/fonts/InstrumentSans-Medium.ttf") format("truetype");
+    src: local("Instrument Sans Medium"),
+         url("/fonts/InstrumentSans-Medium.woff2") format("woff2"),
+         url("/fonts/InstrumentSans-Medium.ttf") format("truetype");
     font-display: swap;
 }
 
@@ -63,7 +67,9 @@ img {
     font-family: "Instrument Sans";
     font-style: normal;
     font-weight: 600;
-    src: local("Instrument Sans SemiBold"), url("/fonts/InstrumentSans-SemiBold.ttf") format("truetype");
+    src: local("Instrument Sans SemiBold"),
+         url("/fonts/InstrumentSans-SemiBold.woff2") format("woff2"),
+         url("/fonts/InstrumentSans-SemiBold.ttf") format("truetype");
     font-display: swap;
 }
 
