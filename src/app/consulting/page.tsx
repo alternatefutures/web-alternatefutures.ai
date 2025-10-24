@@ -20,13 +20,7 @@ export default function ConsultingPage() {
       </section>
 
       {/* Wave Divider */}
-      <div className="wave-divider">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
-          <path d="M0,30 Q30,10 60,30 T120,30 T180,30 T240,30 T300,30 T360,30 T420,30 T480,30 T540,30 T600,30 T660,30 T720,30 T780,30 T840,30 T900,30 T960,30 T1020,30 T1080,30 T1140,30 T1200,30 L1200,60 L0,60 Z"
-                fill="#0026FF"
-                opacity="1"/>
-        </svg>
-      </div>
+      <div className="wave-divider"></div>
 
       {/* Services Section */}
       <section className="services-section">
@@ -120,7 +114,7 @@ export default function ConsultingPage() {
         </div>
       </section>
 
-      <Footer />
+      <Footer variant="blue" />
     </div>
   )
 }

@@ -31,6 +31,106 @@
   background-color: #F8F5EE;
 }
 
+.products-list-section {
+  padding: 80px 20px 40px;
+  background-color: #F8F5EE;
+}
+
+.products-list-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.products-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+  font-size: clamp(36px, 6vw, 48px);
+  color: #0026FF;
+  margin-bottom: 48px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.product-card {
+  background-color: #C8E0E4;
+  border: 2px solid #0026FF;
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 38, 255, 0.15);
+}
+
+.product-card-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+  font-size: clamp(24px, 4vw, 32px);
+  color: #0026FF;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.product-card-description {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #2E334B;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.product-card-link {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #0026FF;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.product-card-link:hover {
+  opacity: 0.7;
+}
+
+.product-card-orange {
+  background-color: #BE4200;
+  border-color: #BE4200;
+}
+
+.product-card-orange:hover {
+  box-shadow: 0 8px 24px rgba(190, 66, 0, 0.25);
+}
+
+.product-card-title-orange {
+  color: #F9F5EE;
+}
+
+.product-card-subtitle {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 3vw, 24px);
+  color: #FFC7AA;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.product-card-description-orange {
+  color: #F9F5EE;
+}
+
+.product-card-link-orange {
+  color: #FFC7AA;
+}
+
+.product-card-link-orange:hover {
+  color: #F9F5EE;
+}
+
 .coming-soon-section {
   flex: 1;
   display: flex;
@@ -73,6 +173,22 @@
 }
 
 @media (max-width: 768px) {
+  .products-list-section {
+    padding: 60px 20px 30px;
+  }
+
+  .product-card {
+    padding: 32px 24px;
+  }
+
+  .product-card-description {
+    font-size: 16px;
+  }
+
+  .product-card-link {
+    font-size: 16px;
+  }
+
   .coming-soon-section {
     padding: 80px 20px;
   }

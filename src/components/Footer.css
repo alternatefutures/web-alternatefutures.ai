@@ -1,0 +1,117 @@
+/* Footer Base Styles */
+.footer {
+  width: 100%;
+  padding: 40px;
+}
+
+.footer-content {
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.copyright {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.social-link {
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.social-link:hover {
+  opacity: 0.7;
+}
+
+.social-link img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Cream Variant (Default - for cream backgrounds) */
+.footer-cream {
+  background-color: #F8F5EE;
+}
+
+.footer-cream .copyright {
+  color: #0026FF;
+}
+
+/* Blue Variant (for blue backgrounds) */
+.footer-blue {
+  background-color: #0026FF;
+}
+
+.footer-blue .copyright {
+  color: #F8F5EE;
+}
+
+.footer-blue .social-link img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Peach Variant (for peach backgrounds) */
+.footer-peach {
+  background-color: #FFC7AA;
+  padding: 40px 80px;
+}
+
+.footer-peach .copyright {
+  color: #BE4200;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.footer-peach .social-link img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+  .copyright {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 800px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .copyright {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-peach {
+    padding: 30px 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 20px;
+  }
+}

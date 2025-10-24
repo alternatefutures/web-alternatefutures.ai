@@ -1,8 +1,30 @@
 import React from 'react'
+import './Footer.css'
 
-const Footer: React.FC = () => {
+type FooterVariant = 'cream' | 'blue' | 'peach'
+
+interface FooterProps {
+  variant?: FooterVariant
+}
+
+const Footer: React.FC<FooterProps> = ({ variant = 'cream' }) => {
+  const getIconSet = () => {
+    if (variant === 'peach') {
+      return {
+        linkedin: '/assets/linkedin-dark.svg',
+        twitter: '/assets/twitter-dark.svg'
+      }
+    }
+    return {
+      linkedin: '/assets/linkedin.svg',
+      twitter: '/assets/twitter.svg'
+    }
+  }
+
+  const icons = getIconSet()
+
   return (
-    <footer className="footer">
+    <footer className={`footer footer-${variant}`}>
       <div className="footer-content">
         <div className="footer-left">
           <p className="copyright">© 2025 Alternate Futures</p>
@@ -10,10 +32,10 @@ const Footer: React.FC = () => {
         <div className="footer-right">
           <div className="social-links">
             <a href="https://www.linkedin.com/company/alternate-futures-ai" className="social-link">
-              <img src="/assets/linkedin.svg" alt="LinkedIn Social Link" />
+              <img src={icons.linkedin} alt="LinkedIn Social Link" />
             </a>
             <a href="https://x.com/AltFuturesAI" className="social-link">
-              <img src="/assets/twitter.svg" alt="Twitter Social Link" />
+              <img src={icons.twitter} alt="Twitter Social Link" />
             </a>
           </div>
         </div>
