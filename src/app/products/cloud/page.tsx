@@ -28,19 +28,11 @@ export default function CloudPage() {
         <div className="cloud-content">
           <div className="cloud-left">
             <h1 className="cloud-title">
-              Ship apps on distributed infra in minutes.
+              Ship&nbsp;apps&nbsp;on distributed&nbsp;infra in&nbsp;minutes.
             </h1>
             <p className="cloud-subtitle">
               Host anything on distributed nodes keeping you up even when Centralized Services are down.
             </p>
-            <div className="cloud-buttons">
-              <a href="/docs" className="cloud-button cloud-button-primary">
-                Docs
-              </a>
-              <a href="https://www.npmjs.com/package/@alternatefutures/cli" className="cloud-button cloud-button-outline">
-                NPM packages
-              </a>
-            </div>
           </div>
 
           <div className="cloud-right">
@@ -65,6 +57,15 @@ export default function CloudPage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="cloud-buttons">
+            <a href="/docs" className="cloud-button cloud-button-primary">
+              Docs
+            </a>
+            <a href="https://www.npmjs.com/package/@alternatefutures/cli" className="cloud-button cloud-button-outline">
+              NPM packages
+            </a>
           </div>
         </div>
       </main>

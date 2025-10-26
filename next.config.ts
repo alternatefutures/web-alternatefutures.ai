@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   compress: true,
   poweredByHeader: false,
+  devIndicators: {
+    buildActivity: false,
+    buildActivityPosition: 'bottom-right',
+  },
   images: {
     unoptimized: true, // Required for static export
   },

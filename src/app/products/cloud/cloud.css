@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   background-color: #F9F5EE;
+  overflow-x: hidden;
 }
 
 .cloud-main {
@@ -22,20 +23,34 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-areas:
+    "left right"
+    "buttons right";
+  gap: 0;
   align-items: center;
 }
 
 .cloud-left {
+  grid-area: left;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
+.cloud-right {
+  grid-area: right;
+}
+
+.cloud-buttons {
+  grid-area: buttons;
+  position: relative;
+  z-index: 10;
+}
+
 .cloud-title {
   font-family: "Instrument Sans", sans-serif;
   font-weight: 600;
-  font-size: clamp(40px, 5vw, 64px);
+  font-size: clamp(32px, 5vw, 64px);
   color: #0026FF;
   line-height: 1.1;
   margin: 0;
@@ -66,6 +81,7 @@
   transition: all 0.3s ease;
   cursor: pointer;
   display: inline-block;
+  white-space: nowrap;
 }
 
 .cloud-button-primary {
@@ -122,25 +138,27 @@
 
 .circle-small {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   background-color: #C8E0E4;
-  top: 80px;
-  right: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 151px), calc(-50% - 91px));
   z-index: 0;
 }
 
 /* Orange Circle */
 .circle-orange {
   position: absolute;
-  width: 250px;
-  height: 250px;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
   background-color: transparent;
   border: 3px solid #BE4200;
-  bottom: 80px;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 205px), calc(-50% + 0px));
   z-index: 2;
 }
 
@@ -154,28 +172,31 @@
 .star-1 {
   width: 73px;
   height: 73px;
-  top: 60px;
-  right: 80px;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% + 115px), calc(-50% - 127px));
 }
 
 .star-2 {
   width: 29px;
   height: 29px;
-  bottom: 120px;
-  left: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% - 232px), calc(-50% + 107px));
 }
 
 /* Terminal Window */
 .terminal-window {
   position: absolute;
-  width: 600px;
+  width: min(360px, calc(100vw - 40px));
+  height: 99px;
   background-color: #2D2D2D;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(-50% - 57px), calc(-50% + 0px));
   z-index: 4;
 }
 
@@ -243,15 +264,18 @@
   background-color: #F9F5EE;
   position: relative;
   overflow: hidden;
+  margin-bottom: -3px;
+  margin-top: 20px;
+  display: block;
 }
 
 .wave-section::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 51px;
+  height: 54px;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M119.99 51H0V0C8.10083 1.28378e-05 15.1657 1.85875 21.5977 5.67871C27.0508 8.91763 31.1824 13.0085 35.1777 16.9648L35.1914 16.9785C42.3757 24.0901 48.0497 29.707 60 29.707C71.9531 29.707 77.6301 24.0876 84.8135 16.9736L84.8223 16.9648C88.8176 13.0086 92.9492 8.91761 98.4023 5.67871C104.831 1.8588 111.899 0 120 0L119.99 51Z' fill='%23FFC7AA'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-size: 120px 51px;
@@ -259,9 +283,28 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (min-width: 1025px) {
+  .cloud-content {
+    gap: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
   .cloud-content {
     gap: 60px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cloud-content {
+    gap: 80px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .cloud-graphic {
+    width: 100%;
+    max-width: 700px;
   }
 
   .circle-large {
@@ -270,27 +313,53 @@
   }
 
   .terminal-window {
-    width: 400px;
+    width: min(360px, calc(100vw - 40px), calc(100% - 40px));
+    transform: translate(-50%, -50%);
   }
 }
 
 @media (max-width: 968px) {
   .cloud-main {
-    padding: 40px 40px 0;
+    padding: 20px 40px 0;
   }
 
   .cloud-content {
-    grid-template-columns: 1fr;
-    gap: 80px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "left right"
+      "buttons buttons";
+    gap: 15px;
+    row-gap: 15px;
   }
 
-  .cloud-right {
-    order: -1;
+  .cloud-left {
+    max-width: 600px;
+  }
+
+  .cloud-buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0;
+    margin-top: -65px;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .cloud-button {
+    flex: 1;
+    min-width: 0;
+    max-width: 210px;
+    text-align: center;
+    padding: 16px 40px;
   }
 
   .cloud-graphic {
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     height: 400px;
+    margin: 0 auto;
   }
 
   .circle-large {
@@ -299,90 +368,187 @@
   }
 
   .circle-small {
-    width: 90px;
-    height: 90px;
+    width: 150px;
+    height: 150px;
+    transform: translate(calc(-50% + 130px), calc(-50% - 78px));
   }
 
   .terminal-window {
-    width: 500px;
+    width: min(354px, calc(100vw - 40px));
+    transform: translate(-50%, -50%);
   }
 
   .circle-orange {
     width: 200px;
     height: 200px;
+    transform: translate(calc(-50% + 177px), calc(-50% + 0px));
   }
 
   .star-1 {
     width: 60px;
     height: 60px;
+    transform: translate(calc(-50% + 99px), calc(-50% - 109px));
   }
 
   .star-2 {
     width: 24px;
     height: 24px;
+    transform: translate(calc(-50% - 201px), calc(-50% + 93px));
   }
 }
 
 @media (max-width: 640px) {
   .cloud-main {
-    padding: 40px 20px 0;
+    padding: 10px 20px 0;
+  }
+
+  .cloud-content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "right"
+      "buttons";
+    gap: 10px;
+  }
+
+  .cloud-left {
+    gap: 20px;
   }
 
   .cloud-title {
     font-size: 36px;
+    text-align: center;
   }
 
   .cloud-subtitle {
     font-size: 16px;
+    text-align: center;
   }
 
   .cloud-buttons {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+    max-width: 100%;
+    padding: 0 40px;
+    margin-top: -65px;
+    margin-bottom: 0;
+    align-items: center;
   }
 
   .cloud-button {
     width: 100%;
+    max-width: 310px;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     padding: 14px 32px;
   }
 
   .cloud-graphic {
-    width: 450px;
-    height: 350px;
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+  }
+
+  .circle-large {
+    width: 300px;
+    height: 300px;
+    opacity: 0.4;
+  }
+
+  .circle-small {
+    width: 150px;
+    height: 150px;
+    transform: translate(calc(-50% + 130px), calc(-50% - 78px));
+    opacity: 0.4;
+  }
+
+  .terminal-window {
+    width: min(400px, calc(100vw - 40px));
+    transform: translate(-50%, -50%);
+  }
+
+  .terminal-content {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .circle-orange {
+    width: 200px;
+    height: 200px;
+    transform: translate(calc(-50% + 177px), calc(-50% + 0px));
+    opacity: 0.4;
+  }
+
+  .star-1 {
+    width: 60px;
+    height: 60px;
+    transform: translate(calc(-50% + 99px), calc(-50% - 109px));
+    opacity: 0.4;
+  }
+
+  .star-2 {
+    width: 24px;
+    height: 24px;
+    transform: translate(calc(-50% - 201px), calc(-50% + 93px));
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 430px) {
+  .cloud-graphic {
+    width: 100%;
+    max-width: 350px;
+    height: 300px;
+  }
+
+  .cloud-title {
+    font-size: 32px;
+  }
+
+  .cloud-buttons {
+    padding: 0 20px;
   }
 
   .circle-large {
     width: 250px;
     height: 250px;
+    opacity: 0.4;
   }
 
   .circle-small {
-    width: 70px;
-    height: 70px;
+    width: 120px;
+    height: 120px;
+    transform: translate(calc(-50% + 108px), calc(-50% - 65px));
+    opacity: 0.4;
   }
 
   .terminal-window {
-    width: 400px;
+    transform: translate(-50%, -50%);
   }
 
   .terminal-content {
-    font-size: 13px;
+    font-size: 11px;
+    padding: 10px;
   }
 
   .circle-orange {
     width: 160px;
     height: 160px;
+    transform: translate(calc(-50% + 147px), calc(-50% + 0px));
+    opacity: 0.4;
   }
 
   .star-1 {
     width: 50px;
     height: 50px;
+    transform: translate(calc(-50% + 82px), calc(-50% - 91px));
+    opacity: 0.4;
   }
 
   .star-2 {
     width: 20px;
     height: 20px;
+    transform: translate(calc(-50% - 167px), calc(-50% + 77px));
+    opacity: 0.4;
   }
 }

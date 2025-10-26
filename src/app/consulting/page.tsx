@@ -13,7 +13,7 @@ export default function ConsultingPage() {
         <div className="hero-content-consulting">
           <h1 className="hero-title">
             Guiding your business<br/>
-            <span className="serif">into the AI era.</span>
+            <span className="serif" style={{ textAlign: 'right', display: 'block' }}>into the AI era.</span>
           </h1>
           <a href="mailto:system@alternatefutures.ai" className="cta-button">Talk to us</a>
         </div>

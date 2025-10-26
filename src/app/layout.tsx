@@ -5,6 +5,12 @@ export const metadata = {
   description: 'Developing comprehensive standards framework and toolset that ensures AI technology serves human flourishing.',
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
+
 export default function RootLayout({
   children,
 }: {
