@@ -1,0 +1,4 @@
+# Fleek redirects for clean URLs
+/consulting /consulting.html 200
+/products /products.html 200
+/* /index.html 404

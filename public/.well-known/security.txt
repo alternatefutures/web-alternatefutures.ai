@@ -1,0 +1,17 @@
+# Our security address
+Contact: mailto:system@alternatefutures.ai
+
+# Our security policy
+Policy: https://alternatefutures.ai/security
+
+# Security acknowledgments
+Acknowledgments: https://github.com/alternatefutures/web-alternatefutures.ai/blob/main/SECURITY.md#acknowledgments
+
+# Preferred languages
+Preferred-Languages: en
+
+# Canonical URI
+Canonical: https://alternatefutures.ai/.well-known/security.txt
+
+# Expiration date (1 year from creation)
+Expires: 2026-01-12T23:59:59.000Z

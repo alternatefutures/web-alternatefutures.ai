@@ -1,0 +1,14 @@
+# Robots.txt for alternatefutures.ai
+# We welcome all well-behaved crawlers
+
+User-agent: *
+Allow: /
+
+# Disallow crawling of potential future API endpoints
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://alternatefutures.ai/sitemap.xml
+
+# Privacy-respecting crawlers are welcome
+# We don't use any tracking or analytics

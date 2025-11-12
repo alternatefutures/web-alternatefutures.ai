@@ -1,0 +1,208 @@
+/* Footer Base Styles */
+.footer {
+  width: 100%;
+  padding: 40px 40px 15px;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: auto;
+  border: none;
+  box-shadow: none;
+}
+
+/* Solid footer when at bottom */
+.footer.footer-solid {
+  border: none;
+  box-shadow: none;
+}
+
+.footer-content {
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.footer-left {
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.footer-right {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.copyright {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.social-link {
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.social-link:hover {
+  opacity: 0.7;
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Cream Variant (Default - for cream backgrounds) */
+.footer-cream {
+  background-color: #F8F5EE;
+  border: none;
+  box-shadow: none;
+}
+
+.footer-cream.footer-solid {
+  background-color: #F8F5EE;
+  border: none;
+  box-shadow: none;
+}
+
+.footer-cream .copyright {
+  color: #0026FF;
+}
+
+/* Blue Variant (for blue backgrounds) */
+.footer-blue {
+  background-color: #0026FF !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.footer-blue.footer-solid {
+  background-color: #0026FF !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.footer-blue .copyright {
+  color: #F8F5EE;
+}
+
+.footer-blue .social-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Peach Variant (for peach backgrounds #FFC7AA) */
+.footer-peach {
+  background-color: #FFC7AA;
+  border: none;
+  box-shadow: none;
+  padding: 40px 40px 15px;
+  margin-top: 0;
+  position: absolute;
+}
+
+.footer-peach.footer-solid {
+  background-color: #FFC7AA;
+  border: none;
+  box-shadow: none;
+}
+
+.footer-peach .copyright {
+  color: #BE4200;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.footer-peach .social-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Orange Variant (for orange backgrounds #BE4200) */
+.footer-orange {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.footer-orange.footer-solid {
+  background: #BE4200;
+}
+
+.footer-orange .copyright {
+  color: #F8F5EE;
+}
+
+.footer-orange .social-link svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+  .copyright {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer-peach {
+    padding: 40px 40px 15px;
+  }
+
+  .copyright {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-peach {
+    padding: 40px 20px 15px;
+  }
+
+  .footer-content {
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left {
+    margin-left: 0;
+  }
+
+  .footer-right {
+    margin-left: 0;
+  }
+
+  .copyright {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 20px 15px;
+  }
+}
