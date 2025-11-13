@@ -134,6 +134,7 @@ This is required for proper routing on IPFS/AF Cloud deployments.
 - **[DEPENDENCIES.md](DEPENDENCIES.md)** - Complete dependency transparency
 - **[REPRODUCIBLE_BUILDS.md](REPRODUCIBLE_BUILDS.md)** - Build verification instructions
 - **[MIRRORS.md](MIRRORS.md)** - Access methods and censorship resistance
+- **[WORKFLOW.md](WORKFLOW.md)** - Development workflow and branching strategy
 
 ### Privacy & Security
 - **Privacy Policy**: Available at [/privacy](/privacy)
