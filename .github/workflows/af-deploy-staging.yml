@@ -1,0 +1,18 @@
+name: Deploy to AlternateFutures (Staging)
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-to-staging:
+    uses: ./.github/workflows/af-deploy-common.yml
+    with:
+      environment: staging
+      branch: ${{ github.head_ref }}
+      network: ipfs
+    secrets:
+      af_api_key: ${{ secrets.AF_API_KEY }}

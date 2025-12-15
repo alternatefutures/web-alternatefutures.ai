@@ -1,0 +1,54 @@
+name: Deploy to AlternateFutures (Common)
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      branch:
+        required: true
+        type: string
+      network:
+        required: false
+        type: string
+        default: ipfs
+    secrets:
+      af_api_key:
+        required: true
+
+env:
+  TARGET_ENVIRONMENT: ${{ inputs.environment }}
+  AF_API_KEY: ${{ secrets.af_api_key }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Install AlternateFutures CLI
+        run: npm install -g @alternatefutures/cli
+
+      - name: Deploy to AlternateFutures
+        run: af sites deploy out --network ${{ inputs.network }}
+        env:
+          AF_API_KEY: ${{ secrets.af_api_key }}

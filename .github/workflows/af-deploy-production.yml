@@ -1,0 +1,19 @@
+name: Deploy to AlternateFutures (Production)
+permissions:
+  contents: read
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-to-production:
+    uses: ./.github/workflows/af-deploy-common.yml
+    with:
+      environment: production
+      branch: main
+      network: ipfs
+    secrets:
+      af_api_key: ${{ secrets.AF_API_KEY }}
