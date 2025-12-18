@@ -26,7 +26,7 @@ export default function PrivacyPage() {
           <section className="privacy-section">
             <h2>What We Don't Collect</h2>
             <p>
-              We believe the best privacy policy is one where there's nothing to disclose. This website:
+              We believe the best privacy policy is one where there's nothing to disclose. This website has:
             </p>
             <ul>
               <li><strong>No analytics or tracking</strong> — We don't use Google Analytics, Facebook Pixel, or any similar services</li>
