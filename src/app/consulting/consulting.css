@@ -45,6 +45,7 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  padding-bottom: 60px;
 }
 
 /* Copyright color is now controlled by Footer variants */

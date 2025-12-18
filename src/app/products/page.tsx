@@ -15,7 +15,7 @@ export default function ProductsPage() {
 
       <div className="products-scrollable">
         <section className="products-list-section">
-        <p className="products-intro">We are dedicated to creating approachable AI, Agentic technologies, and the tools that support them.</p>
+        <p className="products-intro">We are dedicated to creating approachable AI, Agentic technologies, and the tools that support&nbsp;them.</p>
         <div className="products-list-content">
           {/* Web Services Card */}
           <a href="/products/web-services" className="product-card-link">

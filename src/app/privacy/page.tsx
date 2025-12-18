@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <div className="page-wrapper">
         <Header />
         <div className="consulting-scrollable">
-          <main style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px' }}>
+          <main style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 20px', paddingBottom: '40px', marginBottom: '40px' }}>
             <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Privacy Policy</h1>
             <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '2rem' }}>
               Last Updated: January 12, 2025
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
                 <strong>Nothing.</strong> This website collects zero personal information.
               </p>
               <p style={{ lineHeight: '1.6', marginBottom: '1rem' }}>
-                Our hosting provider (Fleek/IPFS) may maintain standard web server logs for operational purposes,
+                Our hosting provider may maintain standard web server logs for operational purposes,
                 but we do not have access to or control over this data. These are decentralized systems that
                 inherently provide additional privacy protections.
               </p>

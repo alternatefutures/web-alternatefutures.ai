@@ -174,9 +174,34 @@ ipfs add -r out/
 
 Check the [CHANGELOG.md](CHANGELOG.md) for the latest version information and corresponding IPFS CID.
 
-**Current Release**: v0.1.0 (Update this with each release)
-**IPFS CID**: [CID will be added upon next deployment]
-**Release Date**: 2025-01-12
+**Current Release**: v0.1.0
+**IPFS CID**: `QmWyWSWsnff9qTHp926ryTCei95Rh2vXEvV7oeJnZYP54b`
+**Release Date**: 2025-12-15
+
+### DNS Configuration (Direct IPFS)
+
+The main website uses DNSLink to serve content directly from IPFS, bypassing the AF proxy:
+
+| Record | Type | Value |
+|--------|------|-------|
+| `alternatefutures.ai` | CNAME | `cloudflare-ipfs.com` |
+| `www.alternatefutures.ai` | CNAME | `cloudflare-ipfs.com` |
+| `_dnslink.alternatefutures.ai` | TXT | `dnslink=/ipfs/<CID>` |
+| `_dnslink.www.alternatefutures.ai` | TXT | `dnslink=/ipfs/<CID>` |
+
+**How to update after deployment:**
+1. Deploy to Fleek/Pinata and get the new CID
+2. Update the `_dnslink` TXT records in Cloudflare DNS:
+   - Record: `_dnslink` (for root) or `_dnslink.www` (for www)
+   - Type: TXT
+   - Value: `dnslink=/ipfs/bafybei...` (your new CID)
+3. Changes propagate within minutes (Cloudflare CDN)
+
+This approach ensures:
+- Direct IPFS access without proxy dependencies
+- Cloudflare's edge caching for performance
+- Automatic SSL via Cloudflare
+- Easy updates by changing only the TXT record
 
 ## Monitoring & Status
 

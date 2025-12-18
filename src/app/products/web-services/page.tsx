@@ -52,7 +52,7 @@ export default function WebServicesPage() {
           </div>
 
           <div className="cloud-buttons">
-            <a href="/docs" className="cloud-button cloud-button-primary">
+            <a href="https://docs.alternatefutures.ai" className="cloud-button cloud-button-primary" target="_blank" rel="noopener noreferrer">
               Docs
             </a>
             <a href="https://github.com/alternatefutures/package-cloud-cli" className="cloud-button cloud-button-outline">

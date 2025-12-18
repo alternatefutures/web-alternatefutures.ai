@@ -1,7 +1,7 @@
 /* Footer Base Styles */
 .footer {
   width: 100%;
-  padding: 40px 40px 15px;
+  padding: 20px 40px 15px;
   display: block;
   position: absolute;
   bottom: 0;
@@ -115,7 +115,7 @@
   background-color: #FFC7AA;
   border: none;
   box-shadow: none;
-  padding: 40px 40px 15px;
+  padding: 20px 40px 15px;
   margin-top: 0;
   position: absolute;
 }
@@ -168,7 +168,7 @@
 
 @media (max-width: 900px) {
   .footer-peach {
-    padding: 40px 40px 15px;
+    padding: 20px 40px 15px;
   }
 
   .copyright {
@@ -178,7 +178,7 @@
 
 @media (max-width: 640px) {
   .footer-peach {
-    padding: 40px 20px 15px;
+    padding: 20px 20px 15px;
   }
 
   .footer-content {
@@ -203,6 +203,10 @@
 
 @media (max-width: 480px) {
   .footer {
-    padding: 30px 20px 15px;
+    padding: 15px 20px 15px;
+  }
+
+  .footer-peach {
+    padding: 15px 20px 15px;
   }
 }

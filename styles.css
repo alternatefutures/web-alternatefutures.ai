@@ -100,7 +100,8 @@ img {
     flex: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
@@ -235,7 +236,7 @@ img {
 /* Hero Section */
 .hero {
     width: 100%;
-    padding: 100px 50px 160px;
+    padding: 60px 50px 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -249,13 +250,13 @@ img {
 .hero-with-wave::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     width: 100%;
-    height: 51px;
+    height: 52px;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M119.99 51H0V0C8.10083 1.28378e-05 15.1657 1.85875 21.5977 5.67871C27.0508 8.91763 31.1824 13.0085 35.1777 16.9648L35.1914 16.9785C42.3757 24.0901 48.0497 29.707 60 29.707C71.9531 29.707 77.6301 24.0876 84.8135 16.9736L84.8223 16.9648C88.8176 13.0086 92.9492 8.91761 98.4023 5.67871C104.831 1.8588 111.899 0 120 0L119.99 51Z' fill='%230026FF'/%3E%3C/svg%3E");
     background-repeat: repeat-x;
-    background-size: 120px 51px;
+    background-size: 120px 52px;
     background-position: bottom;
 }
 
@@ -263,7 +264,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: 32px;
 }
 
 .hero-logo img {
@@ -275,10 +276,12 @@ img {
 .main-content {
     width: 100%;
     background: linear-gradient(180deg, rgba(120, 0, 141, 0) 0%, rgba(120, 0, 141, 0.3) 100%), #0026FF;
-    padding: 136px 120px;
+    padding: 80px 120px 100px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
 }
 
 .content-wrapper {
@@ -287,7 +290,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: 32px;
 }
 
 .text-content {
@@ -416,7 +419,5 @@ img {
         padding: 40px 20px;
     }
 
-    .footer {
-        padding: 30px 20px;
-    }
+    /* Footer styles are in Footer.css */
 }
