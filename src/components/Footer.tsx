@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import LinkedInIcon from './icons/LinkedInIcon'
-import TwitterIcon from './icons/TwitterIcon'
 import './Footer.css'
+import { FaDiscord, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
+import TwitterIcon from './icons/TwitterIcon'
 
 type FooterVariant = 'cream' | 'blue' | 'peach' | 'orange'
 
@@ -11,7 +11,7 @@ interface FooterProps {
   variant?: FooterVariant
 }
 
-const Footer: React.FC<FooterProps> = ({ variant = 'cream' }) => {
+const  Footer: React.FC<FooterProps> = ({ variant = 'cream' }) => {
   const footerRef = useRef<HTMLElement>(null)
   const scrollContainerRef = useRef<Element | null>(null)
   const [isAtBottom, setIsAtBottom] = useState(false)
@@ -70,10 +70,13 @@ const Footer: React.FC<FooterProps> = ({ variant = 'cream' }) => {
         <div className="footer-right">
           <div className="social-links">
             <a href="https://www.linkedin.com/company/alternate-futures-ai" className="social-link" aria-label="LinkedIn">
-              <LinkedInIcon color={iconColor} bgColor={bgColor} />
+              <FaLinkedin color={iconColor} />
+            </a>
+            <a href="https://discord.gg/YW6zZfZZUU" className="social-link" aria-label="Discord">
+              <FaDiscord color={iconColor} />
             </a>
             <a href="https://x.com/AltFuturesAI" className="social-link" aria-label="Twitter/X">
-              <TwitterIcon color={iconColor} />
+              <FaXTwitter color={iconColor} />
             </a>
           </div>
         </div>
