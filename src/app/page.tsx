@@ -12,7 +12,7 @@ export default function HomePage() {
           <Hero />
           <MainContent />
         </div>
-        <Footer variant="cream" />
+        <Footer variant="blue" />
       </div>
     </div>
   )

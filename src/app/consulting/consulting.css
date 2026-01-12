@@ -21,7 +21,7 @@
 :root {
   --font-sans: 'Instrument Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: 'Instrument Serif', 'Georgia', serif;
-  --color-primary: #0026FF;
+  --color-primary: #000AFF;
   --color-cream: #F9F5EE;
   --color-white: #FFFFFF;
   --color-light-blue: #D0D7FF;
@@ -120,7 +120,7 @@
   left: 0;
   width: 100%;
   height: 51px;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M119.99 51H0V0C8.10083 1.28378e-05 15.1657 1.85875 21.5977 5.67871C27.0508 8.91763 31.1824 13.0085 35.1777 16.9648L35.1914 16.9785C42.3757 24.0901 48.0497 29.707 60 29.707C71.9531 29.707 77.6301 24.0876 84.8135 16.9736L84.8223 16.9648C88.8176 13.0086 92.9492 8.91761 98.4023 5.67871C104.831 1.8588 111.899 0 120 0L119.99 51Z' fill='%230026FF'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 51' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M119.99 51H0V0C8.10083 1.28378e-05 15.1657 1.85875 21.5977 5.67871C27.0508 8.91763 31.1824 13.0085 35.1777 16.9648L35.1914 16.9785C42.3757 24.0901 48.0497 29.707 60 29.707C71.9531 29.707 77.6301 24.0876 84.8135 16.9736L84.8223 16.9648C88.8176 13.0086 92.9492 8.91761 98.4023 5.67871C104.831 1.8588 111.899 0 120 0L119.99 51Z' fill='%23000AFF'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   background-size: 120px 51px;
   background-position: bottom;

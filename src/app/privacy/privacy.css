@@ -24,13 +24,13 @@
 .privacy-content h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #0026FF;
+  color: #000AFF;
 }
 
 .privacy-content h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: #0026FF;
+  color: #000AFF;
 }
 
 .privacy-content p {
@@ -45,7 +45,7 @@
 }
 
 .privacy-content a {
-  color: #0026FF;
+  color: #000AFF;
   text-decoration: underline;
 }
 

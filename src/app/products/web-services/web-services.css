@@ -67,7 +67,7 @@
   font-family: "Instrument Sans", sans-serif;
   font-weight: 600;
   font-size: clamp(32px, 5vw, 64px);
-  color: #0026FF;
+  color: #000AFF;
   line-height: 1.1;
   margin: 0;
 }
@@ -102,9 +102,9 @@
 }
 
 .cloud-button-primary {
-  background-color: #0026FF;
+  background-color: #000AFF;
   color: #FFFFFF;
-  border: 2px solid #0026FF;
+  border: 2px solid #000AFF;
 }
 
 .cloud-button-primary:hover {
@@ -115,12 +115,12 @@
 
 .cloud-button-outline {
   background-color: transparent;
-  color: #0026FF;
-  border: 2px solid #0026FF;
+  color: #000AFF;
+  border: 2px solid #000AFF;
 }
 
 .cloud-button-outline:hover {
-  background-color: #0026FF;
+  background-color: #000AFF;
   color: #FFFFFF;
   transform: translateY(-2px);
 }
@@ -146,7 +146,7 @@
   width: 348px;
   height: 348px;
   border-radius: 50%;
-  background-color: #0026FF;
+  background-color: #000AFF;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
