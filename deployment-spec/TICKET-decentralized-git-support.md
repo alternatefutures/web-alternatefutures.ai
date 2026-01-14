@@ -204,7 +204,7 @@ Radicle → GitHub (optional read-only mirror for visibility)
 ## References
 
 ### Research Documents
-- `/Users/wonderwomancode/Projects/fleek/home/deployment-spec/phase0-research.md`
+- `/Users/wonderwomancode/Projects/alternatefutures/web-alternatefutures.ai/deployment-spec/phase0-research.md`
 
 ### Verified Sources
 - [1] Radicle Official: https://radicle.xyz

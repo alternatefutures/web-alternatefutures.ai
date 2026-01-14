@@ -5,15 +5,15 @@ export default function LandingPage() {
     <div className="frontpage">
       {/* Navigation Bar */}
       <nav className="nav-bar">
-        <img src="/landing/logo.png" alt="Alternate Futures Logo" className="logo" />
+        <img src="/landing/logo.svg" alt="Alternate Futures Logo" className="logo" />
       </nav>
 
       {/* Hero Section */}
       <section className="hero-section">
-        <img src="/landing/title-union.png" alt="Alternate Futures" className="title-graphic" />
+        <img src="/landing/title-union.svg" alt="Alternate Futures" className="title-graphic" />
         <p className="tagline">Building the infrastructure for human-computer alignment.</p>
         <img
-          src="/landing/decorative-top.png"
+          src="/landing/decorative-top.svg"
           alt=""
           className="decorative-element decorative-top"
         />
@@ -21,7 +21,7 @@ export default function LandingPage() {
 
       {/* Wave Divider 1 */}
       <div className="wave-divider wave-1">
-        <img src="/landing/wave-1.png" alt="" />
+        <img src="/landing/wave-1.svg" alt="" />
       </div>
 
       {/* CTA Section */}
@@ -33,14 +33,14 @@ export default function LandingPage() {
           </p>
           <button className="cta-button">
             Request access
-            <img src="/landing/star.png" alt="" className="button-star" />
+            <img src="/landing/star.svg" alt="" className="button-star" />
           </button>
         </div>
       </section>
 
       {/* Wave Divider 2 */}
       <div className="wave-divider wave-2">
-        <img src="/landing/wave-2.png" alt="" />
+        <img src="/landing/wave-2.svg" alt="" />
       </div>
 
       {/* Info Section */}
@@ -50,7 +50,7 @@ export default function LandingPage() {
 
       {/* Decorative Bottom Element */}
       <img
-        src="/landing/decorative-bottom.png"
+        src="/landing/decorative-bottom.svg"
         alt=""
         className="decorative-element decorative-bottom"
       />
