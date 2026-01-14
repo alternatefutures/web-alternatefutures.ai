@@ -418,7 +418,7 @@
 
 .wave-section-title {
   font-family: 'Instrument Sans', sans-serif;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 600;
   line-height: 1.2;
   color: #000AFF;
@@ -427,7 +427,7 @@
 
 .wave-section-subtitle {
   font-family: 'Instrument Sans', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.5;
   color: #2E334B;
@@ -579,7 +579,7 @@
   }
 
   .wave-section-title {
-    font-size: 40px;
+    font-size: 32px;
   }
 
   .wave-section-subtitle {
