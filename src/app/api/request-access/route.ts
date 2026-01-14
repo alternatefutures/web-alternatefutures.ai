@@ -65,17 +65,8 @@ Type of Work: ${displayWorkType}
         email: email,
         audienceId: audienceId,
         unsubscribed: false,
-        data: {
-          profession: displayWorkType,
-          segment: segmentName,
-          source: source || 'request-access',
-          workType: displayWorkType,
-          github: github || '',
-          projectLink: projectLink || '',
-          socialPlatform: socialPlatform || '',
-          socialLink: socialLink || ''
-        }
-      })
+        firstName: displayWorkType,
+      } as any)
     } catch (contactError) {
       // Log error but don't fail the request if contact creation fails
       console.error('Error adding contact to Resend:', contactError)
