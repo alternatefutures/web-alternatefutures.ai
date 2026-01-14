@@ -85,18 +85,18 @@
 }
 
 .footer-cream .copyright {
-  color: #0026FF;
+  color: #000AFF;
 }
 
 /* Blue Variant (for blue backgrounds) */
 .footer-blue {
-  background-color: #0026FF !important;
+  background-color: #000AFF !important;
   border: none !important;
   box-shadow: none !important;
 }
 
 .footer-blue.footer-solid {
-  background-color: #0026FF !important;
+  background-color: #000AFF !important;
   border: none !important;
   box-shadow: none !important;
 }

@@ -1,18 +1,27 @@
 'use client'
 
 import { useState } from 'react'
+import Header from '@/components/Header'
 import RequestAccessModal from '@/components/RequestAccessModal'
 import './landing.css'
 
 export default function LandingPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalState, setModalState] = useState<{ isOpen: boolean; source: 'request-access' | 'get-in-touch' }>({
+    isOpen: false,
+    source: 'request-access'
+  })
+
+  const openModal = (source: 'request-access' | 'get-in-touch') => {
+    setModalState({ isOpen: true, source })
+  }
+
+  const closeModal = () => {
+    setModalState({ ...modalState, isOpen: false })
+  }
 
   return (
     <div className="frontpage">
-      {/* Navigation Bar */}
-      <nav className="nav-bar">
-        <img src="/landing/logo.svg" alt="Alternate Futures Logo" className="logo" />
-      </nav>
+      <Header />
 
       {/* Hero Section */}
       <section className="hero-section">
@@ -39,7 +48,7 @@ export default function LandingPage() {
             Deploy anything on distributed infrastructure in minutes with{' '}
             <span className="highlight">Alternate Clouds</span>.
           </p>
-          <button className="cta-button" onClick={() => setIsModalOpen(true)}>
+          <button className="cta-button" onClick={() => openModal('request-access')}>
             Request access
             <img src="/landing/star.svg" alt="" className="button-star" />
           </button>
@@ -51,7 +60,13 @@ export default function LandingPage() {
 
       {/* Info Section */}
       <section className="info-section">
-        <img src="/landing/hero-image.png" alt="Platform visualization" className="hero-image" />
+        <h2 className="info-title">Building the Infrastructure for Human-Computer Alignment</h2>
+        <p className="info-text">
+          We're developing the first comprehensive standards framework and toolset that ensures AI technology serves human flourishing. Our platform enables the creation of adaptive AI products that anticipate user needs while respecting human agency.
+        </p>
+        <button className="info-button" onClick={() => openModal('get-in-touch')}>
+          Get in touch
+        </button>
       </section>
 
       {/* Decorative Bottom Element */}
@@ -62,7 +77,11 @@ export default function LandingPage() {
       />
 
       {/* Request Access Modal */}
-      <RequestAccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <RequestAccessModal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        source={modalState.source}
+      />
     </div>
   )
 }

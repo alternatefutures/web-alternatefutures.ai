@@ -10,6 +10,8 @@
   justify-content: center;
   z-index: 1000;
   padding: 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
@@ -19,9 +21,11 @@
   max-width: 500px;
   width: 100%;
   max-height: 90vh;
+  max-height: 90dvh; /* Dynamic viewport height for mobile keyboard */
   overflow-y: auto;
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  margin: auto;
 }
 
 .modal-close {
@@ -38,6 +42,8 @@
   padding: 0;
   width: 32px;
   height: 32px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .modal-close:hover {
@@ -148,6 +154,8 @@
   cursor: pointer;
   transition: all 0.2s ease;
   margin-top: 8px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .submit-button:hover:not(:disabled) {
@@ -163,12 +171,54 @@
 
 /* Responsive */
 @media (max-width: 600px) {
+  .modal-overlay {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: max(16px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
   .modal-content {
-    padding: 24px;
+    padding: 24px 20px;
+    border-radius: 12px;
+    max-height: calc(100vh - 32px);
+  }
+
+  .modal-close {
+    top: 16px;
+    right: 16px;
+    font-size: 28px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .modal-title {
     font-size: 24px;
+    margin-right: 40px;
+  }
+
+  .modal-subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .modal-form {
+    gap: 20px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 16px;
+    padding: 14px 16px;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   .social-input-group {
@@ -177,5 +227,41 @@
 
   .social-platform-select {
     flex: 1;
+    width: 100%;
+  }
+
+  .social-link-input {
+    width: 100%;
+  }
+
+  .status-message {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .submit-button {
+    font-size: 16px;
+    padding: 14px 28px;
+    width: 100%;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-content {
+    padding: 20px 16px;
+  }
+
+  .modal-title {
+    font-size: 22px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 12px 14px;
   }
 }

@@ -17,13 +17,13 @@ export default function ProductsPage() {
         <section className="products-list-section">
         <p className="products-intro">We are dedicated to creating approachable AI, Agentic technologies, and the tools that support&nbsp;them.</p>
         <div className="products-list-content">
-          {/* Web Services Card */}
-          <a href="/products/web-services" className="product-card-link">
+          {/* Alternate Clouds Card */}
+          <a href="/products/alternate-clouds" className="product-card-link">
             <div className="product-card web-services-card">
               <div className="card-header">
                 <div className="title-geo-row">
-                  <h2 className="web-services-title">Web Services</h2>
-                  <img src="/assets/web_services_geo_cluster.png" alt="Web Services" className="geo-cluster" />
+                  <h2 className="web-services-title">Alternate Clouds</h2>
+                  <img src="/assets/web_services_geo_cluster.png" alt="Alternate Clouds" className="geo-cluster" />
                 </div>
               </div>
               <svg className="wavy-divider" viewBox="0 0 400 48" preserveAspectRatio="none">

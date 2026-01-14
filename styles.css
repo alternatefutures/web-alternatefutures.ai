@@ -75,6 +75,22 @@ img {
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Instrument Serif";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/InstrumentSerif-Regular.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Instrument Serif";
+    font-style: italic;
+    font-weight: 400;
+    src: url("/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+    font-display: swap;
+}
+
 @layer components {
 /* Layout */
 #container {

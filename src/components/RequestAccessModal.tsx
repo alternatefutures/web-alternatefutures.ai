@@ -1,24 +1,46 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './RequestAccessModal.css'
 
 interface RequestAccessModalProps {
   isOpen: boolean
   onClose: () => void
+  source?: 'request-access' | 'get-in-touch'
 }
 
-export default function RequestAccessModal({ isOpen, onClose }: RequestAccessModalProps) {
+export default function RequestAccessModal({ isOpen, onClose, source = 'request-access' }: RequestAccessModalProps) {
   const [formData, setFormData] = useState({
     email: '',
     workType: '',
+    workTypeOther: '',
     github: '',
     projectLink: '',
     socialPlatform: 'twitter',
-    socialLink: ''
+    socialLink: '',
+    source: source
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.width = ''
+    }
+  }, [isOpen])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -45,10 +67,12 @@ export default function RequestAccessModal({ isOpen, onClose }: RequestAccessMod
         setFormData({
           email: '',
           workType: '',
+          workTypeOther: '',
           github: '',
           projectLink: '',
           socialPlatform: 'twitter',
-          socialLink: ''
+          socialLink: '',
+          source: source
         })
         setSubmitStatus('idle')
         onClose()
@@ -117,27 +141,44 @@ export default function RequestAccessModal({ isOpen, onClose }: RequestAccessMod
             </select>
           </div>
 
+          {formData.workType === 'other' && (
+            <div className="form-group">
+              <label htmlFor="workTypeOther">
+                Please specify <span className="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="workTypeOther"
+                name="workTypeOther"
+                value={formData.workTypeOther}
+                onChange={handleChange}
+                required
+                placeholder="Enter your type of work"
+              />
+            </div>
+          )}
+
           <div className="form-group">
             <label htmlFor="github">GitHub (optional)</label>
             <input
-              type="url"
+              type="text"
               id="github"
               name="github"
               value={formData.github}
               onChange={handleChange}
-              placeholder="https://github.com/username"
+              placeholder="github.com/username"
             />
           </div>
 
           <div className="form-group">
             <label htmlFor="projectLink">Link to project (optional)</label>
             <input
-              type="url"
+              type="text"
               id="projectLink"
               name="projectLink"
               value={formData.projectLink}
               onChange={handleChange}
-              placeholder="https://yourproject.com"
+              placeholder="yourproject.com"
             />
           </div>
 
@@ -153,15 +194,17 @@ export default function RequestAccessModal({ isOpen, onClose }: RequestAccessMod
                 <option value="twitter">Twitter/X</option>
                 <option value="linkedin">LinkedIn</option>
                 <option value="instagram">Instagram</option>
+                <option value="threads">Threads</option>
+                <option value="bluesky">Bluesky</option>
                 <option value="website">Website</option>
               </select>
               <input
-                type="url"
+                type="text"
                 id="socialLink"
                 name="socialLink"
                 value={formData.socialLink}
                 onChange={handleChange}
-                placeholder="https://..."
+                placeholder="twitter.com/username"
                 className="social-link-input"
               />
             </div>

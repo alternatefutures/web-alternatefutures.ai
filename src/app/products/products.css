@@ -25,7 +25,7 @@
   font-weight: 500;
   font-style: italic;
   font-size: 38px;
-  color: #0026FF;
+  color: #000AFF;
   text-align: center;
   max-width: 950px;
   margin: 0 auto 60px;
@@ -45,7 +45,7 @@
   font-family: "Instrument Sans", sans-serif;
   font-weight: 600;
   font-size: clamp(36px, 6vw, 48px);
-  color: #0026FF;
+  color: #000AFF;
   margin-bottom: 0;
   text-align: center;
   line-height: 1.2;
@@ -60,7 +60,7 @@
 
 .product-card {
   background-color: #F9F5EE;
-  border: 3px solid #0026FF;
+  border: 3px solid #000AFF;
   border-radius: 12px;
   width: 360px;
   height: 504px;
@@ -246,7 +246,7 @@
   font-family: "Instrument Sans", sans-serif;
   font-weight: 600;
   font-size: clamp(48px, 8vw, 72px);
-  color: #0026FF;
+  color: #000AFF;
   margin-bottom: 24px;
   line-height: 1.2;
 }
@@ -255,7 +255,7 @@
   font-family: "Instrument Sans", sans-serif;
   font-weight: 500;
   font-size: clamp(24px, 4vw, 36px);
-  color: #0026FF;
+  color: #000AFF;
   margin-bottom: 32px;
   line-height: 1.3;
 }
@@ -264,7 +264,7 @@
   font-family: "Instrument Sans", sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: #0026FF;
+  color: #000AFF;
   line-height: 1.5;
   opacity: 0.8;
 }

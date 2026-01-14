@@ -54,8 +54,8 @@ const Footer: React.FC<FooterProps> = ({ variant = 'cream' }) => {
     }
   }, [])
 
-  const iconColor = variant === 'peach' ? '#BE4200' : variant === 'blue' ? '#F8F5EE' : '#0026FF'
-  const bgColor = variant === 'peach' ? '#FFC7AA' : variant === 'blue' ? '#0026FF' : '#F8F5EE'
+  const iconColor = variant === 'peach' ? '#BE4200' : variant === 'blue' ? '#F8F5EE' : '#000AFF'
+  const bgColor = variant === 'peach' ? '#FFC7AA' : variant === 'blue' ? '#000AFF' : '#F8F5EE'
 
   return (
     <footer ref={footerRef} className={`footer footer-${variant} ${isAtBottom ? 'footer-solid' : ''}`}>
