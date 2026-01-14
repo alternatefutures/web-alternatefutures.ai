@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import RequestAccessModal from '@/components/RequestAccessModal'
 import './landing.css'
 
@@ -75,6 +76,8 @@ export default function LandingPage() {
         alt=""
         className="decorative-element decorative-bottom"
       />
+
+      <Footer variant="blue" />
 
       {/* Request Access Modal */}
       <RequestAccessModal
