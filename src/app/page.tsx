@@ -20,9 +20,7 @@ export default function LandingPage() {
       </section>
 
       {/* Wave Divider 1 */}
-      <div className="wave-divider wave-1">
-        <img src="/landing/wave-1.svg" alt="" />
-      </div>
+      <div className="wave-divider wave-1"></div>
 
       {/* CTA Section */}
       <section className="cta-section">
@@ -39,9 +37,7 @@ export default function LandingPage() {
       </section>
 
       {/* Wave Divider 2 */}
-      <div className="wave-divider wave-2">
-        <img src="/landing/wave-2.svg" alt="" />
-      </div>
+      <div className="wave-divider wave-2"></div>
 
       {/* Info Section */}
       <section className="info-section">
