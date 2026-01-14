@@ -116,6 +116,16 @@
   align-items: center;
   justify-content: center;
   min-height: 180px;
+  position: relative;
+}
+
+.cta-sparkle-left {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 100px;
+  bottom: 75px;
+  pointer-events: none;
 }
 
 .cta-content {
@@ -166,7 +176,7 @@
   position: absolute;
   width: 29.739px;
   height: 28.5px;
-  bottom: 12px;
+  top: -5.05px;
   right: -8px;
   pointer-events: none;
 }
