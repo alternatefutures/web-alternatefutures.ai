@@ -119,12 +119,21 @@
   position: relative;
 }
 
-.cta-sparkle-left {
+.cta-sparkle-large {
   position: absolute;
   width: 40px;
   height: 40px;
   left: 100px;
   bottom: 75px;
+  pointer-events: none;
+}
+
+.cta-sparkle-small {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 120px;
+  bottom: 52px;
   pointer-events: none;
 }
 
@@ -243,7 +252,9 @@
   }
 
   .decorative-top,
-  .decorative-bottom {
+  .decorative-bottom,
+  .cta-sparkle-large,
+  .cta-sparkle-small {
     display: none;
   }
 }

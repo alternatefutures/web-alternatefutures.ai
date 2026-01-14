@@ -24,7 +24,10 @@ export default function LandingPage() {
 
       {/* CTA Section */}
       <section className="cta-section">
-        <img src="/landing/star.svg" alt="" className="cta-sparkle-left" />
+        {/* Left decorative sparkles */}
+        <img src="/landing/star.svg" alt="" className="cta-sparkle-large" />
+        <img src="/landing/star.svg" alt="" className="cta-sparkle-small" />
+
         <div className="cta-content">
           <p className="cta-text">
             Deploy anything on distributed infrastructure in minutes with{' '}
