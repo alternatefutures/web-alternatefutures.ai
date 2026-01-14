@@ -17,22 +17,48 @@ export default function RequestAccessModal({ isOpen, onClose }: RequestAccessMod
     socialPlatform: 'twitter',
     socialLink: ''
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Handle form submission
-    console.log('Form submitted:', formData)
-    // Close modal after submission
-    onClose()
-    // Reset form
-    setFormData({
-      email: '',
-      workType: '',
-      github: '',
-      projectLink: '',
-      socialPlatform: 'twitter',
-      socialLink: ''
-    })
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/request-access', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit request')
+      }
+
+      setSubmitStatus('success')
+
+      // Reset form after successful submission
+      setTimeout(() => {
+        setFormData({
+          email: '',
+          workType: '',
+          github: '',
+          projectLink: '',
+          socialPlatform: 'twitter',
+          socialLink: ''
+        })
+        setSubmitStatus('idle')
+        onClose()
+      }, 2000)
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -141,8 +167,20 @@ export default function RequestAccessModal({ isOpen, onClose }: RequestAccessMod
             </div>
           </div>
 
-          <button type="submit" className="submit-button">
-            Submit Request
+          {submitStatus === 'success' && (
+            <div className="status-message success">
+              ✓ Request submitted successfully! We'll be in touch soon.
+            </div>
+          )}
+
+          {submitStatus === 'error' && (
+            <div className="status-message error">
+              ✗ Failed to submit request. Please try again.
+            </div>
+          )}
+
+          <button type="submit" className="submit-button" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Submit Request'}
           </button>
         </form>
       </div>
