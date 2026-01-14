@@ -166,7 +166,7 @@
   position: absolute;
   width: 29.739px;
   height: 28.5px;
-  top: -5.05px;
+  bottom: 0;
   right: -8px;
   pointer-events: none;
 }
