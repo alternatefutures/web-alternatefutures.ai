@@ -1,6 +1,12 @@
+'use client'
+
+import { useState } from 'react'
+import RequestAccessModal from '@/components/RequestAccessModal'
 import './landing.css'
 
 export default function LandingPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   return (
     <div className="frontpage">
       {/* Navigation Bar */}
@@ -33,7 +39,7 @@ export default function LandingPage() {
             Deploy anything on distributed infrastructure in minutes with{' '}
             <span className="highlight">Alternate Clouds</span>.
           </p>
-          <button className="cta-button">
+          <button className="cta-button" onClick={() => setIsModalOpen(true)}>
             Request access
             <img src="/landing/star.svg" alt="" className="button-star" />
           </button>
@@ -54,6 +60,9 @@ export default function LandingPage() {
         alt=""
         className="decorative-element decorative-bottom"
       />
+
+      {/* Request Access Modal */}
+      <RequestAccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   )
 }
