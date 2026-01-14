@@ -447,6 +447,7 @@
   gap: 24px;
   width: 100%;
   flex-shrink: 0;
+  margin-bottom: 100px;
 }
 
 .blue-section-title {
