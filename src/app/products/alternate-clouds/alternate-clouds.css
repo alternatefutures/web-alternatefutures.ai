@@ -418,7 +418,7 @@
 
 .wave-section-title {
   font-family: 'Instrument Sans', sans-serif;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 600;
   line-height: 1.2;
   color: #000AFF;
@@ -427,7 +427,7 @@
 
 .wave-section-subtitle {
   font-family: 'Instrument Sans', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.5;
   color: #2E334B;
@@ -580,7 +580,7 @@
   }
 
   .wave-section-title {
-    font-size: 40px;
+    font-size: 32px;
   }
 
   .wave-section-subtitle {
@@ -735,14 +735,12 @@
   .circle-large {
     width: 225px;
     height: 225px;
-    opacity: 0.4;
   }
 
   .circle-small {
     width: 113px;
     height: 113px;
     transform: translate(calc(-50% + 98px), calc(-50% - 59px));
-    opacity: 0.4;
   }
 
   .terminal-window {
@@ -759,21 +757,18 @@
     width: 150px;
     height: 150px;
     transform: translate(calc(-50% + 133px), calc(-50% + 0px));
-    opacity: 0.4;
   }
 
   .star-1 {
     width: 45px;
     height: 45px;
     transform: translate(calc(-50% + 74px), calc(-50% - 82px));
-    opacity: 0.4;
   }
 
   .star-2 {
     width: 18px;
     height: 18px;
     transform: translate(calc(-50% - 151px), calc(-50% + 70px));
-    opacity: 0.4;
   }
 
   .blue-section {
@@ -852,14 +847,12 @@
   .circle-large {
     width: 188px;
     height: 188px;
-    opacity: 0.4;
   }
 
   .circle-small {
     width: 90px;
     height: 90px;
     transform: translate(calc(-50% + 81px), calc(-50% - 49px));
-    opacity: 0.4;
   }
 
   .terminal-window {
@@ -875,21 +868,18 @@
     width: 120px;
     height: 120px;
     transform: translate(calc(-50% + 110px), calc(-50% + 0px));
-    opacity: 0.4;
   }
 
   .star-1 {
     width: 38px;
     height: 38px;
     transform: translate(calc(-50% + 62px), calc(-50% - 68px));
-    opacity: 0.4;
   }
 
   .star-2 {
     width: 15px;
     height: 15px;
     transform: translate(calc(-50% - 125px), calc(-50% + 58px));
-    opacity: 0.4;
   }
 
   .blue-section {

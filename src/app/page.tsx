@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import RequestAccessModal from '@/components/RequestAccessModal'
 import './landing.css'
 
@@ -39,11 +40,12 @@ export default function LandingPage() {
 
       {/* CTA Section */}
       <section className="cta-section">
-        {/* Left decorative sparkles */}
-        <img src="/landing/star.svg" alt="" className="cta-sparkle-large" />
-        <img src="/landing/star.svg" alt="" className="cta-sparkle-small" />
-
         <div className="cta-content">
+          <img
+            src="/landing/decorative-bottom.svg"
+            alt=""
+            className="decorative-element decorative-bottom"
+          />
           <p className="cta-text">
             Deploy anything on distributed infrastructure in minutes with{' '}
             <span className="highlight">Alternate Clouds</span>.
@@ -69,12 +71,7 @@ export default function LandingPage() {
         </button>
       </section>
 
-      {/* Decorative Bottom Element */}
-      <img
-        src="/landing/decorative-bottom.svg"
-        alt=""
-        className="decorative-element decorative-bottom"
-      />
+      <Footer variant="blue" />
 
       {/* Request Access Modal */}
       <RequestAccessModal
