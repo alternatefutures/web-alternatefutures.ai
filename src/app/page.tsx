@@ -40,12 +40,12 @@ export default function LandingPage() {
 
       {/* CTA Section */}
       <section className="cta-section">
-        <img
-          src="/landing/decorative-bottom.svg"
-          alt=""
-          className="decorative-element decorative-bottom"
-        />
         <div className="cta-content">
+          <img
+            src="/landing/decorative-bottom.svg"
+            alt=""
+            className="decorative-element decorative-bottom"
+          />
           <p className="cta-text">
             Deploy anything on distributed infrastructure in minutes with{' '}
             <span className="highlight">Alternate Clouds</span>.
