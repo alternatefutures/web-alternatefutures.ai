@@ -11,6 +11,8 @@ interface RequestAccessModalProps {
 
 export default function RequestAccessModal({ isOpen, onClose, source = 'request-access' }: RequestAccessModalProps) {
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     workType: '',
     workTypeOther: '',
@@ -65,6 +67,8 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
       // Reset form after successful submission
       setTimeout(() => {
         setFormData({
+          firstName: '',
+          lastName: '',
           email: '',
           workType: '',
           workTypeOther: '',
@@ -105,6 +109,36 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
         <p className="modal-subtitle">Fill out the form below and we'll get back to you soon.</p>
 
         <form onSubmit={handleSubmit} className="modal-form">
+          <div className="form-group">
+            <label htmlFor="firstName">
+              First Name <span className="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+              placeholder="Jane"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="lastName">
+              Last Name <span className="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+              placeholder="Doe"
+            />
+          </div>
+
           <div className="form-group">
             <label htmlFor="email">
               Email <span className="required">*</span>

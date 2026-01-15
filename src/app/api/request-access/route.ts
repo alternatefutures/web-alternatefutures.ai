@@ -6,12 +6,12 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { email, workType, workTypeOther, github, projectLink, socialPlatform, socialLink, source } = body
+    const { firstName, lastName, email, workType, workTypeOther, github, projectLink, socialPlatform, socialLink, source } = body
 
     // Validate required fields
-    if (!email || !workType) {
+    if (!firstName || !lastName || !email || !workType) {
       return NextResponse.json(
-        { error: 'Email and work type are required' },
+        { error: 'First name, last name, email and work type are required' },
         { status: 400 }
       )
     }
@@ -43,6 +43,7 @@ export async function POST(request: Request) {
     let emailContent = `
 New Access Request (${segmentName})
 
+Name: ${firstName} ${lastName}
 Email: ${email}
 Type of Work: ${displayWorkType}
 `
@@ -63,6 +64,8 @@ Type of Work: ${displayWorkType}
     try {
       await resend.contacts.create({
         email: email,
+        firstName: firstName,
+        lastName: lastName,
         audienceId: audienceId,
         unsubscribed: false,
         properties: {
