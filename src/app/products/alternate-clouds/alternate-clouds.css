@@ -735,14 +735,12 @@
   .circle-large {
     width: 225px;
     height: 225px;
-    opacity: 0.4;
   }
 
   .circle-small {
     width: 113px;
     height: 113px;
     transform: translate(calc(-50% + 98px), calc(-50% - 59px));
-    opacity: 0.4;
   }
 
   .terminal-window {
@@ -759,7 +757,6 @@
     width: 150px;
     height: 150px;
     transform: translate(calc(-50% + 133px), calc(-50% + 0px));
-    opacity: 0.4;
   }
 
   .star-1 {
@@ -852,14 +849,12 @@
   .circle-large {
     width: 188px;
     height: 188px;
-    opacity: 0.4;
   }
 
   .circle-small {
     width: 90px;
     height: 90px;
     transform: translate(calc(-50% + 81px), calc(-50% - 49px));
-    opacity: 0.4;
   }
 
   .terminal-window {
@@ -875,7 +870,6 @@
     width: 120px;
     height: 120px;
     transform: translate(calc(-50% + 110px), calc(-50% + 0px));
-    opacity: 0.4;
   }
 
   .star-1 {
