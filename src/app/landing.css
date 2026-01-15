@@ -234,12 +234,13 @@
 }
 
 .decorative-bottom {
-  width: 73px;
-  height: 75.022px;
+  width: clamp(40px, 5vw, 73px);
+  height: auto;
   position: absolute;
-  left: 133px;
-  top: 684px;
+  left: calc(50% - 500px);
+  bottom: 0;
   z-index: 10;
+  pointer-events: none;
 }
 
 /* Responsive Design */
@@ -250,6 +251,10 @@
 
   .decorative-top {
     right: 40px;
+  }
+
+  .decorative-bottom {
+    left: calc(50% - 400px);
   }
 }
 
@@ -290,9 +295,12 @@
     padding: 14px 40px;
   }
 
-  .decorative-top,
-  .decorative-bottom {
+  .decorative-top {
     display: none;
+  }
+
+  .decorative-bottom {
+    left: calc(50% - 350px);
   }
 }
 
@@ -325,5 +333,9 @@
   .info-button {
     font-size: 18px;
     padding: 12px 32px;
+  }
+
+  .decorative-bottom {
+    left: 20px;
   }
 }
