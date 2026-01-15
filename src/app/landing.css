@@ -127,6 +127,7 @@
   gap: 40px;
   max-width: 879px;
   width: 100%;
+  position: relative;
 }
 
 .cta-text {
@@ -237,7 +238,7 @@
   width: clamp(30px, 4vw, 73px);
   height: auto;
   position: absolute;
-  left: calc(50% - 580px);
+  left: -90px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
@@ -257,13 +258,13 @@
   }
 
   .decorative-bottom {
-    left: calc(50% - 480px);
+    left: -80px;
   }
 }
 
 @media (max-width: 1100px) {
   .decorative-bottom {
-    left: calc(50% - 450px);
+    left: -70px;
     width: clamp(25px, 3.5vw, 60px);
   }
 
@@ -274,7 +275,7 @@
 
 @media (max-width: 1000px) {
   .decorative-bottom {
-    left: 15px;
+    left: -60px;
     width: clamp(20px, 3vw, 50px);
   }
 
@@ -325,7 +326,7 @@
   }
 
   .decorative-bottom {
-    left: 12px;
+    left: -50px;
     width: clamp(18px, 2.5vw, 40px);
   }
 
@@ -353,7 +354,7 @@
   }
 
   .decorative-bottom {
-    left: 8px;
+    left: -40px;
     width: clamp(15px, 2vw, 30px);
   }
 
