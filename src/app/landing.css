@@ -234,7 +234,7 @@
 }
 
 .decorative-bottom {
-  width: clamp(40px, 5vw, 73px);
+  width: clamp(30px, 4vw, 73px);
   height: auto;
   position: absolute;
   left: calc(50% - 580px);
@@ -264,12 +264,22 @@
 @media (max-width: 1100px) {
   .decorative-bottom {
     left: calc(50% - 450px);
+    width: clamp(25px, 3.5vw, 60px);
+  }
+
+  .cta-text {
+    font-size: 26px;
   }
 }
 
 @media (max-width: 1000px) {
   .decorative-bottom {
-    display: none;
+    left: 15px;
+    width: clamp(20px, 3vw, 50px);
+  }
+
+  .cta-text {
+    font-size: 24px;
   }
 }
 
@@ -315,7 +325,12 @@
   }
 
   .decorative-bottom {
-    display: none;
+    left: 12px;
+    width: clamp(18px, 2.5vw, 40px);
+  }
+
+  .cta-text {
+    font-size: 22px;
   }
 }
 
@@ -335,6 +350,11 @@
   .cta-button {
     font-size: 20px;
     padding: 14px 28px;
+  }
+
+  .decorative-bottom {
+    left: 8px;
+    width: clamp(15px, 2vw, 30px);
   }
 
   .info-title {
