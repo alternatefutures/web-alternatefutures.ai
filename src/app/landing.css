@@ -237,9 +237,9 @@
   width: clamp(40px, 5vw, 73px);
   height: auto;
   position: absolute;
-  left: calc(50% - 500px);
-  bottom: 0;
-  z-index: 10;
+  left: calc(50% - 520px);
+  bottom: 12px;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -254,7 +254,7 @@
   }
 
   .decorative-bottom {
-    left: calc(50% - 400px);
+    left: calc(50% - 420px);
   }
 }
 
@@ -300,7 +300,7 @@
   }
 
   .decorative-bottom {
-    left: calc(50% - 350px);
+    left: 40px;
   }
 }
 
