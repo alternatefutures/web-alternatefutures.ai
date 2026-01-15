@@ -59,21 +59,21 @@ Type of Work: ${displayWorkType}
       emailContent += `Social (${socialPlatform}): ${socialLink}\n`
     }
 
-    // Add contact to Resend audience with segment identifier
+    // Add contact to Resend audience with all form data
     try {
       await resend.contacts.create({
         email: email,
         audienceId: audienceId,
         unsubscribed: false,
         data: {
-          profession: displayWorkType,
-          segment: segmentName,
-          source: source || 'request-access',
-          workType: displayWorkType,
+          email: email,
+          workType: workType,
+          workTypeOther: workTypeOther || '',
           github: github || '',
           projectLink: projectLink || '',
           socialPlatform: socialPlatform || '',
-          socialLink: socialLink || ''
+          socialLink: socialLink || '',
+          source: source || 'request-access'
         }
       })
     } catch (contactError) {
