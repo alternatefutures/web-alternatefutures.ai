@@ -237,8 +237,9 @@
   width: clamp(40px, 5vw, 73px);
   height: auto;
   position: absolute;
-  left: calc(50% - 520px);
-  bottom: 12px;
+  left: calc(50% - 580px);
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1;
   pointer-events: none;
   object-fit: contain;
@@ -256,7 +257,7 @@
   }
 
   .decorative-bottom {
-    left: calc(50% - 420px);
+    left: calc(50% - 480px);
   }
 }
 
@@ -302,7 +303,7 @@
   }
 
   .decorative-bottom {
-    left: 40px;
+    left: 20px;
   }
 }
 
@@ -338,6 +339,6 @@
   }
 
   .decorative-bottom {
-    left: 20px;
+    left: 12px;
   }
 }
