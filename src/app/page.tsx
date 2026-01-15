@@ -40,6 +40,11 @@ export default function LandingPage() {
 
       {/* CTA Section */}
       <section className="cta-section">
+        <img
+          src="/landing/decorative-bottom.svg"
+          alt=""
+          className="decorative-element decorative-bottom"
+        />
         <div className="cta-content">
           <p className="cta-text">
             Deploy anything on distributed infrastructure in minutes with{' '}
@@ -65,13 +70,6 @@ export default function LandingPage() {
           Get in touch
         </button>
       </section>
-
-      {/* Decorative Bottom Element */}
-      <img
-        src="/landing/decorative-bottom.svg"
-        alt=""
-        className="decorative-element decorative-bottom"
-      />
 
       <Footer variant="blue" />
 
