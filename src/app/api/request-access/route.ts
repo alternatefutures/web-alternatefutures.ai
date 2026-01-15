@@ -85,7 +85,7 @@ Type of Work: ${displayWorkType}
 
     // Send notification email to internal team
     await resend.emails.send({
-      from: 'Access Requests <noreply@alternatefutures.ai>',
+      from: 'Access Requests <noreply@updates.alternatefutures.ai>',
       to: process.env.ACCESS_REQUEST_EMAIL || 'system@alternatefutures.ai',
       subject: `Access Request from ${email}`,
       text: emailContent,
@@ -94,7 +94,7 @@ Type of Work: ${displayWorkType}
 
     // Send response email to user using template
     const data = await resend.emails.send({
-      from: 'Alternate Futures <noreply@alternatefutures.ai>',
+      from: 'Alternate Futures <noreply@updates.alternatefutures.ai>',
       to: email,
       subject: emailSubject,
       // @ts-ignore - Resend template reference
