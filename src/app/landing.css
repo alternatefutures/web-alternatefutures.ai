@@ -39,8 +39,9 @@
 
 .title-graphic {
   width: 606.42px;
-  height: 134.298px;
+  height: auto;
   max-width: 90%;
+  object-fit: contain;
 }
 
 .tagline {
