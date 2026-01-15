@@ -61,21 +61,19 @@ Type of Work: ${displayWorkType}
 
     // Add contact to Resend audience with all form data
     try {
-      const contactData: any = {
-        workType: workType,
-        workTypeOther: workTypeOther || '',
-        github: github || '',
-        projectLink: projectLink || '',
-        socialPlatform: socialPlatform || '',
-        socialLink: socialLink || '',
-        source: source || 'request-access'
-      }
-
       await resend.contacts.create({
         email: email,
         audienceId: audienceId,
         unsubscribed: false,
-        ...contactData
+        properties: {
+          workType: workType,
+          workTypeOther: workTypeOther || '',
+          github: github || '',
+          projectLink: projectLink || '',
+          socialPlatform: socialPlatform || '',
+          socialLink: socialLink || '',
+          source: source || 'request-access'
+        }
       } as any)
     } catch (contactError) {
       // Log error but don't fail the request if contact creation fails
