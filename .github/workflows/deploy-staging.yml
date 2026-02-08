@@ -52,6 +52,7 @@ jobs:
         run: pnpm build
         env:
           RESEND_API_KEY: placeholder_for_build
+          NEXT_PUBLIC_SITE_URL: https://staging.alternatefutures.ai
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

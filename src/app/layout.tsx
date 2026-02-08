@@ -2,10 +2,10 @@ import '../../styles.css'
 import '../styles/design-tokens.css'
 import { Metadata } from 'next'
 
-const SITE_URL = 'https://alternatefutures.ai'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://alternatefutures.ai'
 const SITE_NAME = 'Alternate Futures'
-const DEFAULT_TITLE = 'Alternate Futures - Building the Infrastructure for Human-Computer Alignment'
-const DEFAULT_DESCRIPTION = 'Developing comprehensive standards framework and toolset that ensures AI technology serves human flourishing.'
+const DEFAULT_TITLE = 'Alternate Futures | Infrastructure for Human-Computer Alignment'
+const DEFAULT_DESCRIPTION = 'Building the standards framework and toolset that ensures AI technology serves human flourishing. Deploy apps on decentralized infrastructure with lower costs, always-on uptime, and developer-first tooling.'
 
 export const metadata: Metadata = {
   title: {
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: `${SITE_URL}/og-image.png`,
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Alternate Futures wordmark on cream background',
+        alt: 'Alternate Futures — Building the infrastructure for human-computer alignment',
         type: 'image/png',
       },
     ],
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: `${SITE_URL}/og-image.png`,
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Alternate Futures wordmark on cream background',
+        alt: 'Alternate Futures — Building the infrastructure for human-computer alignment',
       },
     ],
   },

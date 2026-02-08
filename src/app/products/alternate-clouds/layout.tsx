@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 
-const SITE_URL = 'https://alternatefutures.ai'
-const CLOUDS_TITLE = 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.'
-const CLOUDS_DESCRIPTION = 'Ship apps on distributed infrastructure in minutes. Lower costs, always online, developer-first tooling. Host anything on distributed nodes keeping you up even when centralized services are down.'
+const CLOUDS_TITLE = 'Alternate Clouds | Deploy Anywhere. Pay Less. Stay Online.'
+const CLOUDS_DESCRIPTION = 'Ship apps on distributed infrastructure in minutes. Lower costs, always-on uptime, and developer-first tooling. Host anything on distributed nodes keeping you up even when centralized services are down. No surprise charges, no rate limits.'
 
 export const metadata: Metadata = {
   title: 'Alternate Clouds',
@@ -10,13 +9,13 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: 'website',
-    url: `${SITE_URL}/products/alternate-clouds`,
+    url: '/products/alternate-clouds',
     title: CLOUDS_TITLE,
     description: CLOUDS_DESCRIPTION,
     siteName: 'Alternate Futures',
     images: [
       {
-        url: `${SITE_URL}/og-image-alternate-clouds.png`,
+        url: '/og-image-alternate-clouds.png',
         width: 1200,
         height: 630,
         alt: 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.',
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
     description: CLOUDS_DESCRIPTION,
     images: [
       {
-        url: `${SITE_URL}/og-image-alternate-clouds.png`,
+        url: '/og-image-alternate-clouds.png',
         width: 1200,
         height: 630,
         alt: 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.',
