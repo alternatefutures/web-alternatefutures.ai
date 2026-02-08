@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'Alternate Futures',
     images: [
       {
-        url: '/og-image-alternate-clouds.png',
+        url: '/og-image-alternate-clouds.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: CLOUDS_DESCRIPTION,
     images: [
       {
-        url: '/og-image-alternate-clouds.png',
+        url: '/og-image-alternate-clouds.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.',
