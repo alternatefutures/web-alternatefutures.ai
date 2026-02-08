@@ -48,6 +48,8 @@ jobs:
 
       - name: Build static export
         run: pnpm build
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
 
       - name: Install Alternate Futures CLI
         run: npm install -g @alternatefutures/cli
