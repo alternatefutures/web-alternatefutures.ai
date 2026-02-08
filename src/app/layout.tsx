@@ -1,12 +1,67 @@
 import '../../styles.css'
 import '../styles/design-tokens.css'
+import { Metadata } from 'next'
 
-export const metadata = {
-  title: 'Alternate Futures - Building the Infrastructure for Human-Computer Alignment',
-  description: 'Developing comprehensive standards framework and toolset that ensures AI technology serves human flourishing.',
+const SITE_URL = 'https://alternatefutures.ai'
+const SITE_NAME = 'Alternate Futures'
+const DEFAULT_TITLE = 'Alternate Futures - Building the Infrastructure for Human-Computer Alignment'
+const DEFAULT_DESCRIPTION = 'Developing comprehensive standards framework and toolset that ensures AI technology serves human flourishing.'
+
+export const metadata: Metadata = {
+  title: {
+    default: DEFAULT_TITLE,
+    template: '%s | Alternate Futures',
+  },
+  description: DEFAULT_DESCRIPTION,
   referrer: 'no-referrer',
+  metadataBase: new URL(SITE_URL),
+
+  // Open Graph — Facebook, LinkedIn, WhatsApp, iMessage, Slack, Teams, Telegram
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [
+      {
+        url: `${SITE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Alternate Futures wordmark on cream background',
+        type: 'image/png',
+      },
+    ],
+  },
+
+  // Twitter / X
+  twitter: {
+    card: 'summary_large_image',
+    site: '@AltFutures_ai',
+    creator: '@wonderwomancode',
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [
+      {
+        url: `${SITE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Alternate Futures wordmark on cream background',
+      },
+    ],
+  },
+
+  // Icons
+  icons: {
+    icon: '/assets/favicon.ico',
+    apple: '/assets/favicon.ico',
+  },
+
+  // Discord theme color
   other: {
     'X-DNS-Prefetch-Control': 'off',
+    'theme-color': '#000AFF',
   },
 }
 
