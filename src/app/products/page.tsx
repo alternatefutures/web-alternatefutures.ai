@@ -23,7 +23,7 @@ export default function ProductsPage() {
               <div className="card-header">
                 <div className="title-geo-row">
                   <h2 className="web-services-title">Alternate Clouds</h2>
-                  <img src="/assets/web_services_geo_cluster.png" alt="Alternate Clouds" className="geo-cluster" />
+                  <img src="/assets/web_services_geo_cluster.svg" alt="Alternate Clouds" className="geo-cluster" />
                 </div>
               </div>
               <svg className="wavy-divider" viewBox="0 0 400 48" preserveAspectRatio="none">

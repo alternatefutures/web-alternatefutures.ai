@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 110" fill="none">
+  <!-- Blue circle -->
+  <circle cx="48" cy="60" r="48" fill="#000AFF"/>
+  <!-- Large white 4-pointed star -->
+  <polygon points="58,38 62,50 74,54 62,58 58,70 54,58 42,54 54,50" fill="#FFFFFF"/>
+  <!-- Small white 4-pointed star -->
+  <polygon points="76,24 78,30 84,32 78,34 76,40 74,34 68,32 74,30" fill="#FFFFFF"/>
+  <!-- Small terracotta star at top right -->
+  <polygon points="88,6 89.5,11 95,12.5 89.5,14 88,19 86.5,14 81,12.5 86.5,11" fill="#BE4200"/>
+</svg>
