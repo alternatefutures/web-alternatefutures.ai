@@ -62,6 +62,7 @@ export const metadata: Metadata = {
   other: {
     'X-DNS-Prefetch-Control': 'off',
     'theme-color': '#000AFF',
+    'og:logo': '/assets/logo.svg',
   },
 }
 
