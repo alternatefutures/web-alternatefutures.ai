@@ -4,8 +4,8 @@ import { Metadata } from 'next'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://alternatefutures.ai'
 const SITE_NAME = 'Alternate Futures'
-const DEFAULT_TITLE = 'Alternate Futures | Infrastructure for Human-Computer Alignment'
-const DEFAULT_DESCRIPTION = 'Building the standards framework and toolset that ensures AI technology serves human flourishing. Deploy apps on decentralized infrastructure with lower costs, always-on uptime, and developer-first tooling.'
+const DEFAULT_TITLE = 'Alternate Futures | Human-Computer Alignment'
+const DEFAULT_DESCRIPTION = 'Building the infrastructure that ensures AI serves human flourishing. Deploy on decentralized cloud with lower costs and always-on uptime.'
 
 export const metadata: Metadata = {
   title: {
