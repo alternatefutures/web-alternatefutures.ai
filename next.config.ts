@@ -3,13 +3,13 @@ import path from 'path'
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: 'export',
+  // output: 'export', // Disabled for Vercel deployment with API routes
   outputFileTracingRoot: path.join(__dirname),
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true,
   },
   // Security headers (also defined in public/_headers for deployment)
   async headers() {

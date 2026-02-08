@@ -156,7 +156,7 @@ img {
 /* Main Content Section */
 .main-content {
     width: 100%;
-    background: linear-gradient(180deg, rgba(120, 0, 141, 0) 0%, rgba(120, 0, 141, 0.3) 100%), #0026FF;
+    background:#000AFF;
     padding: 136px 120px;
     display: flex;
     justify-content: center;
@@ -201,7 +201,7 @@ img {
 /* CTA Button */
 .cta-button {
     background-color: #F8F5EE;
-    color: #0026FF;
+    color: #000AFF;
     border: none;
     border-radius: 34px;
     padding: 16px 32px;
@@ -243,7 +243,7 @@ img {
     font-weight: 600;
     font-size: 16px;
     line-height: 1.5;
-    color: #0026FF;
+    color: #000AFF;
 }
 
 /* Responsive Design */
