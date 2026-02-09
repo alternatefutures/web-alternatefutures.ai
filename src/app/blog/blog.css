@@ -1,0 +1,495 @@
+/* Blog Layout */
+.blog-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-cream, #F8F5EE);
+}
+
+/* Override the absolute positioning from Footer.css so the footer
+   participates in the flex column and sticks to the viewport bottom */
+.blog-page-wrapper .footer {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+}
+
+.blog-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 30px 80px;
+}
+
+/* Blog Listing */
+.blog-header {
+  margin-bottom: 48px;
+}
+
+.blog-header h1 {
+  font-family: "Instrument Serif", serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--color-blue, #000AFF);
+  margin-bottom: 12px;
+}
+
+.blog-header p {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 18px;
+  color: var(--color-text-gray, #6B7280);
+  line-height: 1.5;
+}
+
+/* Tag Filter */
+.blog-tags-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.tag-filter-btn {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: var(--radius-full, 50px);
+  border: 1.5px solid var(--color-blue, #000AFF);
+  background: transparent;
+  color: var(--color-blue, #000AFF);
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.2s ease);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.tag-filter-btn:hover,
+.tag-filter-btn.active {
+  background: var(--color-blue, #000AFF);
+  color: var(--color-cream, #F8F5EE);
+}
+
+/* Post Grid */
+.blog-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 32px;
+}
+
+/* Post Card */
+.blog-post-card {
+  background: var(--color-white, #fff);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+  transition: transform var(--transition-fast, 0.2s ease),
+    box-shadow var(--transition-fast, 0.2s ease);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 38, 255, 0.2));
+}
+
+.blog-post-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: var(--color-blue, #000AFF);
+}
+
+.blog-post-card-image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, var(--color-blue, #000AFF) 0%, #001DD9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-post-card-image-placeholder span {
+  font-family: "Instrument Serif", serif;
+  font-size: 48px;
+  color: var(--color-cream, #F8F5EE);
+  opacity: 0.3;
+}
+
+.blog-post-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blog-post-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.blog-tag-chip {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--radius-full, 50px);
+  background: rgba(0, 10, 255, 0.08);
+  color: var(--color-blue, #000AFF);
+}
+
+.blog-post-card-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 8px;
+}
+
+.blog-post-card-excerpt {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-gray, #6B7280);
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.blog-post-card-meta {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  color: var(--color-text-light-gray, #9CA3AF);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.blog-post-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Pagination */
+.blog-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.blog-load-more-btn {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: var(--radius-full, 50px);
+  border: 2px solid var(--color-blue, #000AFF);
+  background: transparent;
+  color: var(--color-blue, #000AFF);
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.2s ease);
+}
+
+.blog-load-more-btn:hover {
+  background: var(--color-blue, #000AFF);
+  color: var(--color-cream, #F8F5EE);
+}
+
+/* Empty State */
+.blog-empty {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.blog-empty h2 {
+  font-family: "Instrument Serif", serif;
+  font-size: 28px;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 8px;
+}
+
+.blog-empty p {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  color: var(--color-text-gray, #6B7280);
+}
+
+/* ======= Post Detail Page ======= */
+.blog-post-detail {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.blog-post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-blue, #000AFF);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: opacity var(--transition-fast, 0.2s ease);
+}
+
+.blog-post-back:hover {
+  opacity: 0.7;
+}
+
+.blog-post-cover {
+  width: 100%;
+  border-radius: var(--radius-lg, 12px);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin-bottom: 32px;
+}
+
+.blog-post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.blog-post-title {
+  font-family: "Instrument Serif", serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 16px;
+}
+
+.blog-post-meta {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-text-light-gray, #9CA3AF);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border, #E5E7EB);
+}
+
+.blog-post-author {
+  font-weight: 600;
+  color: var(--color-text-dark, #1F2937);
+}
+
+/* Markdown Content */
+.blog-post-content {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-text-dark, #1F2937);
+}
+
+.blog-post-content h1 {
+  font-family: "Instrument Serif", serif;
+  font-size: 36px;
+  font-weight: 400;
+  margin: 48px 0 16px;
+}
+
+.blog-post-content h2 {
+  font-family: "Instrument Serif", serif;
+  font-size: 28px;
+  font-weight: 400;
+  margin: 40px 0 12px;
+}
+
+.blog-post-content h3 {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 32px 0 10px;
+}
+
+.blog-post-content p {
+  margin: 0 0 20px;
+}
+
+.blog-post-content a {
+  color: var(--color-blue, #000AFF);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-post-content a:hover {
+  opacity: 0.7;
+}
+
+.blog-post-content img {
+  border-radius: var(--radius-md, 8px);
+  margin: 24px 0;
+}
+
+.blog-post-content blockquote {
+  border-left: 3px solid var(--color-blue, #000AFF);
+  padding-left: 20px;
+  margin: 24px 0;
+  color: var(--color-text-gray, #6B7280);
+  font-style: italic;
+}
+
+.blog-post-content pre {
+  background: #1a1a2e;
+  color: #f8f5ee;
+  padding: 20px;
+  border-radius: var(--radius-md, 8px);
+  overflow-x: auto;
+  margin: 24px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.blog-post-content code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9em;
+}
+
+.blog-post-content :not(pre) > code {
+  background: rgba(0, 10, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--color-blue, #000AFF);
+}
+
+.blog-post-content ul,
+.blog-post-content ol {
+  padding-left: 24px;
+  margin: 0 0 20px;
+}
+
+.blog-post-content li {
+  margin-bottom: 8px;
+}
+
+.blog-post-content hr {
+  border: none;
+  border-top: 1px solid var(--color-border, #E5E7EB);
+  margin: 40px 0;
+}
+
+/* Share Links */
+.blog-post-share {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border, #E5E7EB);
+}
+
+.blog-post-share h3 {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-light-gray, #9CA3AF);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.blog-post-share-links {
+  display: flex;
+  gap: 12px;
+}
+
+.blog-share-btn {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-full, 50px);
+  border: 1.5px solid var(--color-border, #E5E7EB);
+  background: transparent;
+  color: var(--color-text-dark, #1F2937);
+  text-decoration: none;
+  transition: all var(--transition-fast, 0.2s ease);
+}
+
+.blog-share-btn:hover {
+  border-color: var(--color-blue, #000AFF);
+  color: var(--color-blue, #000AFF);
+}
+
+/* 404 */
+.blog-post-not-found {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.blog-post-not-found h1 {
+  font-family: "Instrument Serif", serif;
+  font-size: 36px;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 12px;
+}
+
+.blog-post-not-found p {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  color: var(--color-text-gray, #6B7280);
+  margin-bottom: 24px;
+}
+
+.blog-post-not-found a {
+  color: var(--color-blue, #000AFF);
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .blog-main {
+    padding: 24px 20px 60px;
+  }
+
+  .blog-header h1 {
+    font-size: 36px;
+  }
+
+  .blog-posts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-post-title {
+    font-size: 32px;
+  }
+
+  .blog-post-content {
+    font-size: 16px;
+  }
+
+  .blog-post-content h1 {
+    font-size: 28px;
+  }
+
+  .blog-post-content h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-main {
+    padding: 16px 15px 40px;
+  }
+
+  .blog-header h1 {
+    font-size: 28px;
+  }
+
+  .blog-post-title {
+    font-size: 26px;
+  }
+
+  .blog-post-share-links {
+    flex-wrap: wrap;
+  }
+}
