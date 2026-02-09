@@ -34,6 +34,9 @@ const Header: React.FC<HeaderProps> = ({ activePage, subPage }) => {
               )}
             </div>
             <div className="nav-column">
+              <a href="/blog" className={`nav-link ${activePage === 'blog' ? 'active' : ''}`}>Blog</a>
+            </div>
+            <div className="nav-column">
               <a href="https://docs.alternatefutures.ai" className="nav-link" target="_blank" rel="noopener noreferrer">Docs</a>
             </div>
           </div>
