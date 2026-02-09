@@ -1,9 +1,17 @@
 /* Blog Layout */
 .blog-page-wrapper {
-  position: relative;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-cream, #F8F5EE);
-  padding-bottom: 80px; /* space for the absolute-positioned footer */
+}
+
+/* Override the absolute positioning from Footer.css so the footer
+   participates in the flex column and sticks to the viewport bottom */
+.blog-page-wrapper .footer {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
 }
 
 .blog-main {
