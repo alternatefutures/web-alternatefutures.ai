@@ -14,6 +14,8 @@ export default function LoginPage() {
   )
 }
 
+const isStaging = process.env.NEXT_PUBLIC_STAGING === 'true'
+
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -24,6 +26,23 @@ function LoginForm() {
   const [code, setCode] = useState(['', '', '', '', '', ''])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+
+  const handleStagingLogin = useCallback(async () => {
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('/api/auth/staging-login', { method: 'POST' })
+      if (!res.ok) {
+        setError('Staging login failed')
+        return
+      }
+      router.push(redirect)
+    } catch {
+      setError('Connection error')
+    } finally {
+      setLoading(false)
+    }
+  }, [redirect, router])
 
   const codeRefs = useRef<(HTMLInputElement | null)[]>([])
 
@@ -142,6 +161,21 @@ function LoginForm() {
             <p className="login-subtitle">
               Enter your email to receive a verification code.
             </p>
+
+            {isStaging && (
+              <div className="login-form">
+                <button
+                  type="button"
+                  className="login-btn"
+                  style={{ background: '#BE4200' }}
+                  disabled={loading}
+                  onClick={handleStagingLogin}
+                >
+                  {loading ? 'Signing in...' : 'Dev Login (Staging)'}
+                </button>
+                <div style={{ textAlign: 'center', fontSize: 13, color: '#888', margin: '8px 0' }}>or sign in with email below</div>
+              </div>
+            )}
 
             <form className="login-form" onSubmit={handleRequestCode}>
               <div>

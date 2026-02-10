@@ -12,6 +12,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+ARG NEXT_PUBLIC_STAGING
+ENV NEXT_PUBLIC_STAGING=$NEXT_PUBLIC_STAGING
 RUN pnpm build
 
 FROM base AS runner
