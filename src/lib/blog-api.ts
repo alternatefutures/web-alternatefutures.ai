@@ -519,3 +519,299 @@ export async function fetchTags(): Promise<BlogTag[]> {
     return []
   }
 }
+
+// ---------------------------------------------------------------------------
+// Admin queries & mutations (authenticated — require JWT)
+// ---------------------------------------------------------------------------
+
+const POST_FIELDS = `
+  id title slug excerpt content coverImage status
+  authorName tags { id name slug }
+  seoTitle seoDescription readingTimeMin
+  publishedAt createdAt updatedAt
+`
+
+const ALL_POSTS_QUERY = `
+  query AllBlogPosts($limit: Int, $offset: Int) {
+    blogPosts(limit: $limit, offset: $offset, includeUnpublished: true) {
+      ${POST_FIELDS}
+    }
+  }
+`
+
+const POST_BY_ID_QUERY = `
+  query BlogPostById($id: ID!) {
+    blogPostById(id: $id) {
+      ${POST_FIELDS}
+    }
+  }
+`
+
+const CREATE_POST_MUTATION = `
+  mutation CreateBlogPost($input: CreateBlogPostInput!) {
+    createBlogPost(input: $input) {
+      ${POST_FIELDS}
+    }
+  }
+`
+
+const UPDATE_POST_MUTATION = `
+  mutation UpdateBlogPost($id: ID!, $input: UpdateBlogPostInput!) {
+    updateBlogPost(id: $id, input: $input) {
+      ${POST_FIELDS}
+    }
+  }
+`
+
+const DELETE_POST_MUTATION = `
+  mutation DeleteBlogPost($id: ID!) {
+    deleteBlogPost(id: $id) { id }
+  }
+`
+
+const CREATE_TAG_MUTATION = `
+  mutation CreateBlogTag($input: CreateBlogTagInput!) {
+    createBlogTag(input: $input) { id name slug }
+  }
+`
+
+// Authenticated GraphQL client — sends JWT from cookie via server action
+async function authGraphqlFetch<T>(
+  query: string,
+  variables: Record<string, unknown>,
+  token: string,
+): Promise<T> {
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ query, variables }),
+    cache: 'no-store',
+  })
+
+  if (!res.ok) {
+    throw new Error(`GraphQL request failed: ${res.status}`)
+  }
+
+  const json = await res.json()
+  if (json.errors?.length) {
+    throw new Error(json.errors[0].message)
+  }
+  return json.data
+}
+
+// In-memory mock store for admin dev mode
+let mockPosts = [...SEED_POSTS]
+
+function addSeedDrafts(): BlogPost[] {
+  // Add draft versions to seed data for admin view
+  const drafts: BlogPost[] = [
+    {
+      id: 'seed-5',
+      title: 'Alternate Futures Q1 2026 Product Roadmap',
+      slug: 'q1-2026-roadmap',
+      excerpt: 'A look at what we\'re shipping in Q1 2026 — from AI agent templates to enterprise features.',
+      coverImage: null,
+      status: 'DRAFT',
+      authorName: 'Alternate Futures Team',
+      tags: [SEED_TAGS[0]],
+      seoTitle: null,
+      seoDescription: null,
+      readingTimeMin: 3,
+      publishedAt: null,
+      createdAt: '2026-02-06T10:00:00Z',
+      updatedAt: '2026-02-08T14:00:00Z',
+      content: '## Q1 2026 Roadmap\n\nThis quarter we\'re focused on three pillars:\n\n1. **AI Agent Templates** — one-click deploy for popular frameworks\n2. **Enterprise SSO** — SAML and OIDC for teams\n3. **Cost Dashboard** — real-time spend tracking across providers\n\nMore details coming soon.',
+    },
+    {
+      id: 'seed-6',
+      title: 'Migrating from Fleek to Alternate Futures',
+      slug: 'migrating-from-fleek',
+      excerpt: 'Step-by-step guide for Fleek users moving to Alternate Futures.',
+      coverImage: null,
+      status: 'DRAFT',
+      authorName: 'Alternate Futures Team',
+      tags: [SEED_TAGS[5], SEED_TAGS[7]],
+      seoTitle: null,
+      seoDescription: null,
+      readingTimeMin: 5,
+      publishedAt: null,
+      createdAt: '2026-02-07T09:00:00Z',
+      updatedAt: '2026-02-09T11:00:00Z',
+      content: '## Migrating from Fleek\n\nWith Fleek\'s pivot to AI inference, many Web3 projects need a new home. Here\'s how to move your site to Alternate Futures in under 10 minutes.\n\n### Step 1: Install the CLI\n\n```bash\nnpm install -g @alternatefutures/cli\n```\n\n### Step 2: Import your project\n\n```bash\naf import --from fleek\n```\n\nThe CLI will detect your Fleek configuration and generate an equivalent AF config.',
+    },
+  ]
+  if (!mockPosts.find((p) => p.id === 'seed-5')) {
+    mockPosts = [...SEED_POSTS, ...drafts]
+  }
+  return mockPosts
+}
+
+export interface CreateBlogPostInput {
+  title: string
+  slug: string
+  excerpt?: string
+  content: string
+  coverImage?: string
+  status?: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED'
+  tagIds?: string[]
+  seoTitle?: string
+  seoDescription?: string
+}
+
+export interface UpdateBlogPostInput {
+  title?: string
+  slug?: string
+  excerpt?: string
+  content?: string
+  coverImage?: string
+  status?: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED'
+  tagIds?: string[]
+  seoTitle?: string
+  seoDescription?: string
+}
+
+export async function fetchAllPosts(
+  token: string,
+  limit = 100,
+  offset = 0,
+): Promise<BlogPost[]> {
+  try {
+    const data = await authGraphqlFetch<{ blogPosts: BlogPost[] }>(
+      ALL_POSTS_QUERY,
+      { limit, offset },
+      token,
+    )
+    return data.blogPosts
+  } catch {
+    if (useSeedData()) return addSeedDrafts().slice(offset, offset + limit)
+    return []
+  }
+}
+
+export async function fetchPostById(
+  token: string,
+  id: string,
+): Promise<BlogPost | null> {
+  try {
+    const data = await authGraphqlFetch<{ blogPostById: BlogPost }>(
+      POST_BY_ID_QUERY,
+      { id },
+      token,
+    )
+    return data.blogPostById
+  } catch {
+    if (useSeedData()) return addSeedDrafts().find((p) => p.id === id) || null
+    return null
+  }
+}
+
+export async function createBlogPost(
+  token: string,
+  input: CreateBlogPostInput,
+): Promise<BlogPost> {
+  if (useSeedData()) {
+    const now = new Date().toISOString()
+    const post: BlogPost = {
+      id: `seed-${Date.now()}`,
+      title: input.title,
+      slug: input.slug,
+      excerpt: input.excerpt || null,
+      content: input.content,
+      coverImage: input.coverImage || null,
+      status: input.status || 'DRAFT',
+      authorName: 'Admin',
+      tags: input.tagIds
+        ? SEED_TAGS.filter((t) => input.tagIds!.includes(t.id))
+        : [],
+      seoTitle: input.seoTitle || null,
+      seoDescription: input.seoDescription || null,
+      readingTimeMin: Math.ceil(input.content.split(/\s+/).length / 200),
+      publishedAt: input.status === 'PUBLISHED' ? now : null,
+      createdAt: now,
+      updatedAt: now,
+    }
+    mockPosts = [post, ...mockPosts]
+    return post
+  }
+
+  const data = await authGraphqlFetch<{ createBlogPost: BlogPost }>(
+    CREATE_POST_MUTATION,
+    { input },
+    token,
+  )
+  return data.createBlogPost
+}
+
+export async function updateBlogPost(
+  token: string,
+  id: string,
+  input: UpdateBlogPostInput,
+): Promise<BlogPost> {
+  if (useSeedData()) {
+    const idx = mockPosts.findIndex((p) => p.id === id)
+    if (idx === -1) throw new Error('Post not found')
+    const existing = mockPosts[idx]
+    const updated: BlogPost = {
+      ...existing,
+      ...input,
+      tags: input.tagIds
+        ? SEED_TAGS.filter((t) => input.tagIds!.includes(t.id))
+        : existing.tags,
+      publishedAt:
+        input.status === 'PUBLISHED' && !existing.publishedAt
+          ? new Date().toISOString()
+          : existing.publishedAt,
+      updatedAt: new Date().toISOString(),
+    } as BlogPost
+    mockPosts[idx] = updated
+    return updated
+  }
+
+  const data = await authGraphqlFetch<{ updateBlogPost: BlogPost }>(
+    UPDATE_POST_MUTATION,
+    { id, input },
+    token,
+  )
+  return data.updateBlogPost
+}
+
+export async function deleteBlogPost(
+  token: string,
+  id: string,
+): Promise<void> {
+  if (useSeedData()) {
+    mockPosts = mockPosts.filter((p) => p.id !== id)
+    return
+  }
+
+  await authGraphqlFetch<{ deleteBlogPost: { id: string } }>(
+    DELETE_POST_MUTATION,
+    { id },
+    token,
+  )
+}
+
+export async function createBlogTag(
+  token: string,
+  name: string,
+  slug: string,
+): Promise<BlogTag> {
+  if (useSeedData()) {
+    const tag: BlogTag = { id: `tag-${Date.now()}`, name, slug }
+    SEED_TAGS.push(tag)
+    return tag
+  }
+
+  const data = await authGraphqlFetch<{ createBlogTag: BlogTag }>(
+    CREATE_TAG_MUTATION,
+    { input: { name, slug } },
+    token,
+  )
+  return data.createBlogTag
+}
+
+// Re-export seed data for use in mock mode
+export { SEED_TAGS, SEED_POSTS }

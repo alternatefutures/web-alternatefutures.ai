@@ -1,0 +1,175 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-cream, #F8F5EE);
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-white, #fff);
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 38, 255, 0.2));
+  padding: 48px 40px;
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-logo-text {
+  font-family: "Instrument Serif", serif;
+  font-size: 28px;
+  color: var(--color-blue, #000AFF);
+}
+
+.login-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 15px;
+  color: var(--color-text-gray, #6B7280);
+  margin-bottom: 32px;
+  line-height: 1.4;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-label {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.login-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  border: 1.5px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  outline: none;
+  transition: border-color var(--transition-fast, 0.2s ease);
+  box-sizing: border-box;
+}
+
+.login-input:focus {
+  border-color: var(--color-blue, #000AFF);
+}
+
+.login-input::placeholder {
+  color: var(--color-text-light-gray, #9CA3AF);
+}
+
+.login-code-inputs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.login-code-input {
+  width: 48px;
+  height: 56px;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 24px;
+  font-weight: 600;
+  border: 1.5px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  outline: none;
+  transition: border-color var(--transition-fast, 0.2s ease);
+}
+
+.login-code-input:focus {
+  border-color: var(--color-blue, #000AFF);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-blue, #000AFF);
+  color: var(--color-cream, #F8F5EE);
+  cursor: pointer;
+  transition: opacity var(--transition-fast, 0.2s ease);
+}
+
+.login-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.login-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.login-error {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-error, #EF4444);
+  background: var(--color-error-light, #FEF2F2);
+  border: 1px solid var(--color-error-border, #FCA5A5);
+  border-radius: var(--radius-md, 8px);
+  padding: 10px 14px;
+}
+
+.login-back-btn {
+  background: none;
+  border: none;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-blue, #000AFF);
+  cursor: pointer;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.login-back-btn:hover {
+  opacity: 0.7;
+}
+
+.login-sent-to {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-text-gray, #6B7280);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.login-sent-to strong {
+  color: var(--color-text-dark, #1F2937);
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 32px 24px;
+  }
+
+  .login-code-input {
+    width: 40px;
+    height: 48px;
+    font-size: 20px;
+  }
+}

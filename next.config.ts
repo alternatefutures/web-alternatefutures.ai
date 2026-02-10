@@ -3,7 +3,7 @@ import path from 'path'
 
 const nextConfig: NextConfig = {
   /* config options here */
-  // output: 'export', // Disabled for Vercel deployment with API routes
+  output: 'standalone',
   outputFileTracingRoot: path.join(__dirname),
   compress: true,
   poweredByHeader: false,
