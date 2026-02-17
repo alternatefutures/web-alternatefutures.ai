@@ -3,7 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #F8F5EE;
+  background-color: var(--af-surface-page, #F8F5EE);
   overflow: hidden;
   position: relative;
 }

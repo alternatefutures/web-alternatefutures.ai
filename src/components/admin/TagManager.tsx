@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback, type FormEvent } from 'react'
+import { useDialog } from '@/hooks/useDialog'
 import type { BlogTag } from '@/lib/blog-api'
 
 interface TagManagerProps {
@@ -20,6 +21,7 @@ function slugify(text: string): string {
 }
 
 export default function TagManager({ tags, open, onClose, onCreateTag }: TagManagerProps) {
+  const dialogRef = useDialog(open, onClose)
   const [name, setName] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -55,10 +57,14 @@ export default function TagManager({ tags, open, onClose, onCreateTag }: TagMana
     <div className="tag-manager-overlay" onClick={onClose}>
       <div
         className="tag-manager-modal"
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="tag-manager-title"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="tag-manager-header">
-          <h3>Manage Tags</h3>
+          <h3 id="tag-manager-title">Manage Tags</h3>
           <button className="tag-manager-close" onClick={onClose}>
             &times;
           </button>
@@ -72,6 +78,7 @@ export default function TagManager({ tags, open, onClose, onCreateTag }: TagMana
             value={name}
             onChange={(e) => setName(e.target.value)}
             autoFocus
+            aria-label="New tag name"
           />
           <button
             type="submit"

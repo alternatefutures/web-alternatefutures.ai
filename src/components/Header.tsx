@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ activePage, subPage }) => {
     <header className="header">
       <div className="header-content">
         <a href="/" className="logo">
-          <Image src="/assets/logo.svg" alt="Alternate Futures" width={58} height={47} priority />
+          <Image src="/assets/logo.svg" alt="Alternate Futures" width={72} height={58} priority />
         </a>
         <nav className="nav">
           <div className="nav-links">

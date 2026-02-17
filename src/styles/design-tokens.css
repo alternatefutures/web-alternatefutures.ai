@@ -1,62 +1,365 @@
-/* Design Tokens - Color Variables */
+/* ===========================================
+   ALTERNATE FUTURES DESIGN TOKEN SYSTEM
+   Soft Brutalism x Wabi-Sabi
+   =========================================== */
 :root {
-  /* Brand Colors */
+  /* --- MATERIALS (Stone Scale) --- */
+  --af-stone-50:  #FAF8F5;
+  --af-stone-100: #F5F0E8;
+  --af-stone-200: #E8E4DE;
+  --af-stone-300: #D4CFC6;
+  --af-stone-400: #B5AFA4;
+  --af-stone-500: #8A8479;
+  --af-stone-600: #6B665D;
+  --af-stone-700: #4A463F;
+  --af-stone-800: #2E2B27;
+  --af-stone-900: #1A1815;
+
+  /* --- Ultramarine --- */
+  --af-ultra:       #000AFF;
+  --af-ultra-deep:  #0000AF;
+  --af-ultra-glow:  #3D5AFE;
+  --af-ultra-wash:  #E8EAFF;
+  --af-ultra-ghost: rgba(0, 10, 255, 0.04);
+  --af-ultra-ink:   rgba(0, 10, 255, 0.12);
+
+  /* --- Terracotta --- */
+  --af-terra:       #BE4200;
+  --af-terra-ember: #D4580A;
+  --af-terra-glow:  rgba(190, 66, 0, 0.15);
+  --af-terra-warmth: rgba(190, 66, 0, 0.06);
+  --af-terra-dust:  #F5E6D8;
+
+  /* --- Peach (Brand accent — logo on dark) --- */
+  --af-peach:       #FFAD85;
+  --af-peach-soft:  #FFCDB2;
+  --af-peach-glow:  rgba(255, 173, 133, 0.2);
+
+  /* --- Gold (Premium accent — logo on dark, alt variant) --- */
+  --af-gold:        #C9A84C;
+  --af-gold-bright: #D4AF37;
+  --af-gold-glow:   rgba(201, 168, 76, 0.2);
+
+  /* --- Patina --- */
+  --af-patina:      #5C7A6B;
+  --af-patina-sage: #A8B5A0;
+  --af-patina-moss: #D4DDD0;
+  --af-patina-mist: #E8EDEA;
+
+  /* --- Signals --- */
+  --af-signal-go:   #2D8659;
+  --af-signal-wait: #C4860A;
+  --af-signal-stop: #C23B22;
+  --af-signal-info: #3D5AFE;
+
+  /* --- Aizome (Indigo Depth Scale) --- */
+  --af-ai-kame:     #EBF6F7;
+  --af-ai-mizu:     #7EB8D0;
+  --af-ai-asagi:    #4E8CA8;
+  --af-ai-hanada:   #2B6A8A;
+  --af-ai-noshi:    #264348;
+  --af-ai-kachi:    #1B2F3A;
+  --af-ai-noukon:   #0D0D15;
+
+  /* --- Kintsugi (Gold Repair) --- */
+  --af-kin-repair:  #C9A84C;
+  --af-kin-bright:  #D4AF37;
+  --af-kin-shimmer: #E8D48B;
+  --af-kin-dust:    #F5EDD4;
+  --af-kin-line:    rgba(201, 168, 76, 0.35);
+
+  /* --- Ma (Breathing Rhythm) --- */
+  --af-ma-breath:   0.5em;
+  --af-ma-pause:    1em;
+  --af-ma-rest:     1.5em;
+  --af-ma-silence:  3em;
+
+  /* --- STRUCTURE (Borders) --- */
+  --af-border-hair:    1px;
+  --af-border-visible: 2px;
+  --af-border-struct:  3px;
+  --af-border-heavy:   4px;
+  --af-border-mono:    6px;
+
+  /* --- SPACE (Body-referenced) --- */
+  --af-space-hair:    2px;
+  --af-space-grain:   4px;
+  --af-space-breath:  8px;
+  --af-space-palm:    12px;
+  --af-space-hand:    16px;
+  --af-space-arm:     24px;
+  --af-space-stride:  32px;
+  --af-space-room:    48px;
+  --af-space-field:   64px;
+  --af-space-horizon: 96px;
+
+  /* --- SHAPE (Radii — asymmetric worn edges) --- */
+  --af-radius-none:   0;
+  --af-radius-chip:   4px;
+  --af-radius-worn:   8px 12px 10px 6px;
+  --af-radius-stone:  12px 16px 14px 10px;
+  --af-radius-pebble: 20px 24px 18px 22px;
+  --af-radius-full:   50%;
+
+  /* --- WEIGHT (Shadows — warm on stone backgrounds) --- */
+  --af-shadow-rest:     3px 3px 0 #E8E4DE;
+  --af-shadow-hover:    5px 5px 0 #E8E4DE;
+  --af-shadow-pressed:  1px 1px 0 #E8E4DE;
+  --af-shadow-elevated: 6px 6px 0 #D4CFC6, 12px 12px 24px rgba(26, 24, 21, 0.06);
+  --af-shadow-heavy:    8px 8px 0 #B5AFA4;
+  --af-shadow-glow:     0 0 0 3px rgba(190, 66, 0, 0.15), 3px 3px 0 #E8E4DE;
+
+  /* --- MOTION (Named easing curves) --- */
+  --af-ease-brick:  cubic-bezier(0.16, 1, 0.3, 1);
+  --af-ease-settle: cubic-bezier(0.33, 1, 0.68, 1);
+  --af-ease-press:  cubic-bezier(0.22, 0.61, 0.36, 1);
+  --af-ease-drift:  cubic-bezier(0.4, 0, 0.2, 1);
+  --af-ease-snap:   cubic-bezier(0.5, 0, 0.1, 1);
+
+  --af-dur-instant: 80ms;
+  --af-dur-quick:   150ms;
+  --af-dur-normal:  250ms;
+  --af-dur-slow:    400ms;
+  --af-dur-drift:   800ms;
+
+  /* --- TYPE --- */
+  --af-font-architect: "Instrument Sans", sans-serif;
+  --af-font-poet:      "Instrument Serif", serif;
+  --af-font-machine:   "JetBrains Mono", monospace;
+
+  --af-type-xs:   12px;
+  --af-type-sm:   14px;
+  --af-type-base: 16px;
+  --af-type-md:   19px;
+  --af-type-lg:   24px;
+  --af-type-xl:   32px;
+  --af-type-2xl:  44px;
+  --af-type-3xl:  64px;
+
+  --af-leading-tight: 1.15;
+  --af-leading-snug:  1.3;
+  --af-leading-body:  1.6;
+  --af-leading-loose: 1.85;
+
+  /* --- SEMANTIC SURFACE TOKENS (theme-aware) --- */
+  --af-surface-page:       var(--af-stone-50);
+  --af-surface-card:       #FFFFFF;
+  --af-surface-raised:     #FFFFFF;
+  --af-surface-sunken:     var(--af-stone-100);
+  --af-surface-overlay:    rgba(26, 24, 21, 0.4);
+  --af-surface-input:      #FFFFFF;
+  --af-text-heading:       var(--af-stone-800);
+  --af-text-body:          var(--af-stone-700);
+  --af-text-secondary:     var(--af-stone-600);
+  --af-text-muted:         var(--af-stone-500);
+  --af-text-faint:         var(--af-stone-400);
+  --af-text-on-dark:       var(--af-stone-50);
+  --af-border-default:     var(--af-stone-300);
+  --af-border-subtle:      var(--af-stone-200);
+  --af-inset-shadow:       rgba(26, 24, 21, 0.04);
+  --af-inset-shadow-focus: rgba(0, 10, 255, 0.06);
+
+  /* --- CODE BLOCK (Machine voice) --- */
+  --af-code-bg:            var(--af-stone-50);
+  --af-code-border:        var(--af-stone-200);
+  --af-code-text:          var(--af-ultra-deep);
+
+  /* --- CHART COLORS (dark-mode aware) --- */
+  --af-chart-1: var(--af-ultra);
+  --af-chart-2: var(--af-terra);
+  --af-chart-3: var(--af-patina);
+  --af-chart-4: var(--af-ai-hanada);
+  --af-chart-5: var(--af-kin-repair);
+  --af-chart-grid: var(--af-stone-200);
+  --af-chart-label: var(--af-stone-500);
+
+  /* ===== Legacy aliases (backwards compat) ===== */
   --color-cream: #F8F5EE;
-  --color-cream-alt: #F9F5EE;
-  --color-blue: #000AFF;
-  --color-blue-dark: #001DD9;
-  --color-peach: #FFC7AA;
-  --color-orange: #BE4200;
-  --color-light-blue: #C8E0E4;
-
-  /* Neutral Colors */
+  --color-blue: var(--af-ultra);
+  --color-orange: var(--af-terra);
   --color-white: #FFFFFF;
-  --color-black: #000000;
+  --color-text-dark: var(--af-stone-800);
+  --color-text-gray: var(--af-stone-600);
+  --color-border: var(--af-stone-200);
+  --color-bg-light: var(--af-stone-50);
+  --color-success: var(--af-signal-go);
+  --color-warning: var(--af-signal-wait);
+  --color-error: var(--af-signal-stop);
+}
 
-  /* Text Colors */
-  --color-text-dark: #1F2937;
-  --color-text-gray: #6B7280;
-  --color-text-light-gray: #9CA3AF;
-  --color-text-dark-blue: #2E334B;
+/* ===========================================
+   DARK MODE — Aizome Night Palette
+   Warm charcoal/indigo backgrounds, cream text,
+   terracotta accents pop, muted warm borders.
+   Activated via [data-theme="dark"] on <html>.
+   =========================================== */
+[data-theme="dark"] {
+  /* --- MATERIALS (Stone Scale — inverted warm) --- */
+  --af-stone-50:  #1C1917;  /* deepest — page bg */
+  --af-stone-100: #231F1B;  /* sidebar, sunken surfaces */
+  --af-stone-200: #2E2924;  /* subtle borders */
+  --af-stone-300: #3D3730;  /* visible borders */
+  --af-stone-400: #5C554B;  /* muted text */
+  --af-stone-500: #8A8279;  /* secondary text */
+  --af-stone-600: #A69E94;  /* body text */
+  --af-stone-700: #CBC4B8;  /* strong text */
+  --af-stone-800: #E8E2D8;  /* headings */
+  --af-stone-900: #F5F0E8;  /* near-white */
 
-  /* Status Colors */
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-warning-light: #FEF3C7;
-  --color-warning-border: #FCD34D;
-  --color-warning-text: #92400E;
-  --color-error: #EF4444;
-  --color-error-light: #FEF2F2;
-  --color-error-border: #FCA5A5;
-  --color-error-text: #DC2626;
-  --color-error-dark: #B91C1C;
+  /* --- Ultramarine (brighter for dark bg contrast) --- */
+  --af-ultra:       #4D6BFF;
+  --af-ultra-deep:  #3350E8;
+  --af-ultra-glow:  #6B85FF;
+  --af-ultra-wash:  rgba(77, 107, 255, 0.15);
+  --af-ultra-ghost: rgba(77, 107, 255, 0.06);
+  --af-ultra-ink:   rgba(77, 107, 255, 0.2);
 
-  /* UI Colors */
-  --color-border: #E5E7EB;
-  --color-bg-light: #F9FAFB;
-  --color-bg-gray: #6B7280;
+  /* --- Terracotta (warmer, more vibrant on dark) --- */
+  --af-terra:       #D4680A;
+  --af-terra-ember: #E87B1E;
+  --af-terra-glow:  rgba(212, 104, 10, 0.2);
+  --af-terra-warmth: rgba(212, 104, 10, 0.08);
+  --af-terra-dust:  #3D2A1A;
 
-  /* Spacing Scale */
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 40px;
-  --spacing-3xl: 48px;
+  /* --- Patina (lifted for dark bg) --- */
+  --af-patina:      #7BA08D;
+  --af-patina-sage: #5C7A6B;
+  --af-patina-moss: #2D3D34;
+  --af-patina-mist: #232E28;
 
-  /* Border Radius */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-full: 50px;
+  /* --- Signals (adjusted for dark bg readability) --- */
+  --af-signal-go:   #3DA66E;
+  --af-signal-wait: #D4A020;
+  --af-signal-stop: #E05040;
+  --af-signal-info: #6B85FF;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 38, 255, 0.2);
-  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+  /* --- Aizome (reversed for light-on-dark) --- */
+  --af-ai-kame:     #1B2F3A;
+  --af-ai-mizu:     #4E8CA8;
+  --af-ai-asagi:    #7EB8D0;
+  --af-ai-hanada:   #7EB8D0;
+  --af-ai-noshi:    #A0D0E0;
+  --af-ai-kachi:    #EBF6F7;
+  --af-ai-noukon:   #F5FAFB;
 
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
+  /* --- Kintsugi (brighter glow on dark) --- */
+  --af-kin-repair:  #D4B85C;
+  --af-kin-bright:  #E0C040;
+  --af-kin-shimmer: #C0A040;
+  --af-kin-dust:    #2E2818;
+  --af-kin-line:    rgba(212, 184, 92, 0.3);
+
+  /* --- SEMANTIC SURFACE TOKENS --- */
+  --af-surface-page:       #1C1917;
+  --af-surface-card:       #252220;
+  --af-surface-raised:     #2A2724;
+  --af-surface-sunken:     #1A1715;
+  --af-surface-overlay:    rgba(10, 8, 6, 0.6);
+  --af-surface-input:      #1E1B18;
+  --af-text-heading:       #E8E2D8;
+  --af-text-body:          #CBC4B8;
+  --af-text-secondary:     #A69E94;
+  --af-text-muted:         #8A8279;
+  --af-text-faint:         #5C554B;
+  --af-text-on-dark:       #1C1917;
+  --af-border-default:     #3D3730;
+  --af-border-subtle:      #2E2924;
+  --af-inset-shadow:       rgba(0, 0, 0, 0.2);
+  --af-inset-shadow-focus: rgba(77, 107, 255, 0.12);
+
+  /* --- WEIGHT (Shadows — subtle glow on dark) --- */
+  --af-shadow-rest:     3px 3px 0 rgba(0, 0, 0, 0.3);
+  --af-shadow-hover:    5px 5px 0 rgba(0, 0, 0, 0.3);
+  --af-shadow-pressed:  1px 1px 0 rgba(0, 0, 0, 0.3);
+  --af-shadow-elevated: 6px 6px 0 rgba(0, 0, 0, 0.4), 12px 12px 24px rgba(0, 0, 0, 0.2);
+  --af-shadow-heavy:    8px 8px 0 rgba(0, 0, 0, 0.4);
+  --af-shadow-glow:     0 0 0 3px rgba(212, 104, 10, 0.2), 3px 3px 0 rgba(0, 0, 0, 0.3);
+
+  /* --- CODE BLOCK --- */
+  --af-code-bg:       #1A1715;
+  --af-code-border:   #3D3730;
+  --af-code-text:     #8EB4FF;
+
+  /* --- CHART COLORS (brighter for dark bg) --- */
+  --af-chart-1: #6B85FF;
+  --af-chart-2: #E87B1E;
+  --af-chart-3: #7BA08D;
+  --af-chart-4: #7EB8D0;
+  --af-chart-5: #D4B85C;
+  --af-chart-grid: #2E2924;
+  --af-chart-label: #8A8279;
+
+  /* --- Legacy aliases --- */
+  --color-cream: #1C1917;
+  --color-white: var(--af-surface-card);
+  --color-text-dark: var(--af-text-heading);
+  --color-text-gray: var(--af-text-secondary);
+  --color-border: var(--af-border-subtle);
+  --color-bg-light: var(--af-surface-sunken);
+}
+
+/* ===== Theme Transition (smooth 200ms) ===== */
+html[data-theme],
+html[data-theme] *,
+html[data-theme] *::before,
+html[data-theme] *::after {
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease,
+    fill 200ms ease,
+    stroke 200ms ease;
+}
+
+/* Grain overlay adapts in dark mode */
+[data-theme="dark"] body::after {
+  mix-blend-mode: soft-light;
+  opacity: 0.04;
+}
+
+/* ===== Shoji Dialog Animation ===== */
+@keyframes af-shoji-open {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes af-dialog-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== Global Grain Overlay ===== */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 512px 512px;
+}
+
+/* ===== Focus Visible — Accessible ===== */
+:focus-visible {
+  outline: 2px solid var(--af-ultra);
+  outline-offset: 2px;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

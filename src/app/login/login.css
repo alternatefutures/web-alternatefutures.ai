@@ -21,10 +21,11 @@
   margin-bottom: 32px;
 }
 
-.login-logo-text {
-  font-family: "Instrument Serif", serif;
-  font-size: 28px;
-  color: var(--color-blue, #000AFF);
+.login-logo-wordmark {
+  height: 32px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .login-title {

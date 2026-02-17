@@ -22,7 +22,8 @@ body {
     margin: 0;
     width: 100%;
     height: 100%;
-    background-color: #F8F5EE;
+    background-color: var(--af-surface-page, #F8F5EE);
+    color: var(--af-text-body, #4A463F);
 }
 
 a {
@@ -107,7 +108,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    background-color: #F8F5EE;
+    background-color: var(--af-surface-page, #F8F5EE);
     overflow: hidden;
     position: relative;
 }
@@ -124,7 +125,7 @@ img {
 .header {
     width: 100%;
     padding: 16px 30px;
-    background-color: #F8F5EE;
+    background-color: var(--af-surface-page, #F8F5EE);
     border-bottom: 1px solid transparent;
     position: sticky;
     top: 0;
@@ -256,7 +257,7 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F8F5EE;
+    background-color: var(--af-surface-page, #F8F5EE);
 }
 
 .hero-with-wave {
@@ -337,7 +338,7 @@ img {
 
 /* CTA Button */
 .cta-button {
-    background-color: #F8F5EE;
+    background-color: var(--af-surface-page, #F8F5EE);
     color: #000AFF;
     border: none;
     border-radius: 34px;

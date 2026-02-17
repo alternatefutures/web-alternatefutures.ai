@@ -24,13 +24,15 @@ export default function CopyButton({ text }: CopyButtonProps) {
   }
 
   return (
-    <span
-      ref={buttonRef}
+    <button
+      ref={buttonRef as React.RefObject<HTMLButtonElement>}
       className="terminal-copy"
       onClick={handleCopy}
-      style={{ cursor: 'pointer' }}
+      type="button"
+      aria-label="Copy to clipboard"
+      style={{ cursor: 'pointer', background: 'none', border: 'none', font: 'inherit', color: 'inherit', padding: 0 }}
     >
       Copy
-    </span>
+    </button>
   )
 }

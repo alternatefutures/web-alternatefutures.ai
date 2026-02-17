@@ -12,6 +12,7 @@ import {
   createBlogTag,
   type BlogTag,
 } from '@/lib/blog-api'
+import { getCookieValue } from '@/lib/cookies'
 import '../blog-admin.css'
 
 const TiptapEditor = dynamic(() => import('@/components/admin/TiptapEditor'), {
@@ -21,11 +22,6 @@ const TiptapEditor = dynamic(() => import('@/components/admin/TiptapEditor'), {
 
 function slugify(text: string): string {
   return text.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-')
-}
-
-function getCookieValue(name: string): string {
-  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`))
-  return match ? decodeURIComponent(match[1]) : ''
 }
 
 export default function NewPostPage() {

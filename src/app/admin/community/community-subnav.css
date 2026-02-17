@@ -1,0 +1,50 @@
+/* ===== Community Sub-Navigation ===== */
+.community-sub-nav {
+  display: flex;
+  gap: var(--af-space-hair, 2px);
+  border-bottom: 2px solid var(--af-stone-300, #E5E7EB);
+  margin: -32px -32px 28px -32px;
+  padding: 0 32px;
+  background: var(--af-surface-card, #fff);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.community-sub-nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--af-stone-500, #6B7280);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  margin-bottom: -2px;
+}
+
+.community-sub-nav-tab:hover {
+  color: var(--af-stone-700, #374151);
+  background: var(--af-terra-warmth, rgba(200, 80, 40, 0.05));
+}
+
+.community-sub-nav-tab.active {
+  color: var(--af-terra, #C85028);
+  font-weight: 700;
+  border-bottom-color: var(--af-terra, #C85028);
+}
+
+@media (max-width: 768px) {
+  .community-sub-nav {
+    margin: -20px -16px 20px -16px;
+    padding: 0 16px;
+  }
+
+  .community-sub-nav-tab {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}

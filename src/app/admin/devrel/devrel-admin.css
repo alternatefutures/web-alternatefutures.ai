@@ -1,0 +1,574 @@
+/* ===== DevRel Admin Dashboard ===== */
+.devrel-admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.devrel-admin-header h1 {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-dark, #1F2937);
+  margin: 0;
+}
+
+.devrel-admin-new-btn {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-md, 8px);
+  border: none;
+  background: var(--color-blue, #000AFF);
+  color: var(--color-cream, #F8F5EE);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity var(--transition-fast, 0.2s ease);
+}
+
+.devrel-admin-new-btn:hover {
+  opacity: 0.9;
+}
+
+/* Stats row */
+.devrel-admin-stats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.devrel-admin-stat-card {
+  background: var(--color-white, #fff);
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  padding: 16px 20px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.devrel-admin-stat-label {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  color: var(--color-text-gray, #6B7280);
+  margin-bottom: 4px;
+}
+
+.devrel-admin-stat-value {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-dark, #1F2937);
+}
+
+.devrel-admin-stat-change {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.devrel-admin-stat-change.positive {
+  color: var(--color-success, #2D8659);
+}
+
+.devrel-admin-stat-change.negative {
+  color: var(--color-error, #EF4444);
+}
+
+/* Section heading */
+.devrel-admin-section-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-dark, #1F2937);
+  margin: 0 0 16px;
+}
+
+/* Quick links / nav cards */
+.devrel-admin-nav-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.devrel-admin-nav-card {
+  background: var(--color-white, #fff);
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  padding: 20px;
+  text-decoration: none;
+  transition: all var(--transition-fast, 0.2s ease);
+}
+
+.devrel-admin-nav-card:hover {
+  border-color: var(--color-blue, #000AFF);
+  box-shadow: var(--shadow-hover, 5px 5px 0 #E8E4DE);
+}
+
+.devrel-admin-nav-card-title {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 4px;
+}
+
+.devrel-admin-nav-card-desc {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  color: var(--color-text-gray, #6B7280);
+}
+
+/* Filters */
+.devrel-admin-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.devrel-admin-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 14px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  outline: none;
+  transition: border-color var(--transition-fast, 0.2s ease);
+}
+
+.devrel-admin-search:focus {
+  border-color: var(--color-blue, #000AFF);
+}
+
+.devrel-admin-select {
+  padding: 10px 14px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-white, #fff);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Table */
+.devrel-admin-table-wrap {
+  background: var(--color-white, #fff);
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-lg, 12px);
+  overflow: auto;
+}
+
+.devrel-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+}
+
+.devrel-admin-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-gray, #6B7280);
+  border-bottom: 1px solid var(--color-border, #E5E7EB);
+  white-space: nowrap;
+}
+
+.devrel-admin-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border, #E5E7EB);
+  color: var(--color-text-dark, #1F2937);
+  vertical-align: middle;
+}
+
+.devrel-admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.devrel-admin-table tr:hover td {
+  background: var(--color-bg-light, #F9FAFB);
+}
+
+/* Type chip */
+.devrel-type-chip {
+  display: inline-block;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full, 50px);
+  white-space: nowrap;
+}
+
+/* Tag chips in table */
+.devrel-admin-tags-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.devrel-admin-tag-chip {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full, 50px);
+  background: rgba(0, 10, 255, 0.06);
+  color: var(--color-blue, #000AFF);
+  white-space: nowrap;
+}
+
+/* Actions */
+.devrel-admin-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.devrel-admin-action-btn {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid var(--color-border, #E5E7EB);
+  background: var(--color-white, #fff);
+  color: var(--color-text-dark, #1F2937);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast, 0.2s ease);
+  white-space: nowrap;
+}
+
+.devrel-admin-action-btn:hover {
+  border-color: var(--color-blue, #000AFF);
+  color: var(--color-blue, #000AFF);
+}
+
+.devrel-admin-action-btn.danger:hover {
+  border-color: var(--color-error, #EF4444);
+  color: var(--color-error, #EF4444);
+}
+
+/* Delete dialog */
+.devrel-admin-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.devrel-admin-dialog {
+  background: var(--color-white, #fff);
+  border-radius: var(--radius-lg, 12px);
+  padding: 32px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: var(--shadow-lg);
+}
+
+.devrel-admin-dialog h3 {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-dark, #1F2937);
+  margin: 0 0 8px;
+}
+
+.devrel-admin-dialog p {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-text-gray, #6B7280);
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.devrel-admin-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.devrel-admin-dialog-cancel {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border, #E5E7EB);
+  background: var(--color-white, #fff);
+  color: var(--color-text-dark, #1F2937);
+  cursor: pointer;
+}
+
+.devrel-admin-dialog-delete {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-md, 8px);
+  border: none;
+  background: var(--color-error, #EF4444);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity var(--transition-fast, 0.2s ease);
+}
+
+.devrel-admin-dialog-delete:hover {
+  opacity: 0.9;
+}
+
+/* Empty state */
+.devrel-admin-empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-white, #fff);
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.devrel-admin-empty h2 {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 18px;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 8px;
+}
+
+.devrel-admin-empty p {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-text-gray, #6B7280);
+}
+
+/* Metrics grid */
+.devrel-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.devrel-metric-card {
+  background: var(--color-white, #fff);
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  padding: 16px 20px;
+}
+
+.devrel-metric-card-label {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  color: var(--color-text-gray, #6B7280);
+  margin-bottom: 4px;
+}
+
+.devrel-metric-card-value {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-dark, #1F2937);
+}
+
+.devrel-metric-card-trend {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Bar chart (simple CSS) */
+.devrel-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 160px;
+  padding: 16px 0;
+}
+
+.devrel-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.devrel-bar {
+  width: 100%;
+  max-width: 40px;
+  border-radius: 4px 4px 0 0;
+  transition: height var(--transition-normal, 0.25s ease);
+}
+
+.devrel-bar-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: var(--color-text-gray, #6B7280);
+}
+
+/* Form styles */
+.devrel-form-group {
+  margin-bottom: 16px;
+}
+
+.devrel-form-label {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.devrel-form-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.devrel-form-input:focus {
+  border-color: var(--color-blue, #000AFF);
+}
+
+.devrel-form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.devrel-form-textarea:focus {
+  border-color: var(--color-blue, #000AFF);
+}
+
+.devrel-form-select {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-white, #fff);
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.devrel-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.devrel-form-submit {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: var(--radius-md, 8px);
+  border: none;
+  background: var(--color-blue, #000AFF);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity var(--transition-fast, 0.2s ease);
+}
+
+.devrel-form-submit:hover {
+  opacity: 0.9;
+}
+
+.devrel-form-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.devrel-form-cancel {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 24px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border, #E5E7EB);
+  background: var(--color-white, #fff);
+  color: var(--color-text-dark, #1F2937);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.devrel-form-status {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm, 6px);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.devrel-form-status.success {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+.devrel-form-status.error {
+  background: var(--color-error-light, #FEF2F2);
+  color: var(--color-error-text, #DC2626);
+}
+
+/* Back link */
+.devrel-admin-back {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-blue, #000AFF);
+  text-decoration: none;
+}
+
+.devrel-admin-back:hover {
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .devrel-admin-stats {
+    flex-direction: column;
+  }
+
+  .devrel-admin-nav-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .devrel-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .devrel-admin-table-wrap {
+    overflow-x: auto;
+  }
+
+  .devrel-admin-table {
+    min-width: 600px;
+  }
+}

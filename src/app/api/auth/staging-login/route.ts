@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server'
 import { SignJWT } from 'jose'
-import { JWT_SECRET, ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE } from '@/lib/auth'
-
-const secret = new TextEncoder().encode(JWT_SECRET)
+import { getJwtSecret, ACCESS_TOKEN_COOKIE, REFRESH_TOKEN_COOKIE } from '@/lib/auth'
 
 export async function POST() {
   // Only allow in staging
@@ -10,6 +8,7 @@ export async function POST() {
     return NextResponse.json({ error: 'Not available' }, { status: 404 })
   }
 
+  const secret = new TextEncoder().encode(getJwtSecret())
   const now = Math.floor(Date.now() / 1000)
 
   const accessToken = await new SignJWT({

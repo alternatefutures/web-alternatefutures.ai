@@ -1,0 +1,386 @@
+/* ===== OKR Management — Stacked Measuring Stones ===== */
+
+.okr-admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--af-space-arm);
+  flex-wrap: wrap;
+  gap: var(--af-space-palm);
+}
+
+.okr-admin-header h1 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-xl);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Quarter selector — Carved Channel */
+.okr-quarter-select {
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  color: var(--af-stone-700);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  background: var(--af-surface-card);
+  outline: none;
+  cursor: pointer;
+  box-shadow: inset 1px 2px 3px var(--af-inset-shadow);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.okr-quarter-select:focus {
+  border-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px var(--af-inset-shadow-focus),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* Overall health strip */
+.okr-health-strip {
+  display: flex;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-stride);
+  flex-wrap: wrap;
+}
+
+.okr-health-card {
+  flex: 1;
+  min-width: 140px;
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand) var(--af-space-arm);
+  box-shadow: var(--af-shadow-rest);
+  text-align: center;
+}
+
+.okr-health-value {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-2xl);
+  font-weight: 700;
+  line-height: var(--af-leading-tight);
+}
+
+.okr-health-value.on-track { color: var(--af-signal-go); }
+.okr-health-value.at-risk { color: var(--af-signal-wait); }
+.okr-health-value.behind { color: var(--af-signal-stop); }
+.okr-health-value.neutral { color: var(--af-stone-800); }
+
+.okr-health-label {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  margin-top: var(--af-space-grain);
+}
+
+/* Objective cards */
+.okr-objectives-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-arm);
+}
+
+.okr-objective-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  box-shadow: var(--af-shadow-rest);
+  overflow: hidden;
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.okr-objective-card:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+/* Objective header — heavier material */
+.okr-objective-header {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-hand);
+  padding: var(--af-space-arm);
+  background: var(--af-stone-50);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+  cursor: pointer;
+}
+
+.okr-objective-number {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--af-radius-worn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.okr-objective-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.okr-objective-title {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-base);
+  font-weight: 600;
+  color: var(--af-stone-800);
+  margin-bottom: var(--af-space-grain);
+}
+
+.okr-objective-owner {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+}
+
+/* Confidence indicator */
+.okr-confidence {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-breath);
+  flex-shrink: 0;
+}
+
+.okr-confidence-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50% 45% 50% 45%;
+}
+
+.okr-confidence-dot.high { background: var(--af-signal-go); }
+.okr-confidence-dot.medium { background: var(--af-signal-wait); }
+.okr-confidence-dot.low { background: var(--af-signal-stop); }
+
+.okr-confidence-label {
+  font-family: var(--af-font-machine);
+  font-size: 11px;
+  letter-spacing: -0.02em;
+}
+
+.okr-confidence-label.high { color: var(--af-signal-go); }
+.okr-confidence-label.medium { color: var(--af-signal-wait); }
+.okr-confidence-label.low { color: var(--af-signal-stop); }
+
+/* Progress bar — overall objective progress */
+.okr-objective-progress {
+  padding: 0 var(--af-space-arm);
+  background: var(--af-stone-50);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+.okr-progress-bar-track {
+  height: 6px;
+  background: var(--af-stone-200);
+  border-radius: var(--af-radius-chip);
+  overflow: hidden;
+}
+
+.okr-progress-bar-fill {
+  height: 100%;
+  border-radius: var(--af-radius-chip);
+  transition: width var(--af-dur-slow) var(--af-ease-settle);
+}
+
+.okr-progress-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--af-space-grain) 0 var(--af-space-breath);
+}
+
+.okr-progress-pct {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.okr-progress-target {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  color: var(--af-stone-400);
+}
+
+/* Key Results list */
+.okr-kr-list {
+  padding: var(--af-space-hand) var(--af-space-arm);
+}
+
+.okr-kr-item {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-hand);
+  padding: var(--af-space-palm) 0;
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+.okr-kr-item:last-child {
+  border-bottom: none;
+}
+
+.okr-kr-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50% 45% 50% 45%;
+  flex-shrink: 0;
+}
+
+.okr-kr-indicator.on-track { background: var(--af-signal-go); }
+.okr-kr-indicator.at-risk { background: var(--af-signal-wait); }
+.okr-kr-indicator.behind { background: var(--af-signal-stop); }
+
+.okr-kr-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.okr-kr-title {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 500;
+  color: var(--af-stone-700);
+  margin-bottom: var(--af-space-grain);
+}
+
+.okr-kr-metric {
+  font-family: var(--af-font-machine);
+  font-size: 11px;
+  color: var(--af-stone-500);
+  letter-spacing: -0.02em;
+}
+
+.okr-kr-progress {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.okr-kr-progress-track {
+  height: 4px;
+  background: var(--af-stone-200);
+  border-radius: var(--af-radius-chip);
+  overflow: hidden;
+  margin-bottom: var(--af-space-grain);
+}
+
+.okr-kr-progress-fill {
+  height: 100%;
+  border-radius: var(--af-radius-chip);
+  transition: width var(--af-dur-slow) var(--af-ease-settle);
+}
+
+.okr-kr-pct {
+  font-family: var(--af-font-machine);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: right;
+  letter-spacing: -0.02em;
+}
+
+.okr-kr-pct.on-track { color: var(--af-signal-go); }
+.okr-kr-pct.at-risk { color: var(--af-signal-wait); }
+.okr-kr-pct.behind { color: var(--af-signal-stop); }
+
+/* Linked campaigns */
+.okr-campaigns {
+  padding: var(--af-space-breath) var(--af-space-arm) var(--af-space-hand);
+  border-top: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+.okr-campaigns-label {
+  font-family: var(--af-font-architect);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-500);
+  margin-bottom: var(--af-space-breath);
+}
+
+.okr-campaigns-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-breath);
+}
+
+.okr-campaign-chip {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  padding: var(--af-space-hair) var(--af-space-breath);
+  border-radius: var(--af-radius-chip);
+  background: var(--af-ultra-ghost);
+  border: var(--af-border-hair) solid var(--af-ultra-ink);
+  color: var(--af-ultra);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.okr-campaign-chip:hover {
+  background: var(--af-ultra-wash);
+  border-color: var(--af-ultra);
+}
+
+/* Empty state */
+.okr-empty {
+  text-align: center;
+  padding: var(--af-space-horizon) var(--af-space-arm);
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  position: relative;
+}
+
+.okr-empty::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(ellipse at 50% 40%, var(--af-terra-warmth) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.okr-empty h2 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-md);
+  font-weight: 400;
+  color: var(--af-stone-700);
+  position: relative;
+}
+
+.okr-empty p {
+  font-family: var(--af-font-poet);
+  font-style: italic;
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-400);
+  position: relative;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .okr-health-strip {
+    flex-direction: column;
+  }
+
+  .okr-kr-item {
+    flex-wrap: wrap;
+  }
+
+  .okr-kr-progress {
+    width: 100%;
+  }
+}

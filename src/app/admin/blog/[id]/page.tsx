@@ -14,6 +14,7 @@ import {
   type BlogPost,
   type BlogTag,
 } from '@/lib/blog-api'
+import { getCookieValue } from '@/lib/cookies'
 import '../blog-admin.css'
 
 const TiptapEditor = dynamic(() => import('@/components/admin/TiptapEditor'), {
@@ -21,17 +22,13 @@ const TiptapEditor = dynamic(() => import('@/components/admin/TiptapEditor'), {
   loading: () => <div className="tiptap-loading">Loading editor...</div>,
 })
 
-function getCookieValue(name: string): string {
-  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`))
-  return match ? decodeURIComponent(match[1]) : ''
-}
-
 export default function EditPostPage() {
   const params = useParams<{ id: string }>()
   const postId = params.id
 
   const [post, setPost] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState('')
 
   const [title, setTitle] = useState('')
   const [slug, setSlug] = useState('')
@@ -50,25 +47,30 @@ export default function EditPostPage() {
 
   useEffect(() => {
     async function load() {
-      const token = getCookieValue('af_access_token')
-      const [postData, tagsData] = await Promise.all([
-        fetchPostById(token, postId),
-        fetchTags(),
-      ])
-      if (postData) {
-        setPost(postData)
-        setTitle(postData.title)
-        setSlug(postData.slug)
-        setExcerpt(postData.excerpt || '')
-        setContent(postData.content)
-        setCoverImage(postData.coverImage || '')
-        setStatus(postData.status)
-        setSelectedTagIds(postData.tags.map((t) => t.id))
-        setSeoTitle(postData.seoTitle || '')
-        setSeoDescription(postData.seoDescription || '')
+      try {
+        const token = getCookieValue('af_access_token')
+        const [postData, tagsData] = await Promise.all([
+          fetchPostById(token, postId),
+          fetchTags(),
+        ])
+        if (postData) {
+          setPost(postData)
+          setTitle(postData.title)
+          setSlug(postData.slug)
+          setExcerpt(postData.excerpt || '')
+          setContent(postData.content)
+          setCoverImage(postData.coverImage || '')
+          setStatus(postData.status)
+          setSelectedTagIds(postData.tags.map((t) => t.id))
+          setSeoTitle(postData.seoTitle || '')
+          setSeoDescription(postData.seoDescription || '')
+        }
+        setTags(tagsData)
+      } catch {
+        setLoadError('Failed to load post. Please refresh to try again.')
+      } finally {
+        setLoading(false)
       }
-      setTags(tagsData)
-      setLoading(false)
     }
     load()
   }, [postId])
@@ -127,6 +129,20 @@ export default function EditPostPage() {
 
   if (loading) {
     return <div className="blog-admin-empty"><p>Loading post...</p></div>
+  }
+
+  if (loadError) {
+    return (
+      <div className="blog-admin-empty">
+        <h2>Error</h2>
+        <p>{loadError}</p>
+        <p>
+          <Link href="/admin/blog" className="blog-editor-back">
+            &larr; Back to posts
+          </Link>
+        </p>
+      </div>
+    )
   }
 
   if (!post) {

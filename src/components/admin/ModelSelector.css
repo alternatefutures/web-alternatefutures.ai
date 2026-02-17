@@ -1,0 +1,248 @@
+/* ===========================================
+   ModelSelector — AI Model Picker
+   Uses Pressed in Clay pattern + --af-* tokens
+   =========================================== */
+
+.model-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-breath);
+}
+
+.model-selector-label {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--af-text-secondary);
+}
+
+/* --- Category filter chips (Pressed in Clay) --- */
+
+.model-selector-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-grain);
+}
+
+.model-selector-cat-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-grain) var(--af-space-palm);
+  border: var(--af-border-visible) solid var(--af-border-default);
+  border-radius: var(--af-radius-chip);
+  background: var(--af-surface-card);
+  color: var(--af-text-secondary);
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.model-selector-cat-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  background: var(--af-terra-warmth);
+}
+
+.model-selector-cat-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(1px, 1px);
+}
+
+.model-selector-cat-btn.active {
+  border-color: var(--cat-color, var(--af-ultra));
+  background: var(--af-ultra-wash);
+  color: var(--cat-color, var(--af-ultra));
+  box-shadow: var(--af-shadow-pressed);
+}
+
+/* --- Dropdown --- */
+
+.model-selector-dropdown {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  padding: var(--af-space-breath) var(--af-space-palm);
+  border: var(--af-border-visible) solid var(--af-border-default);
+  border-radius: var(--af-radius-worn);
+  background: var(--af-surface-input);
+  color: var(--af-text-body);
+  box-shadow: inset 0 2px 4px var(--af-inset-shadow);
+  cursor: pointer;
+  width: 100%;
+  transition: border-color var(--af-dur-quick) var(--af-ease-settle),
+              box-shadow var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.model-selector-dropdown:focus {
+  border-color: var(--af-ultra);
+  box-shadow: inset 0 2px 4px var(--af-inset-shadow-focus),
+              0 0 0 3px var(--af-ultra-ghost);
+  outline: none;
+}
+
+/* --- Selected model card --- */
+
+.model-selector-selected {
+  border: var(--af-border-visible) solid var(--af-border-default);
+  border-radius: var(--af-radius-stone);
+  background: var(--af-surface-card);
+  padding: var(--af-space-palm);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.model-selector-selected-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--af-space-palm);
+}
+
+.model-selector-selected-info {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-breath);
+  flex-wrap: wrap;
+}
+
+.model-selector-selected-name {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-base);
+  font-weight: 600;
+  color: var(--af-text-heading);
+}
+
+.model-selector-category-badge {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 50px;
+  background: color-mix(in srgb, var(--cat-color, var(--af-ultra)) 12%, transparent);
+  color: var(--cat-color, var(--af-ultra));
+}
+
+.model-selector-recommended-badge {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 50px;
+  background: var(--af-signal-go);
+  color: #fff;
+}
+
+.model-selector-approval-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.model-selector-approval-value {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-md);
+  font-weight: 700;
+  color: var(--af-signal-go);
+}
+
+.model-selector-approval-label {
+  font-family: var(--af-font-architect);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--af-text-muted);
+}
+
+/* --- Expanded details --- */
+
+.model-selector-details {
+  margin-top: var(--af-space-palm);
+  padding-top: var(--af-space-palm);
+  border-top: 1px solid var(--af-border-subtle);
+}
+
+.model-selector-description {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-text-secondary);
+  line-height: var(--af-leading-body);
+  margin: 0 0 var(--af-space-palm);
+}
+
+.model-selector-stats {
+  display: flex;
+  gap: var(--af-space-hand);
+  margin-bottom: var(--af-space-palm);
+}
+
+.model-selector-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.model-selector-stat-value {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-sm);
+  font-weight: 700;
+  color: var(--af-text-heading);
+}
+
+.model-selector-stat-label {
+  font-family: var(--af-font-architect);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--af-text-muted);
+}
+
+.model-selector-traits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-grain);
+}
+
+.model-selector-strengths,
+.model-selector-weaknesses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-grain);
+}
+
+.model-selector-trait {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--af-radius-chip);
+}
+
+.model-selector-trait--strength {
+  background: rgba(45, 134, 89, 0.08);
+  color: var(--af-signal-go);
+}
+
+.model-selector-trait--weakness {
+  background: rgba(194, 59, 34, 0.06);
+  color: var(--af-stone-500);
+}
+
+/* --- Expand/collapse toggle --- */
+
+.model-selector-expand-btn {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--af-ultra);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--af-space-grain) 0;
+  margin-top: var(--af-space-breath);
+}
+
+.model-selector-expand-btn:hover {
+  color: var(--af-ultra-glow);
+}

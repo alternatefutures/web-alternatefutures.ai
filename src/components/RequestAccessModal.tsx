@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import { useDialog } from '@/hooks/useDialog'
 import './RequestAccessModal.css'
 
 interface RequestAccessModalProps {
@@ -10,6 +11,7 @@ interface RequestAccessModalProps {
 }
 
 export default function RequestAccessModal({ isOpen, onClose, source = 'request-access' }: RequestAccessModalProps) {
+  const dialogRef = useDialog(isOpen, onClose)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -100,12 +102,12 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content" ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="request-access-title" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} aria-label="Close modal">
           ×
         </button>
 
-        <h2 className="modal-title">Request Access</h2>
+        <h2 className="modal-title" id="request-access-title">Request Access</h2>
         <p className="modal-subtitle">Fill out the form below and we'll get back to you soon.</p>
 
         <form onSubmit={handleSubmit} className="modal-form">

@@ -1,0 +1,657 @@
+/* ===== Composer Wizard — Carved Channels + Pressed in Clay ===== */
+.composer-wizard {
+  max-width: 860px;
+}
+
+.composer-wizard-header h1 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-xl);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0 0 var(--af-space-grain);
+  letter-spacing: -0.02em;
+}
+
+.composer-wizard-subtitle {
+  font-family: var(--af-font-poet);
+  font-style: italic;
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-500);
+  margin: 0 0 var(--af-space-breath);
+}
+
+/* Step content cards — Stacked Slabs */
+.wizard-step-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  padding: var(--af-space-arm);
+  margin-bottom: var(--af-space-hand);
+  box-shadow: var(--af-shadow-rest);
+  transition: box-shadow var(--af-dur-quick) var(--af-ease-press);
+}
+
+.wizard-step-card:hover {
+  box-shadow: var(--af-shadow-hover);
+}
+
+.wizard-step-card h2 {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-base);
+  font-weight: 700;
+  color: var(--af-stone-800);
+  margin: 0 0 var(--af-space-hand);
+  letter-spacing: -0.01em;
+}
+
+.wizard-step-card h3 {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  margin: 0 0 var(--af-space-palm);
+}
+
+/* Form labels — stamped above the channel */
+.wizard-label {
+  display: block;
+  font-family: var(--af-font-architect);
+  font-weight: 600;
+  font-size: var(--af-type-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--af-stone-500);
+  margin-bottom: var(--af-space-grain);
+}
+
+/* Carved Channel — text input */
+.wizard-input {
+  width: 100%;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-800);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  outline: none;
+  box-sizing: border-box;
+  box-shadow: inset 1px 2px 3px rgba(26, 24, 21, 0.04);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+  margin-bottom: var(--af-space-hand);
+}
+
+.wizard-input::placeholder {
+  color: var(--af-stone-400);
+  font-style: italic;
+  font-family: var(--af-font-poet);
+}
+
+.wizard-input:focus {
+  border-color: var(--af-ultra);
+  border-bottom-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px rgba(0, 10, 255, 0.06),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* Carved Channel — textarea */
+.wizard-textarea {
+  width: 100%;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-base);
+  line-height: var(--af-leading-body);
+  color: var(--af-stone-800);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  box-shadow: inset 1px 2px 3px rgba(26, 24, 21, 0.04);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+  margin-bottom: var(--af-space-hand);
+}
+
+.wizard-textarea::placeholder {
+  color: var(--af-stone-400);
+  font-style: italic;
+  font-family: var(--af-font-poet);
+}
+
+.wizard-textarea:focus {
+  border-color: var(--af-ultra);
+  border-bottom-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px rgba(0, 10, 255, 0.06),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* Carved Channel — select */
+.wizard-select {
+  width: 100%;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-700);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  background: var(--af-surface-card);
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: inset 1px 2px 3px rgba(26, 24, 21, 0.04);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+  margin-bottom: var(--af-space-hand);
+}
+
+.wizard-select:focus {
+  border-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px rgba(0, 10, 255, 0.06),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* Options row (checkboxes) */
+.wizard-options-row {
+  display: flex;
+  gap: var(--af-space-arm);
+  margin-bottom: var(--af-space-breath);
+}
+
+.wizard-option-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-breath);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-700);
+  cursor: pointer;
+}
+
+.wizard-option-checkbox input[type="checkbox"] {
+  accent-color: var(--af-ultra);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Platform grid — tactile selection tiles */
+.wizard-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: var(--af-space-breath);
+  margin-bottom: var(--af-space-hand);
+}
+
+.wizard-platform-item {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  padding: var(--af-space-palm) var(--af-space-hand);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  cursor: pointer;
+  background: var(--af-surface-card);
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.wizard-platform-item:hover {
+  border-color: var(--af-terra);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+  background: var(--af-terra-warmth);
+}
+
+.wizard-platform-item.selected {
+  border-color: var(--af-terra);
+  background: var(--af-terra-warmth);
+  box-shadow: var(--af-shadow-glow);
+}
+
+.wizard-platform-item:active {
+  box-shadow: 1px 1px 0 var(--af-stone-200);
+  transform: translate(1px, 1px);
+}
+
+.wizard-platform-item input[type="checkbox"] {
+  accent-color: var(--af-terra);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.wizard-platform-name {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  color: var(--af-stone-800);
+}
+
+.wizard-platform-limit {
+  font-family: var(--af-font-machine);
+  font-size: 11px;
+  color: var(--af-stone-500);
+  margin-left: auto;
+  white-space: nowrap;
+  letter-spacing: -0.03em;
+}
+
+/* Generated outputs — Stacked Slabs with material accents */
+.wizard-output-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand);
+  margin-bottom: var(--af-space-palm);
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.wizard-output-card:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.wizard-output-header {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-breath);
+  margin-bottom: var(--af-space-palm);
+}
+
+/* Platform chip — wax seal badge */
+.wizard-output-platform-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--af-space-grain) var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  font-family: var(--af-font-architect);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: var(--af-border-visible) solid;
+}
+
+.wizard-output-char-count {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  margin-left: auto;
+  letter-spacing: -0.03em;
+}
+
+.wizard-output-char-count.over {
+  color: var(--af-signal-stop);
+  font-weight: 600;
+}
+
+/* Output textarea — Carved Channel (lighter variant for editing) */
+.wizard-output-textarea {
+  width: 100%;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  line-height: var(--af-leading-body);
+  color: var(--af-stone-800);
+  border: var(--af-border-hair) solid var(--af-stone-200);
+  border-bottom-width: var(--af-border-visible);
+  border-radius: var(--af-radius-chip);
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  box-shadow: inset 1px 1px 2px rgba(26, 24, 21, 0.03);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.wizard-output-textarea:focus {
+  border-color: var(--af-ultra);
+  border-bottom-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 1px 2px rgba(0, 10, 255, 0.04),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+.wizard-output-actions {
+  display: flex;
+  gap: var(--af-space-breath);
+  margin-top: var(--af-space-breath);
+}
+
+/* Output action btn — Ghost variant */
+.wizard-output-action-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 500;
+  padding: var(--af-space-grain) var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  border: var(--af-border-hair) solid transparent;
+  background: none;
+  color: var(--af-stone-500);
+  cursor: pointer;
+  transition: all var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.wizard-output-action-btn:hover {
+  color: var(--af-terra);
+  border-color: var(--af-stone-200);
+  background: var(--af-terra-warmth);
+}
+
+/* Schedule grid */
+.wizard-schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-hand);
+}
+
+/* UTM fields */
+.wizard-utm-preset-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-hand);
+}
+
+.wizard-utm-auto-btn {
+  font-family: var(--af-font-architect);
+  font-size: 12px;
+  font-weight: 600;
+  padding: var(--af-space-breath) var(--af-space-palm);
+  background: var(--af-stone-100);
+  color: var(--af-terra);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-chip);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.wizard-utm-auto-btn:hover {
+  background: var(--af-terra-warmth);
+  border-color: var(--af-terra-glow);
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.wizard-utm-auto-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(1px, 1px);
+}
+
+.wizard-utm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-hand);
+}
+
+.wizard-utm-preview {
+  background: var(--af-stone-800);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-palm) var(--af-space-hand);
+  margin-top: var(--af-space-breath);
+}
+
+.wizard-utm-preview-label {
+  display: block;
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--af-stone-400);
+  margin-bottom: var(--af-space-grain);
+}
+
+.wizard-utm-preview-url {
+  display: block;
+  font-family: var(--af-font-machine);
+  font-size: 12px;
+  color: var(--af-terra-glow);
+  word-break: break-all;
+  line-height: var(--af-leading-body);
+}
+
+/* Review summary card — Stacked Slab (inset variant) */
+.wizard-review-post {
+  background: var(--af-stone-50);
+  border: var(--af-border-hair) solid var(--af-stone-200);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand);
+  margin-bottom: var(--af-space-palm);
+  box-shadow: inset 2px 2px 4px rgba(26, 24, 21, 0.04),
+              inset -1px -1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.wizard-review-post-header {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-breath);
+  margin-bottom: var(--af-space-breath);
+}
+
+.wizard-review-post-content {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-700);
+  line-height: var(--af-leading-body);
+  white-space: pre-wrap;
+  max-height: 80px;
+  overflow: hidden;
+}
+
+.wizard-review-post-meta {
+  display: flex;
+  gap: var(--af-space-hand);
+  margin-top: var(--af-space-breath);
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  letter-spacing: -0.03em;
+}
+
+/* Navigation buttons — Pressed in Clay */
+.wizard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--af-space-arm) 0 0;
+  gap: var(--af-space-palm);
+}
+
+/* Back button — secondary clay */
+.wizard-nav-back {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-700);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.wizard-nav-back:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+  background: var(--af-terra-warmth);
+}
+
+.wizard-nav-back:active {
+  box-shadow: 1px 1px 0 var(--af-terra-dust);
+  transform: translate(1px, 1px);
+}
+
+/* Next button — primary clay (blue slab) */
+.wizard-nav-next {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-ultra-deep);
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
+.wizard-nav-next:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  background: var(--af-ultra-glow);
+}
+
+.wizard-nav-next:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+.wizard-nav-next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Secondary nav button */
+.wizard-nav-secondary {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-700);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.wizard-nav-secondary:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+  background: var(--af-terra-warmth);
+}
+
+.wizard-nav-secondary:active {
+  box-shadow: 1px 1px 0 var(--af-terra-dust);
+  transform: translate(1px, 1px);
+}
+
+.wizard-nav-secondary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Spinner — breathing pulse instead of frantic spin */
+.wizard-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: wizard-spin 0.8s var(--af-ease-drift) infinite;
+  margin-right: var(--af-space-breath);
+  vertical-align: middle;
+}
+
+@keyframes wizard-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Generating state — meditative */
+.wizard-generating {
+  text-align: center;
+  padding: var(--af-space-room) var(--af-space-hand);
+}
+
+.wizard-generating-spinner {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: var(--af-border-struct) solid var(--af-stone-200);
+  border-top-color: var(--af-ultra);
+  border-radius: 50%;
+  animation: wizard-spin 1s var(--af-ease-drift) infinite;
+  margin-bottom: var(--af-space-palm);
+}
+
+.wizard-generating p {
+  font-family: var(--af-font-poet);
+  font-style: italic;
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-400);
+  margin: 0;
+  line-height: var(--af-leading-loose);
+}
+
+/* Success banner — Patina Signal */
+.wizard-success {
+  padding: var(--af-space-hand) var(--af-space-arm);
+  background: rgba(45, 134, 89, 0.08);
+  border: var(--af-border-visible) solid rgba(45, 134, 89, 0.25);
+  border-radius: var(--af-radius-worn);
+  text-align: center;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  color: var(--af-signal-go);
+}
+
+/* Error banner — Patina Signal */
+.wizard-error {
+  padding: var(--af-space-palm) var(--af-space-hand);
+  background: rgba(194, 59, 34, 0.08);
+  border: var(--af-border-visible) solid rgba(194, 59, 34, 0.25);
+  border-radius: var(--af-radius-worn);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-signal-stop);
+  margin-bottom: var(--af-space-hand);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .wizard-platform-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .wizard-utm-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wizard-utm-preset-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wizard-schedule-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wizard-nav {
+    flex-wrap: wrap;
+  }
+}

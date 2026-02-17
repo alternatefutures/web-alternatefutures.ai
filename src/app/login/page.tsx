@@ -2,6 +2,7 @@
 
 import { Suspense, useState, useRef, useCallback, type FormEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import BrandWordmark from '@/components/BrandWordmark'
 import './login.css'
 
 type Step = 'email' | 'code'
@@ -27,22 +28,10 @@ function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const handleStagingLogin = useCallback(async () => {
+  const handleStagingLogin = useCallback(() => {
     setLoading(true)
-    setError('')
-    try {
-      const res = await fetch('/api/auth/staging-login', { method: 'POST' })
-      if (!res.ok) {
-        setError('Staging login failed')
-        return
-      }
-      router.push(redirect)
-    } catch {
-      setError('Connection error')
-    } finally {
-      setLoading(false)
-    }
-  }, [redirect, router])
+    window.location.href = '/api/dev-login'
+  }, [])
 
   const codeRefs = useRef<(HTMLInputElement | null)[]>([])
 
@@ -152,7 +141,7 @@ function LoginForm() {
     <div className="login-page">
       <div className="login-card">
         <div className="login-logo">
-          <span className="login-logo-text">Alternate Futures</span>
+          <BrandWordmark height={56} />
         </div>
 
         {step === 'email' ? (

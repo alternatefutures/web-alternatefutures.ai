@@ -1,0 +1,1526 @@
+/* ===== Marketing Calendar Admin — Boro Design System ===== */
+
+/* ---------------------------------------------------------------------------
+   Header
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--af-space-arm);
+  flex-wrap: wrap;
+  gap: var(--af-space-palm);
+}
+
+.calendar-admin-header h1 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-xl);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: var(--af-leading-snug);
+}
+
+.calendar-admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  flex-wrap: wrap;
+}
+
+.calendar-admin-view-toggle {
+  display: flex;
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  overflow: hidden;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+}
+
+.calendar-admin-view-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-breath) var(--af-space-hand);
+  border: none;
+  background: var(--af-surface-card);
+  color: var(--af-stone-500);
+  cursor: pointer;
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.calendar-admin-view-btn:not(:last-child) {
+  border-right: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+.calendar-admin-view-btn:hover:not(.active) {
+  background: var(--af-terra-warmth);
+  color: var(--af-stone-700);
+}
+
+.calendar-admin-view-btn.active {
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.calendar-admin-new-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-ultra-deep);
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.calendar-admin-new-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  background: var(--af-ultra-glow);
+}
+
+.calendar-admin-new-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+/* ---------------------------------------------------------------------------
+   Date navigation
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--af-space-arm);
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-breath) var(--af-space-hand);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.calendar-admin-nav-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-grain) var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-700);
+  cursor: pointer;
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+}
+
+.calendar-admin-nav-btn:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  background: var(--af-terra-warmth);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+}
+
+.calendar-admin-nav-btn:active {
+  box-shadow: 1px 1px 0 var(--af-stone-200);
+  transform: translate(1px, 1px);
+}
+
+.calendar-admin-nav-center {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+}
+
+.calendar-admin-nav-label {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-base);
+  font-weight: 600;
+  color: var(--af-stone-800);
+}
+
+.calendar-admin-nav-today {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-grain) var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-500);
+  cursor: pointer;
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.calendar-admin-nav-today:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  background: var(--af-terra-warmth);
+}
+
+/* ---------------------------------------------------------------------------
+   Filters
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-filters {
+  display: flex;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-arm);
+  flex-wrap: wrap;
+}
+
+.calendar-admin-select {
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-700);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  background: var(--af-surface-card);
+  outline: none;
+  cursor: pointer;
+  box-shadow: inset 1px 2px 3px rgba(26, 24, 21, 0.04);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.calendar-admin-select:focus {
+  border-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px rgba(0, 10, 255, 0.06),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* ---------------------------------------------------------------------------
+   Month view
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-month {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  overflow: hidden;
+  box-shadow: var(--af-shadow-rest);
+}
+
+.calendar-admin-month-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-stone-50);
+}
+
+.calendar-admin-month-day-name {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  padding: var(--af-space-palm) var(--af-space-breath);
+  text-align: center;
+}
+
+.calendar-admin-month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-admin-month-cell {
+  min-height: 100px;
+  padding: var(--af-space-grain) var(--af-space-breath);
+  border-right: var(--af-border-hair) solid var(--af-stone-200);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hair);
+  transition: background var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.calendar-admin-month-cell:nth-child(7n) {
+  border-right: none;
+}
+
+.calendar-admin-month-grid > .calendar-admin-month-cell:nth-last-child(-n+7) {
+  border-bottom: none;
+}
+
+.calendar-admin-month-cell:hover {
+  background: var(--af-terra-warmth);
+}
+
+.calendar-admin-month-cell.other-month {
+  background: var(--af-stone-50);
+}
+
+.calendar-admin-month-cell.other-month .calendar-admin-month-cell-number {
+  color: var(--af-stone-400);
+  opacity: 0.5;
+}
+
+.calendar-admin-month-cell.today {
+  background: var(--af-ultra-ghost);
+}
+
+.calendar-admin-month-cell.today .calendar-admin-month-cell-number {
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-admin-month-cell-number {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 500;
+  color: var(--af-stone-700);
+  margin-bottom: var(--af-space-hair);
+  line-height: 26px;
+}
+
+.calendar-admin-month-cell-events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hair);
+  overflow: hidden;
+}
+
+.calendar-admin-month-more {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  color: var(--af-stone-500);
+  padding: 1px var(--af-space-grain);
+}
+
+/* ---------------------------------------------------------------------------
+   Event chips (month view)
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-event-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-grain);
+  padding: var(--af-space-hair) var(--af-space-grain);
+  border-radius: var(--af-radius-chip);
+  border: none;
+  background: color-mix(in srgb, var(--event-color, #000AFF) 10%, transparent);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--af-dur-quick) var(--af-ease-drift);
+  min-width: 0;
+}
+
+.calendar-admin-event-chip:hover {
+  background: color-mix(in srgb, var(--event-color, #000AFF) 20%, transparent);
+}
+
+.calendar-admin-event-chip.compact {
+  padding: var(--af-space-hair) var(--af-space-grain);
+}
+
+.calendar-admin-event-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50% 45% 50% 45%;
+  background: var(--event-color, #000AFF);
+  flex-shrink: 0;
+}
+
+.calendar-admin-event-chip-label {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--af-stone-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-admin-event-chip.compact .calendar-admin-event-chip-label {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Week view
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-week {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  overflow: hidden;
+  box-shadow: var(--af-shadow-rest);
+}
+
+.calendar-admin-week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-admin-week-col {
+  min-height: 300px;
+  border-right: var(--af-border-hair) solid var(--af-stone-200);
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-admin-week-col:last-child {
+  border-right: none;
+}
+
+.calendar-admin-week-col.today {
+  background: var(--af-ultra-ghost);
+}
+
+.calendar-admin-week-day-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--af-space-palm) var(--af-space-breath) var(--af-space-breath);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+  gap: var(--af-space-hair);
+  background: var(--af-stone-50);
+}
+
+.calendar-admin-week-day-name {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+}
+
+.calendar-admin-week-day-num {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-md);
+  font-weight: 600;
+  color: var(--af-stone-800);
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.calendar-admin-week-day-num.today {
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+}
+
+.calendar-admin-week-day-events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-grain);
+  padding: var(--af-space-breath) var(--af-space-grain);
+  flex: 1;
+}
+
+.calendar-admin-week-event-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hair);
+  padding: var(--af-space-grain) var(--af-space-breath);
+  border-radius: var(--af-radius-chip);
+  border: none;
+  border-left: var(--af-border-struct) solid var(--event-color, #000AFF);
+  background: color-mix(in srgb, var(--event-color, #000AFF) 8%, transparent);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.calendar-admin-week-event-card:hover {
+  background: color-mix(in srgb, var(--event-color, #000AFF) 16%, transparent);
+}
+
+.calendar-admin-week-event-title {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-stone-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-admin-week-event-time {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  color: var(--af-stone-500);
+}
+
+/* ---------------------------------------------------------------------------
+   List view — table
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-table-wrap {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  overflow: auto;
+  box-shadow: var(--af-shadow-rest);
+}
+
+.calendar-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+}
+
+.calendar-admin-table th {
+  text-align: left;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-weight: 600;
+  font-size: var(--af-type-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  border-bottom: var(--af-border-visible) solid var(--af-stone-300);
+  white-space: nowrap;
+  background: var(--af-stone-50);
+}
+
+.calendar-admin-table td {
+  padding: var(--af-space-palm) var(--af-space-hand);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+  color: var(--af-stone-700);
+  vertical-align: middle;
+}
+
+.calendar-admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.calendar-admin-table tr:hover td {
+  background: var(--af-terra-warmth);
+}
+
+.calendar-admin-table tr:nth-child(even) td {
+  background: var(--af-stone-50);
+}
+
+.calendar-admin-table tr:nth-child(even):hover td {
+  background: var(--af-terra-warmth);
+}
+
+.calendar-admin-table-date {
+  white-space: nowrap;
+}
+
+.calendar-admin-table-time {
+  display: block;
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  margin-top: var(--af-space-hair);
+}
+
+.calendar-admin-table-title {
+  font-weight: 600;
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-admin-table-desc {
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.calendar-admin-table-actions {
+  display: flex;
+  gap: var(--af-space-breath);
+}
+
+.calendar-admin-action-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-grain) var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-700);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+}
+
+.calendar-admin-action-btn:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  background: var(--af-terra-warmth);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+}
+
+.calendar-admin-action-btn:active {
+  box-shadow: 1px 1px 0 var(--af-stone-200);
+  transform: translate(1px, 1px);
+}
+
+.calendar-admin-action-btn.danger:hover {
+  border-color: var(--af-signal-stop);
+  color: var(--af-signal-stop);
+  background: rgba(194, 59, 34, 0.06);
+  box-shadow: 3px 3px 0 rgba(194, 59, 34, 0.15);
+}
+
+/* ---------------------------------------------------------------------------
+   Event type chips
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-type-chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--radius-full, 50px);
+  background: color-mix(in srgb, var(--chip-color, #000AFF) 12%, transparent);
+  color: var(--chip-color, #000AFF);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   Status chips
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-status-chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--radius-full, 50px);
+  white-space: nowrap;
+}
+
+.calendar-admin-status-chip.planned {
+  background: rgba(0, 10, 255, 0.08);
+  color: var(--color-blue, #000AFF);
+}
+
+.calendar-admin-status-chip.in-progress {
+  background: rgba(245, 158, 11, 0.10);
+  color: #D97706;
+}
+
+.calendar-admin-status-chip.completed {
+  background: rgba(16, 185, 129, 0.10);
+  color: #059669;
+}
+
+.calendar-admin-status-chip.canceled {
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--color-error, #EF4444);
+}
+
+.calendar-admin-status-chip.postponed {
+  background: rgba(107, 114, 128, 0.10);
+  color: var(--color-text-gray, #6B7280);
+}
+
+/* ---------------------------------------------------------------------------
+   Dialog overlay (shared)
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.calendar-admin-dialog {
+  background: var(--color-white, #fff);
+  border-radius: var(--radius-lg, 12px);
+  padding: 32px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.calendar-admin-dialog h3 {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-dark, #1F2937);
+  margin: 0 0 16px;
+}
+
+.calendar-admin-dialog-text {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-text-gray, #6B7280);
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+/* Form dialog (wider) */
+.calendar-admin-dialog--form {
+  max-width: 560px;
+}
+
+/* Detail dialog */
+.calendar-admin-dialog--detail {
+  max-width: 520px;
+}
+
+/* ---------------------------------------------------------------------------
+   Event form
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-form-error {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  color: var(--color-error, #EF4444);
+  background: rgba(239, 68, 68, 0.06);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm, 6px);
+  margin-bottom: 16px;
+}
+
+.calendar-admin-form-group {
+  margin-bottom: 14px;
+}
+
+.calendar-admin-form-group--flex {
+  flex: 1;
+  min-width: 0;
+}
+
+.calendar-admin-form-label {
+  display: block;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 6px;
+}
+
+.calendar-admin-form-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-sm, 6px);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.calendar-admin-form-input:focus {
+  border-color: var(--color-blue, #000AFF);
+}
+
+.calendar-admin-form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-sm, 6px);
+  outline: none;
+  resize: vertical;
+  min-height: 64px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+  line-height: 1.5;
+}
+
+.calendar-admin-form-textarea:focus {
+  border-color: var(--color-blue, #000AFF);
+}
+
+.calendar-admin-form-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-sm, 6px);
+  background: var(--color-white, #fff);
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.calendar-admin-form-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 0;
+}
+
+.calendar-admin-form-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-dark, #1F2937);
+  cursor: pointer;
+  padding-top: 22px;
+}
+
+.calendar-admin-form-checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-blue, #000AFF);
+}
+
+.calendar-admin-color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendar-admin-form-color {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-sm, 6px);
+  padding: 2px;
+  cursor: pointer;
+  background: none;
+}
+
+.calendar-admin-color-hex {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--color-text-gray, #6B7280);
+}
+
+/* ---------------------------------------------------------------------------
+   Dialog actions
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.calendar-admin-dialog-actions-right {
+  display: flex;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.calendar-admin-dialog-cancel {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border, #E5E7EB);
+  background: var(--color-white, #fff);
+  color: var(--color-text-dark, #1F2937);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-admin-dialog-cancel:hover {
+  border-color: var(--color-text-gray, #6B7280);
+}
+
+.calendar-admin-dialog-save {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-md, 8px);
+  border: none;
+  background: var(--color-blue, #000AFF);
+  color: var(--color-white, #fff);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.calendar-admin-dialog-save:hover {
+  opacity: 0.9;
+}
+
+.calendar-admin-dialog-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.calendar-admin-dialog-delete-btn {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-error, #EF4444);
+  background: var(--color-white, #fff);
+  color: var(--color-error, #EF4444);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendar-admin-dialog-delete-btn:hover {
+  background: var(--color-error, #EF4444);
+  color: var(--color-white, #fff);
+}
+
+.calendar-admin-dialog-confirm-delete {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-md, 8px);
+  border: none;
+  background: var(--color-error, #EF4444);
+  color: var(--color-white, #fff);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.calendar-admin-dialog-confirm-delete:hover {
+  opacity: 0.9;
+}
+
+.calendar-admin-dialog-confirm-delete:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------------------
+   Event detail dialog
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.calendar-admin-detail-color-bar {
+  width: 4px;
+  height: 28px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.calendar-admin-detail-header h3 {
+  margin: 0;
+}
+
+.calendar-admin-detail-meta {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.calendar-admin-detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 14px;
+}
+
+.calendar-admin-detail-label {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-gray, #6B7280);
+}
+
+.calendar-admin-detail-row > span:last-child {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-text-dark, #1F2937);
+  line-height: 1.5;
+}
+
+.calendar-admin-detail-metadata {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  background: var(--color-bg-light, #F9FAFB);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm, 6px);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ---------------------------------------------------------------------------
+   Empty state
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-white, #fff);
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.calendar-admin-empty h2 {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 18px;
+  color: var(--color-text-dark, #1F2937);
+  margin-bottom: 8px;
+}
+
+.calendar-admin-empty p {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 14px;
+  color: var(--color-text-gray, #6B7280);
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .calendar-admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .calendar-admin-header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Month view: smaller cells on mobile */
+  .calendar-admin-month-cell {
+    min-height: 60px;
+    padding: 4px;
+  }
+
+  .calendar-admin-month-cell-number {
+    font-size: 11px;
+  }
+
+  /* Hide event labels on mobile month, show dots only */
+  .calendar-admin-event-chip-label {
+    display: none;
+  }
+
+  .calendar-admin-event-chip {
+    padding: 2px 3px;
+    justify-content: center;
+  }
+
+  .calendar-admin-month-day-name {
+    font-size: 10px;
+    padding: 8px 2px;
+  }
+
+  /* Week view: stack on mobile */
+  .calendar-admin-week-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-admin-week-col {
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border, #E5E7EB);
+  }
+
+  .calendar-admin-week-col:last-child {
+    border-bottom: none;
+  }
+
+  .calendar-admin-week-day-header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 12px;
+  }
+
+  .calendar-admin-week-day-events {
+    padding: 4px 12px 12px;
+  }
+
+  /* Table: scroll on mobile */
+  .calendar-admin-table-wrap {
+    overflow-x: auto;
+  }
+
+  .calendar-admin-table {
+    min-width: 700px;
+  }
+
+  /* Nav */
+  .calendar-admin-nav {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .calendar-admin-nav-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .calendar-admin-nav-label {
+    font-size: 14px;
+  }
+
+  /* Dialog */
+  .calendar-admin-dialog {
+    padding: 24px;
+    max-width: 95%;
+  }
+
+  .calendar-admin-form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .calendar-admin-dialog-actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hide grid views on very small screens — mobile agenda shows instead */
+  .calendar-admin-month,
+  .calendar-admin-week {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile Agenda View — fallback for <480px
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-mobile-agenda {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .calendar-admin-mobile-agenda {
+    display: block;
+  }
+}
+
+.calendar-admin-mobile-agenda-title {
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--af-stone-100, #F5F5F4);
+  margin: 0 0 var(--af-space-hand, 16px);
+  padding: var(--af-space-palm, 12px) 0;
+  border-bottom: var(--af-border-visible, 2px) solid var(--af-stone-700, #44403C);
+}
+
+.calendar-admin-mobile-agenda-day {
+  display: flex;
+  gap: var(--af-space-hand, 16px);
+  padding: var(--af-space-palm, 12px) 0;
+  border-bottom: 1px solid var(--af-stone-800, #292524);
+}
+
+.calendar-admin-mobile-agenda-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 44px;
+  flex-shrink: 0;
+}
+
+.calendar-admin-mobile-agenda-date.today .calendar-admin-mobile-agenda-daynum {
+  background: var(--af-indigo, #000AFF);
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-admin-mobile-agenda-dayname {
+  font-family: var(--af-font-machine, "JetBrains Mono", monospace);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--af-stone-500, #78716C);
+}
+
+.calendar-admin-mobile-agenda-daynum {
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--af-stone-100, #F5F5F4);
+  line-height: 28px;
+}
+
+.calendar-admin-mobile-agenda-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-breath, 8px);
+  flex: 1;
+  min-width: 0;
+}
+
+.calendar-admin-mobile-agenda-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--af-space-breath, 8px) var(--af-space-palm, 12px);
+  background: var(--af-stone-800, #292524);
+  border-left: 3px solid var(--af-indigo, #000AFF);
+  border-radius: 0 var(--af-radius-worn, 8px) var(--af-radius-worn, 8px) 0;
+  cursor: pointer;
+  text-align: left;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  font-family: inherit;
+  width: 100%;
+}
+
+.calendar-admin-mobile-agenda-item:hover {
+  background: var(--af-stone-700, #44403C);
+}
+
+.calendar-admin-mobile-agenda-item--post {
+  border-left-color: var(--af-terra, #BE4200);
+}
+
+.calendar-admin-mobile-agenda-item-title {
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--af-stone-100, #F5F5F4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-admin-mobile-agenda-item-meta {
+  font-family: var(--af-font-machine, "JetBrains Mono", monospace);
+  font-size: 10px;
+  color: var(--af-stone-500, #78716C);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---------------------------------------------------------------------------
+   Social Post Integration — Soft Brutalism + Wabi-Sabi
+   --------------------------------------------------------------------------- */
+
+/* Post indicator dot on event chips with attached posts */
+.calendar-admin-event-post-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--af-radius-worn, 8px 12px 10px 6px);
+  background: var(--af-terra, #BE4200);
+  flex-shrink: 0;
+  margin-left: 2px;
+  box-shadow: 0 0 0 2px rgba(190, 66, 0, 0.15);
+}
+
+/* Event chip with attached post — terracotta left accent */
+.calendar-admin-event-chip.has-post {
+  border-left: var(--af-border-visible, 2px) solid var(--af-terra, #BE4200);
+}
+
+/* Post chip styling — terracotta-tinted */
+.calendar-admin-post-chip {
+  background: rgba(190, 66, 0, 0.08);
+  border-left: var(--af-border-visible, 2px) solid var(--af-terra, #BE4200);
+}
+
+.calendar-admin-post-chip:hover {
+  background: rgba(190, 66, 0, 0.14);
+}
+
+.calendar-admin-post-chip-platform {
+  font-family: var(--af-font-machine, "JetBrains Mono", monospace);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--af-terra, #BE4200);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Month cell — post count badge */
+.calendar-admin-month-post-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  font-family: var(--af-font-machine, "JetBrains Mono", monospace);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--af-stone-50, #FAF9F6);
+  background: var(--af-terra, #BE4200);
+  border-radius: var(--af-radius-worn, 8px 12px 10px 6px);
+  margin-left: 6px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Month cell with posts — subtle terracotta border-top accent */
+.calendar-admin-month-cell.has-posts {
+  border-top: var(--af-border-visible, 2px) solid rgba(190, 66, 0, 0.25);
+}
+
+/* Clickable month cells */
+.calendar-admin-month-cell {
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------------
+   Social post status badges
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-post-status-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--af-radius-pebble, 20px 24px 18px 22px);
+  white-space: nowrap;
+}
+
+.calendar-admin-post-status-badge.draft {
+  background: rgba(107, 114, 128, 0.10);
+  color: #6B7280;
+}
+
+.calendar-admin-post-status-badge.scheduled {
+  background: rgba(190, 66, 0, 0.10);
+  color: var(--af-terra, #BE4200);
+}
+
+.calendar-admin-post-status-badge.published {
+  background: rgba(45, 134, 89, 0.10);
+  color: var(--af-signal-go, #2D8659);
+}
+
+.calendar-admin-post-status-badge.pending {
+  background: rgba(196, 134, 10, 0.10);
+  color: var(--af-signal-wait, #C4860A);
+}
+
+.calendar-admin-post-status-badge.publishing {
+  background: rgba(0, 10, 255, 0.08);
+  color: var(--af-ultra, #000AFF);
+}
+
+.calendar-admin-post-status-badge.failed {
+  background: rgba(194, 59, 34, 0.10);
+  color: var(--af-signal-stop, #C23B22);
+}
+
+/* ---------------------------------------------------------------------------
+   Event detail — attached post card (Soft Brutalism)
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-detail-post-section {
+  margin-bottom: 14px;
+}
+
+.calendar-admin-detail-post-card {
+  margin-top: var(--af-space-breath, 8px);
+  padding: var(--af-space-palm, 12px) var(--af-space-hand, 16px);
+  background: var(--af-stone-50, #FAF9F6);
+  border: var(--af-border-visible, 2px) solid var(--af-stone-200, #D4CFC6);
+  border-left: var(--af-border-heavy, 4px) solid var(--af-terra, #BE4200);
+  border-radius: var(--af-radius-worn, 8px 12px 10px 6px);
+  box-shadow: var(--af-shadow-rest, 3px 3px 0 #E8E4DE);
+}
+
+.calendar-admin-detail-post-header {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-breath, 8px);
+  margin-bottom: var(--af-space-breath, 8px);
+}
+
+.calendar-admin-detail-post-content {
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 13px;
+  line-height: var(--af-leading-relaxed, 1.65);
+  color: var(--af-stone-700, #44403C);
+  margin: 0 0 var(--af-space-breath, 8px);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.calendar-admin-detail-post-content-full {
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 14px;
+  line-height: var(--af-leading-relaxed, 1.65);
+  color: var(--af-stone-700, #44403C);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.calendar-admin-detail-post-hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-grain, 4px);
+  margin-bottom: var(--af-space-breath, 8px);
+}
+
+.calendar-admin-detail-post-tag {
+  font-family: var(--af-font-machine, "JetBrains Mono", monospace);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  background: rgba(190, 66, 0, 0.08);
+  color: var(--af-terra, #BE4200);
+  border-radius: var(--af-radius-pebble, 20px 24px 18px 22px);
+}
+
+.calendar-admin-detail-post-schedule {
+  font-family: var(--af-font-machine, "JetBrains Mono", monospace);
+  font-size: 11px;
+  color: var(--af-stone-500, #78716C);
+  margin-bottom: var(--af-space-breath, 8px);
+}
+
+.calendar-admin-detail-post-link {
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--af-terra, #BE4200);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--af-dur-quick, 150ms) var(--af-ease-brick, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.calendar-admin-detail-post-link:hover {
+  border-bottom-color: var(--af-terra, #BE4200);
+}
+
+/* ---------------------------------------------------------------------------
+   Week view — post-specific cards
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-week-event-card.has-post {
+  border-left-width: var(--af-border-heavy, 4px);
+  position: relative;
+}
+
+.calendar-admin-week-post-indicator {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--af-terra, #BE4200);
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.calendar-admin-week-post-preview {
+  display: block;
+  margin-top: 2px;
+}
+
+.calendar-admin-week-post-card {
+  border-left: var(--af-border-heavy, 4px) solid var(--af-terra, #BE4200);
+  background: rgba(190, 66, 0, 0.06);
+}
+
+.calendar-admin-week-post-card:hover {
+  background: rgba(190, 66, 0, 0.12);
+}
+
+.calendar-admin-week-post-content-preview {
+  font-family: var(--af-font-architect, "Instrument Sans", sans-serif);
+  font-size: 11px;
+  color: var(--af-stone-500, #78716C);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  margin-top: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   List view — post rows
+   --------------------------------------------------------------------------- */
+
+.calendar-admin-table-row-has-post td:first-child {
+  border-left: var(--af-border-struct, 3px) solid var(--af-terra, #BE4200);
+}
+
+.calendar-admin-table-row-post {
+  background: rgba(190, 66, 0, 0.03);
+}
+
+.calendar-admin-table-row-post td:first-child {
+  border-left: var(--af-border-struct, 3px) solid var(--af-terra, #BE4200);
+}
+
+.calendar-admin-table-post-badge {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive — post features
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .calendar-admin-month-post-badge {
+    font-size: 9px;
+    min-width: 14px;
+    height: 14px;
+    margin-left: 4px;
+  }
+
+  .calendar-admin-detail-post-card {
+    padding: var(--af-space-breath, 8px) var(--af-space-palm, 12px);
+  }
+
+  .calendar-admin-week-post-content-preview {
+    display: none;
+  }
+}

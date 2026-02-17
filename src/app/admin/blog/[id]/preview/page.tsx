@@ -7,12 +7,8 @@ import { marked } from 'marked'
 import StatusChip from '@/components/admin/StatusChip'
 import { fetchPostById, type BlogPost } from '@/lib/blog-api'
 import '../../../../blog/blog.css'
+import { getCookieValue } from '@/lib/cookies'
 import '../../blog-admin.css'
-
-function getCookieValue(name: string): string {
-  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`))
-  return match ? decodeURIComponent(match[1]) : ''
-}
 
 export default function PreviewPostPage() {
   const params = useParams<{ id: string }>()
@@ -57,7 +53,10 @@ export default function PreviewPostPage() {
     })
   }
 
-  const htmlContent = marked.parse(post.content) as string
+  const htmlContent = (marked.parse(post.content) as string)
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
+    .replace(/javascript\s*:/gi, '')
 
   return (
     <>

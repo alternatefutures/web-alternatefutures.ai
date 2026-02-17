@@ -1,0 +1,559 @@
+/* ===== People Directory & Profile — The Registry ===== */
+
+/* Directory header */
+.people-admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--af-space-arm);
+  flex-wrap: wrap;
+  gap: var(--af-space-palm);
+}
+
+.people-admin-header h1 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-xl);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Search & filters */
+.people-admin-filters {
+  display: flex;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-hand);
+  flex-wrap: wrap;
+}
+
+.people-admin-search {
+  flex: 1;
+  min-width: 200px;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-800);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  outline: none;
+  box-shadow: inset 1px 2px 3px var(--af-inset-shadow);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.people-admin-search::placeholder {
+  color: var(--af-stone-400);
+  font-style: italic;
+  font-family: var(--af-font-poet);
+}
+
+.people-admin-search:focus {
+  border-color: var(--af-ultra);
+  border-bottom-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px var(--af-inset-shadow-focus),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* People grid */
+.people-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--af-space-hand);
+}
+
+.people-admin-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-arm);
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  text-decoration: none;
+  display: block;
+}
+
+.people-admin-card:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.people-admin-card:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(1px, 1px);
+}
+
+.people-card-top {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-palm);
+}
+
+.people-card-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--af-radius-pebble);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-md);
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  border: var(--af-border-visible) solid rgba(255,255,255,0.2);
+}
+
+.people-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.people-card-name {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-base);
+  font-weight: 600;
+  color: var(--af-stone-800);
+}
+
+.people-card-handle {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  letter-spacing: -0.02em;
+}
+
+.people-card-scores {
+  display: flex;
+  gap: var(--af-space-palm);
+}
+
+.people-card-score {
+  text-align: center;
+}
+
+.people-card-score-value {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-md);
+  font-weight: 700;
+  line-height: var(--af-leading-tight);
+}
+
+.people-card-score-value.love { color: var(--af-terra); }
+.people-card-score-value.orbit { color: var(--af-ultra); }
+
+.people-card-score-label {
+  font-family: var(--af-font-architect);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-500);
+}
+
+.people-card-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-grain);
+  margin-top: var(--af-space-palm);
+}
+
+.people-platform-chip {
+  font-family: var(--af-font-architect);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--af-radius-chip);
+  background: var(--af-stone-50);
+  border: var(--af-border-hair) solid var(--af-stone-200);
+  color: var(--af-stone-600);
+}
+
+/* ===== Person Profile — The Portrait ===== */
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--af-space-arm);
+  margin-bottom: var(--af-space-stride);
+  flex-wrap: wrap;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--af-radius-pebble);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xl);
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  border: var(--af-border-struct) solid rgba(255,255,255,0.2);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-xl);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0 0 var(--af-space-grain);
+  letter-spacing: -0.02em;
+}
+
+.profile-bio {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-600);
+  line-height: var(--af-leading-body);
+  margin: 0 0 var(--af-space-palm);
+}
+
+.profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-hand);
+}
+
+.profile-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-grain);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+}
+
+.profile-meta-icon {
+  font-size: var(--af-type-sm);
+  color: var(--af-terra);
+}
+
+/* Score cards — Measuring Stones */
+.profile-scores {
+  display: flex;
+  gap: var(--af-space-palm);
+  flex-shrink: 0;
+}
+
+.profile-score-card {
+  text-align: center;
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand) var(--af-space-arm);
+  box-shadow: var(--af-shadow-rest);
+  min-width: 90px;
+}
+
+.profile-score-value {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xl);
+  font-weight: 700;
+  line-height: var(--af-leading-tight);
+}
+
+.profile-score-value.love { color: var(--af-terra); }
+.profile-score-value.orbit { color: var(--af-ultra); }
+
+.profile-score-label {
+  font-family: var(--af-font-architect);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-500);
+  margin-top: var(--af-space-grain);
+}
+
+.profile-score-sub {
+  font-family: var(--af-font-machine);
+  font-size: 10px;
+  color: var(--af-stone-400);
+  margin-top: var(--af-space-hair);
+  letter-spacing: -0.02em;
+}
+
+/* Two-column layout */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--af-space-arm);
+  align-items: start;
+}
+
+/* Identity cards — Platform Identities */
+.profile-identities {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  box-shadow: var(--af-shadow-rest);
+  overflow: hidden;
+}
+
+.profile-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--af-space-hand) var(--af-space-arm);
+  background: var(--af-stone-50);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+.profile-section-header h2 {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-stone-600);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.profile-identity-list {
+  padding: var(--af-space-breath);
+}
+
+.profile-identity-item {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  padding: var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  transition: background var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.profile-identity-item:hover {
+  background: var(--af-terra-warmth);
+}
+
+.profile-identity-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--af-radius-chip);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--af-type-sm);
+  flex-shrink: 0;
+}
+
+.profile-identity-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-identity-platform {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--af-stone-600);
+}
+
+.profile-identity-handle {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-800);
+  letter-spacing: -0.02em;
+}
+
+.profile-identity-verified {
+  font-size: var(--af-type-sm);
+  color: var(--af-signal-go);
+  flex-shrink: 0;
+}
+
+/* Activity Timeline */
+.profile-timeline {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  box-shadow: var(--af-shadow-rest);
+  overflow: hidden;
+}
+
+.profile-timeline-list {
+  padding: var(--af-space-hand) var(--af-space-arm);
+  position: relative;
+}
+
+/* Vertical line */
+.profile-timeline-list::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--af-space-arm) + 5px);
+  top: var(--af-space-arm);
+  bottom: var(--af-space-arm);
+  width: var(--af-border-hair);
+  background: var(--af-stone-200);
+}
+
+.profile-timeline-item {
+  display: flex;
+  gap: var(--af-space-palm);
+  padding: var(--af-space-breath) 0;
+  position: relative;
+}
+
+.profile-timeline-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  position: relative;
+  z-index: 1;
+}
+
+.profile-timeline-dot.content { background: var(--af-ultra); border-color: var(--af-ultra-deep); }
+.profile-timeline-dot.social { background: var(--af-terra); border-color: var(--af-terra-ember); }
+.profile-timeline-dot.engagement { background: var(--af-signal-go); border-color: #1A7A4A; }
+.profile-timeline-dot.system { background: var(--af-stone-400); border-color: var(--af-stone-500); }
+
+.profile-timeline-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-timeline-action {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-700);
+  line-height: var(--af-leading-snug);
+}
+
+.profile-timeline-action strong {
+  font-weight: 600;
+  color: var(--af-stone-800);
+}
+
+.profile-timeline-time {
+  font-family: var(--af-font-machine);
+  font-size: 11px;
+  color: var(--af-stone-400);
+  margin-top: var(--af-space-hair);
+  letter-spacing: -0.02em;
+}
+
+/* Sidebar stats */
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hand);
+}
+
+.profile-sidebar-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.profile-sidebar-card h3 {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  margin: 0 0 var(--af-space-palm);
+}
+
+.profile-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--af-space-breath) 0;
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+.profile-stat-row:last-child {
+  border-bottom: none;
+}
+
+.profile-stat-label {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-600);
+}
+
+.profile-stat-value {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  color: var(--af-stone-800);
+  letter-spacing: -0.02em;
+}
+
+/* Tags */
+.profile-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-breath);
+}
+
+.profile-tag {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  padding: var(--af-space-hair) var(--af-space-breath);
+  border-radius: var(--af-radius-chip);
+  background: var(--af-ultra-ghost);
+  border: var(--af-border-hair) solid var(--af-ultra-ink);
+  color: var(--af-ultra);
+}
+
+/* Back link */
+.profile-back {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  color: var(--af-terra);
+  text-decoration: none;
+  transition: opacity var(--af-dur-quick) var(--af-ease-drift);
+  margin-bottom: var(--af-space-hand);
+  display: inline-block;
+}
+
+.profile-back:hover {
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-scores {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .people-admin-grid {
+    grid-template-columns: 1fr;
+  }
+}

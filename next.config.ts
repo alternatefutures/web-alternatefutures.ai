@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: 'standalone',
   outputFileTracingRoot: path.join(__dirname),
+  turbopack: {
+    root: path.join(__dirname),
+  },
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,

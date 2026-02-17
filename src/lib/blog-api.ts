@@ -623,7 +623,7 @@ function addSeedDrafts(): BlogPost[] {
       publishedAt: null,
       createdAt: '2026-02-06T10:00:00Z',
       updatedAt: '2026-02-08T14:00:00Z',
-      content: '## Q1 2026 Roadmap\n\nThis quarter we\'re focused on three pillars:\n\n1. **AI Agent Templates** — one-click deploy for popular frameworks\n2. **Enterprise SSO** — SAML and OIDC for teams\n3. **Cost Dashboard** — real-time spend tracking across providers\n\nMore details coming soon.',
+      content: '## Q1 2026 Roadmap\n\nThis quarter we\'re focused on three pillars:\n\n1. **AI Agent Templates** — one-click deploy for popular frameworks\n2. **Enterprise SSO** — SAML and OIDC for teams\n3. **Cost Dashboard** — real-time spend tracking across providers\n\nEach pillar has a dedicated team lead and weekly milestone reviews. Watch the blog for deep-dives on each track.',
     },
     {
       id: 'seed-6',

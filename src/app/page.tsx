@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import RequestAccessModal from '@/components/RequestAccessModal'
+import BrandWordmark from '@/components/BrandWordmark'
 import './landing.css'
 
 export default function LandingPage() {
@@ -26,7 +27,7 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <img src="/landing/title-union.svg" alt="Alternate Futures" className="title-graphic" />
+        <BrandWordmark height={100} className="title-graphic" />
         <p className="tagline">Building the infrastructure for human-computer alignment.</p>
         <img
           src="/landing/decorative-top.svg"

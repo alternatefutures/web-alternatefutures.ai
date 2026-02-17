@@ -9,6 +9,12 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  // Skip auth on localhost
+  const host = request.headers.get('host') || ''
+  if (host.startsWith('localhost') || host.startsWith('127.0.0.1')) {
+    return NextResponse.next()
+  }
+
   const token = request.cookies.get(ACCESS_TOKEN_COOKIE)?.value
 
   if (!token) {

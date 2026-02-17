@@ -1,68 +1,119 @@
+/* ===== Admin Shell — "The Spine" ===== */
 .admin-layout {
   display: flex;
   min-height: 100vh;
-  background-color: var(--color-bg-light, #F9FAFB);
+  background-color: var(--af-stone-50);
+  /* Paper texture: faint color pools like watercolor bleeding through */
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(190, 66, 0, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 10, 255, 0.015) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(92, 122, 107, 0.02) 0%, transparent 45%);
 }
 
-/* Sidebar */
+/* Sidebar — the load-bearing wall */
 .admin-sidebar {
-  width: 240px;
-  background: var(--color-white, #fff);
-  border-right: 1px solid var(--color-border, #E5E7EB);
+  width: 260px;
+  background: var(--af-stone-100);
+  border-right: var(--af-border-heavy) solid var(--af-stone-300);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Concrete texture on sidebar */
+.admin-sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Brand stamp — recessed maker's mark */
 .admin-sidebar-logo {
-  padding: 24px 20px;
-  border-bottom: 1px solid var(--color-border, #E5E7EB);
+  padding: var(--af-space-arm) var(--af-space-hand);
+  border-bottom: var(--af-border-struct) solid var(--af-stone-300);
+  background: linear-gradient(145deg, var(--af-stone-100) 0%, var(--af-stone-200) 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.admin-sidebar-logo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: var(--af-space-hand);
+  right: var(--af-space-hand);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--af-stone-300), transparent);
 }
 
 .admin-sidebar-logo a {
-  font-family: "Instrument Serif", serif;
-  font-size: 22px;
-  color: var(--color-blue, #000AFF);
   text-decoration: none;
+  display: block;
 }
 
+.admin-sidebar-wordmark {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+/* Navigation */
 .admin-sidebar-nav {
-  padding: 16px 12px;
+  padding: var(--af-space-hand) var(--af-space-palm);
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--af-space-hair);
+  position: relative;
+  z-index: 1;
 }
 
 .admin-nav-item {
-  font-family: "Instrument Sans", sans-serif;
-  font-size: 15px;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
   font-weight: 500;
-  color: var(--color-text-gray, #6B7280);
+  color: var(--af-stone-600);
   text-decoration: none;
-  padding: 10px 12px;
-  border-radius: var(--radius-md, 8px);
-  transition: all var(--transition-fast, 0.2s ease);
+  padding: var(--af-space-palm) var(--af-space-hand);
+  border-radius: 0 var(--af-radius-chip) var(--af-radius-chip) 0;
+  transition: all var(--af-dur-quick) var(--af-ease-press);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--af-space-palm);
+  position: relative;
 }
 
 .admin-nav-item:hover {
-  background: var(--color-bg-light, #F9FAFB);
-  color: var(--color-text-dark, #1F2937);
+  background: var(--af-terra-warmth);
+  color: var(--af-stone-700);
 }
 
+/* Active nav: terracotta glow with heavy left accent */
 .admin-nav-item.active {
-  background: rgba(0, 10, 255, 0.06);
-  color: var(--color-blue, #000AFF);
+  background: var(--af-terra-glow);
+  color: var(--af-terra);
   font-weight: 600;
+  border-left: var(--af-border-mono) solid var(--af-terra);
+  margin-left: calc(-1 * var(--af-space-palm));
+  padding-left: calc(var(--af-space-palm) + var(--af-border-mono));
+}
+
+/* Warmth bleeds into adjacent item */
+.admin-nav-item.active + .admin-nav-item {
+  background: var(--af-terra-warmth);
 }
 
 .admin-nav-icon {
-  font-size: 18px;
-  width: 20px;
+  font-size: var(--af-type-md);
+  width: 22px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 /* Main content */
@@ -73,44 +124,89 @@
   min-width: 0;
 }
 
-/* Top bar */
+/* Top bar — understated, warm */
 .admin-topbar {
   height: 56px;
-  background: var(--color-white, #fff);
-  border-bottom: 1px solid var(--color-border, #E5E7EB);
+  background: var(--af-surface-card);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 0 24px;
-  gap: 16px;
+  padding: 0 var(--af-space-arm);
+  gap: var(--af-space-hand);
+}
+
+/* Theme Toggle — Pressed in Clay */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-600);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.theme-toggle:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  background: var(--af-terra-warmth);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+}
+
+.theme-toggle:active {
+  box-shadow: 1px 1px 0 var(--af-terra-dust);
+  transform: translate(1px, 1px);
+}
+
+.theme-toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .admin-topbar-email {
-  font-family: "Instrument Sans", sans-serif;
-  font-size: 14px;
-  color: var(--color-text-gray, #6B7280);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-500);
 }
 
 .admin-topbar-logout {
-  font-family: "Instrument Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text-gray, #6B7280);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-stone-600);
   background: none;
-  border: 1px solid var(--color-border, #E5E7EB);
-  border-radius: var(--radius-sm, 6px);
-  padding: 6px 14px;
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-breath) var(--af-space-hand);
   cursor: pointer;
-  transition: all var(--transition-fast, 0.2s ease);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
 }
 
 .admin-topbar-logout:hover {
-  border-color: var(--color-error, #EF4444);
-  color: var(--color-error, #EF4444);
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  background: var(--af-terra-warmth);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+}
+
+.admin-topbar-logout:active {
+  box-shadow: 1px 1px 0 var(--af-terra-dust);
+  transform: translate(1px, 1px);
 }
 
 .admin-content {
-  padding: 32px;
+  padding: var(--af-space-stride);
   flex: 1;
 }
 
@@ -123,16 +219,33 @@
   .admin-sidebar {
     width: 100%;
     border-right: none;
-    border-bottom: 1px solid var(--color-border, #E5E7EB);
+    border-bottom: var(--af-border-heavy) solid var(--af-stone-300);
+  }
+
+  .admin-sidebar::before {
+    display: none;
   }
 
   .admin-sidebar-nav {
     flex-direction: row;
     overflow-x: auto;
-    padding: 8px 12px;
+    padding: var(--af-space-breath) var(--af-space-palm);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-nav-item.active {
+    border-left: none;
+    border-bottom: var(--af-border-struct) solid var(--af-terra);
+    margin-left: 0;
+    padding-left: var(--af-space-hand);
+    border-radius: var(--af-radius-chip);
+  }
+
+  .admin-nav-item.active + .admin-nav-item {
+    background: transparent;
   }
 
   .admin-content {
-    padding: 20px 16px;
+    padding: var(--af-space-hand);
   }
 }

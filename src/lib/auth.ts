@@ -7,7 +7,16 @@ import { jwtVerify, type JWTPayload } from 'jose'
 export const AUTH_SERVICE_URL =
   process.env.AUTH_SERVICE_URL || 'https://auth.alternatefutures.ai'
 
-export const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me'
+export function getJwtSecret(): string {
+  const secret = process.env.JWT_SECRET
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('FATAL: JWT_SECRET environment variable is required in production')
+    }
+    return 'dev-secret-DO-NOT-USE-IN-PRODUCTION'
+  }
+  return secret
+}
 
 export const ACCESS_TOKEN_COOKIE = 'af_access_token'
 export const REFRESH_TOKEN_COOKIE = 'af_refresh_token'
@@ -19,22 +28,24 @@ export const ADMIN_PREFIX = '/admin'
 // JWT payload shape (matches service-auth)
 // ---------------------------------------------------------------------------
 
+export type UserRole = 'admin' | 'approver' | 'editor' | 'viewer'
+
 export interface AuthUser {
   userId: string
   email?: string
   sessionId: string
+  role: UserRole
 }
 
 // ---------------------------------------------------------------------------
 // JWT verification (Edge-compatible via jose)
 // ---------------------------------------------------------------------------
 
-const secret = new TextEncoder().encode(JWT_SECRET)
-
 export async function verifyAccessToken(
   token: string,
 ): Promise<(JWTPayload & AuthUser) | null> {
   try {
+    const secret = new TextEncoder().encode(getJwtSecret())
     const { payload } = await jwtVerify(token, secret, {
       issuer: 'alternatefutures-auth',
       audience: 'alternatefutures-app',
@@ -78,5 +89,10 @@ export async function getUserFromCookies(
   if (!token) return null
   const payload = await verifyAccessToken(token)
   if (!payload) return null
-  return { userId: payload.userId, email: payload.email, sessionId: payload.sessionId }
+  return {
+    userId: payload.userId,
+    email: payload.email,
+    sessionId: payload.sessionId,
+    role: (payload as Record<string, unknown>).role as UserRole || 'editor',
+  }
 }

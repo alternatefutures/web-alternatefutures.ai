@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useDialog } from '@/hooks/useDialog'
 import Link from 'next/link'
 import StatusChip from '@/components/admin/StatusChip'
 import {
@@ -10,33 +11,37 @@ import {
   type BlogPost,
   type BlogTag,
 } from '@/lib/blog-api'
+import { getCookieValue } from '@/lib/cookies'
+import { EmptyStateDecoration, WaveDivider } from '@/components/admin/ShapeDecoration'
 import './blog-admin.css'
-
-function getCookieValue(name: string): string {
-  const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`))
-  return match ? decodeURIComponent(match[1]) : ''
-}
 
 export default function BlogAdminDashboard() {
   const [posts, setPosts] = useState<BlogPost[]>([])
   const [tags, setTags] = useState<BlogTag[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState('')
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState('ALL')
   const [tagFilter, setTagFilter] = useState('')
   const [deleteTarget, setDeleteTarget] = useState<BlogPost | null>(null)
   const [deleting, setDeleting] = useState(false)
+  const blogDeleteDialogRef = useDialog(!!deleteTarget, () => setDeleteTarget(null))
 
   useEffect(() => {
     async function load() {
-      const token = getCookieValue('af_access_token')
-      const [postsData, tagsData] = await Promise.all([
-        fetchAllPosts(token),
-        fetchTags(),
-      ])
-      setPosts(postsData)
-      setTags(tagsData)
-      setLoading(false)
+      try {
+        const token = getCookieValue('af_access_token')
+        const [postsData, tagsData] = await Promise.all([
+          fetchAllPosts(token),
+          fetchTags(),
+        ])
+        setPosts(postsData)
+        setTags(tagsData)
+      } catch {
+        setLoadError('Failed to load blog posts. Please refresh to try again.')
+      } finally {
+        setLoading(false)
+      }
     }
     load()
   }, [])
@@ -79,7 +84,7 @@ export default function BlogAdminDashboard() {
       await deleteBlogPost(token, deleteTarget.id)
       setPosts((prev) => prev.filter((p) => p.id !== deleteTarget.id))
     } catch {
-      // silent — TODO: toast
+      setLoadError('Failed to delete post. Please try again.')
     } finally {
       setDeleting(false)
       setDeleteTarget(null)
@@ -96,6 +101,22 @@ export default function BlogAdminDashboard() {
 
   if (loading) {
     return <div className="blog-admin-empty"><p>Loading posts...</p></div>
+  }
+
+  if (loadError) {
+    return (
+      <div className="blog-admin-empty">
+        <h2>Error</h2>
+        <p>{loadError}</p>
+        <button
+          className="blog-admin-new-btn"
+          onClick={() => window.location.reload()}
+          style={{ marginTop: 12 }}
+        >
+          Retry
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -121,6 +142,8 @@ export default function BlogAdminDashboard() {
           <div className="blog-admin-stat-value">{stats.drafts}</div>
         </div>
       </div>
+
+      <WaveDivider variant="apricot" />
 
       <div className="blog-admin-filters">
         <input
@@ -155,14 +178,12 @@ export default function BlogAdminDashboard() {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="blog-admin-empty">
-          <h2>No posts found</h2>
-          <p>
-            {posts.length === 0
-              ? 'Create your first blog post to get started.'
-              : 'Try adjusting your search or filters.'}
-          </p>
-        </div>
+        <EmptyStateDecoration
+          page="blog"
+          theme="warm"
+          heading={posts.length === 0 ? 'No posts yet' : 'No posts found'}
+          message={posts.length === 0 ? undefined : 'Try adjusting your search or filters.'}
+        />
       ) : (
         <div className="blog-admin-table-wrap">
           <table className="blog-admin-table">
@@ -232,9 +253,13 @@ export default function BlogAdminDashboard() {
         >
           <div
             className="blog-admin-dialog"
+            ref={blogDeleteDialogRef}
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="blog-delete-dialog-title"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3>Delete post?</h3>
+            <h3 id="blog-delete-dialog-title">Delete post?</h3>
             <p>
               Are you sure you want to delete &ldquo;{deleteTarget.title}&rdquo;?
               This action cannot be undone.
