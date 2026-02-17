@@ -21,6 +21,19 @@ const VENUE_LABELS: Record<string, string> = {
   hybrid: 'Hybrid',
 }
 
+function RsvpBar({ registrations, capacity }: { registrations: number; capacity: number }) {
+  const pct = Math.min(100, Math.round((registrations / capacity) * 100))
+  const color = pct > 80 ? '#991B1B' : pct > 50 ? '#92400E' : '#065F46'
+  return (
+    <div className="community-rsvp-bar">
+      <div className="community-rsvp-track">
+        <div className="community-rsvp-fill" style={{ width: `${pct}%`, background: color }} />
+      </div>
+      <span className="community-rsvp-label">{pct}% filled</span>
+    </div>
+  )
+}
+
 export default function EventsPage() {
   const [events, setEvents] = useState<CommunityEvent[]>([])
   const [loading, setLoading] = useState(true)
@@ -45,17 +58,11 @@ export default function EventsPage() {
 
   const filtered = useMemo(() => {
     let result = events
-    if (statusFilter !== 'ALL') {
-      result = result.filter((e) => e.status === statusFilter)
-    }
-    if (venueFilter !== 'ALL') {
-      result = result.filter((e) => e.venueType === venueFilter)
-    }
+    if (statusFilter !== 'ALL') result = result.filter((e) => e.status === statusFilter)
+    if (venueFilter !== 'ALL') result = result.filter((e) => e.venueType === venueFilter)
     if (search) {
       const q = search.toLowerCase()
-      result = result.filter(
-        (e) => e.name.toLowerCase().includes(q) || e.description.toLowerCase().includes(q),
-      )
+      result = result.filter((e) => e.name.toLowerCase().includes(q) || e.description.toLowerCase().includes(q))
     }
     return result.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   }, [events, statusFilter, venueFilter, search])
@@ -75,21 +82,7 @@ export default function EventsPage() {
     <>
       <div className="community-admin-header">
         <h1>Event Manager</h1>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <Link href="/admin/community" className="community-admin-action-btn">Inbox</Link>
-          <Link href="/admin/community/events/new" className="community-admin-action-btn primary">
-            Create Event
-          </Link>
-        </div>
-      </div>
-
-      <div className="community-subnav">
-        <Link href="/admin/community" className="">Inbox</Link>
-        <Link href="/admin/community/dashboard" className="">Growth</Link>
-        <Link href="/admin/community/events" className="active">Events</Link>
-        <Link href="/admin/community/forums" className="">Forums</Link>
-        <Link href="/admin/community/engagement" className="">Engagement</Link>
-        <Link href="/admin/community/members" className="">Members</Link>
+        <Link href="/admin/community/events/new" className="community-admin-action-btn primary">Create Event</Link>
       </div>
 
       <div className="community-admin-stats">
@@ -114,13 +107,7 @@ export default function EventsPage() {
       <WaveDivider variant="apricot" />
 
       <div className="community-admin-filters">
-        <input
-          type="text"
-          className="community-admin-search"
-          placeholder="Search events..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <input type="text" className="community-admin-search" placeholder="Search events..." value={search} onChange={(e) => setSearch(e.target.value)} />
         <select className="community-admin-select" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
           <option value="ALL">All statuses</option>
           <option value="upcoming">Upcoming</option>
@@ -166,14 +153,11 @@ export default function EventsPage() {
                   </span>
                   <span className="community-admin-time">{evt.duration}min</span>
                 </div>
+                <RsvpBar registrations={evt.registrations} capacity={evt.capacity} />
                 <div className="community-event-card-footer">
-                  <span className="community-event-card-attendees">
-                    {evt.registrations} registered / {evt.capacity} capacity
-                  </span>
+                  <span className="community-event-card-attendees">{evt.registrations} / {evt.capacity}</span>
                   {evt.satisfactionScore && (
-                    <span className="community-admin-chip" style={{ background: '#D1FAE5', color: '#065F46' }}>
-                      {evt.satisfactionScore}/5
-                    </span>
+                    <span className="community-admin-chip" style={{ background: '#D1FAE5', color: '#065F46' }}>{evt.satisfactionScore}/5</span>
                   )}
                 </div>
               </Link>

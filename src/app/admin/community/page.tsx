@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import Link from 'next/link'
 import {
   fetchAllMessages,
   updateMessage,
@@ -66,15 +65,9 @@ export default function CommunityInboxPage() {
 
   const filtered = useMemo(() => {
     let result = messages
-    if (platformFilter !== 'ALL') {
-      result = result.filter((m) => m.platform === platformFilter)
-    }
-    if (typeFilter !== 'ALL') {
-      result = result.filter((m) => m.messageType === typeFilter)
-    }
-    if (priorityFilter !== 'ALL') {
-      result = result.filter((m) => m.priority === priorityFilter)
-    }
+    if (platformFilter !== 'ALL') result = result.filter((m) => m.platform === platformFilter)
+    if (typeFilter !== 'ALL') result = result.filter((m) => m.messageType === typeFilter)
+    if (priorityFilter !== 'ALL') result = result.filter((m) => m.priority === priorityFilter)
     if (respondedFilter !== 'ALL') {
       const responded = respondedFilter === 'responded'
       result = result.filter((m) => m.responded === responded)
@@ -82,34 +75,25 @@ export default function CommunityInboxPage() {
     if (search) {
       const q = search.toLowerCase()
       result = result.filter(
-        (m) =>
-          m.content.toLowerCase().includes(q) ||
-          m.authorName.toLowerCase().includes(q),
+        (m) => m.content.toLowerCase().includes(q) || m.authorName.toLowerCase().includes(q),
       )
     }
-    return result.sort(
-      (a, b) => new Date(b.receivedAt).getTime() - new Date(a.receivedAt).getTime(),
-    )
+    return result.sort((a, b) => new Date(b.receivedAt).getTime() - new Date(a.receivedAt).getTime())
   }, [messages, platformFilter, typeFilter, priorityFilter, respondedFilter, search])
 
-  const stats = useMemo(
-    () => ({
-      total: messages.length,
-      unanswered: messages.filter((m) => !m.responded).length,
-      critical: messages.filter((m) => m.priority === 'critical').length,
-      questions: messages.filter((m) => m.messageType === 'question').length,
-    }),
-    [messages],
-  )
+  const stats = useMemo(() => ({
+    total: messages.length,
+    unanswered: messages.filter((m) => !m.responded).length,
+    critical: messages.filter((m) => m.priority === 'critical').length,
+    questions: messages.filter((m) => m.messageType === 'question').length,
+  }), [messages])
 
   const handleMarkResponded = useCallback(async (id: string) => {
     try {
       const token = getCookieValue('af_access_token')
       await updateMessage(token, id, { responded: true, responseId: `resp-${Date.now()}` })
       setMessages((prev) =>
-        prev.map((m) =>
-          m.id === id ? { ...m, responded: true, responseId: `resp-${Date.now()}` } : m,
-        ),
+        prev.map((m) => m.id === id ? { ...m, responded: true, responseId: `resp-${Date.now()}` } : m),
       )
     } catch {
       setLoadError('Failed to update message.')
@@ -125,9 +109,7 @@ export default function CommunityInboxPage() {
       <div className="community-admin-empty">
         <h2>Error</h2>
         <p>{loadError}</p>
-        <button onClick={() => window.location.reload()} style={{ marginTop: 12 }}>
-          Retry
-        </button>
+        <button onClick={() => window.location.reload()} style={{ marginTop: 12 }}>Retry</button>
       </div>
     )
   }
@@ -136,13 +118,6 @@ export default function CommunityInboxPage() {
     <>
       <div className="community-admin-header">
         <h1>Community Inbox</h1>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <Link href="/admin/community/dashboard" className="community-admin-action-btn">Growth</Link>
-          <Link href="/admin/community/events" className="community-admin-action-btn">Events</Link>
-          <Link href="/admin/community/forums" className="community-admin-action-btn">Forums</Link>
-          <Link href="/admin/community/engagement" className="community-admin-action-btn">Engagement</Link>
-          <Link href="/admin/community/members" className="community-admin-action-btn">Members</Link>
-        </div>
       </div>
 
       <div className="community-admin-stats">
@@ -167,18 +142,8 @@ export default function CommunityInboxPage() {
       <WaveDivider variant="apricot" />
 
       <div className="community-admin-filters">
-        <input
-          type="text"
-          className="community-admin-search"
-          placeholder="Search messages..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <select
-          className="community-admin-select"
-          value={platformFilter}
-          onChange={(e) => setPlatformFilter(e.target.value)}
-        >
+        <input type="text" className="community-admin-search" placeholder="Search messages..." value={search} onChange={(e) => setSearch(e.target.value)} />
+        <select className="community-admin-select" value={platformFilter} onChange={(e) => setPlatformFilter(e.target.value)}>
           <option value="ALL">All platforms</option>
           <option value="discord">Discord</option>
           <option value="x">X</option>
@@ -187,11 +152,7 @@ export default function CommunityInboxPage() {
           <option value="mastodon">Mastodon</option>
           <option value="reddit">Reddit</option>
         </select>
-        <select
-          className="community-admin-select"
-          value={typeFilter}
-          onChange={(e) => setTypeFilter(e.target.value)}
-        >
+        <select className="community-admin-select" value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
           <option value="ALL">All types</option>
           <option value="question">Question</option>
           <option value="feedback">Feedback</option>
@@ -200,22 +161,14 @@ export default function CommunityInboxPage() {
           <option value="praise">Praise</option>
           <option value="general">General</option>
         </select>
-        <select
-          className="community-admin-select"
-          value={priorityFilter}
-          onChange={(e) => setPriorityFilter(e.target.value)}
-        >
+        <select className="community-admin-select" value={priorityFilter} onChange={(e) => setPriorityFilter(e.target.value)}>
           <option value="ALL">All priorities</option>
           <option value="critical">Critical</option>
           <option value="high">High</option>
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
-        <select
-          className="community-admin-select"
-          value={respondedFilter}
-          onChange={(e) => setRespondedFilter(e.target.value)}
-        >
+        <select className="community-admin-select" value={respondedFilter} onChange={(e) => setRespondedFilter(e.target.value)}>
           <option value="ALL">All</option>
           <option value="unanswered">Unanswered</option>
           <option value="responded">Responded</option>
@@ -255,9 +208,7 @@ export default function CommunityInboxPage() {
                       <span className="community-admin-chip" style={{ background: '#D1FAE5', color: '#065F46' }}>Positive</span>
                     )}
                     {msg.sourceUrl && (
-                      <a href={msg.sourceUrl} target="_blank" rel="noopener noreferrer" className="community-admin-source-link">
-                        View source
-                      </a>
+                      <a href={msg.sourceUrl} target="_blank" rel="noopener noreferrer" className="community-admin-source-link">View source</a>
                     )}
                   </div>
                 </div>
@@ -265,12 +216,7 @@ export default function CommunityInboxPage() {
                   {msg.responded ? (
                     <span className="community-admin-action-btn responded">Responded</span>
                   ) : (
-                    <button
-                      className="community-admin-action-btn"
-                      onClick={() => handleMarkResponded(msg.id)}
-                    >
-                      Mark Responded
-                    </button>
+                    <button className="community-admin-action-btn" onClick={() => handleMarkResponded(msg.id)}>Mark Responded</button>
                   )}
                 </div>
               </div>

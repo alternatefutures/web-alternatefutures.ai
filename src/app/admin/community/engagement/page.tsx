@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
-import Link from 'next/link'
 import {
   fetchEngagementTrends,
   fetchEngagementCampaigns,
@@ -30,7 +29,7 @@ const PLATFORM_STYLES: Record<CommunityPlatform, { bg: string; color: string; la
 }
 
 const SEGMENT_COLORS: Record<ActivityLevel, string> = {
-  'power-user': '#000AFF',
+  'power-user': '#C85028',
   active: '#3B82F6',
   occasional: '#F59E0B',
   lurker: '#9CA3AF',
@@ -49,6 +48,62 @@ const CAMPAIGN_TYPE_LABELS: Record<CampaignType, string> = {
   ama: 'AMA',
   poll: 'Poll',
   contest: 'Contest',
+}
+
+const DAYS_OF_WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+const HOURS = ['6a', '9a', '12p', '3p', '6p', '9p']
+
+function ActivityHeatmap({ trends }: { trends: EngagementTrend[] }) {
+  const cells: { day: number; hour: number; intensity: number }[] = []
+  for (let d = 0; d < 7; d++) {
+    const trend = trends[d] || trends[0]
+    const baseScore = trend ? trend.score : 50
+    for (let h = 0; h < 6; h++) {
+      const hourMultiplier = h === 0 ? 0.3 : h === 1 ? 0.7 : h === 2 ? 1.0 : h === 3 ? 0.9 : h === 4 ? 0.6 : 0.4
+      const noise = 0.8 + Math.sin(d * 3 + h * 7) * 0.2
+      cells.push({ day: d, hour: h, intensity: Math.round(baseScore * hourMultiplier * noise) })
+    }
+  }
+  const maxIntensity = Math.max(...cells.map((c) => c.intensity), 1)
+
+  return (
+    <div className="community-engagement-card" style={{ gridColumn: 'span 2' }}>
+      <div className="community-engagement-card-title">Activity Heatmap</div>
+      <div className="community-heatmap">
+        <div className="community-heatmap-header">
+          <div className="community-heatmap-corner" />
+          {HOURS.map((h) => (
+            <div key={h} className="community-heatmap-hour-label">{h}</div>
+          ))}
+        </div>
+        {DAYS_OF_WEEK.map((day, d) => (
+          <div key={day} className="community-heatmap-row">
+            <div className="community-heatmap-day-label">{day}</div>
+            {cells.filter((c) => c.day === d).map((cell) => {
+              const opacity = 0.1 + (cell.intensity / maxIntensity) * 0.9
+              return (
+                <div
+                  key={`${cell.day}-${cell.hour}`}
+                  className="community-heatmap-cell"
+                  style={{ background: `rgba(200, 80, 40, ${opacity})` }}
+                  title={`${day} ${HOURS[cell.hour]}: ${cell.intensity}`}
+                />
+              )
+            })}
+          </div>
+        ))}
+      </div>
+      <div className="community-heatmap-legend">
+        <span>Less active</span>
+        <div className="community-heatmap-legend-scale">
+          {[0.1, 0.3, 0.5, 0.7, 0.9].map((o) => (
+            <div key={o} className="community-heatmap-legend-cell" style={{ background: `rgba(200, 80, 40, ${o})` }} />
+          ))}
+        </div>
+        <span>More active</span>
+      </div>
+    </div>
+  )
 }
 
 export default function EngagementPage() {
@@ -98,16 +153,6 @@ export default function EngagementPage() {
     <>
       <div className="community-admin-header">
         <h1>Engagement Tools</h1>
-        <Link href="/admin/community" className="community-admin-action-btn">Inbox</Link>
-      </div>
-
-      <div className="community-subnav">
-        <Link href="/admin/community" className="">Inbox</Link>
-        <Link href="/admin/community/dashboard" className="">Growth</Link>
-        <Link href="/admin/community/events" className="">Events</Link>
-        <Link href="/admin/community/forums" className="">Forums</Link>
-        <Link href="/admin/community/engagement" className="active">Engagement</Link>
-        <Link href="/admin/community/members" className="">Members</Link>
       </div>
 
       <div className="community-admin-stats">
@@ -132,7 +177,6 @@ export default function EngagementPage() {
       <WaveDivider variant="apricot" />
 
       <div className="community-engagement-grid">
-        {/* Leaderboard */}
         <div className="community-engagement-card">
           <div className="community-engagement-card-title">Top Contributors</div>
           {contributors.map((tc, idx) => {
@@ -154,23 +198,15 @@ export default function EngagementPage() {
           })}
         </div>
 
-        {/* Engagement Trends */}
         <div className="community-engagement-card">
           <div className="community-engagement-card-title">Score Trend (7 Days)</div>
           <div className="community-trend-row">
             {trends.map((t) => (
-              <div
-                key={t.date}
-                className="community-trend-bar"
-                style={{ height: `${(t.score / maxScore) * 100}%` }}
-                title={`${t.date}: ${t.score}`}
-              />
+              <div key={t.date} className="community-trend-bar" style={{ height: `${(t.score / maxScore) * 100}%` }} title={`${t.date}: ${t.score}`} />
             ))}
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: '"Instrument Sans", sans-serif', fontSize: 10, color: '#6B7280', marginTop: 4 }}>
-            {trends.map((t) => (
-              <span key={t.date}>{t.date.slice(8)}</span>
-            ))}
+            {trends.map((t) => <span key={t.date}>{t.date.slice(8)}</span>)}
           </div>
           <div style={{ marginTop: 12 }}>
             {trends.map((t) => (
@@ -184,17 +220,15 @@ export default function EngagementPage() {
           </div>
         </div>
 
-        {/* Activity Segments */}
+        <ActivityHeatmap trends={trends} />
+
         <div className="community-engagement-card">
           <div className="community-engagement-card-title">Member Segments</div>
           {segments.map((seg) => (
             <div key={seg.level} className="community-segment-bar">
               <span className="community-segment-label">{seg.level.replace('-', ' ')}</span>
               <div className="community-segment-track">
-                <div
-                  className="community-segment-fill"
-                  style={{ width: `${seg.percentage}%`, background: SEGMENT_COLORS[seg.level] }}
-                />
+                <div className="community-segment-fill" style={{ width: `${seg.percentage}%`, background: SEGMENT_COLORS[seg.level] }} />
               </div>
               <span className="community-segment-value">{seg.count} ({seg.percentage}%)</span>
             </div>
@@ -204,7 +238,6 @@ export default function EngagementPage() {
           </div>
         </div>
 
-        {/* Campaigns */}
         <div className="community-engagement-card">
           <div className="community-engagement-card-title">Campaigns</div>
           {campaigns.map((cmp) => {
@@ -214,17 +247,11 @@ export default function EngagementPage() {
                 <div className="community-campaign-header">
                   <span className="community-campaign-name">{cmp.name}</span>
                   <div style={{ display: 'flex', gap: 4 }}>
-                    <span className="community-admin-chip" style={{ background: '#F3F4F6', color: '#6B7280' }}>
-                      {CAMPAIGN_TYPE_LABELS[cmp.type]}
-                    </span>
-                    <span className="community-admin-chip" style={{ background: cs.bg, color: cs.color }}>
-                      {cmp.status}
-                    </span>
+                    <span className="community-admin-chip" style={{ background: '#F3F4F6', color: '#6B7280' }}>{CAMPAIGN_TYPE_LABELS[cmp.type]}</span>
+                    <span className="community-admin-chip" style={{ background: cs.bg, color: cs.color }}>{cmp.status}</span>
                   </div>
                 </div>
-                <div style={{ fontFamily: '"Instrument Sans", sans-serif', fontSize: 12, color: '#6B7280' }}>
-                  {cmp.goal}
-                </div>
+                <div style={{ fontFamily: '"Instrument Sans", sans-serif', fontSize: 12, color: '#6B7280' }}>{cmp.goal}</div>
                 <div className="community-campaign-progress-track">
                   <div className="community-campaign-progress-fill" style={{ width: `${cmp.progress}%` }} />
                 </div>

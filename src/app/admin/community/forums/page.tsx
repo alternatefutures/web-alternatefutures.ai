@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import Link from 'next/link'
 import {
   fetchForumCategories,
   fetchForumThreads,
@@ -33,6 +32,7 @@ export default function ForumsPage() {
   const [selectedCategory, setSelectedCategory] = useState('ALL')
   const [search, setSearch] = useState('')
   const [showReports, setShowReports] = useState(false)
+  const [statusFilter, setStatusFilter] = useState('ALL')
 
   useEffect(() => {
     async function load() {
@@ -57,17 +57,14 @@ export default function ForumsPage() {
 
   const filtered = useMemo(() => {
     let result = threads
-    if (selectedCategory !== 'ALL') {
-      result = result.filter((t) => t.categoryId === selectedCategory)
-    }
+    if (selectedCategory !== 'ALL') result = result.filter((t) => t.categoryId === selectedCategory)
+    if (statusFilter !== 'ALL') result = result.filter((t) => t.status === statusFilter)
     if (search) {
       const q = search.toLowerCase()
-      result = result.filter(
-        (t) => t.title.toLowerCase().includes(q) || t.authorName.toLowerCase().includes(q),
-      )
+      result = result.filter((t) => t.title.toLowerCase().includes(q) || t.authorName.toLowerCase().includes(q))
     }
     return result.sort((a, b) => new Date(b.lastActivityAt).getTime() - new Date(a.lastActivityAt).getTime())
-  }, [threads, selectedCategory, search])
+  }, [threads, selectedCategory, statusFilter, search])
 
   const flaggedCount = useMemo(() => threads.filter((t) => t.status === 'flagged').length, [threads])
   const unresolvedReports = useMemo(() => reports.filter((r) => !r.resolved).length, [reports])
@@ -92,6 +89,19 @@ export default function ForumsPage() {
     }
   }, [])
 
+  const handleBulkResolve = useCallback(async (threadId: string) => {
+    const threadReports = reports.filter((r) => r.threadId === threadId && !r.resolved)
+    const token = getCookieValue('af_access_token')
+    for (const rpt of threadReports) {
+      try {
+        const updated = await resolveReport(token, rpt.id)
+        setReports((prev) => prev.map((r) => r.id === rpt.id ? updated : r))
+      } catch {
+        // silently handle
+      }
+    }
+  }, [reports])
+
   if (loading) {
     return <div className="community-admin-empty"><p>Loading forums...</p></div>
   }
@@ -100,24 +110,12 @@ export default function ForumsPage() {
     <>
       <div className="community-admin-header">
         <h1>Forum Moderation</h1>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <Link href="/admin/community" className="community-admin-action-btn">Inbox</Link>
-          <button
-            className={`community-admin-action-btn${showReports ? ' primary' : ''}`}
-            onClick={() => setShowReports(!showReports)}
-          >
-            Reports ({unresolvedReports})
-          </button>
-        </div>
-      </div>
-
-      <div className="community-subnav">
-        <Link href="/admin/community" className="">Inbox</Link>
-        <Link href="/admin/community/dashboard" className="">Growth</Link>
-        <Link href="/admin/community/events" className="">Events</Link>
-        <Link href="/admin/community/forums" className="active">Forums</Link>
-        <Link href="/admin/community/engagement" className="">Engagement</Link>
-        <Link href="/admin/community/members" className="">Members</Link>
+        <button
+          className={`community-admin-action-btn${showReports ? ' primary' : ''}`}
+          onClick={() => setShowReports(!showReports)}
+        >
+          Reports ({unresolvedReports})
+        </button>
       </div>
 
       <div className="community-admin-stats">
@@ -131,25 +129,22 @@ export default function ForumsPage() {
         </div>
         <div className="community-admin-stat-card">
           <div className="community-admin-stat-label">Flagged</div>
-          <div className="community-admin-stat-value">{flaggedCount}</div>
+          <div className="community-admin-stat-value" style={{ color: flaggedCount > 0 ? '#991B1B' : undefined }}>{flaggedCount}</div>
         </div>
         <div className="community-admin-stat-card">
           <div className="community-admin-stat-label">Open Reports</div>
-          <div className="community-admin-stat-value">{unresolvedReports}</div>
+          <div className="community-admin-stat-value" style={{ color: unresolvedReports > 0 ? '#991B1B' : undefined }}>{unresolvedReports}</div>
         </div>
       </div>
 
       <WaveDivider variant="apricot" />
 
-      {/* Reports panel */}
       {showReports && (
-        <div style={{ marginBottom: 20 }}>
-          <h3 style={{ fontFamily: '"Instrument Sans", sans-serif', fontSize: 16, fontWeight: 600, marginBottom: 12 }}>
-            User Reports
-          </h3>
+        <div className="community-moderation-queue">
+          <h3 className="community-moderation-title">Moderation Queue</h3>
           {reports.filter((r) => !r.resolved).length === 0 ? (
             <div style={{ fontFamily: '"Instrument Sans", sans-serif', fontSize: 13, color: '#6B7280', padding: '12px 0' }}>
-              No unresolved reports.
+              No unresolved reports. All clear!
             </div>
           ) : (
             reports.filter((r) => !r.resolved).map((rpt) => (
@@ -157,18 +152,21 @@ export default function ForumsPage() {
                 <div className="community-report-body">
                   <div className="community-report-thread">{rpt.threadTitle}</div>
                   <div className="community-report-reason">
-                    Reported by {rpt.reporterName}: {rpt.reason}
+                    Reported by <strong>{rpt.reporterName}</strong>: {rpt.reason}
                   </div>
                 </div>
-                <div className="community-report-meta">
-                  {formatTimeAgo(rpt.createdAt)}
+                <div className="community-report-meta">{formatTimeAgo(rpt.createdAt)}</div>
+                <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
+                  <button className="community-admin-action-btn" onClick={() => { handleThreadAction(rpt.threadId, 'open'); handleResolveReport(rpt.id) }}>
+                    Approve
+                  </button>
+                  <button className="community-admin-action-btn danger" onClick={() => { handleThreadAction(rpt.threadId, 'removed'); handleBulkResolve(rpt.threadId) }}>
+                    Remove
+                  </button>
+                  <button className="community-admin-action-btn" onClick={() => handleResolveReport(rpt.id)}>
+                    Dismiss
+                  </button>
                 </div>
-                <button
-                  className="community-admin-action-btn"
-                  onClick={() => handleResolveReport(rpt.id)}
-                >
-                  Resolve
-                </button>
               </div>
             ))
           )}
@@ -176,21 +174,13 @@ export default function ForumsPage() {
       )}
 
       <div className="community-forums-layout">
-        {/* Categories sidebar */}
         <div className="community-forums-sidebar">
-          <button
-            className={`community-forum-cat-item${selectedCategory === 'ALL' ? ' active' : ''}`}
-            onClick={() => setSelectedCategory('ALL')}
-          >
+          <button className={`community-forum-cat-item${selectedCategory === 'ALL' ? ' active' : ''}`} onClick={() => setSelectedCategory('ALL')}>
             All Categories
             <span className="community-forum-cat-count">{threads.length}</span>
           </button>
           {categories.map((cat) => (
-            <button
-              key={cat.id}
-              className={`community-forum-cat-item${selectedCategory === cat.id ? ' active' : ''}`}
-              onClick={() => setSelectedCategory(cat.id)}
-            >
+            <button key={cat.id} className={`community-forum-cat-item${selectedCategory === cat.id ? ' active' : ''}`} onClick={() => setSelectedCategory(cat.id)}>
               <span className="community-forum-cat-dot" style={{ background: cat.color }} />
               {cat.name}
               <span className="community-forum-cat-count">{cat.threadCount}</span>
@@ -198,16 +188,17 @@ export default function ForumsPage() {
           ))}
         </div>
 
-        {/* Thread list */}
         <div>
           <div className="community-admin-filters" style={{ marginBottom: 12 }}>
-            <input
-              type="text"
-              className="community-admin-search"
-              placeholder="Search threads..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <input type="text" className="community-admin-search" placeholder="Search threads..." value={search} onChange={(e) => setSearch(e.target.value)} />
+            <select className="community-admin-select" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+              <option value="ALL">All statuses</option>
+              <option value="open">Open</option>
+              <option value="pinned">Pinned</option>
+              <option value="flagged">Flagged</option>
+              <option value="closed">Closed</option>
+              <option value="removed">Removed</option>
+            </select>
           </div>
 
           <div className="community-thread-list">
@@ -220,19 +211,12 @@ export default function ForumsPage() {
               filtered.map((thread) => {
                 const ts = STATUS_STYLES[thread.status]
                 return (
-                  <div
-                    key={thread.id}
-                    className={`community-thread-item${thread.status === 'flagged' ? ' flagged' : ''}${thread.status === 'pinned' ? ' pinned' : ''}`}
-                  >
+                  <div key={thread.id} className={`community-thread-item${thread.status === 'flagged' ? ' flagged' : ''}${thread.status === 'pinned' ? ' pinned' : ''}`}>
                     <div className="community-thread-body">
-                      <div className="community-thread-title">
-                        {thread.title}
-                      </div>
+                      <div className="community-thread-title">{thread.title}</div>
                       <div className="community-thread-excerpt">
                         by {thread.authorName} &middot; {formatTimeAgo(thread.lastActivityAt)}
-                        {thread.reportCount > 0 && (
-                          <span style={{ color: '#EF4444', marginLeft: 8 }}>{thread.reportCount} reports</span>
-                        )}
+                        {thread.reportCount > 0 && <span style={{ color: '#EF4444', marginLeft: 8 }}>{thread.reportCount} reports</span>}
                       </div>
                     </div>
                     <div className="community-thread-stats">
@@ -241,20 +225,17 @@ export default function ForumsPage() {
                     </div>
                     <span className="community-admin-chip" style={{ background: ts.bg, color: ts.color }}>{ts.label}</span>
                     <div className="community-thread-actions">
-                      {thread.status !== 'pinned' && (
-                        <button className="community-admin-action-btn" onClick={() => handleThreadAction(thread.id, 'pinned')} title="Pin">
-                          Pin
-                        </button>
+                      {thread.status !== 'pinned' && thread.status !== 'removed' && (
+                        <button className="community-admin-action-btn" onClick={() => handleThreadAction(thread.id, 'pinned')}>Pin</button>
                       )}
                       {thread.status === 'flagged' && (
-                        <button className="community-admin-action-btn" onClick={() => handleThreadAction(thread.id, 'open')} title="Approve">
-                          Approve
-                        </button>
+                        <button className="community-admin-action-btn" onClick={() => handleThreadAction(thread.id, 'open')}>Approve</button>
+                      )}
+                      {thread.status === 'open' && (
+                        <button className="community-admin-action-btn" onClick={() => handleThreadAction(thread.id, 'flagged')}>Flag</button>
                       )}
                       {thread.status !== 'removed' && (
-                        <button className="community-admin-action-btn danger" onClick={() => handleThreadAction(thread.id, 'removed')} title="Remove">
-                          Remove
-                        </button>
+                        <button className="community-admin-action-btn danger" onClick={() => handleThreadAction(thread.id, 'removed')}>Remove</button>
                       )}
                     </div>
                   </div>

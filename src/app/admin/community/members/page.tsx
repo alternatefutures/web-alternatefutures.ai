@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useMemo, useCallback } from 'react'
-import Link from 'next/link'
 import {
   fetchCommunityMembers,
   updateMemberStatus,
@@ -41,6 +40,19 @@ const BADGE_STYLES: Record<Badge, { bg: string; color: string; label: string }> 
   ambassador: { bg: '#ECEAFF', color: '#5865F2', label: 'Ambassador' },
 }
 
+function EngagementBar({ score, max }: { score: number; max: number }) {
+  const pct = Math.min(100, (score / max) * 100)
+  const color = pct > 70 ? '#065F46' : pct > 40 ? '#92400E' : '#991B1B'
+  return (
+    <div className="community-engagement-mini-bar">
+      <div className="community-engagement-mini-track">
+        <div className="community-engagement-mini-fill" style={{ width: `${pct}%`, background: color }} />
+      </div>
+      <span className="community-engagement-mini-label">{score}</span>
+    </div>
+  )
+}
+
 export default function MembersPage() {
   const [members, setMembers] = useState<CommunityMember[]>([])
   const [loading, setLoading] = useState(true)
@@ -48,6 +60,7 @@ export default function MembersPage() {
   const [roleFilter, setRoleFilter] = useState('ALL')
   const [statusFilter, setStatusFilter] = useState('ALL')
   const [platformFilter, setPlatformFilter] = useState('ALL')
+  const [sortBy, setSortBy] = useState<'score' | 'messages' | 'recent'>('score')
   const [selectedMember, setSelectedMember] = useState<CommunityMember | null>(null)
 
   useEffect(() => {
@@ -65,6 +78,8 @@ export default function MembersPage() {
     load()
   }, [])
 
+  const maxScore = useMemo(() => Math.max(...members.map((m) => m.activityScore), 1), [members])
+
   const filtered = useMemo(() => {
     let result = members
     if (roleFilter !== 'ALL') result = result.filter((m) => m.role === roleFilter)
@@ -72,12 +87,12 @@ export default function MembersPage() {
     if (platformFilter !== 'ALL') result = result.filter((m) => m.platform === platformFilter)
     if (search) {
       const q = search.toLowerCase()
-      result = result.filter(
-        (m) => m.name.toLowerCase().includes(q) || m.email.toLowerCase().includes(q),
-      )
+      result = result.filter((m) => m.name.toLowerCase().includes(q) || m.email.toLowerCase().includes(q))
     }
-    return result.sort((a, b) => b.activityScore - a.activityScore)
-  }, [members, roleFilter, statusFilter, platformFilter, search])
+    if (sortBy === 'score') return result.sort((a, b) => b.activityScore - a.activityScore)
+    if (sortBy === 'messages') return result.sort((a, b) => b.messageCount - a.messageCount)
+    return result.sort((a, b) => new Date(b.lastActive).getTime() - new Date(a.lastActive).getTime())
+  }, [members, roleFilter, statusFilter, platformFilter, search, sortBy])
 
   const stats = useMemo(() => ({
     total: members.length,
@@ -116,16 +131,6 @@ export default function MembersPage() {
     <>
       <div className="community-admin-header">
         <h1>Member Directory</h1>
-        <Link href="/admin/community" className="community-admin-action-btn">Inbox</Link>
-      </div>
-
-      <div className="community-subnav">
-        <Link href="/admin/community" className="">Inbox</Link>
-        <Link href="/admin/community/dashboard" className="">Growth</Link>
-        <Link href="/admin/community/events" className="">Events</Link>
-        <Link href="/admin/community/forums" className="">Forums</Link>
-        <Link href="/admin/community/engagement" className="">Engagement</Link>
-        <Link href="/admin/community/members" className="active">Members</Link>
       </div>
 
       <div className="community-admin-stats">
@@ -150,13 +155,7 @@ export default function MembersPage() {
       <WaveDivider variant="apricot" />
 
       <div className="community-admin-filters">
-        <input
-          type="text"
-          className="community-admin-search"
-          placeholder="Search by name or email..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <input type="text" className="community-admin-search" placeholder="Search by name or email..." value={search} onChange={(e) => setSearch(e.target.value)} />
         <select className="community-admin-select" value={platformFilter} onChange={(e) => setPlatformFilter(e.target.value)}>
           <option value="ALL">All platforms</option>
           <option value="discord">Discord</option>
@@ -179,6 +178,11 @@ export default function MembersPage() {
           <option value="muted">Muted</option>
           <option value="banned">Banned</option>
         </select>
+        <select className="community-admin-select" value={sortBy} onChange={(e) => setSortBy(e.target.value as 'score' | 'messages' | 'recent')}>
+          <option value="score">Sort: Score</option>
+          <option value="messages">Sort: Messages</option>
+          <option value="recent">Sort: Recent</option>
+        </select>
       </div>
 
       {filtered.length === 0 ? (
@@ -196,11 +200,7 @@ export default function MembersPage() {
                 key={member.id}
                 className={`community-member-item${member.status === 'banned' ? ' banned' : ''}${member.status === 'muted' ? ' muted' : ''}`}
               >
-                <div
-                  className="community-member-avatar"
-                  onClick={() => setSelectedMember(member)}
-                  style={{ cursor: 'pointer' }}
-                >
+                <div className="community-member-avatar" onClick={() => setSelectedMember(member)} style={{ cursor: 'pointer' }}>
                   {member.name.charAt(0).toUpperCase()}
                 </div>
                 <div className="community-member-info" onClick={() => setSelectedMember(member)} style={{ cursor: 'pointer' }}>
@@ -219,24 +219,14 @@ export default function MembersPage() {
                     <div className="community-member-badges">
                       {member.badges.map((badge) => {
                         const bs = BADGE_STYLES[badge]
-                        return (
-                          <span key={badge} className="community-member-badge" style={{ background: bs.bg, color: bs.color }}>
-                            {bs.label}
-                          </span>
-                        )
+                        return <span key={badge} className="community-member-badge" style={{ background: bs.bg, color: bs.color }}>{bs.label}</span>
                       })}
                     </div>
                   )}
                 </div>
                 <div className="community-member-stats">
-                  <div>
-                    <span className="community-member-stat-val">{member.activityScore}</span>
-                    Score
-                  </div>
-                  <div>
-                    <span className="community-member-stat-val">{member.messageCount}</span>
-                    Msgs
-                  </div>
+                  <div><EngagementBar score={member.activityScore} max={maxScore} /></div>
+                  <div><span className="community-member-stat-val">{member.messageCount}</span>Msgs</div>
                 </div>
                 <div className="community-member-actions">
                   {member.status === 'active' && (
@@ -245,12 +235,8 @@ export default function MembersPage() {
                       <button className="community-admin-action-btn danger" onClick={() => handleStatusChange(member.id, 'banned')}>Ban</button>
                     </>
                   )}
-                  {member.status === 'muted' && (
-                    <button className="community-admin-action-btn" onClick={() => handleStatusChange(member.id, 'active')}>Unmute</button>
-                  )}
-                  {member.status === 'banned' && (
-                    <button className="community-admin-action-btn" onClick={() => handleStatusChange(member.id, 'active')}>Unban</button>
-                  )}
+                  {member.status === 'muted' && <button className="community-admin-action-btn" onClick={() => handleStatusChange(member.id, 'active')}>Unmute</button>}
+                  {member.status === 'banned' && <button className="community-admin-action-btn" onClick={() => handleStatusChange(member.id, 'active')}>Unban</button>}
                 </div>
               </div>
             )
@@ -258,14 +244,11 @@ export default function MembersPage() {
         </div>
       )}
 
-      {/* Member Detail Modal */}
       {selectedMember && (
         <div className="community-member-detail-overlay" onClick={() => setSelectedMember(null)}>
           <div className="community-member-detail-panel" onClick={(e) => e.stopPropagation()}>
             <div className="community-member-detail-header">
-              <div className="community-member-detail-avatar">
-                {selectedMember.name.charAt(0).toUpperCase()}
-              </div>
+              <div className="community-member-detail-avatar">{selectedMember.name.charAt(0).toUpperCase()}</div>
               <div>
                 <div className="community-member-detail-name">{selectedMember.name}</div>
                 <div className="community-member-detail-email">{selectedMember.email}</div>
@@ -273,28 +256,36 @@ export default function MembersPage() {
             </div>
 
             {selectedMember.bio && (
-              <div style={{ fontFamily: '"Instrument Sans", sans-serif', fontSize: 13, color: '#6B7280', marginBottom: 16, lineHeight: 1.5 }}>
-                {selectedMember.bio}
-              </div>
+              <div style={{ fontFamily: '"Instrument Sans", sans-serif', fontSize: 13, color: '#6B7280', marginBottom: 16, lineHeight: 1.5 }}>{selectedMember.bio}</div>
             )}
+
+            <div className="community-member-detail-section">
+              <div className="community-member-detail-section-title">Engagement Score</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                <div style={{ flex: 1 }}>
+                  <div className="community-engagement-mini-track" style={{ height: 10 }}>
+                    <div className="community-engagement-mini-fill" style={{
+                      width: `${Math.min(100, (selectedMember.activityScore / maxScore) * 100)}%`,
+                      background: selectedMember.activityScore > maxScore * 0.7 ? '#065F46' : selectedMember.activityScore > maxScore * 0.4 ? '#92400E' : '#991B1B',
+                      height: '100%',
+                    }} />
+                  </div>
+                </div>
+                <span style={{ fontFamily: '"Instrument Sans", sans-serif', fontSize: 20, fontWeight: 700 }}>{selectedMember.activityScore}</span>
+              </div>
+            </div>
 
             <div className="community-member-detail-section">
               <div className="community-member-detail-section-title">Details</div>
               <div className="community-member-detail-row"><dt>Platform</dt><dd>{PLATFORM_STYLES[selectedMember.platform].label}</dd></div>
               <div className="community-member-detail-row"><dt>Joined</dt><dd>{new Date(selectedMember.joinDate).toLocaleDateString()}</dd></div>
               <div className="community-member-detail-row"><dt>Last Active</dt><dd>{new Date(selectedMember.lastActive).toLocaleDateString()}</dd></div>
-              <div className="community-member-detail-row"><dt>Activity Score</dt><dd>{selectedMember.activityScore}</dd></div>
               <div className="community-member-detail-row"><dt>Messages</dt><dd>{selectedMember.messageCount}</dd></div>
             </div>
 
             <div className="community-member-detail-section">
               <div className="community-member-detail-section-title">Role</div>
-              <select
-                className="community-form-input"
-                value={selectedMember.role}
-                onChange={(e) => handleRoleChange(selectedMember.id, e.target.value as MemberRole)}
-                style={{ marginBottom: 8 }}
-              >
+              <select className="community-form-input" value={selectedMember.role} onChange={(e) => handleRoleChange(selectedMember.id, e.target.value as MemberRole)} style={{ marginBottom: 8 }}>
                 <option value="member">Member</option>
                 <option value="contributor">Contributor</option>
                 <option value="moderator">Moderator</option>
@@ -308,11 +299,7 @@ export default function MembersPage() {
                 <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                   {selectedMember.badges.map((badge) => {
                     const bs = BADGE_STYLES[badge]
-                    return (
-                      <span key={badge} className="community-member-badge" style={{ background: bs.bg, color: bs.color }}>
-                        {bs.label}
-                      </span>
-                    )
+                    return <span key={badge} className="community-member-badge" style={{ background: bs.bg, color: bs.color }}>{bs.label}</span>
                   })}
                 </div>
               </div>
@@ -327,12 +314,8 @@ export default function MembersPage() {
                     <button className="community-admin-action-btn danger" onClick={() => handleStatusChange(selectedMember.id, 'banned')}>Ban</button>
                   </>
                 )}
-                {selectedMember.status === 'muted' && (
-                  <button className="community-admin-action-btn" onClick={() => handleStatusChange(selectedMember.id, 'active')}>Unmute</button>
-                )}
-                {selectedMember.status === 'banned' && (
-                  <button className="community-admin-action-btn" onClick={() => handleStatusChange(selectedMember.id, 'active')}>Unban</button>
-                )}
+                {selectedMember.status === 'muted' && <button className="community-admin-action-btn" onClick={() => handleStatusChange(selectedMember.id, 'active')}>Unmute</button>}
+                {selectedMember.status === 'banned' && <button className="community-admin-action-btn" onClick={() => handleStatusChange(selectedMember.id, 'active')}>Unban</button>}
                 <button className="community-admin-action-btn" onClick={() => setSelectedMember(null)}>Close</button>
               </div>
             </div>
