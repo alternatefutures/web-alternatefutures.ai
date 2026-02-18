@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useCallback } from 'react'
+import { Fragment, useState, useMemo, useCallback } from 'react'
 import Link from 'next/link'
 import { useDialog } from '@/hooks/useDialog'
 import { EmptyStateDecoration, WaveDivider } from '@/components/admin/ShapeDecoration'
@@ -491,8 +491,8 @@ export default function TutorialManager() {
                 const isExpanded = expandedTutorial === tutorial.id
 
                 return (
-                  <>
-                    <tr key={tutorial.id}>
+                  <Fragment key={tutorial.id}>
+                    <tr>
                       <td>
                         <div style={{ fontWeight: 600, maxWidth: 220, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {tutorial.title}
@@ -566,7 +566,7 @@ export default function TutorialManager() {
                       </td>
                     </tr>
                     {isExpanded && (
-                      <tr key={`${tutorial.id}-steps`}>
+                      <tr>
                         <td colSpan={8} style={{ padding: '16px 24px', background: 'var(--color-bg-light, #F9FAFB)' }}>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                             {tutorial.steps.map((step, idx) => (
@@ -632,7 +632,7 @@ export default function TutorialManager() {
                         </td>
                       </tr>
                     )}
-                  </>
+                  </Fragment>
                 )
               })}
             </tbody>
