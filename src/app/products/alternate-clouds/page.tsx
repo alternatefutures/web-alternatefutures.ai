@@ -78,7 +78,7 @@ export default function AlternateCloudsPage() {
           <div className="feature-item">
             <h3 className="feature-title">LOWER COSTS</h3>
             <p className="feature-subtitle">Predictable pricing. Finally</p>
-            <p className="feature-description">No surprise charges. No rate limits. No corporate markup. Pay actual compute costs + our margin. That's it. Deploy unlimited times. Scale without fear. Your bill makes sense.</p>
+            <p className="feature-description">No surprise charges. No rate limits. No corporate markup. Simple, transparent per-resource pricing. Deploy unlimited times. Scale without fear. Your bill makes sense.</p>
           </div>
           <div className="feature-item">
             <h3 className="feature-title">ALWAYS ONLINE</h3>
