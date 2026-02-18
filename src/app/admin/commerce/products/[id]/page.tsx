@@ -20,7 +20,7 @@ import {
   type Order,
 } from '@/lib/order-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../../commerce.css'
+import '../../commerce.module.css'
 
 export default function ProductDetailPage() {
   const params = useParams<{ id: string }>()

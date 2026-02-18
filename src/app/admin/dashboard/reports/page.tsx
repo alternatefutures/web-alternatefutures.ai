@@ -17,7 +17,7 @@ import {
   PiTrashBold, PiClockBold,
 } from 'react-icons/pi'
 import { getCookieValue } from '@/lib/cookies'
-import '../dashboard-sub.css'
+import '../dashboard-sub.module.css'
 
 type ReportMetric = {
   key: string

@@ -6,7 +6,7 @@ import {
   fetchPartners,
   type Partner,
 } from '@/lib/partner-api'
-import '../partnerships.css'
+import '../partnerships.module.css'
 
 interface PartnerROI {
   partner: Partner

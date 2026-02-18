@@ -11,7 +11,7 @@ import {
   type ProductStatus,
 } from '@/lib/commerce-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../commerce.css'
+import '../commerce.module.css'
 
 type ViewMode = 'grid' | 'list'
 

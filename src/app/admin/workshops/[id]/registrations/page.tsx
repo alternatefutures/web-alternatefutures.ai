@@ -14,7 +14,7 @@ import {
   type RegistrationStatus,
 } from '@/lib/workshop-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../../workshops.css'
+import '../../workshops.module.css'
 
 const STATUS_OPTIONS: { value: RegistrationStatus; label: string }[] = [
   { value: 'REGISTERED', label: 'Registered' },

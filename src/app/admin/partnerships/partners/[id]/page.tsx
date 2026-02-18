@@ -12,7 +12,7 @@ import {
   PIPELINE_STAGE_LABELS,
   PIPELINE_STAGE_COLORS,
 } from '@/lib/partner-api'
-import '../../partnerships.css'
+import '../../partnerships.module.css'
 
 function formatDate(iso: string | null) {
   if (!iso) return '—'

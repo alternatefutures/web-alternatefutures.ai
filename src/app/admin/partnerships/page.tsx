@@ -10,7 +10,7 @@ import {
   type Partner,
   type PipelineEntry,
 } from '@/lib/partner-api'
-import './partnerships.css'
+import './partnerships.module.css'
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {

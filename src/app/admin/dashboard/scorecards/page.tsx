@@ -14,7 +14,7 @@ import {
   PiChartLineUpBold, PiArrowLeftBold,
 } from 'react-icons/pi'
 import { getCookieValue } from '@/lib/cookies'
-import '../dashboard-sub.css'
+import '../dashboard-sub.module.css'
 
 type TimePeriod = '7d' | '30d' | '90d' | 'ytd'
 

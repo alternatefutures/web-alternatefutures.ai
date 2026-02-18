@@ -13,7 +13,7 @@ import {
   type ReturnReason,
 } from '@/lib/fulfillment-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../commerce.css'
+import '../commerce.module.css'
 
 const STATUS_OPTIONS: ReturnStatus[] = ['requested', 'approved', 'item_received', 'refund_issued', 'denied', 'closed']
 

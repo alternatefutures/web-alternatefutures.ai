@@ -12,7 +12,7 @@ import {
   type OrderStatus,
 } from '@/lib/order-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../../commerce.css'
+import '../../commerce.module.css'
 
 const STATUS_TRANSITIONS: Record<OrderStatus, OrderStatus[]> = {
   pending: ['processing', 'cancelled'],

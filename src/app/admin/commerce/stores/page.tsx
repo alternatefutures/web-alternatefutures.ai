@@ -14,7 +14,7 @@ import {
   type CreateStoreConnectionInput,
 } from '@/lib/store-connection-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../commerce.css'
+import '../commerce.module.css'
 
 const ALL_PROVIDERS: StoreProvider[] = [
   'shopify',

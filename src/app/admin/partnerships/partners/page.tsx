@@ -8,7 +8,7 @@ import {
   type PartnerStatus,
   type PartnerTier,
 } from '@/lib/partner-api'
-import '../partnerships.css'
+import '../partnerships.module.css'
 
 export default function PartnersDirectoryPage() {
   const [partners, setPartners] = useState<Partner[]>([])

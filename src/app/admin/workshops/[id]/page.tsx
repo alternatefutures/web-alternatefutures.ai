@@ -31,7 +31,7 @@ import {
 } from '@/lib/workshop-api'
 import { getCookieValue } from '@/lib/cookies'
 import { WaveDivider } from '@/components/admin/ShapeDecoration'
-import '../workshops.css'
+import '../workshops.module.css'
 
 export default function WorkshopDetailPage() {
   const params = useParams<{ id: string }>()

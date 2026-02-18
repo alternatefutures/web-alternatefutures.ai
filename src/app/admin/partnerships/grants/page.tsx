@@ -12,7 +12,7 @@ import {
   type PipelineEntry,
   type Partner,
 } from '@/lib/partner-api'
-import '../partnerships.css'
+import '../partnerships.module.css'
 
 type GrantStatus = 'applied' | 'reviewing' | 'approved' | 'disbursed' | 'completed'
 

@@ -14,7 +14,7 @@ import {
   type CreateSessionInput,
 } from '@/lib/workshop-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../workshops.css'
+import '../workshops.module.css'
 
 interface SessionDraft {
   key: string

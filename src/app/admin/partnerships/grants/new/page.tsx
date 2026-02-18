@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import '../../partnerships.css'
+import '../../partnerships.module.css'
 
 interface ChecklistItem {
   id: string

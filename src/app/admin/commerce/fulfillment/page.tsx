@@ -13,7 +13,7 @@ import {
   type FulfillmentProvider,
 } from '@/lib/fulfillment-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../commerce.css'
+import '../commerce.module.css'
 
 const STATUS_OPTIONS: FulfillmentStatus[] = [
   'awaiting_pick',

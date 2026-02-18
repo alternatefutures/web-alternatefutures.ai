@@ -10,7 +10,7 @@ import {
 } from '@/lib/aeo-api'
 import { getCookieValue } from '@/lib/cookies'
 import Link from 'next/link'
-import '../aeo.css'
+import '../aeo.module.css'
 
 // ---------------------------------------------------------------------------
 // Helpers

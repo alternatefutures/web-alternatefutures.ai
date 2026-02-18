@@ -11,7 +11,7 @@ import {
   type OrderStatus,
 } from '@/lib/order-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../commerce.css'
+import '../commerce.module.css'
 
 const STATUS_OPTIONS: OrderStatus[] = ['pending', 'processing', 'shipped', 'delivered', 'cancelled', 'refunded']
 

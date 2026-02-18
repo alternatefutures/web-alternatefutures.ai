@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import '../dashboard-sub.css'
+import '../dashboard-sub.module.css'
 
 interface Milestone {
   id: string

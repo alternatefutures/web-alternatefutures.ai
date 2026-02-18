@@ -15,7 +15,7 @@ import {
   type BillingCycle,
 } from '@/lib/subscription-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../commerce.css'
+import '../commerce.module.css'
 
 const STATUS_OPTIONS: SubscriptionStatus[] = ['active', 'trialing', 'past_due', 'cancelled', 'paused']
 

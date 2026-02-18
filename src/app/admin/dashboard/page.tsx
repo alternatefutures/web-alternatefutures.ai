@@ -20,7 +20,7 @@ import {
   PiArrowRightBold,
 } from 'react-icons/pi'
 import { getCookieValue } from '@/lib/cookies'
-import './dashboard-sub.css'
+import './dashboard-sub.module.css'
 
 function SparklineSVG({ points, trend, width = 64, height = 24 }: {
   points: number[]

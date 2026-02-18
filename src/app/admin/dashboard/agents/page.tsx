@@ -7,7 +7,7 @@ import {
   type AgentTask, type AgentId, type TaskStatus, type TaskPriority,
 } from '@/lib/agent-tasks-api'
 import { getCookieValue } from '@/lib/cookies'
-import '../dashboard-sub.css'
+import '../dashboard-sub.module.css'
 
 const statusColors: Record<string, { bg: string; color: string }> = {
   COMPLETED: { bg: '#D1FAE5', color: '#065F46' },

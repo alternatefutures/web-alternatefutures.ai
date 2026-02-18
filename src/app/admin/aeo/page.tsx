@@ -20,7 +20,7 @@ import {
   type PromptGap,
 } from '@/lib/aeo-api'
 import { getCookieValue } from '@/lib/cookies'
-import './aeo.css'
+import './aeo.module.css'
 
 // ---------------------------------------------------------------------------
 // Helpers
