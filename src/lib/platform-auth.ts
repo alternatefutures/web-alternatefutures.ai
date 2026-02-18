@@ -15,6 +15,15 @@ export type ConnectablePlatform =
   | 'REDDIT'
   | 'DISCORD'
   | 'TELEGRAM'
+  | 'THREADS'
+  | 'INSTAGRAM'
+  | 'FACEBOOK'
+  | 'TIKTOK'
+  | 'YOUTUBE'
+  | 'MEDIUM'
+  | 'SUBSTACK'
+  | 'GHOST'
+  | 'FARCASTER'
 
 export type ConnectionStatus = 'CONNECTED' | 'DISCONNECTED' | 'EXPIRED' | 'ERROR'
 
@@ -89,6 +98,44 @@ export const PLATFORM_CREDENTIAL_FIELDS: Record<ConnectablePlatform, CredentialF
   TELEGRAM: [
     { key: 'botToken', label: 'Bot Token', type: 'password', placeholder: '123456:ABC-DEF...', helpText: 'From @BotFather' },
     { key: 'chatId', label: 'Chat ID', type: 'text', placeholder: '-1001234567890', helpText: 'Channel or group chat ID' },
+  ],
+  THREADS: [
+    { key: 'accessToken', label: 'Access Token', type: 'password', placeholder: 'Your Threads access token', helpText: 'From Meta Developer Portal (requires Instagram Professional account)' },
+    { key: 'userId', label: 'User ID', type: 'text', placeholder: '17841400000000000', helpText: 'Threads user ID' },
+  ],
+  INSTAGRAM: [
+    { key: 'accessToken', label: 'Access Token', type: 'password', placeholder: 'Your Instagram Graph API token', helpText: 'Long-lived token from Meta Developer Portal' },
+    { key: 'accountId', label: 'Business Account ID', type: 'text', placeholder: '17841400000000000', helpText: 'Instagram Business or Creator account ID' },
+  ],
+  FACEBOOK: [
+    { key: 'accessToken', label: 'Page Access Token', type: 'password', placeholder: 'Your page access token', helpText: 'From Meta Developer Portal with pages_manage_posts permission' },
+    { key: 'pageId', label: 'Page ID', type: 'text', placeholder: '123456789', helpText: 'Facebook Page ID' },
+  ],
+  TIKTOK: [
+    { key: 'accessToken', label: 'Access Token', type: 'password', placeholder: 'Your TikTok access token', helpText: 'From TikTok for Developers portal' },
+    { key: 'openId', label: 'Open ID', type: 'text', placeholder: 'Your TikTok Open ID' },
+  ],
+  YOUTUBE: [
+    { key: 'clientId', label: 'Client ID', type: 'text', placeholder: 'Google OAuth client ID' },
+    { key: 'clientSecret', label: 'Client Secret', type: 'password', placeholder: 'Google OAuth client secret' },
+    { key: 'refreshToken', label: 'Refresh Token', type: 'password', placeholder: 'OAuth refresh token', helpText: 'From Google OAuth 2.0 flow with youtube.upload scope' },
+  ],
+  MEDIUM: [
+    { key: 'integrationToken', label: 'Integration Token', type: 'password', placeholder: 'Your Medium integration token', helpText: 'From Settings > Security and apps > Integration tokens' },
+  ],
+  SUBSTACK: [
+    { key: 'email', label: 'Email', type: 'text', placeholder: 'your@email.com' },
+    { key: 'password', label: 'Password', type: 'password', placeholder: 'Your Substack password', helpText: 'Used for API authentication' },
+    { key: 'subdomain', label: 'Publication Subdomain', type: 'text', placeholder: 'yourpub', helpText: 'e.g., "yourpub" from yourpub.substack.com' },
+  ],
+  GHOST: [
+    { key: 'apiUrl', label: 'Ghost Admin API URL', type: 'url', placeholder: 'https://your-site.ghost.io', helpText: 'Your Ghost site URL' },
+    { key: 'adminApiKey', label: 'Admin API Key', type: 'password', placeholder: 'xxxxxxxxxxxxxxxxxxxx:yyyyyyyy...', helpText: 'From Ghost Admin > Settings > Integrations' },
+  ],
+  FARCASTER: [
+    { key: 'signerUuid', label: 'Signer UUID', type: 'password', placeholder: 'Your Neynar signer UUID', helpText: 'From Neynar developer dashboard' },
+    { key: 'apiKey', label: 'Neynar API Key', type: 'password', placeholder: 'Your Neynar API key' },
+    { key: 'fid', label: 'Farcaster FID', type: 'text', placeholder: '12345', helpText: 'Your Farcaster ID number' },
   ],
 }
 
@@ -167,6 +214,96 @@ export const PLATFORM_CONFIGS: PlatformOAuthConfig[] = [
     refreshable: false,
     tokenLifetimeMs: null,
   },
+  {
+    platform: 'THREADS',
+    label: 'Threads',
+    description: 'Post to Threads via Meta Threads API',
+    authType: 'oauth2',
+    requiredEnvVars: ['THREADS_ACCESS_TOKEN', 'THREADS_USER_ID'],
+    scopes: ['threads_basic', 'threads_content_publish'],
+    refreshable: true,
+    tokenLifetimeMs: 60 * 24 * 60 * 60 * 1000, // 60 days
+  },
+  {
+    platform: 'INSTAGRAM',
+    label: 'Instagram',
+    description: 'Publish posts to Instagram Business or Creator accounts',
+    authType: 'oauth2',
+    requiredEnvVars: ['INSTAGRAM_ACCESS_TOKEN', 'INSTAGRAM_ACCOUNT_ID'],
+    scopes: ['instagram_basic', 'instagram_content_publish'],
+    refreshable: true,
+    tokenLifetimeMs: 60 * 24 * 60 * 60 * 1000, // 60 days
+  },
+  {
+    platform: 'FACEBOOK',
+    label: 'Facebook',
+    description: 'Publish to Facebook Pages via Graph API',
+    authType: 'oauth2',
+    requiredEnvVars: ['FACEBOOK_PAGE_TOKEN', 'FACEBOOK_PAGE_ID'],
+    scopes: ['pages_manage_posts', 'pages_read_engagement'],
+    refreshable: true,
+    tokenLifetimeMs: 60 * 24 * 60 * 60 * 1000, // 60 days
+  },
+  {
+    platform: 'TIKTOK',
+    label: 'TikTok',
+    description: 'Share content to TikTok via Content Posting API',
+    authType: 'oauth2',
+    requiredEnvVars: ['TIKTOK_ACCESS_TOKEN', 'TIKTOK_OPEN_ID'],
+    scopes: ['video.upload', 'video.publish'],
+    refreshable: true,
+    tokenLifetimeMs: 24 * 60 * 60 * 1000, // 1 day
+  },
+  {
+    platform: 'YOUTUBE',
+    label: 'YouTube',
+    description: 'Upload videos and community posts to YouTube',
+    authType: 'oauth2',
+    requiredEnvVars: ['YOUTUBE_CLIENT_ID', 'YOUTUBE_CLIENT_SECRET', 'YOUTUBE_REFRESH_TOKEN'],
+    scopes: ['youtube.upload', 'youtube.force-ssl'],
+    refreshable: true,
+    tokenLifetimeMs: 60 * 60 * 1000, // 1 hour
+  },
+  {
+    platform: 'MEDIUM',
+    label: 'Medium',
+    description: 'Publish articles on Medium',
+    authType: 'api_key',
+    requiredEnvVars: ['MEDIUM_INTEGRATION_TOKEN'],
+    scopes: [],
+    refreshable: false,
+    tokenLifetimeMs: null,
+  },
+  {
+    platform: 'SUBSTACK',
+    label: 'Substack',
+    description: 'Publish posts to your Substack newsletter',
+    authType: 'api_key',
+    requiredEnvVars: ['SUBSTACK_EMAIL', 'SUBSTACK_PASSWORD', 'SUBSTACK_SUBDOMAIN'],
+    scopes: [],
+    refreshable: false,
+    tokenLifetimeMs: null,
+  },
+  {
+    platform: 'GHOST',
+    label: 'Ghost',
+    description: 'Publish articles to a Ghost CMS instance',
+    authType: 'api_key',
+    requiredEnvVars: ['GHOST_API_URL', 'GHOST_ADMIN_API_KEY'],
+    scopes: [],
+    refreshable: false,
+    tokenLifetimeMs: null,
+  },
+  {
+    platform: 'FARCASTER',
+    label: 'Farcaster',
+    description: 'Cast to Farcaster via Neynar API',
+    authType: 'api_key',
+    requiredEnvVars: ['FARCASTER_SIGNER_UUID', 'FARCASTER_API_KEY', 'FARCASTER_FID'],
+    scopes: [],
+    refreshable: false,
+    tokenLifetimeMs: null,
+  },
 ]
 
 // ---------------------------------------------------------------------------
@@ -223,6 +360,24 @@ function getStaticToken(platform: ConnectablePlatform): string | null {
       return process.env.DISCORD_WEBHOOK_URL || null
     case 'TELEGRAM':
       return process.env.TELEGRAM_BOT_TOKEN || null
+    case 'THREADS':
+      return process.env.THREADS_ACCESS_TOKEN || null
+    case 'INSTAGRAM':
+      return process.env.INSTAGRAM_ACCESS_TOKEN || null
+    case 'FACEBOOK':
+      return process.env.FACEBOOK_PAGE_TOKEN || null
+    case 'TIKTOK':
+      return process.env.TIKTOK_ACCESS_TOKEN || null
+    case 'YOUTUBE':
+      return process.env.YOUTUBE_ACCESS_TOKEN || null
+    case 'MEDIUM':
+      return process.env.MEDIUM_INTEGRATION_TOKEN || null
+    case 'SUBSTACK':
+      return process.env.SUBSTACK_PASSWORD || null
+    case 'GHOST':
+      return process.env.GHOST_ADMIN_API_KEY || null
+    case 'FARCASTER':
+      return process.env.FARCASTER_API_KEY || null
     default:
       return null
   }
@@ -499,6 +654,96 @@ const SEED_CONNECTIONS: PlatformConnection[] = [
     accountName: '@AlternateFuturesBot',
     accountId: 'chat:-1001234567890',
     connectedAt: '2026-01-26T11:00:00Z',
+    expiresAt: null,
+    scopes: [],
+    error: null,
+  },
+  {
+    platform: 'THREADS',
+    status: 'DISCONNECTED',
+    accountName: null,
+    accountId: null,
+    connectedAt: null,
+    expiresAt: null,
+    scopes: [],
+    error: null,
+  },
+  {
+    platform: 'INSTAGRAM',
+    status: 'CONNECTED',
+    accountName: '@alternatefutures',
+    accountId: '17841400000001',
+    connectedAt: '2026-02-01T09:00:00Z',
+    expiresAt: '2026-04-01T09:00:00Z',
+    scopes: ['instagram_basic', 'instagram_content_publish'],
+    error: null,
+  },
+  {
+    platform: 'FACEBOOK',
+    status: 'CONNECTED',
+    accountName: 'Alternate Futures',
+    accountId: 'page:9876543210',
+    connectedAt: '2026-02-01T10:00:00Z',
+    expiresAt: '2026-04-01T10:00:00Z',
+    scopes: ['pages_manage_posts'],
+    error: null,
+  },
+  {
+    platform: 'TIKTOK',
+    status: 'DISCONNECTED',
+    accountName: null,
+    accountId: null,
+    connectedAt: null,
+    expiresAt: null,
+    scopes: [],
+    error: null,
+  },
+  {
+    platform: 'YOUTUBE',
+    status: 'DISCONNECTED',
+    accountName: null,
+    accountId: null,
+    connectedAt: null,
+    expiresAt: null,
+    scopes: [],
+    error: null,
+  },
+  {
+    platform: 'MEDIUM',
+    status: 'CONNECTED',
+    accountName: '@alternatefutures',
+    accountId: 'medium-user-123',
+    connectedAt: '2026-02-05T14:00:00Z',
+    expiresAt: null,
+    scopes: [],
+    error: null,
+  },
+  {
+    platform: 'SUBSTACK',
+    status: 'DISCONNECTED',
+    accountName: null,
+    accountId: null,
+    connectedAt: null,
+    expiresAt: null,
+    scopes: [],
+    error: null,
+  },
+  {
+    platform: 'GHOST',
+    status: 'ERROR',
+    accountName: 'blog.alternatefutures.ai',
+    accountId: 'ghost-site-1',
+    connectedAt: '2026-01-28T08:00:00Z',
+    expiresAt: null,
+    scopes: [],
+    error: 'Admin API key invalid. Please regenerate.',
+  },
+  {
+    platform: 'FARCASTER',
+    status: 'CONNECTED',
+    accountName: '@altfutures',
+    accountId: 'fid:54321',
+    connectedAt: '2026-02-10T12:00:00Z',
     expiresAt: null,
     scopes: [],
     error: null,

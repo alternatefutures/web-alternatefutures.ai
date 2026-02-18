@@ -10,10 +10,21 @@ import {
   PiRedditLogoBold,
   PiDiscordLogoBold,
   PiTelegramLogoBold,
+  PiThreadsLogoBold,
+  PiInstagramLogoBold,
+  PiFacebookLogoBold,
+  PiTiktokLogoBold,
+  PiYoutubeLogoBold,
+  PiMediumLogoBold,
+  PiNewspaperBold,
+  PiGhostBold,
+  PiCastleTurretBold,
   PiShieldCheckBold,
   PiWarningBold,
   PiEyeBold,
   PiEyeSlashBold,
+  PiPlugsConnectedBold,
+  PiLinkBold,
 } from 'react-icons/pi'
 import {
   fetchPlatformConnections,
@@ -35,6 +46,15 @@ const PLATFORM_ICONS: Record<ConnectablePlatform, React.ReactNode> = {
   REDDIT: <PiRedditLogoBold />,
   DISCORD: <PiDiscordLogoBold />,
   TELEGRAM: <PiTelegramLogoBold />,
+  THREADS: <PiThreadsLogoBold />,
+  INSTAGRAM: <PiInstagramLogoBold />,
+  FACEBOOK: <PiFacebookLogoBold />,
+  TIKTOK: <PiTiktokLogoBold />,
+  YOUTUBE: <PiYoutubeLogoBold />,
+  MEDIUM: <PiMediumLogoBold />,
+  SUBSTACK: <PiNewspaperBold />,
+  GHOST: <PiGhostBold />,
+  FARCASTER: <PiCastleTurretBold />,
 }
 
 const PLATFORM_ICON_STYLES: Record<ConnectablePlatform, { bg: string; color: string }> = {
@@ -45,6 +65,15 @@ const PLATFORM_ICON_STYLES: Record<ConnectablePlatform, { bg: string; color: str
   REDDIT: { bg: '#FFF0E6', color: '#FF4500' },
   DISCORD: { bg: '#ECEAFF', color: '#5865F2' },
   TELEGRAM: { bg: '#E8F4FD', color: '#26A5E4' },
+  THREADS: { bg: '#F3F3F3', color: '#000000' },
+  INSTAGRAM: { bg: '#FFF0F6', color: '#E1306C' },
+  FACEBOOK: { bg: '#E8F0FE', color: '#1877F2' },
+  TIKTOK: { bg: '#F3F3F3', color: '#010101' },
+  YOUTUBE: { bg: '#FFECE8', color: '#FF0000' },
+  MEDIUM: { bg: '#F3F3F3', color: '#000000' },
+  SUBSTACK: { bg: '#FFF5E6', color: '#FF6719' },
+  GHOST: { bg: '#F0F3F5', color: '#15171A' },
+  FARCASTER: { bg: '#ECEAFF', color: '#855DCD' },
 }
 
 export default function ConnectionsPage() {
@@ -56,6 +85,7 @@ export default function ConnectionsPage() {
   const [formError, setFormError] = useState<string | null>(null)
   const [revealedFields, setRevealedFields] = useState<Set<string>>(new Set())
   const [disconnectConfirm, setDisconnectConfirm] = useState<ConnectablePlatform | null>(null)
+  const [statusMsg, setStatusMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
 
   const loadConnections = useCallback(async () => {
     try {
@@ -95,6 +125,7 @@ export default function ConnectionsPage() {
       await connectPlatform('', connectDialog, formValues)
       await loadConnections()
       setConnectDialog(null)
+      setStatusMsg({ type: 'success', text: `${PLATFORM_CONFIGS.find((c) => c.platform === connectDialog)?.label} connected.` })
     } catch (e) {
       setFormError(e instanceof Error ? e.message : 'Connection failed')
     } finally {
@@ -107,11 +138,22 @@ export default function ConnectionsPage() {
     try {
       await disconnectPlatform('', platform)
       await loadConnections()
+      setStatusMsg({ type: 'success', text: `${PLATFORM_CONFIGS.find((c) => c.platform === platform)?.label} disconnected.` })
     } catch {
-      // Handle error
+      setStatusMsg({ type: 'error', text: 'Failed to disconnect.' })
     } finally {
       setActionLoading(null)
       setDisconnectConfirm(null)
+    }
+  }
+
+  const handleConnectAll = () => {
+    const disconnected = PLATFORM_CONFIGS.filter((config) => {
+      const conn = getConnection(config.platform)
+      return !conn || conn.status === 'DISCONNECTED'
+    })
+    if (disconnected.length > 0) {
+      openConnectDialog(disconnected[0].platform)
     }
   }
 
@@ -140,6 +182,9 @@ export default function ConnectionsPage() {
     })
   }
 
+  const connectedCount = connections.filter((c) => c.status === 'CONNECTED').length
+  const disconnectedCount = PLATFORM_CONFIGS.length - connectedCount
+
   if (loading) {
     return (
       <>
@@ -161,11 +206,55 @@ export default function ConnectionsPage() {
           <PiArrowLeftBold /> Settings
         </a>
         <h1>Social Connections</h1>
+        {disconnectedCount > 0 && (
+          <button
+            type="button"
+            className="connections-connect-all-btn"
+            onClick={handleConnectAll}
+          >
+            <PiPlugsConnectedBold style={{ marginRight: 6, verticalAlign: 'middle' }} />
+            Connect All
+          </button>
+        )}
       </div>
       <p className="connections-subtitle">
         Connect your social media accounts for direct publishing from the admin dashboard.
         Credentials are stored securely and never exposed to the browser.
       </p>
+
+      {statusMsg && (
+        <div className={`connections-status-msg ${statusMsg.type}`}>
+          {statusMsg.text}
+          <button
+            type="button"
+            className="connections-status-dismiss"
+            onClick={() => setStatusMsg(null)}
+          >
+            &times;
+          </button>
+        </div>
+      )}
+
+      <div className="connections-stats">
+        <div className="connections-stat">
+          <div className="connections-stat-value">{PLATFORM_CONFIGS.length}</div>
+          <div className="connections-stat-label">Platforms</div>
+        </div>
+        <div className="connections-stat">
+          <div className="connections-stat-value connections-stat-connected">{connectedCount}</div>
+          <div className="connections-stat-label">Connected</div>
+        </div>
+        <div className="connections-stat">
+          <div className="connections-stat-value">{disconnectedCount}</div>
+          <div className="connections-stat-label">Disconnected</div>
+        </div>
+        <div className="connections-stat">
+          <div className="connections-stat-value connections-stat-error">
+            {connections.filter((c) => c.status === 'EXPIRED' || c.status === 'ERROR').length}
+          </div>
+          <div className="connections-stat-label">Needs Attention</div>
+        </div>
+      </div>
 
       <div className="connections-security-note">
         <PiShieldCheckBold />
@@ -183,7 +272,7 @@ export default function ConnectionsPage() {
           const iconStyle = PLATFORM_ICON_STYLES[config.platform]
 
           return (
-            <div key={config.platform} className="connection-card">
+            <div key={config.platform} className={`connection-card ${status.toLowerCase()}`}>
               <div className="connection-card-top">
                 <div className="connection-card-info">
                   <div
@@ -208,7 +297,10 @@ export default function ConnectionsPage() {
 
               {status === 'CONNECTED' && conn && (
                 <div className="connection-card-details">
-                  <div className="account-name">{conn.accountName}</div>
+                  <div className="account-name">
+                    <PiLinkBold style={{ marginRight: 4, verticalAlign: 'middle', fontSize: 13 }} />
+                    {conn.accountName}
+                  </div>
                   {conn.connectedAt && (
                     <div className="connected-date">
                       Connected {formatDate(conn.connectedAt)}
@@ -297,7 +389,7 @@ export default function ConnectionsPage() {
 
               <div className="connection-env-hint">
                 {config.authType === 'oauth2' ? 'OAuth 2.0' :
-                 config.authType === 'api_key' ? 'App Password' :
+                 config.authType === 'api_key' ? 'App Password / API Key' :
                  'Bot Token / Webhook'}
                 {config.refreshable && ' \u00b7 Auto-refresh'}
               </div>

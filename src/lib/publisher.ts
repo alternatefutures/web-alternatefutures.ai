@@ -38,6 +38,15 @@ const RATE_LIMITS: Record<ConnectablePlatform, { windowMs: number; maxRequests: 
   REDDIT: { windowMs: 10 * 60 * 1000, maxRequests: 10 },
   DISCORD: { windowMs: 60 * 1000, maxRequests: 30 },
   TELEGRAM: { windowMs: 60 * 1000, maxRequests: 30 },
+  THREADS: { windowMs: 15 * 60 * 1000, maxRequests: 50 },
+  INSTAGRAM: { windowMs: 60 * 60 * 1000, maxRequests: 25 },
+  FACEBOOK: { windowMs: 60 * 60 * 1000, maxRequests: 50 },
+  TIKTOK: { windowMs: 24 * 60 * 60 * 1000, maxRequests: 10 },
+  YOUTUBE: { windowMs: 24 * 60 * 60 * 1000, maxRequests: 10 },
+  MEDIUM: { windowMs: 24 * 60 * 60 * 1000, maxRequests: 10 },
+  SUBSTACK: { windowMs: 24 * 60 * 60 * 1000, maxRequests: 5 },
+  GHOST: { windowMs: 60 * 60 * 1000, maxRequests: 50 },
+  FARCASTER: { windowMs: 5 * 60 * 1000, maxRequests: 30 },
 }
 
 function checkRateLimit(platform: ConnectablePlatform): { allowed: boolean; retryAfterMs: number } {

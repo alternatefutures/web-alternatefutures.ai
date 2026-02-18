@@ -1014,3 +1014,279 @@ export const ALL_AUDIT_ACTIONS: { value: AuditAction; label: string }[] = [
 ]
 
 export { ALL_PERMISSIONS }
+
+// ---------------------------------------------------------------------------
+// Types — Automation Rules
+// ---------------------------------------------------------------------------
+
+export type AutomationTrigger =
+  | 'post.published'
+  | 'post.scheduled'
+  | 'approval.requested'
+  | 'approval.approved'
+  | 'approval.rejected'
+  | 'campaign.started'
+  | 'campaign.ended'
+  | 'member.joined'
+  | 'member.removed'
+  | 'deployment.created'
+  | 'deployment.failed'
+  | 'webhook.failed'
+
+export type AutomationAction =
+  | 'send_slack_notification'
+  | 'send_email_notification'
+  | 'send_discord_notification'
+  | 'auto_approve'
+  | 'add_to_queue'
+  | 'assign_reviewer'
+  | 'tag_post'
+  | 'create_task'
+  | 'run_webhook'
+
+export interface AutomationCondition {
+  field: string
+  operator: 'equals' | 'not_equals' | 'contains' | 'in'
+  value: string
+}
+
+export interface AutomationRule {
+  id: string
+  name: string
+  description: string
+  trigger: AutomationTrigger
+  conditions: AutomationCondition[]
+  action: AutomationAction
+  actionConfig: Record<string, string>
+  enabled: boolean
+  lastTriggeredAt: string | null
+  triggerCount: number
+  createdAt: string
+  updatedAt: string
+}
+
+export interface CreateAutomationRuleInput {
+  name: string
+  description: string
+  trigger: AutomationTrigger
+  conditions: AutomationCondition[]
+  action: AutomationAction
+  actionConfig: Record<string, string>
+}
+
+export interface UpdateAutomationRuleInput {
+  name?: string
+  description?: string
+  trigger?: AutomationTrigger
+  conditions?: AutomationCondition[]
+  action?: AutomationAction
+  actionConfig?: Record<string, string>
+  enabled?: boolean
+}
+
+export const AUTOMATION_TRIGGERS: { value: AutomationTrigger; label: string; category: string }[] = [
+  { value: 'post.published', label: 'Post published', category: 'Content' },
+  { value: 'post.scheduled', label: 'Post scheduled', category: 'Content' },
+  { value: 'approval.requested', label: 'Approval requested', category: 'Approvals' },
+  { value: 'approval.approved', label: 'Post approved', category: 'Approvals' },
+  { value: 'approval.rejected', label: 'Post rejected', category: 'Approvals' },
+  { value: 'campaign.started', label: 'Campaign started', category: 'Campaigns' },
+  { value: 'campaign.ended', label: 'Campaign ended', category: 'Campaigns' },
+  { value: 'member.joined', label: 'Team member joined', category: 'Team' },
+  { value: 'member.removed', label: 'Team member removed', category: 'Team' },
+  { value: 'deployment.created', label: 'Deployment created', category: 'Infrastructure' },
+  { value: 'deployment.failed', label: 'Deployment failed', category: 'Infrastructure' },
+  { value: 'webhook.failed', label: 'Webhook delivery failed', category: 'Infrastructure' },
+]
+
+export const AUTOMATION_ACTIONS: { value: AutomationAction; label: string; description: string }[] = [
+  { value: 'send_slack_notification', label: 'Send Slack notification', description: 'Post a message to a Slack channel' },
+  { value: 'send_email_notification', label: 'Send email notification', description: 'Send an email to specified recipients' },
+  { value: 'send_discord_notification', label: 'Send Discord notification', description: 'Post to a Discord channel via webhook' },
+  { value: 'auto_approve', label: 'Auto-approve', description: 'Automatically approve the content' },
+  { value: 'add_to_queue', label: 'Add to queue', description: 'Add the item to the publishing queue' },
+  { value: 'assign_reviewer', label: 'Assign reviewer', description: 'Assign a team member to review' },
+  { value: 'tag_post', label: 'Tag post', description: 'Add tags or labels to the post' },
+  { value: 'create_task', label: 'Create task', description: 'Create a task in the task board' },
+  { value: 'run_webhook', label: 'Run webhook', description: 'Send an HTTP request to a custom endpoint' },
+]
+
+export const CONDITION_FIELDS: { value: string; label: string }[] = [
+  { value: 'platform', label: 'Platform' },
+  { value: 'author', label: 'Author' },
+  { value: 'status', label: 'Status' },
+  { value: 'campaign', label: 'Campaign' },
+  { value: 'tag', label: 'Tag' },
+  { value: 'content_type', label: 'Content type' },
+]
+
+// ---------------------------------------------------------------------------
+// Seed — Automation Rules
+// ---------------------------------------------------------------------------
+
+const SEED_AUTOMATION_RULES: AutomationRule[] = [
+  {
+    id: 'auto-rule-1',
+    name: 'Notify Slack on publish',
+    description: 'Send a Slack notification whenever a post is published to any platform.',
+    trigger: 'post.published',
+    conditions: [],
+    action: 'send_slack_notification',
+    actionConfig: { channel: '#social-updates' },
+    enabled: true,
+    lastTriggeredAt: '2026-02-17T14:30:00Z',
+    triggerCount: 47,
+    createdAt: '2026-01-20T10:00:00Z',
+    updatedAt: '2026-02-17T14:30:00Z',
+  },
+  {
+    id: 'auto-rule-2',
+    name: 'Auto-approve trusted editors on X',
+    description: 'Automatically approve posts from trusted editors targeting X.',
+    trigger: 'approval.requested',
+    conditions: [
+      { field: 'platform', operator: 'equals', value: 'X' },
+    ],
+    action: 'auto_approve',
+    actionConfig: {},
+    enabled: true,
+    lastTriggeredAt: '2026-02-16T09:15:00Z',
+    triggerCount: 12,
+    createdAt: '2026-01-25T11:00:00Z',
+    updatedAt: '2026-02-16T09:15:00Z',
+  },
+  {
+    id: 'auto-rule-3',
+    name: 'Queue campaign posts',
+    description: 'Add posts to the publishing queue when a campaign starts.',
+    trigger: 'campaign.started',
+    conditions: [],
+    action: 'add_to_queue',
+    actionConfig: { priority: 'high' },
+    enabled: false,
+    lastTriggeredAt: '2026-02-10T08:00:00Z',
+    triggerCount: 3,
+    createdAt: '2026-02-01T14:00:00Z',
+    updatedAt: '2026-02-10T08:00:00Z',
+  },
+  {
+    id: 'auto-rule-4',
+    name: 'Discord alert on deployment failure',
+    description: 'Ping the ops channel when a deployment fails.',
+    trigger: 'deployment.failed',
+    conditions: [],
+    action: 'send_discord_notification',
+    actionConfig: { channel: '#ops-alerts', mention: '@here' },
+    enabled: true,
+    lastTriggeredAt: null,
+    triggerCount: 0,
+    createdAt: '2026-02-05T16:00:00Z',
+    updatedAt: '2026-02-05T16:00:00Z',
+  },
+  {
+    id: 'auto-rule-5',
+    name: 'Assign reviewer for LinkedIn posts',
+    description: 'Auto-assign Echo as reviewer for all LinkedIn content.',
+    trigger: 'approval.requested',
+    conditions: [
+      { field: 'platform', operator: 'equals', value: 'LINKEDIN' },
+    ],
+    action: 'assign_reviewer',
+    actionConfig: { reviewer: 'echo' },
+    enabled: true,
+    lastTriggeredAt: '2026-02-15T11:00:00Z',
+    triggerCount: 8,
+    createdAt: '2026-02-03T09:00:00Z',
+    updatedAt: '2026-02-15T11:00:00Z',
+  },
+]
+
+let mockAutomationRules = [...SEED_AUTOMATION_RULES]
+
+// ---------------------------------------------------------------------------
+// CRUD — Automation Rules
+// ---------------------------------------------------------------------------
+
+export async function fetchAutomationRules(token: string): Promise<AutomationRule[]> {
+  try {
+    const data = await authGraphqlFetch<{ automationRules: AutomationRule[] }>(
+      `query AutomationRules { automationRules { id name description trigger conditions { field operator value } action actionConfig enabled lastTriggeredAt triggerCount createdAt updatedAt } }`,
+      {},
+      token,
+    )
+    return data.automationRules
+  } catch {
+    if (useSeedData()) return mockAutomationRules
+    return []
+  }
+}
+
+export async function createAutomationRule(
+  token: string,
+  input: CreateAutomationRuleInput,
+): Promise<AutomationRule> {
+  if (useSeedData()) {
+    const now = new Date().toISOString()
+    const rule: AutomationRule = {
+      id: `auto-rule-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      name: input.name,
+      description: input.description,
+      trigger: input.trigger,
+      conditions: input.conditions,
+      action: input.action,
+      actionConfig: input.actionConfig,
+      enabled: true,
+      lastTriggeredAt: null,
+      triggerCount: 0,
+      createdAt: now,
+      updatedAt: now,
+    }
+    mockAutomationRules = [rule, ...mockAutomationRules]
+    return rule
+  }
+
+  const data = await authGraphqlFetch<{ createAutomationRule: AutomationRule }>(
+    `mutation CreateAutomationRule($input: CreateAutomationRuleInput!) { createAutomationRule(input: $input) { id name description trigger conditions { field operator value } action actionConfig enabled lastTriggeredAt triggerCount createdAt updatedAt } }`,
+    { input },
+    token,
+  )
+  return data.createAutomationRule
+}
+
+export async function updateAutomationRule(
+  token: string,
+  id: string,
+  input: UpdateAutomationRuleInput,
+): Promise<AutomationRule> {
+  if (useSeedData()) {
+    const idx = mockAutomationRules.findIndex((r) => r.id === id)
+    if (idx === -1) throw new Error('Rule not found')
+    const updated: AutomationRule = {
+      ...mockAutomationRules[idx],
+      ...input,
+      updatedAt: new Date().toISOString(),
+    }
+    mockAutomationRules[idx] = updated
+    return updated
+  }
+
+  const data = await authGraphqlFetch<{ updateAutomationRule: AutomationRule }>(
+    `mutation UpdateAutomationRule($id: ID!, $input: UpdateAutomationRuleInput!) { updateAutomationRule(id: $id, input: $input) { id name description trigger conditions { field operator value } action actionConfig enabled lastTriggeredAt triggerCount createdAt updatedAt } }`,
+    { id, input },
+    token,
+  )
+  return data.updateAutomationRule
+}
+
+export async function deleteAutomationRule(token: string, id: string): Promise<void> {
+  if (useSeedData()) {
+    mockAutomationRules = mockAutomationRules.filter((r) => r.id !== id)
+    return
+  }
+
+  await authGraphqlFetch<{ deleteAutomationRule: { id: string } }>(
+    `mutation DeleteAutomationRule($id: ID!) { deleteAutomationRule(id: $id) { id } }`,
+    { id },
+    token,
+  )
+}
