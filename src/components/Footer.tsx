@@ -61,7 +61,7 @@ const  Footer: React.FC<FooterProps> = ({ variant = 'cream' }) => {
       <div className="footer-content">
         <div className="footer-left">
           <p className="copyright">
-            © 2025 Alternate Futures
+            © {new Date().getFullYear()} Alternate Futures
             <span style={{ margin: '0 12px' }}>·</span>
             <a href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>Privacy Policy</a>
             <span style={{ margin: '0 12px' }}>·</span>
