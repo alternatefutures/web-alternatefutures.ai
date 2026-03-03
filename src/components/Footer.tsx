@@ -62,8 +62,10 @@ const  Footer: React.FC<FooterProps> = ({ variant = 'cream' }) => {
         <div className="footer-left">
           <p className="copyright">
             © 2025 Alternate Futures
-            {' · '}
-            <a href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>Privacy</a>
+            <span style={{ margin: '0 12px' }}>·</span>
+            <a href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>Privacy Policy</a>
+            <span style={{ margin: '0 12px' }}>·</span>
+            <a href="/terms" style={{ color: 'inherit', textDecoration: 'underline' }}>Terms of Service</a>
           </p>
         </div>
         <div className="footer-right">
