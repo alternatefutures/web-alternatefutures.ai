@@ -27,7 +27,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="hero-section">
         <img src="/landing/title-union.svg" alt="Alternate Futures" className="title-graphic" />
-        <p className="tagline">Building the infrastructure for human-computer alignment.</p>
+        <p className="tagline">Aligning What We Build With Individual Human Values</p>
         <img
           src="/landing/decorative-top.svg"
           alt=""
