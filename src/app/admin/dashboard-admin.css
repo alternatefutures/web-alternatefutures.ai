@@ -1,0 +1,388 @@
+/* ===== Marketing Dashboard — Stacked Slabs ===== */
+.dashboard-admin-header {
+  margin-bottom: var(--af-space-arm);
+  position: relative;
+  padding: var(--af-space-arm) 0;
+  overflow: hidden; /* clip constellation shapes cleanly at header bounds */
+}
+
+.dashboard-admin-header h1 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-xl);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: var(--af-leading-snug);
+  position: relative;
+  z-index: 1;
+}
+
+/* Stats cards row */
+.dashboard-admin-stats {
+  display: flex;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-stride);
+  flex-wrap: wrap;
+}
+
+.dashboard-admin-stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand) var(--af-space-arm);
+  flex: 1;
+  min-width: 180px;
+  text-decoration: none;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  position: relative;
+}
+
+.dashboard-admin-stat-card:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.dashboard-admin-stat-card:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(1px, 1px);
+}
+
+/* Material-coded left accents */
+.dashboard-admin-stat-card:nth-child(1) { border-left: var(--af-border-heavy) solid var(--af-ultra); }
+.dashboard-admin-stat-card:nth-child(2) { border-left: var(--af-border-heavy) solid var(--af-signal-go); }
+.dashboard-admin-stat-card:nth-child(3) { border-left: var(--af-border-heavy) solid var(--af-terra); }
+.dashboard-admin-stat-card:nth-child(4) { border-left: var(--af-border-heavy) solid var(--af-patina); }
+.dashboard-admin-stat-card:nth-child(5) { border-left: var(--af-border-heavy) solid var(--af-ultra-deep); }
+
+.dashboard-admin-stat-icon {
+  font-size: var(--af-type-lg);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--af-radius-worn);
+  background: var(--af-terra-warmth);
+  color: var(--af-terra);
+}
+
+.dashboard-admin-stat-info {
+  min-width: 0;
+}
+
+.dashboard-admin-stat-value {
+  font-family: var(--af-font-architect);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--af-stone-800);
+  line-height: var(--af-leading-tight);
+}
+
+.dashboard-admin-stat-label {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-stone-700);
+  margin-top: var(--af-space-hair);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dashboard-admin-stat-sub {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  margin-top: var(--af-space-hair);
+}
+
+/* Two-column grid — slightly asymmetric */
+.dashboard-admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: var(--af-space-arm) var(--af-space-hand);
+}
+
+/* Section card — Stacked Slab */
+.dashboard-admin-section {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  box-shadow: var(--af-shadow-rest);
+  overflow: hidden;
+  transition: box-shadow var(--af-dur-quick) var(--af-ease-press),
+              transform var(--af-dur-quick) var(--af-ease-press);
+}
+
+.dashboard-admin-section:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+/* Section header — heavier strip, different material */
+.dashboard-admin-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--af-space-hand) var(--af-space-arm);
+  background: var(--af-stone-50);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+.dashboard-admin-section-header h2 {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-stone-600);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dashboard-admin-section-link {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-terra);
+  text-decoration: none;
+  transition: opacity var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.dashboard-admin-section-link:hover {
+  opacity: 0.7;
+}
+
+.dashboard-admin-section-empty {
+  font-family: var(--af-font-poet);
+  font-style: italic;
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-400);
+  text-align: center;
+  padding: var(--af-space-arm);
+  line-height: var(--af-leading-loose);
+}
+
+/* Events list */
+.dashboard-admin-events-list {
+  display: flex;
+  flex-direction: column;
+  padding: var(--af-space-breath);
+}
+
+.dashboard-admin-event-item {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  padding: var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  text-decoration: none;
+  transition: background var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.dashboard-admin-event-item:hover {
+  background: var(--af-terra-warmth);
+}
+
+.dashboard-admin-event-color {
+  width: var(--af-border-heavy);
+  height: var(--af-space-stride);
+  border-radius: var(--af-space-hair);
+  flex-shrink: 0;
+}
+
+.dashboard-admin-event-info {
+  min-width: 0;
+}
+
+.dashboard-admin-event-title {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  color: var(--af-stone-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-admin-event-meta {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  margin-top: var(--af-space-hair);
+}
+
+/* Posts list */
+.dashboard-admin-posts-list {
+  display: flex;
+  flex-direction: column;
+  padding: var(--af-space-breath);
+}
+
+.dashboard-admin-post-item {
+  display: block;
+  padding: var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  text-decoration: none;
+  transition: background var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.dashboard-admin-post-item:hover {
+  background: var(--af-terra-warmth);
+}
+
+.dashboard-admin-post-title {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 500;
+  color: var(--af-stone-700);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-admin-post-meta {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  margin-top: var(--af-space-hair);
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-grain);
+}
+
+/* Status dot — slightly asymmetric, organic */
+.dashboard-admin-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50% 45% 50% 45%;
+  flex-shrink: 0;
+}
+
+.dashboard-admin-platform-badge {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  padding: var(--af-space-hair) var(--af-space-breath);
+  border-radius: var(--af-radius-chip);
+  background: var(--af-ultra-ghost);
+  border: var(--af-border-hair) solid var(--af-ultra-ink);
+  color: var(--af-ultra);
+}
+
+/* Quick actions — Pressed in Clay */
+.dashboard-admin-quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--af-space-breath);
+  padding: var(--af-space-hand);
+}
+
+.dashboard-admin-quick-action {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  padding: var(--af-space-palm) var(--af-space-hand);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  color: var(--af-stone-700);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.dashboard-admin-quick-action:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  background: var(--af-terra-warmth);
+}
+
+.dashboard-admin-quick-action:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(1px, 1px);
+}
+
+.dashboard-admin-quick-icon {
+  font-size: var(--af-type-md);
+  line-height: 1;
+  color: var(--af-terra);
+}
+
+/* Empty/loading */
+.dashboard-admin-empty {
+  text-align: center;
+  padding: var(--af-space-horizon) var(--af-space-arm);
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  position: relative;
+}
+
+/* Faint warm glow in the center of emptiness */
+.dashboard-admin-empty::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(ellipse at 50% 40%, var(--af-terra-warmth) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.dashboard-admin-empty p {
+  font-family: var(--af-font-poet);
+  font-style: italic;
+  font-size: var(--af-type-base);
+  color: var(--af-stone-400);
+  position: relative;
+}
+
+/* Skeleton — breathing stone */
+.dashboard-skeleton-stat {
+  pointer-events: none;
+}
+
+.dashboard-skeleton-stat .skeleton-block {
+  height: 14px;
+  border-radius: var(--af-radius-chip);
+  background: linear-gradient(110deg, var(--af-stone-100) 30%, var(--af-stone-50) 50%, var(--af-stone-100) 70%);
+  background-size: 200% 100%;
+  animation: skeleton-breathe var(--af-dur-drift) var(--af-ease-drift) infinite;
+}
+
+@keyframes skeleton-breathe {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dashboard-admin-stats {
+    flex-wrap: wrap;
+  }
+  .dashboard-admin-stat-card {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-admin-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-admin-stats {
+    flex-direction: column;
+  }
+  .dashboard-admin-quick-actions {
+    grid-template-columns: 1fr;
+  }
+}

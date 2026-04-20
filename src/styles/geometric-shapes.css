@@ -1,0 +1,361 @@
+/* ===========================================
+   GEOMETRIC SHAPES — Decorative Element Styles
+   Precise geometry on organic surfaces.
+   All shapes: pointer-events: none, aria-hidden.
+   Respects prefers-reduced-motion.
+   =========================================== */
+
+/* --- Base shape element --- */
+.af-shape-element {
+  pointer-events: none;
+  user-select: none;
+  display: block;
+}
+
+/* ===== WAVE DIVIDER ===== */
+/* Waves are section dividers — the wave fills downward, so the
+   section below must share the same background color for the
+   wave to flow seamlessly into it. */
+.af-wave-divider {
+  width: auto;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  margin: var(--af-space-room, 40px) 0 0 0; /* top margin only — bottom flush with next section */
+  line-height: 0;
+  position: relative;
+}
+
+/* Full-bleed: break wave out of admin-content padding so it goes edge to edge */
+.admin-content .af-wave-divider {
+  margin-left: calc(-1 * var(--af-space-stride));
+  margin-right: calc(-1 * var(--af-space-stride));
+}
+
+.af-wave-divider img {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-height: 32px;
+  max-height: 68px;
+  object-fit: fill; /* fill, not cover — preserve the wave shape fully */
+}
+
+/* --- Wave → next section background matching ---
+   The wave SVG fills below the curve with color. The element
+   immediately after the wave gets a matching tinted background
+   so there's no hard edge. */
+.af-wave-sky + * {
+  background: rgba(200, 224, 228, 0.2);
+  border-radius: 0 0 var(--af-radius-stone, 8px) var(--af-radius-stone, 8px);
+  padding-top: var(--af-space-arm, 24px);
+}
+
+.af-wave-apricot + * {
+  background: rgba(255, 199, 170, 0.15);
+  border-radius: 0 0 var(--af-radius-stone, 8px) var(--af-radius-stone, 8px);
+  padding-top: var(--af-space-arm, 24px);
+}
+
+.af-wave-terracotta + * {
+  background: rgba(190, 66, 0, 0.06);
+  border-radius: 0 0 var(--af-radius-stone, 8px) var(--af-radius-stone, 8px);
+  padding-top: var(--af-space-arm, 24px);
+}
+
+.af-wave-brand-blue + * {
+  background: rgba(0, 10, 255, 0.06);
+  border-radius: 0 0 var(--af-radius-stone, 8px) var(--af-radius-stone, 8px);
+  padding-top: var(--af-space-arm, 24px);
+}
+
+.af-wave-dark-blue + * {
+  background: rgba(0, 0, 175, 0.08);
+  border-radius: 0 0 var(--af-radius-stone, 8px) var(--af-radius-stone, 8px);
+  padding-top: var(--af-space-arm, 24px);
+}
+
+/* Full-bleed: wave-colored sections also break out of admin-content padding */
+.admin-content [class*="af-wave-"] + * {
+  margin-left: calc(-1 * var(--af-space-stride));
+  margin-right: calc(-1 * var(--af-space-stride));
+  padding-left: var(--af-space-stride);
+  padding-right: var(--af-space-stride);
+  padding-bottom: var(--af-space-arm, 24px);
+}
+
+/* ===== CONSTELLATION FIELD (Dashboard hero) ===== */
+.af-constellation-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  /* No overflow:hidden — let shapes bleed naturally into padding,
+     parent container handles clipping at page level */
+}
+
+.af-constellation-shape {
+  position: absolute;
+  pointer-events: none;
+  display: block;
+}
+
+/* Large ring — top-right corner, peeking in */
+.af-constellation-ring-outer {
+  top: -8px;
+  right: -24px;
+  width: 160px;
+  height: 160px;
+  opacity: 0.06;
+  animation: af-drift-slow 20s var(--af-ease-drift) infinite alternate;
+}
+
+/* Medium circle — right side, vertically centered */
+.af-constellation-circle {
+  top: 50%;
+  right: 12%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  opacity: 0.05;
+}
+
+/* Star — upper-right focal sparkle */
+.af-constellation-star {
+  top: 20%;
+  right: 25%;
+  width: 32px;
+  height: 32px;
+  opacity: 0.10;
+  animation: af-breathe 4s var(--af-ease-drift) infinite alternate;
+}
+
+/* Small star — left accent */
+.af-constellation-star-small {
+  top: 40%;
+  left: 8%;
+  width: 20px;
+  height: 20px;
+  opacity: 0.06;
+}
+
+/* Ring — left side, subtle depth */
+.af-constellation-ring-inner {
+  bottom: 4px;
+  left: 2%;
+  width: 100px;
+  height: 100px;
+  opacity: 0.03;
+}
+
+/* ===== EMPTY STATE DECORATION ===== */
+.af-empty-state {
+  text-align: center;
+  padding: var(--af-space-room) var(--af-space-arm);
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Warm radial glow behind content */
+.af-empty-state::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    ellipse at 50% 35%,
+    var(--af-terra-warmth) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.af-empty-state-decoration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--af-space-hand);
+  position: relative;
+  animation: af-fade-in var(--af-dur-slow) var(--af-ease-settle) both;
+}
+
+.af-empty-state-pattern {
+  width: 160px;
+  height: auto;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.af-empty-state-heading {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-md);
+  font-weight: 600;
+  color: var(--af-stone-700);
+  margin: 0 0 var(--af-space-breath);
+  position: relative;
+}
+
+.af-empty-state-message {
+  font-family: var(--af-font-poet);
+  font-style: italic;
+  font-size: var(--af-type-base);
+  color: var(--af-stone-400);
+  max-width: 360px;
+  margin: 0 auto;
+  line-height: var(--af-leading-loose);
+  position: relative;
+}
+
+/* Kintsugi gold line — visual anchor */
+.af-empty-state-kintsugi {
+  width: 120px;
+  height: 1px;
+  margin: var(--af-space-arm) auto var(--af-space-hand);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--af-kin-repair) 20%,
+    var(--af-kin-bright) 50%,
+    var(--af-kin-repair) 80%,
+    transparent 100%
+  );
+  opacity: 0.5;
+  position: relative;
+}
+
+.af-empty-state-actions {
+  position: relative;
+  margin-top: var(--af-space-breath);
+}
+
+/* ===== STAT CARD SHAPE ACCENT (pseudo-element approach) ===== */
+.dashboard-admin-stat-card {
+  overflow: hidden;
+}
+
+.dashboard-admin-stat-card::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.06;
+  pointer-events: none;
+  bottom: -30%;
+  right: -10%;
+}
+
+.dashboard-admin-stat-card:nth-child(1)::after {
+  background-image: url('/shapes/circle-xl-sky.svg');
+}
+
+.dashboard-admin-stat-card:nth-child(2)::after {
+  background-image: url('/shapes/circle-medium-sky.svg');
+  opacity: 0.05;
+  bottom: -20%;
+  right: -5%;
+  width: 100px;
+  height: 100px;
+}
+
+.dashboard-admin-stat-card:nth-child(3)::after {
+  background-image: url('/shapes/ring-small-terracotta.svg');
+  opacity: 0.08;
+  top: -15%;
+  right: -5%;
+  bottom: auto;
+  width: 80px;
+  height: 80px;
+}
+
+.dashboard-admin-stat-card:nth-child(4)::after {
+  background-image: url('/shapes/star-small-brand-blue.svg');
+  opacity: 0.06;
+  bottom: -10%;
+  right: -5%;
+  width: 60px;
+  height: 60px;
+}
+
+.dashboard-admin-stat-card:nth-child(5)::after {
+  background-image: url('/shapes/circle-small-apricot.svg');
+  opacity: 0.07;
+  top: -20%;
+  left: auto;
+  right: 5%;
+  bottom: auto;
+  width: 90px;
+  height: 90px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes af-breathe {
+  from { transform: scale(0.92); opacity: 0.08; }
+  to   { transform: scale(1); opacity: 0.14; }
+}
+
+@keyframes af-drift-slow {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to   { transform: translate(-8px, 6px) rotate(3deg); }
+}
+
+@keyframes af-fade-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .af-constellation-ring-outer,
+  .af-constellation-star,
+  .af-empty-state-decoration {
+    animation: none !important;
+  }
+
+  .af-constellation-ring-outer { opacity: 0.08; }
+  .af-constellation-star { opacity: 0.12; }
+  .af-empty-state-decoration { opacity: 1; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .af-constellation-ring-outer {
+    width: 140px;
+    height: 140px;
+  }
+
+  .af-constellation-star {
+    width: 28px;
+    height: 28px;
+  }
+
+  .af-constellation-ring-inner {
+    display: none;
+  }
+
+  .af-empty-state-pattern {
+    width: 120px;
+  }
+
+  .af-wave-divider {
+    margin: var(--af-space-breath, 8px) 0 0 0;
+  }
+
+  /* Mobile: match smaller admin-content padding */
+  .admin-content .af-wave-divider {
+    margin-left: calc(-1 * var(--af-space-hand));
+    margin-right: calc(-1 * var(--af-space-hand));
+  }
+
+  .admin-content [class*="af-wave-"] + * {
+    margin-left: calc(-1 * var(--af-space-hand));
+    margin-right: calc(-1 * var(--af-space-hand));
+    padding-left: var(--af-space-hand);
+    padding-right: var(--af-space-hand);
+  }
+}

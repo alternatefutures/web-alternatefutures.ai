@@ -1,0 +1,1709 @@
+/* ===== Social Admin — The Ledger + Carved Channels ===== */
+.social-admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--af-space-arm);
+  flex-wrap: wrap;
+  gap: var(--af-space-palm);
+}
+
+.social-admin-header h1 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-xl);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Primary CTA — Pressed in Clay */
+.social-admin-new-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-ultra-deep);
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
+.social-admin-new-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  background: var(--af-ultra-glow);
+}
+
+.social-admin-new-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+/* Stats row — material-coded accents */
+.social-admin-stats {
+  display: flex;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-arm);
+  flex-wrap: wrap;
+}
+
+.social-admin-stat-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand) var(--af-space-arm);
+  flex: 1;
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-admin-stat-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--af-border-heavy);
+  border-radius: 0 2px 2px 0;
+}
+
+.social-admin-stat-card:nth-child(1)::before { background: var(--af-ultra); }
+.social-admin-stat-card:nth-child(2)::before { background: var(--af-signal-go); }
+.social-admin-stat-card:nth-child(3)::before { background: var(--af-ultra-deep); }
+.social-admin-stat-card:nth-child(4)::before { background: var(--af-stone-500); }
+.social-admin-stat-card:nth-child(5)::before { background: var(--af-terra); }
+
+.social-admin-stat-card:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.social-admin-stat-card:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(1px, 1px);
+}
+
+.social-admin-stat-label {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-stone-600);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--af-space-grain);
+}
+
+.social-admin-stat-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 50px;
+  background: var(--af-terra);
+  color: white;
+  font-family: var(--af-font-architect);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  margin-left: var(--af-space-breath);
+  vertical-align: middle;
+}
+
+.social-admin-stat-value {
+  font-family: var(--af-font-architect);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--af-stone-800);
+  line-height: var(--af-leading-tight);
+}
+
+/* Filters — Carved Channels */
+.social-admin-filters {
+  display: flex;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-hand);
+  flex-wrap: wrap;
+}
+
+.social-admin-search {
+  flex: 1;
+  min-width: 200px;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-800);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  outline: none;
+  box-shadow: inset 1px 2px 3px rgba(26, 24, 21, 0.04);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.social-admin-search::placeholder {
+  color: var(--af-stone-400);
+  font-style: italic;
+  font-family: var(--af-font-poet);
+}
+
+.social-admin-search:focus {
+  border-color: var(--af-ultra);
+  border-bottom-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px rgba(0, 10, 255, 0.06),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+.social-admin-select {
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-700);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  background: var(--af-surface-card);
+  outline: none;
+  cursor: pointer;
+  box-shadow: inset 1px 2px 3px rgba(26, 24, 21, 0.04);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.social-admin-select:focus {
+  border-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px rgba(0, 10, 255, 0.06),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* Table — The Ledger */
+.social-admin-table-wrap {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  overflow: hidden;
+  box-shadow: var(--af-shadow-rest);
+}
+
+.social-admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+}
+
+.social-admin-table th {
+  text-align: left;
+  padding: var(--af-space-hand) var(--af-space-arm);
+  font-weight: 600;
+  font-size: var(--af-type-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  background: var(--af-stone-100);
+  border-bottom: var(--af-border-struct) solid var(--af-stone-300);
+  white-space: nowrap;
+}
+
+.social-admin-table td {
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+  color: var(--af-stone-700);
+  vertical-align: middle;
+}
+
+.social-admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Alternating warmth — warm stone, not cold gray */
+.social-admin-table tbody tr:nth-child(even) {
+  background: var(--af-stone-50);
+}
+
+.social-admin-table tbody tr {
+  transition: background var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.social-admin-table tbody tr:hover td {
+  background: var(--af-terra-warmth);
+}
+
+.social-admin-post-content {
+  font-weight: 500;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--af-stone-800);
+}
+
+.social-admin-hashtags-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-grain);
+}
+
+.social-admin-hashtag-chip {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  padding: var(--af-space-hair) var(--af-space-breath);
+  border-radius: var(--af-radius-chip);
+  background: var(--af-ultra-ghost);
+  border: var(--af-border-hair) solid var(--af-ultra-ink);
+  color: var(--af-ultra);
+  white-space: nowrap;
+}
+
+/* Action buttons — Pressed in Clay (secondary) */
+.social-admin-actions {
+  display: flex;
+  gap: var(--af-space-breath);
+}
+
+.social-admin-action-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-breath) var(--af-space-hand);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-700);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  white-space: nowrap;
+}
+
+.social-admin-action-btn:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+  background: var(--af-terra-warmth);
+}
+
+.social-admin-action-btn:active {
+  box-shadow: 1px 1px 0 var(--af-terra-dust);
+  transform: translate(1px, 1px);
+}
+
+.social-admin-action-btn.danger:hover {
+  border-color: var(--af-signal-stop);
+  color: var(--af-signal-stop);
+  box-shadow: 3px 3px 0 rgba(194, 59, 34, 0.12);
+  background: rgba(194, 59, 34, 0.06);
+}
+
+/* Delete dialog — Stone Tablets Descending */
+.social-admin-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 24, 21, 0.4);
+  backdrop-filter: blur(8px) saturate(0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.social-admin-dialog {
+  background: var(--af-surface-card);
+  border: var(--af-border-struct) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  padding: var(--af-space-stride);
+  max-width: 420px;
+  width: 90%;
+  box-shadow: var(--af-shadow-elevated);
+}
+
+.social-admin-dialog h3 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-lg);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0 0 var(--af-space-breath);
+}
+
+.social-admin-dialog p {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-600);
+  margin: 0 0 var(--af-space-arm);
+  line-height: var(--af-leading-body);
+}
+
+.social-admin-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--af-space-palm);
+}
+
+.social-admin-dialog-cancel {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-700);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-admin-dialog-cancel:hover {
+  border-color: var(--af-stone-500);
+  box-shadow: 3px 3px 0 var(--af-stone-200);
+}
+
+.social-admin-dialog-cancel:active {
+  box-shadow: 1px 1px 0 var(--af-stone-200);
+  transform: translate(1px, 1px);
+}
+
+.social-admin-dialog-delete {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-signal-stop);
+  background: var(--af-signal-stop);
+  color: white;
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-admin-dialog-delete:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.social-admin-dialog-delete:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+/* Empty state — The Beautiful Void */
+.social-admin-empty {
+  text-align: center;
+  padding: var(--af-space-horizon) var(--af-space-arm);
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  position: relative;
+}
+
+.social-admin-empty::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(ellipse at 50% 40%, var(--af-terra-warmth) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.social-admin-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--af-space-hand);
+  border-radius: var(--af-radius-worn);
+  background: var(--af-terra-warmth);
+  color: var(--af-terra);
+  font-size: var(--af-type-lg);
+  border: var(--af-border-hair) solid var(--af-terra-glow);
+  position: relative;
+}
+
+.social-admin-empty h2 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-md);
+  font-weight: 400;
+  color: var(--af-stone-700);
+  margin-bottom: var(--af-space-breath);
+  position: relative;
+}
+
+.social-admin-empty p {
+  font-family: var(--af-font-poet);
+  font-style: italic;
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-400);
+  max-width: 360px;
+  margin: 0 auto;
+  line-height: var(--af-leading-loose);
+  position: relative;
+}
+
+/* Skeleton loading — Breathing Stone */
+.social-admin-skeleton {
+  padding: var(--af-space-hand);
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+}
+
+.skeleton-row {
+  display: flex;
+  gap: var(--af-space-hand);
+  align-items: center;
+  padding: var(--af-space-palm) 0;
+  border-bottom: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+.skeleton-row:last-child {
+  border-bottom: none;
+}
+
+.skeleton-block {
+  height: 14px;
+  border-radius: var(--af-radius-chip);
+  background: linear-gradient(110deg, var(--af-stone-100) 30%, var(--af-stone-50) 50%, var(--af-stone-100) 70%);
+  background-size: 200% 100%;
+  animation: skeleton-breathe var(--af-dur-drift) var(--af-ease-drift) infinite;
+}
+
+.skeleton-block.w-40 { width: 40%; }
+.skeleton-block.w-20 { width: 20%; }
+.skeleton-block.w-16 { width: 16%; }
+.skeleton-block.w-12 { width: 12%; }
+
+.skeleton-chip {
+  width: 72px;
+  height: 24px;
+  border-radius: var(--af-radius-chip);
+  background: linear-gradient(110deg, var(--af-stone-100) 30%, var(--af-stone-50) 50%, var(--af-stone-100) 70%);
+  background-size: 200% 100%;
+  animation: skeleton-breathe var(--af-dur-drift) var(--af-ease-drift) infinite;
+}
+
+.skeleton-stat-row {
+  display: flex;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-arm);
+}
+
+.skeleton-stat-card {
+  flex: 1;
+  height: 72px;
+  border-radius: var(--af-radius-worn);
+  background: linear-gradient(110deg, var(--af-stone-100) 30%, var(--af-stone-50) 50%, var(--af-stone-100) 70%);
+  background-size: 200% 100%;
+  animation: skeleton-breathe var(--af-dur-drift) var(--af-ease-drift) infinite;
+}
+
+@keyframes skeleton-breathe {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ===== Social Editor (edit + detail) ===== */
+.social-editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--af-space-arm);
+  flex-wrap: wrap;
+  gap: var(--af-space-palm);
+}
+
+.social-editor-header h1 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-lg);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0;
+}
+
+.social-editor-back {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  color: var(--af-terra);
+  text-decoration: none;
+  transition: opacity var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.social-editor-back:hover {
+  opacity: 0.7;
+}
+
+/* Two-column editor layout — slightly asymmetric */
+.social-editor-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--af-space-arm);
+  align-items: start;
+}
+
+.social-editor-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hand);
+}
+
+.social-editor-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hand);
+}
+
+.social-editor-sidebar-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.social-editor-sidebar-card h3 {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  margin: 0 0 var(--af-space-palm);
+}
+
+.social-editor-sidebar-value {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-800);
+  margin: 0;
+}
+
+.social-editor-sidebar-link {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-terra);
+  text-decoration: none;
+  display: inline-block;
+  margin-top: var(--af-space-breath);
+  transition: opacity var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.social-editor-sidebar-link:hover {
+  opacity: 0.7;
+}
+
+.social-editor-sidebar-error {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-signal-stop);
+  margin: 0;
+  line-height: var(--af-leading-body);
+}
+
+/* Editor action buttons — Pressed in Clay */
+.social-editor-actions {
+  display: flex;
+  gap: var(--af-space-breath);
+  margin-bottom: var(--af-space-breath);
+}
+
+.social-editor-save-btn {
+  flex: 1;
+  padding: var(--af-space-palm);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-700);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-editor-save-btn:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+  background: var(--af-terra-warmth);
+}
+
+.social-editor-save-btn:active {
+  box-shadow: 1px 1px 0 var(--af-terra-dust);
+  transform: translate(1px, 1px);
+}
+
+.social-editor-save-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.social-editor-publish-btn {
+  flex: 1;
+  padding: var(--af-space-palm);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-ultra-deep);
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-editor-publish-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  background: var(--af-ultra-glow);
+}
+
+.social-editor-publish-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+.social-editor-publish-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.social-editor-schedule-btn {
+  flex: 1;
+  padding: var(--af-space-palm);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid #3730A3;
+  background: #3730A3;
+  color: white;
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-editor-schedule-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.social-editor-schedule-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+.social-editor-schedule-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.social-editor-delete-btn {
+  width: 100%;
+  padding: var(--af-space-palm);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-signal-stop);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-editor-delete-btn:hover {
+  border-color: var(--af-signal-stop);
+  background: rgba(194, 59, 34, 0.06);
+  box-shadow: 3px 3px 0 rgba(194, 59, 34, 0.12);
+}
+
+.social-editor-delete-btn:active {
+  box-shadow: 1px 1px 0 rgba(194, 59, 34, 0.12);
+  transform: translate(1px, 1px);
+}
+
+/* Status message — Patina Signal */
+.social-editor-status {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-breath) var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  text-align: center;
+  border: var(--af-border-visible) solid;
+}
+
+.social-editor-status.success {
+  background: rgba(45, 134, 89, 0.08);
+  color: var(--af-signal-go);
+  border-color: rgba(45, 134, 89, 0.25);
+}
+
+.social-editor-status.error {
+  background: rgba(194, 59, 34, 0.08);
+  color: var(--af-signal-stop);
+  border-color: rgba(194, 59, 34, 0.25);
+}
+
+/* ===== Composer (new post) ===== */
+.social-composer-layout {
+  max-width: 720px;
+}
+
+.social-composer-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hand);
+}
+
+.social-composer-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.social-composer-card h3 {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  margin: 0 0 var(--af-space-palm);
+}
+
+/* Carved Channel — textarea */
+.social-composer-textarea {
+  width: 100%;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-base);
+  line-height: var(--af-leading-body);
+  color: var(--af-stone-800);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  box-shadow: inset 1px 2px 3px rgba(26, 24, 21, 0.04);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.social-composer-textarea::placeholder {
+  color: var(--af-stone-400);
+  font-style: italic;
+  font-family: var(--af-font-poet);
+}
+
+.social-composer-textarea:focus {
+  border-color: var(--af-ultra);
+  border-bottom-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px rgba(0, 10, 255, 0.06),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* Carved Channel — input */
+.social-composer-input {
+  width: 100%;
+  padding: var(--af-space-palm) var(--af-space-hand);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-800);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-bottom-width: var(--af-border-struct);
+  border-radius: var(--af-radius-worn);
+  outline: none;
+  box-sizing: border-box;
+  box-shadow: inset 1px 2px 3px rgba(26, 24, 21, 0.04);
+  transition: all var(--af-dur-quick) var(--af-ease-settle);
+}
+
+.social-composer-input::placeholder {
+  color: var(--af-stone-400);
+  font-style: italic;
+  font-family: var(--af-font-poet);
+}
+
+.social-composer-input:focus {
+  border-color: var(--af-ultra);
+  border-bottom-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px rgba(0, 10, 255, 0.06),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* Character counter */
+.social-composer-char-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-palm);
+  margin-top: var(--af-space-breath);
+}
+
+.social-composer-char-count {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  letter-spacing: -0.03em;
+}
+
+.social-composer-char-count.over {
+  color: var(--af-signal-stop);
+  font-weight: 600;
+}
+
+/* Platform checkboxes */
+.social-composer-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--af-space-breath);
+}
+
+.social-composer-platform-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-breath);
+  cursor: pointer;
+}
+
+.social-composer-platform-checkbox input[type="checkbox"] {
+  accent-color: var(--af-ultra);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.social-composer-platform-label {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 500;
+  color: var(--af-stone-700);
+  padding: var(--af-space-grain) 0;
+  transition: color var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.social-composer-platform-label.selected {
+  color: var(--af-terra);
+  font-weight: 600;
+}
+
+/* Hashtag preview */
+.social-composer-hashtag-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-breath);
+  margin-top: var(--af-space-breath);
+}
+
+/* Composer actions */
+.social-composer-actions {
+  display: flex;
+  gap: var(--af-space-palm);
+}
+
+/* ===== Secondary CTA — Ghost variation ===== */
+.social-admin-new-btn-secondary {
+  background: var(--af-surface-card);
+  color: var(--af-ultra);
+  border-color: var(--af-ultra);
+}
+
+.social-admin-new-btn-secondary:hover {
+  background: var(--af-ultra-wash);
+  color: var(--af-ultra-deep);
+}
+
+/* ===== Quick Post — Platform Picker ===== */
+.social-quickpost-platform-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-breath);
+}
+
+.social-quickpost-platform-btn {
+  background: none;
+  border: var(--af-border-visible) solid transparent;
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-grain) var(--af-space-breath);
+  cursor: pointer;
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  opacity: 0.6;
+}
+
+.social-quickpost-platform-btn:hover {
+  opacity: 1;
+  border-color: var(--af-stone-300);
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+}
+
+.social-quickpost-platform-btn.selected {
+  opacity: 1;
+  border-color: var(--af-terra);
+  background: var(--af-terra-warmth);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+}
+
+/* ===== Transform Section ===== */
+.social-transform-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.social-transform-toggle:hover {
+  color: var(--af-terra);
+}
+
+.social-transform-body {
+  margin-top: var(--af-space-hand);
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hand);
+}
+
+.social-transform-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hand);
+}
+
+.social-transform-label {
+  display: block;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-600);
+  margin-bottom: var(--af-space-breath);
+}
+
+/* Tone buttons — Pressed in Clay radio-style */
+.social-transform-tone-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-breath);
+}
+
+.social-transform-tone-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-breath) var(--af-space-hand);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  color: var(--af-stone-600);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--af-stone-200);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-transform-tone-btn:hover {
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+  box-shadow: 3px 3px 0 var(--af-terra-dust);
+  background: var(--af-terra-warmth);
+}
+
+.social-transform-tone-btn:active {
+  box-shadow: 1px 1px 0 var(--af-terra-dust);
+  transform: translate(1px, 1px);
+}
+
+.social-transform-tone-btn.selected {
+  border-color: var(--af-terra);
+  background: var(--af-terra);
+  color: white;
+  box-shadow: var(--af-shadow-pressed);
+}
+
+.social-transform-tone-detected {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  margin-top: var(--af-space-breath);
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+
+.social-transform-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--af-space-hand);
+}
+
+/* Additional platforms checkbox grid */
+.social-transform-platforms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: var(--af-space-breath);
+}
+
+/* Transform results — Stacked Slab pattern */
+.social-transform-results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-palm);
+  margin-top: var(--af-space-palm);
+}
+
+.social-transform-output {
+  background: var(--af-stone-50);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.social-transform-output-header {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-breath);
+}
+
+.social-transform-output-content {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-800);
+  line-height: var(--af-leading-body);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0 0 var(--af-space-palm);
+  padding: var(--af-space-palm);
+  background: var(--af-surface-card);
+  border: var(--af-border-hair) solid var(--af-stone-200);
+  border-radius: var(--af-radius-chip);
+}
+
+.social-transform-output-actions {
+  display: flex;
+  gap: var(--af-space-breath);
+  align-items: center;
+}
+
+/* "Use This" — terracotta accent */
+.social-transform-use-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-breath) var(--af-space-hand);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-terra);
+  background: var(--af-terra);
+  color: white;
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-transform-use-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.social-transform-use-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+/* "Create as New Post" — ultra blue */
+.social-transform-create-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-breath) var(--af-space-hand);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-ultra-deep);
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-transform-create-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  background: var(--af-ultra-glow);
+}
+
+.social-transform-create-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+/* Link to created post */
+.social-transform-created-link {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-signal-go);
+  text-decoration: none;
+  transition: opacity var(--af-dur-quick) var(--af-ease-drift);
+}
+
+.social-transform-created-link:hover {
+  opacity: 0.7;
+}
+
+/* ===== Approval Workflow ===== */
+
+/* Approval badges — colour-coded status */
+.social-approval-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--af-radius-chip);
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: var(--af-border-hair) solid;
+}
+
+.social-approval-badge--pending {
+  background: #FEF3C7;
+  color: #92400E;
+  border-color: #F59E0B;
+}
+
+.social-approval-badge--approved {
+  background: #D1FAE5;
+  color: #065F46;
+  border-color: var(--af-signal-go);
+}
+
+.social-approval-badge--rejected {
+  background: #FEE2E2;
+  color: #991B1B;
+  border-color: var(--af-signal-stop);
+}
+
+.social-approval-badge--changes-requested {
+  background: #FEF3C7;
+  color: #92400E;
+  border-color: #F59E0B;
+}
+
+/* Request Approval button — ultra blue accent */
+.social-approval-request-btn {
+  width: 100%;
+  padding: var(--af-space-palm);
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-ultra-deep);
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  margin-bottom: var(--af-space-breath);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.social-approval-request-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  background: var(--af-ultra-glow);
+}
+
+.social-approval-request-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+/* Submit approval button in dialog — ultra blue */
+.social-approval-submit-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid var(--af-ultra-deep);
+  background: var(--af-ultra);
+  color: var(--af-stone-50);
+  cursor: pointer;
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-approval-submit-btn:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+  background: var(--af-ultra-glow);
+}
+
+.social-approval-submit-btn:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(2px, 2px);
+}
+
+.social-approval-submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Approval feedback in sidebar */
+.social-approval-feedback {
+  margin-top: var(--af-space-palm);
+  padding: var(--af-space-palm);
+  background: var(--af-stone-50);
+  border: var(--af-border-hair) solid var(--af-stone-200);
+  border-radius: var(--af-radius-chip);
+}
+
+.social-approval-feedback-label {
+  font-family: var(--af-font-architect);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--af-stone-500);
+  margin: 0 0 var(--af-space-grain);
+}
+
+.social-approval-feedback-text {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-700);
+  margin: 0;
+  line-height: var(--af-leading-body);
+}
+
+/* ===== Approval History Timeline ===== */
+.social-approval-history {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.social-approval-history::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: var(--af-border-hair);
+  background: var(--af-stone-200);
+}
+
+.social-approval-history-entry {
+  display: flex;
+  gap: var(--af-space-palm);
+  padding: var(--af-space-breath) 0;
+  position: relative;
+}
+
+.social-approval-history-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  background: var(--af-surface-card);
+  position: relative;
+  z-index: 1;
+}
+
+.social-approval-history-entry--request .social-approval-history-dot {
+  background: var(--af-ultra);
+  border-color: var(--af-ultra-deep);
+}
+
+.social-approval-history-entry--approve .social-approval-history-dot {
+  background: var(--af-terra);
+  border-color: var(--af-terra-ember);
+}
+
+.social-approval-history-entry--changes .social-approval-history-dot {
+  background: #F59E0B;
+  border-color: #D97706;
+}
+
+.social-approval-history-entry--reject .social-approval-history-dot {
+  background: var(--af-signal-stop);
+  border-color: #8B1A1A;
+}
+
+.social-approval-history-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.social-approval-history-action {
+  display: block;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  color: var(--af-stone-800);
+}
+
+.social-approval-history-actor {
+  display: block;
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  color: var(--af-stone-500);
+}
+
+.social-approval-history-time {
+  display: block;
+  font-family: var(--af-font-machine);
+  font-size: 10px;
+  color: var(--af-stone-400);
+  letter-spacing: -0.02em;
+}
+
+.social-approval-history-comment {
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  color: var(--af-stone-600);
+  line-height: var(--af-leading-body);
+  margin: var(--af-space-grain) 0 0;
+  padding: var(--af-space-grain) var(--af-space-breath);
+  background: var(--af-stone-50);
+  border-radius: var(--af-radius-chip);
+  border-left: var(--af-border-visible) solid var(--af-terra-glow);
+}
+
+/* ===== Inbox Tabs ===== */
+.social-inbox-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: var(--af-space-arm);
+  border-bottom: var(--af-border-struct) solid var(--af-stone-300);
+}
+
+.social-inbox-tab {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 600;
+  padding: var(--af-space-palm) var(--af-space-arm);
+  background: none;
+  border: none;
+  border-bottom: var(--af-border-struct) solid transparent;
+  color: var(--af-stone-500);
+  cursor: pointer;
+  transition: all var(--af-dur-quick) var(--af-ease-drift);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-breath);
+}
+
+.social-inbox-tab:hover {
+  color: var(--af-stone-700);
+}
+
+.social-inbox-tab.active {
+  color: var(--af-terra);
+  border-bottom-color: var(--af-terra);
+}
+
+.social-inbox-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 50px;
+  background: #F59E0B;
+  color: white;
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ===== Approval List (inbox) ===== */
+.social-approval-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--af-space-hand);
+}
+
+.social-approval-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-worn);
+  padding: var(--af-space-hand);
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-approval-card:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.social-approval-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--af-space-palm);
+  margin-bottom: var(--af-space-palm);
+}
+
+.social-approval-card-date {
+  font-family: var(--af-font-machine);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-400);
+  margin-left: auto;
+}
+
+.social-approval-card-content {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-800);
+  line-height: var(--af-leading-body);
+  margin: 0 0 var(--af-space-palm);
+}
+
+.social-approval-note {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-600);
+  padding: var(--af-space-breath) var(--af-space-palm);
+  background: var(--af-ultra-ghost);
+  border-radius: var(--af-radius-chip);
+  border-left: var(--af-border-heavy) solid var(--af-ultra);
+  margin-bottom: var(--af-space-palm);
+}
+
+.social-approval-note-label {
+  font-weight: 700;
+  color: var(--af-ultra);
+}
+
+.social-approval-card-reviewer {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-500);
+  margin: 0 0 var(--af-space-palm);
+}
+
+.social-approval-card-actions {
+  display: flex;
+  gap: var(--af-space-breath);
+  flex-wrap: wrap;
+  padding-top: var(--af-space-palm);
+  border-top: var(--af-border-hair) solid var(--af-stone-200);
+}
+
+/* Approval action buttons */
+.social-approval-action-btn {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  font-weight: 600;
+  padding: var(--af-space-breath) var(--af-space-hand);
+  border-radius: var(--af-radius-worn);
+  border: var(--af-border-visible) solid;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+}
+
+.social-approval-action-btn:hover {
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.08);
+  transform: translate(-1px, -1px);
+}
+
+.social-approval-action-btn:active {
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.04);
+  transform: translate(1px, 1px);
+}
+
+.social-approval-action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.social-approval-action-btn.approve {
+  background: var(--af-terra);
+  border-color: var(--af-terra-ember);
+  color: white;
+}
+
+.social-approval-action-btn.approve:hover {
+  background: var(--af-terra-ember);
+}
+
+.social-approval-action-btn.changes {
+  background: var(--af-surface-card);
+  border-color: var(--af-terra);
+  color: var(--af-terra);
+}
+
+.social-approval-action-btn.changes:hover {
+  background: var(--af-terra-warmth);
+}
+
+.social-approval-action-btn.reject {
+  background: var(--af-surface-card);
+  border-color: var(--af-signal-stop);
+  color: var(--af-signal-stop);
+}
+
+.social-approval-action-btn.reject:hover {
+  background: rgba(194, 59, 34, 0.06);
+}
+
+/* ===== Published / Locked State ===== */
+
+/* Locked banner — warm muted stone with terra accent */
+.social-editor-locked-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--af-space-hand);
+  padding: var(--af-space-hand) var(--af-space-arm);
+  margin-bottom: var(--af-space-arm);
+  background: var(--af-terra-warmth);
+  border: var(--af-border-visible) solid var(--af-terra-dust);
+  border-left-width: var(--af-border-heavy);
+  border-left-color: var(--af-terra);
+  border-radius: var(--af-radius-worn);
+  box-shadow: var(--af-shadow-rest);
+}
+
+.social-editor-locked-icon {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.social-editor-locked-banner strong {
+  display: block;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  font-weight: 700;
+  color: var(--af-stone-800);
+  margin-bottom: var(--af-space-grain);
+}
+
+.social-editor-locked-sub {
+  display: block;
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-xs);
+  color: var(--af-stone-600);
+  line-height: var(--af-leading-body);
+}
+
+/* Locked form fields — greyed out, no interaction */
+.social-composer-textarea.locked,
+.social-composer-input.locked {
+  background: var(--af-stone-100);
+  color: var(--af-stone-500);
+  border-color: var(--af-stone-200);
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+}
+
+.social-composer-textarea.locked:focus,
+.social-composer-input.locked:focus {
+  border-color: var(--af-stone-200);
+  box-shadow: none;
+}
+
+/* Queue action — View button style for published posts */
+.social-admin-action-btn--view {
+  border-color: var(--af-stone-400);
+  color: var(--af-stone-600);
+  background: var(--af-stone-50);
+}
+
+.social-admin-action-btn--view:hover {
+  border-color: var(--af-stone-500);
+  color: var(--af-stone-700);
+  box-shadow: 3px 3px 0 var(--af-stone-200);
+  background: var(--af-stone-100);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .social-editor-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .social-admin-stats {
+    flex-direction: column;
+  }
+
+  .social-admin-table-wrap {
+    overflow-x: auto;
+  }
+
+  .social-admin-table {
+    min-width: 600px;
+  }
+
+  .social-composer-platform-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+
+  .social-composer-actions {
+    flex-direction: column;
+  }
+}
+
+/* ===== Review Actions (post detail page — reviewer approve/reject/changes) ===== */
+
+.social-editor-review-actions {
+  display: flex;
+  gap: var(--af-space-breath);
+  margin-bottom: var(--af-space-palm);
+  flex-wrap: wrap;
+}
+
+.approval-category-select {
+  width: 100%;
+}

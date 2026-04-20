@@ -30,3 +30,6 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# Persistent runtime data (rate limits, sessions)
+.data/

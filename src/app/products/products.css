@@ -3,7 +3,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #F8F5EE;
+  background-color: var(--af-surface-page, #F8F5EE);
   overflow: hidden;
   position: relative;
 }
@@ -17,7 +17,7 @@
 
 .products-list-section {
   padding: 20px 20px 40px;
-  background-color: #F8F5EE;
+  background-color: var(--af-surface-page, #F8F5EE);
 }
 
 .products-intro {
@@ -146,32 +146,8 @@
   position: relative;
 }
 
-.printshot-card::before {
-  content: 'Coming Soon!';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(12, 12, 12, 0.8);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: "Instrument Sans", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-  font-size: 64px;
-  color: #FFFFFF;
-}
+/* Printshot card — no overlay */
 
-.printshot-card:hover::before {
-  opacity: 1;
-}
 
 .black-header {
   background-color: #000000;
@@ -234,7 +210,7 @@
   justify-content: center;
   align-items: center;
   padding: 120px 20px;
-  background-color: #F8F5EE;
+  background-color: var(--af-surface-page, #F8F5EE);
 }
 
 .coming-soon-content {
@@ -336,9 +312,6 @@
     margin: 0 0 10px 0;
   }
 
-  .printshot-card::before {
-    font-size: 48px;
-  }
 }
 
 @media (max-width: 800px) {
@@ -406,10 +379,6 @@
 
   .printshot-text-blue {
     font-size: 21px;
-  }
-
-  .printshot-card::before {
-    font-size: 51px;
   }
 
   .coming-soon-section {

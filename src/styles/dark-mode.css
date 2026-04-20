@@ -1,0 +1,324 @@
+/* ===========================================
+   DARK MODE OVERRIDES
+   Handles elements that can't rely solely on
+   token remapping — inputs, selects, code blocks,
+   charts, SVG fills, and hardcoded colors.
+   =========================================== */
+
+/* ===== Admin Layout — Deep Charcoal Paper ===== */
+[data-theme="dark"] .admin-layout {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 104, 10, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(77, 107, 255, 0.02) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(123, 160, 141, 0.03) 0%, transparent 45%);
+}
+
+/* Sidebar — darker concrete */
+[data-theme="dark"] .admin-sidebar::before {
+  opacity: 0.06;
+}
+
+[data-theme="dark"] .admin-sidebar-logo {
+  background: linear-gradient(145deg, var(--af-stone-100) 0%, var(--af-stone-50) 100%);
+}
+
+/* ===== Form Inputs — Dark Carved Channels ===== */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--af-surface-input);
+  color: var(--af-text-body);
+  border-color: var(--af-border-default);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: var(--af-text-faint);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  border-color: var(--af-ultra);
+  box-shadow:
+    inset 1px 2px 3px var(--af-inset-shadow-focus),
+    0 0 0 3px var(--af-ultra-wash);
+}
+
+/* ===== Code Blocks / Monospace — Aizome Deep ===== */
+[data-theme="dark"] code,
+[data-theme="dark"] .af-machine,
+[data-theme="dark"] .social-composer-char-count,
+[data-theme="dark"] .social-approval-card-date,
+[data-theme="dark"] .social-transform-tone-detected {
+  color: var(--af-code-text);
+}
+
+[data-theme="dark"] pre,
+[data-theme="dark"] .code-block,
+[data-theme="dark"] .af-code-block {
+  background: var(--af-code-bg);
+  border: var(--af-border-hair) solid var(--af-code-border);
+  color: var(--af-code-text);
+}
+
+/* CID display, UTM previews, and technical data */
+[data-theme="dark"] .asset-cid-value,
+[data-theme="dark"] .utm-preview-url,
+[data-theme="dark"] .utm-preview-value,
+[data-theme="dark"] [class*="cid"],
+[data-theme="dark"] [class*="hash"],
+[data-theme="dark"] .tag-manager-item-slug {
+  background: var(--af-code-bg);
+  border-color: var(--af-code-border);
+  color: var(--af-code-text);
+}
+
+/* Tiptap editor code blocks */
+[data-theme="dark"] .tiptap-content .tiptap pre {
+  background: var(--af-code-bg);
+  color: #E8E2D8;
+  border: 1px solid var(--af-code-border);
+}
+
+[data-theme="dark"] .tiptap-content .tiptap code {
+  color: var(--af-code-text);
+}
+
+/* ===== Tables — Dark Ledger ===== */
+[data-theme="dark"] .social-admin-table th,
+[data-theme="dark"] .blog-admin-table th,
+[data-theme="dark"] .calendar-admin-table th,
+[data-theme="dark"] .trending-table th {
+  background: var(--af-surface-sunken);
+}
+
+[data-theme="dark"] .social-admin-table tbody tr:nth-child(even),
+[data-theme="dark"] .blog-admin-table tr:hover td,
+[data-theme="dark"] .trending-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+[data-theme="dark"] .social-admin-table tbody tr:hover td {
+  background: var(--af-terra-warmth);
+}
+
+/* ===== Skeleton Loaders — Dark Breathing ===== */
+[data-theme="dark"] .skeleton-block,
+[data-theme="dark"] .skeleton-chip,
+[data-theme="dark"] .skeleton-stat-card,
+[data-theme="dark"] .dashboard-skeleton-stat .skeleton-block {
+  background: linear-gradient(110deg,
+    var(--af-stone-100) 30%,
+    var(--af-stone-200) 50%,
+    var(--af-stone-100) 70%
+  );
+  background-size: 200% 100%;
+}
+
+/* ===== Dialog Overlays — Darker Shoji ===== */
+[data-theme="dark"] .social-admin-dialog-overlay,
+[data-theme="dark"] .blog-admin-dialog-overlay,
+[data-theme="dark"] .tag-manager-overlay,
+[data-theme="dark"] .af-dialog-overlay {
+  background: var(--af-surface-overlay);
+  backdrop-filter: blur(12px) saturate(0.6);
+}
+
+[data-theme="dark"] .social-admin-dialog,
+[data-theme="dark"] .blog-admin-dialog,
+[data-theme="dark"] .tag-manager-modal,
+[data-theme="dark"] .af-dialog {
+  background: var(--af-surface-raised);
+  border-color: var(--af-border-default);
+}
+
+/* ===== Charts & Analytics — Brighter on Dark ===== */
+[data-theme="dark"] .analytics-chart-wrapper,
+[data-theme="dark"] .chart-container,
+[data-theme="dark"] .trending-chart-card,
+[data-theme="dark"] [class*="chart-card"] {
+  background: var(--af-surface-card);
+}
+
+/* SVG chart lines and grid */
+[data-theme="dark"] .chart-grid line,
+[data-theme="dark"] .chart-axis line {
+  stroke: var(--af-chart-grid);
+}
+
+[data-theme="dark"] .chart-label,
+[data-theme="dark"] .chart-tick text {
+  fill: var(--af-chart-label);
+}
+
+/* ===== Approval Badges — Adjusted for Dark ===== */
+[data-theme="dark"] .social-approval-badge--pending,
+[data-theme="dark"] .social-approval-badge--changes-requested {
+  background: rgba(245, 158, 11, 0.15);
+  color: #F59E0B;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+[data-theme="dark"] .social-approval-badge--approved {
+  background: rgba(61, 166, 110, 0.15);
+  color: #3DA66E;
+  border-color: rgba(61, 166, 110, 0.3);
+}
+
+[data-theme="dark"] .social-approval-badge--rejected {
+  background: rgba(224, 80, 64, 0.15);
+  color: #E05040;
+  border-color: rgba(224, 80, 64, 0.3);
+}
+
+/* ===== Blog Editor — Status Messages ===== */
+[data-theme="dark"] .blog-editor-status.success {
+  background: rgba(61, 166, 110, 0.15);
+  color: #3DA66E;
+}
+
+[data-theme="dark"] .blog-editor-status.error {
+  background: rgba(224, 80, 64, 0.15);
+  color: #E05040;
+}
+
+[data-theme="dark"] .social-editor-status.success {
+  background: rgba(61, 166, 110, 0.12);
+  border-color: rgba(61, 166, 110, 0.3);
+}
+
+[data-theme="dark"] .social-editor-status.error {
+  background: rgba(224, 80, 64, 0.12);
+  border-color: rgba(224, 80, 64, 0.3);
+}
+
+/* ===== Empty States — Dark Kintsugi ===== */
+[data-theme="dark"] .social-admin-empty::before,
+[data-theme="dark"] .dashboard-admin-empty::before {
+  background-image: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(212, 184, 92, 0.06) 0%,
+    transparent 60%
+  );
+}
+
+/* ===== Inbox Tab Badges ===== */
+[data-theme="dark"] .social-inbox-tab-badge {
+  background: #D97706;
+}
+
+/* ===== BrandWordmark SVG — Peach tint for Dark ===== */
+/* Default dark mode behavior: use peach tint for sidebar and login logos */
+[data-theme="dark"] .admin-sidebar-logo img,
+[data-theme="dark"] .login-logo img {
+  filter: invert(1) brightness(1.05) sepia(0.3) hue-rotate(335deg) saturate(1.2);
+}
+
+/* Explicit peach variant — warm salmon-peach, soft and inviting
+   Target color: approx #FFAD85 (--af-peach) */
+.brand-wordmark--peach {
+  filter: invert(1) brightness(1.05) sepia(0.3) hue-rotate(335deg) saturate(1.2);
+}
+
+/* Explicit gold variant — rich warm gold, premium feel (not yellow)
+   Target color: approx #C9A84C (--af-gold) — think kintsugi gold */
+.brand-wordmark--gold {
+  filter: invert(1) brightness(0.9) sepia(0.5) hue-rotate(355deg) saturate(2.2);
+}
+
+/* ===== Focus Visible — Brighter Ring ===== */
+[data-theme="dark"] :focus-visible {
+  outline-color: var(--af-ultra);
+}
+
+/* ===== Scrollbar — Dark Warm ===== */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--af-stone-50);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--af-stone-300);
+  border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--af-stone-400);
+}
+
+/* ===== Calendar — Dark Cells ===== */
+[data-theme="dark"] .calendar-day-today {
+  background: rgba(27, 47, 58, 0.4) !important;
+}
+
+/* ===== Trending — Dark hashtag containers ===== */
+[data-theme="dark"] .trending-hashtag-chip,
+[data-theme="dark"] .social-admin-hashtag-chip,
+[data-theme="dark"] .dashboard-admin-platform-badge,
+[data-theme="dark"] .blog-admin-tag-chip {
+  background: var(--af-ultra-ghost);
+  border-color: var(--af-ultra-ink);
+  color: var(--af-ultra);
+}
+
+/* ===== Landing Page Dark Overrides ===== */
+[data-theme="dark"] .header {
+  border-bottom-color: var(--af-border-subtle);
+}
+
+[data-theme="dark"] .main-content {
+  background: #1A1745;
+}
+
+[data-theme="dark"] .text-content h1,
+[data-theme="dark"] .text-content p {
+  color: #E8E2D8;
+}
+
+[data-theme="dark"] .cta-button {
+  color: var(--af-ultra);
+}
+
+/* ===== Footer — Dark Variants ===== */
+[data-theme="dark"] .footer-cream {
+  background-color: var(--af-surface-page) !important;
+}
+
+[data-theme="dark"] .footer-blue {
+  background-color: #1A1745 !important;
+}
+
+/* ===== Login Page — Dark Card ===== */
+[data-theme="dark"] .login-card {
+  background: var(--af-surface-card);
+  border-color: var(--af-border-default);
+}
+
+/* ===== Composer Wizard — Step indicators ===== */
+[data-theme="dark"] .wizard-step-completed {
+  background: var(--af-signal-go);
+}
+
+[data-theme="dark"] .wizard-step-active {
+  background: var(--af-ultra);
+}
+
+[data-theme="dark"] .wizard-step-pending {
+  background: var(--af-stone-300);
+}
+
+/* ===== Settings — Connection cards ===== */
+[data-theme="dark"] .connection-status-connected {
+  background: rgba(61, 166, 110, 0.12);
+  color: #3DA66E;
+}
+
+[data-theme="dark"] .connection-status-disconnected {
+  background: rgba(224, 80, 64, 0.12);
+  color: #E05040;
+}

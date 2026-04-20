@@ -1,0 +1,121 @@
+/* ===== Settings — Stacked Slabs ===== */
+.settings-admin-header {
+  margin-bottom: var(--af-space-arm);
+}
+
+.settings-admin-header h1 {
+  font-family: var(--af-font-poet);
+  font-size: var(--af-type-xl);
+  font-weight: 400;
+  color: var(--af-stone-800);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.settings-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--af-space-hand);
+}
+
+.settings-admin-card {
+  background: var(--af-surface-card);
+  border: var(--af-border-visible) solid var(--af-stone-300);
+  border-radius: var(--af-radius-stone);
+  padding: var(--af-space-arm);
+  box-shadow: var(--af-shadow-rest);
+  transition: all var(--af-dur-quick) var(--af-ease-press);
+  position: relative;
+}
+
+.settings-admin-card:hover {
+  box-shadow: var(--af-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.settings-admin-card:active {
+  box-shadow: var(--af-shadow-pressed);
+  transform: translate(1px, 1px);
+}
+
+.settings-admin-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--af-radius-worn);
+  background: var(--af-terra-warmth);
+  color: var(--af-terra);
+  font-size: var(--af-type-lg);
+  margin-bottom: var(--af-space-hand);
+  border: var(--af-border-hair) solid var(--af-terra-glow);
+}
+
+.settings-admin-card h2 {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-base);
+  font-weight: 700;
+  color: var(--af-stone-800);
+  margin: 0 0 var(--af-space-breath);
+}
+
+.settings-admin-card p {
+  font-family: var(--af-font-architect);
+  font-size: var(--af-type-sm);
+  color: var(--af-stone-600);
+  margin: 0 0 var(--af-space-hand);
+  line-height: var(--af-leading-body);
+}
+
+/* Phase badges — wax seal aesthetic */
+.settings-admin-phase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--af-space-grain);
+  font-family: var(--af-font-architect);
+  font-size: 11px;
+  font-weight: 600;
+  padding: var(--af-space-grain) var(--af-space-palm);
+  border-radius: var(--af-radius-chip);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: var(--af-border-visible) solid;
+}
+
+.settings-admin-phase-badge.phase-2 {
+  background: var(--af-ultra-ghost);
+  color: var(--af-ultra);
+  border-color: var(--af-ultra-ink);
+}
+
+.settings-admin-phase-badge.phase-3 {
+  background: var(--af-terra-warmth);
+  color: var(--af-terra);
+  border-color: var(--af-terra-glow);
+}
+
+.settings-admin-phase-badge.phase-4 {
+  background: rgba(55, 48, 163, 0.06);
+  color: #3730A3;
+  border-color: rgba(55, 48, 163, 0.15);
+}
+
+.settings-admin-phase-badge.phase-active {
+  background: rgba(45, 134, 89, 0.08);
+  color: var(--af-signal-go);
+  border-color: rgba(45, 134, 89, 0.2);
+}
+
+/* Clickable card link */
+a.settings-admin-card-link {
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .settings-admin-grid {
+    grid-template-columns: 1fr;
+  }
+}

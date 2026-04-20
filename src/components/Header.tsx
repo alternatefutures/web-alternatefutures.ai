@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ activePage, subPage }) => {
     <header className="header">
       <div className="header-content">
         <a href="/" className="logo">
-          <Image src="/assets/logo.svg" alt="Alternate Futures" width={58} height={47} priority />
+          <Image src="/assets/logo.svg" alt="Alternate Futures" width={72} height={58} priority />
         </a>
         <nav className="nav">
           <div className="nav-links">
@@ -32,6 +32,9 @@ const Header: React.FC<HeaderProps> = ({ activePage, subPage }) => {
                   <span className="sub-nav-text">{subPage}</span>
                 </div>
               )}
+            </div>
+            <div className="nav-column">
+              <a href="/blog" className={`nav-link ${activePage === 'blog' ? 'active' : ''}`}>Blog</a>
             </div>
             <div className="nav-column">
               <a href="https://docs.alternatefutures.ai" className="nav-link" target="_blank" rel="noopener noreferrer">Docs</a>
