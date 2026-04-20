@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: '/og-image.png?v=2',
+        url: 'https://www.alternatefutures.ai/og-image.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Alternate Futures — Building the infrastructure for human-computer alignment',
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
   // Twitter / X
   twitter: {
     card: 'summary_large_image',
-    site: '@AltFutures_ai',
+    site: '@AltFuturesAI',
     creator: '@wonderwomancode',
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: '/og-image.png?v=2',
+        url: 'https://www.alternatefutures.ai/og-image.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Alternate Futures — Building the infrastructure for human-computer alignment',

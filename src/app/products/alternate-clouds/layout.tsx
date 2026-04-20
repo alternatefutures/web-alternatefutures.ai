@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: 'Alternate Futures',
     images: [
       {
-        url: '/og-image-alternate-clouds.png?v=2',
+        url: 'https://www.alternatefutures.ai/og-image-alternate-clouds.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.',
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    site: '@AltFutures_ai',
+    site: '@AltFuturesAI',
     creator: '@wonderwomancode',
     title: CLOUDS_TITLE,
     description: CLOUDS_DESCRIPTION,
     images: [
       {
-        url: '/og-image-alternate-clouds.png?v=2',
+        url: 'https://www.alternatefutures.ai/og-image-alternate-clouds.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.',
