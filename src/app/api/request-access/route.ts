@@ -1,13 +1,21 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-function getResend() {
-  return new Resend(process.env.RESEND_API_KEY)
+// Lazy singleton: constructing `new Resend(undefined)` throws, which crashed
+// `next build` during page-data collection (route modules are evaluated then,
+// but RESEND_API_KEY isn't available at build time — only at runtime).
+let _resend: Resend | null = null
+function getResend(): Resend {
+  if (_resend) return _resend
+  const key = process.env.RESEND_API_KEY
+  if (!key) throw new Error('RESEND_API_KEY is not configured')
+  _resend = new Resend(key)
+  return _resend
 }
 
 export async function POST(request: Request) {
-  const resend = getResend()
   try {
+    const resend = getResend()
     const body = await request.json()
     const { firstName, lastName, email, workType, workTypeOther, github, projectLink, socialPlatform, socialLink, source } = body
 
