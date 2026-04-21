@@ -12,7 +12,7 @@ Next.js-based company website featuring homepage, consulting services, and produ
    npm install
    ```
 
-2. **Run development server:**
+2. **Run development server:** 
    ```bash
    npm run dev
    ```
