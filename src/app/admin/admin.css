@@ -136,41 +136,6 @@
   gap: var(--af-space-hand);
 }
 
-/* Theme Toggle — Pressed in Clay */
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--af-radius-worn);
-  border: var(--af-border-visible) solid var(--af-stone-300);
-  background: var(--af-surface-card);
-  color: var(--af-stone-600);
-  cursor: pointer;
-  box-shadow: 2px 2px 0 var(--af-stone-200);
-  transition: all var(--af-dur-quick) var(--af-ease-press);
-}
-
-.theme-toggle:hover {
-  border-color: var(--af-terra);
-  color: var(--af-terra);
-  background: var(--af-terra-warmth);
-  box-shadow: 3px 3px 0 var(--af-terra-dust);
-}
-
-.theme-toggle:active {
-  box-shadow: 1px 1px 0 var(--af-terra-dust);
-  transform: translate(1px, 1px);
-}
-
-.theme-toggle-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
 .admin-topbar-email {
   font-family: var(--af-font-architect);
   font-size: var(--af-type-sm);
