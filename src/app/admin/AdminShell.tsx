@@ -4,7 +4,6 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, type ReactNode } from 'react'
 import { PiChartBarBold, PiArticleBold, PiMegaphoneBold, PiImageSquareBold, PiCalendarBlankBold, PiGearBold, PiTrendUpBold, PiTargetBold, PiUsersBold, PiLightningBold, PiShieldCheckBold, PiStampBold, PiStorefrontBold, PiRobotBold, PiChatCircleDotsBold, PiChalkboardTeacherBold, PiCurrencyDollarBold, PiBellBold, PiHandshakeBold, PiCompassBold, PiCodeBold, PiChartLineUpBold, PiBinocularsBold } from 'react-icons/pi'
 import BrandWordmark from '@/components/BrandWordmark'
-import ThemeToggle from '@/components/ThemeToggle'
 import ChatPanel from '@/components/admin/ChatPanel'
 
 export default function AdminShell({
@@ -72,7 +71,6 @@ export default function AdminShell({
       <div className="admin-main">
         <header className="admin-topbar">
           <span className="admin-topbar-email">{email}</span>
-          <ThemeToggle />
           <button
             className="admin-topbar-logout"
             onClick={handleLogout}
