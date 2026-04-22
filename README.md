@@ -1,4 +1,4 @@
-![](.repo/images/repo/hero-logo.svg)
+![](.repo/images/repo/hero-logo.svg) 
 
 # ✨ Main Website ✨
 # alternatefutures.ai
