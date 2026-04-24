@@ -38,6 +38,7 @@ export default function ProductsPage() {
 
           {/* Printshot Card */}
           <div className="product-card printshot-card">
+            <div className="coming-soon-ribbon">Coming Soon</div>
             <div className="card-header black-header">
               <div className="printshot-logo">
                 <img src="/assets/printshot_logo_blackoutlined.svg" alt="Printshot" className="printshot-logo-img" />

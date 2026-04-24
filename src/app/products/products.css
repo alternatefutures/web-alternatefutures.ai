@@ -144,6 +144,30 @@
 .printshot-card {
   background-color: #FFFFFF;
   position: relative;
+  overflow: hidden;
+}
+
+.coming-soon-ribbon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  background: #E91E63;
+  color: #FFFFFF;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.35em 1.25em;
+  width: 115%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border-top: 3px solid #FFFFFF;
+  border-bottom: 3px solid #FFFFFF;
+  z-index: 10;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 /* Printshot card — no overlay */
