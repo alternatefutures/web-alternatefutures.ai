@@ -1,0 +1,101 @@
+name: Review Gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions:
+  pull-requests: read
+  checks: write
+  statuses: write
+
+jobs:
+  review-gate:
+    name: Quinn-first, then Senku + Lain
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce review order
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const QUINN  = 'quinn-altfutures';
+            const SENKU  = 'senku-altfutures';
+            const LAIN   = 'lain-altfutures';
+
+            const pr = context.payload.pull_request;
+            if (!pr) { core.setFailed('No pull_request payload.'); return; }
+
+            const reviews = await github.paginate(github.rest.pulls.listReviews, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+
+            const latestByUser = new Map();
+            for (const r of reviews) {
+              if (!r.user || !r.submitted_at) continue;
+              const login = r.user.login;
+              const prev = latestByUser.get(login);
+              if (!prev || new Date(r.submitted_at) > new Date(prev.submitted_at)) {
+                latestByUser.set(login, r);
+              }
+            }
+
+            const get = (login) => latestByUser.get(login);
+            const isApproved = (login) => get(login)?.state === 'APPROVED';
+
+            const quinn = get(QUINN);
+            const senku = get(SENKU);
+            const lain  = get(LAIN);
+
+            const failures = [];
+
+            if (!isApproved(QUINN)) {
+              failures.push(`Quinn (${QUINN}) has not approved yet — Quinn is the first gate.`);
+            }
+            if (!isApproved(SENKU)) {
+              failures.push(`Senku (${SENKU}) has not approved yet.`);
+            }
+            if (!isApproved(LAIN)) {
+              failures.push(`Lain (${LAIN}) has not approved yet.`);
+            }
+
+            if (isApproved(QUINN)) {
+              const quinnAt = new Date(quinn.submitted_at);
+              if (isApproved(SENKU) && new Date(senku.submitted_at) < quinnAt) {
+                failures.push(`Senku approved before Quinn — review out of order. Quinn must approve first.`);
+              }
+              if (isApproved(LAIN) && new Date(lain.submitted_at) < quinnAt) {
+                failures.push(`Lain approved before Quinn — review out of order. Quinn must approve first.`);
+              }
+            } else {
+              if (isApproved(SENKU)) {
+                failures.push(`Senku approved before Quinn — review out of order. Quinn must approve first.`);
+              }
+              if (isApproved(LAIN)) {
+                failures.push(`Lain approved before Quinn — review out of order. Quinn must approve first.`);
+              }
+            }
+
+            const summary = [
+              `**Review Gate Status**`,
+              ``,
+              `| Reviewer | Role | Status | Submitted |`,
+              `|---|---|---|---|`,
+              `| ${QUINN} | QA (1st gate) | ${quinn?.state ?? 'PENDING'} | ${quinn?.submitted_at ?? '—'} |`,
+              `| ${SENKU} | Architect | ${senku?.state ?? 'PENDING'} | ${senku?.submitted_at ?? '—'} |`,
+              `| ${LAIN}  | Security  | ${lain?.state ?? 'PENDING'}  | ${lain?.submitted_at ?? '—'} |`,
+              ``,
+              failures.length === 0
+                ? `All gates passed. PR is mergeable per review policy.`
+                : `**Blocked:**\n` + failures.map(f => `- ${f}`).join('\n'),
+            ].join('\n');
+
+            await core.summary.addRaw(summary).write();
+
+            if (failures.length > 0) {
+              core.setFailed(failures.join(' | '));
+            }
