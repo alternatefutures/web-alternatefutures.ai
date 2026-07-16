@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="twitter" clip-path="url(#clip0_0_6)">
+<path id="Vector" d="M16.6672 6.16599C17.7506 5.08261 18.334 3.33253 18.334 3.33253C18.334 3.33253 16.7505 4.33258 15.8338 4.33258C13.3336 1.99914 9.24994 3.99923 10 7.49939C7.16644 7.58272 4.33288 6.33267 2.4994 4.1659C0.4159 7.99941 2.4994 12.9163 6.6664 14.1664C5.33296 15.3331 3.49948 15.9164 1.666 15.8331C8.83324 20.5833 18.0006 14.4997 16.6672 6.16599Z" stroke="var(--stroke-0, #475569)" stroke-width="2" stroke-linecap="round"/>
+</g>
+<defs>
+<clipPath id="clip0_0_6">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>

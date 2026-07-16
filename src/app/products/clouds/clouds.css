@@ -1,0 +1,851 @@
+/* ============================================================
+   Alternate Clouds product page — /products/clouds
+   Design: Figma "Alt Clouds site update" (node 8-4 desktop, 84-141 mobile)
+   ============================================================ */
+
+@font-face {
+  font-family: 'Syne';
+  src: url('/fonts/Syne-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.ac-page {
+  --ac-blue: #000AFF;
+  --ac-blue-dark: #0000AF;
+  --ac-blue-500: #2F4DFF;
+  --ac-blue-100: #D5E6FF;
+  --ac-blue-950: #0A0E5C;
+  --ac-terracotta: #BE4200;
+  --ac-terra-800: #A33909;
+  --ac-offwhite: #FAF8F5;
+  --ac-slate: #475569;
+  --ac-ink: #0F172A;
+  --ac-border: #E2E8F0;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ac-offwhite);
+  font-family: 'Instrument Sans', sans-serif;
+  color: var(--ac-ink);
+}
+
+/* ---------- Buttons ---------- */
+.ac-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  border-radius: 32px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.ac-btn:focus-visible {
+  outline: 2px solid var(--ac-blue);
+  outline-offset: 3px;
+}
+
+.ac-btn-primary {
+  background-color: var(--ac-blue);
+  color: #FFFFFF;
+}
+
+.ac-btn-primary:hover {
+  background-color: var(--ac-blue-dark);
+}
+
+.ac-btn-outline {
+  background-color: #FFFFFF;
+  border: 1px solid var(--ac-blue);
+  color: var(--ac-blue);
+}
+
+.ac-btn-outline:hover {
+  background-color: rgba(0, 10, 255, 0.06);
+}
+
+.ac-btn-terra {
+  background-color: var(--ac-terra-800);
+  color: #FFFFFF;
+}
+
+.ac-btn-terra:hover {
+  background-color: var(--ac-terracotta);
+}
+
+.ac-btn-terra:focus-visible {
+  outline-color: #FFFFFF;
+}
+
+.ac-chevron-sm {
+  width: 10px;
+  height: 10px;
+}
+
+/* ---------- Helmet Banner ---------- */
+.ac-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 44px;
+  padding: 8px 20px;
+  background: linear-gradient(90deg, var(--ac-blue-500) 0%, var(--ac-terracotta) 100%);
+  color: #FFFFFF;
+  font-size: 14px;
+  text-align: center;
+}
+
+.ac-banner-text {
+  font-weight: 500;
+}
+
+.ac-banner-link {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+
+.ac-banner:hover .ac-banner-link {
+  text-decoration-thickness: 2px;
+}
+
+/* ---------- Navbar ---------- */
+.ac-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 80px;
+  background-color: var(--ac-offwhite);
+}
+
+.ac-navbar-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ac-navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.ac-nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ac-slate);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ac-nav-link:hover {
+  color: var(--ac-blue);
+}
+
+/* ---------- Hero ---------- */
+.ac-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding: 100px 80px 0;
+  background:
+    linear-gradient(180deg, rgba(213, 230, 255, 0) 31.73%, var(--ac-blue-100) 100%),
+    var(--ac-offwhite);
+  overflow: hidden;
+}
+
+.ac-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 840px;
+}
+
+.ac-hero-title-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.ac-hero-title {
+  font-family: 'Syne', 'Instrument Sans', sans-serif;
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 1.1;
+  color: var(--ac-blue);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ac-beta-pill {
+  position: absolute;
+  top: -9px;
+  right: -34px;
+  width: 61px;
+  height: 27px;
+}
+
+.ac-hero-subtitle {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ac-slate);
+  text-align: center;
+  max-width: 640px;
+}
+
+.ac-hero-actions {
+  display: flex;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+.ac-hero-mockup {
+  width: min(1100px, 100%);
+  aspect-ratio: 1100 / 368;
+  overflow: hidden;
+  background-color: var(--ac-offwhite);
+  border: 1px solid var(--ac-border);
+  border-left-width: 2px;
+  border-bottom: none;
+  border-radius: 24px 24px 0 0;
+  padding: 20px 8px 0;
+  filter: drop-shadow(0 0 16px rgba(10, 14, 92, 0.1));
+}
+
+.ac-hero-mockup-screen {
+  border-top: 8px solid #000000;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+.ac-hero-mockup-screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Mid-CTA (blue) sections ---------- */
+.ac-midcta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 120px 80px;
+  background-color: var(--ac-blue);
+  overflow: hidden;
+}
+
+.ac-midcta-reaper {
+  width: 304px;
+  height: auto;
+}
+
+.ac-midcta-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.ac-midcta-heading {
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: 500;
+}
+
+.ac-midcta-line {
+  display: block;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.ac-midcta-serif {
+  display: block;
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.6;
+}
+
+.ac-midcta-body {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ac-blue-100);
+  width: 100%;
+}
+
+.ac-midcta-body strong {
+  font-weight: 600;
+}
+
+.ac-orbs-mobile {
+  display: none;
+}
+
+/* ---------- Interactive Features ---------- */
+.ac-features {
+  position: relative;
+  padding: 120px;
+  background-color: var(--ac-offwhite);
+}
+
+.ac-features-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ac-orbs {
+  position: absolute;
+  left: 497px;
+  top: 92px;
+  width: 131px;
+  height: auto;
+  pointer-events: none;
+}
+
+.ac-features-left {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.ac-features-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 416px;
+}
+
+.ac-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ac-blue);
+}
+
+.ac-features-title {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ac-blue-950);
+}
+
+.ac-feature-list {
+  list-style: none;
+  margin: 64px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.ac-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.ac-feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 28px;
+  flex-shrink: 0;
+}
+
+.ac-feature-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.ac-feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ac-feature-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ac-ink);
+}
+
+.ac-feature-desc {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ac-slate);
+}
+
+.ac-feature-desc strong {
+  font-weight: 600;
+}
+
+.ac-features-diagram {
+  flex-shrink: 0;
+  width: min(700px, 52%);
+}
+
+.ac-features-diagram img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Take a deeper look ---------- */
+.ac-deeper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 80px;
+  background-color: var(--ac-blue-100);
+}
+
+.ac-deeper-title {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.2;
+  color: var(--ac-blue-950);
+}
+
+.ac-deeper-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ---------- Final CTA ---------- */
+.ac-finalcta-heading {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.ac-finalcta-serif {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ac-finalcta-sub {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ac-blue-100);
+  text-align: center;
+  width: 100%;
+}
+
+/* ---------- Footer ---------- */
+.ac-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 120px 80px 60px;
+  background-color: var(--ac-offwhite);
+}
+
+.ac-footer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.ac-footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 432px;
+}
+
+/* Brand rule: full wordmark lockup, never narrower than 280px */
+.ac-footer-wordmark {
+  width: 280px;
+  height: auto;
+  display: block;
+}
+
+.ac-footer-tagline {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ac-slate);
+}
+
+.ac-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ac-footer-social a {
+  display: inline-flex;
+  transition: opacity 0.15s ease;
+}
+
+.ac-footer-social a:hover {
+  opacity: 0.6;
+}
+
+.ac-footer-bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--ac-border);
+  padding-top: 40px;
+  font-size: 14px;
+  color: var(--ac-slate);
+}
+
+.ac-footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.ac-footer-links a {
+  color: var(--ac-slate);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ac-footer-links a:hover {
+  color: var(--ac-blue);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 1280px) {
+  .ac-hero-title {
+    font-size: 64px;
+  }
+
+  .ac-beta-pill {
+    right: -30px;
+  }
+
+  .ac-features {
+    padding: 100px 60px;
+  }
+
+  .ac-features-inner {
+    gap: 48px;
+  }
+
+  .ac-orbs {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ac-navbar {
+    padding: 0 40px;
+  }
+
+  .ac-hero {
+    padding: 80px 40px 0;
+  }
+
+  .ac-midcta {
+    padding: 100px 40px;
+  }
+
+  .ac-features {
+    padding: 80px 40px;
+  }
+
+  .ac-features-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 64px;
+  }
+
+  .ac-features-diagram {
+    width: 100%;
+    max-width: 620px;
+    align-self: center;
+  }
+
+  .ac-deeper {
+    flex-direction: column;
+    gap: 32px;
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .ac-footer {
+    padding: 80px 40px 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Banner — stacks to two lines (mobile frame 84:142) */
+  .ac-banner {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 20px;
+    font-size: 11px;
+    min-height: 46px;
+  }
+
+  /* Navbar — logo + Docs + Sign In only (mobile frame 84:145) */
+  .ac-navbar {
+    height: 64px;
+    padding: 0 20px;
+  }
+
+  .ac-navbar-logo img {
+    width: 32px;
+    height: 29px;
+  }
+
+  .ac-navbar-nav {
+    gap: 24px;
+  }
+
+  .ac-navbar-nav .ac-nav-link:nth-of-type(1),
+  .ac-navbar-nav .ac-nav-link:nth-of-type(2) {
+    display: none;
+  }
+
+  .ac-nav-link {
+    font-size: 14px;
+  }
+
+  .ac-nav-signin {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  /* Hero (mobile frame 84:155) */
+  .ac-hero {
+    padding: 40px 20px 0;
+    gap: 32px;
+  }
+
+  .ac-hero-content {
+    gap: 16px;
+    width: 100%;
+  }
+
+  .ac-hero-title-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ac-hero-title {
+    font-size: 40px;
+    white-space: normal;
+  }
+
+  .ac-beta-pill {
+    position: static;
+    width: 48px;
+    height: 21px;
+  }
+
+  .ac-hero-subtitle {
+    font-size: 20px;
+    line-height: 1.15;
+  }
+
+  .ac-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    padding-top: 8px;
+  }
+
+  .ac-hero-actions .ac-btn {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .ac-hero-mockup {
+    aspect-ratio: 350 / 241;
+    padding: 16px 8px 0;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .ac-hero-mockup-screen {
+    border-top-width: 6px;
+  }
+
+  /* Blue CTA sections (mobile frames 84:177, 84:245) */
+  .ac-midcta {
+    padding: 60px 20px;
+    gap: 24px;
+  }
+
+  .ac-orbs-mobile {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 93px;
+    height: auto;
+    pointer-events: none;
+  }
+
+  .ac-midcta-reaper {
+    width: 200px;
+  }
+
+  .ac-midcta-line {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .ac-midcta-serif {
+    font-size: 28px;
+    line-height: 1.5;
+  }
+
+  .ac-midcta-body {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .ac-midcta .ac-btn {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  /* Features (mobile frame 84:190) */
+  .ac-features {
+    padding: 60px 20px;
+  }
+
+  .ac-features-heading {
+    gap: 8px;
+  }
+
+  .ac-eyebrow {
+    font-size: 12px;
+  }
+
+  .ac-features-title {
+    font-size: 28px;
+  }
+
+  .ac-feature-list {
+    margin-top: 32px;
+    gap: 24px;
+  }
+
+  .ac-feature {
+    gap: 12px;
+  }
+
+  .ac-feature-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ac-feature-icon img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ac-feature-title {
+    font-size: 16px;
+  }
+
+  .ac-feature-desc {
+    font-size: 14px;
+  }
+
+  .ac-features-inner {
+    gap: 32px;
+  }
+
+  /* Deeper look (mobile frame 84:222) */
+  .ac-deeper {
+    padding: 60px 20px;
+    gap: 32px;
+  }
+
+  .ac-deeper-title {
+    font-size: 28px;
+  }
+
+  .ac-deeper-buttons .ac-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  /* Final CTA */
+  .ac-finalcta-heading {
+    font-size: 28px;
+  }
+
+  .ac-finalcta-sub {
+    font-size: 16px;
+  }
+
+  /* Footer (mobile frame 84:253) */
+  .ac-footer {
+    padding: 60px 20px 40px;
+    gap: 32px;
+  }
+
+  .ac-footer-top {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .ac-footer-wordmark {
+    width: min(280px, 100%);
+  }
+
+  .ac-footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 24px;
+    font-size: 12px;
+  }
+
+  .ac-footer-links {
+    gap: 16px;
+  }
+}

@@ -18,7 +18,7 @@ export default function ProductsPage() {
         <p className="products-intro">We are dedicated to creating approachable AI, Agentic technologies, and the tools that support&nbsp;them.</p>
         <div className="products-list-content">
           {/* Alternate Clouds Card */}
-          <a href="/products/alternate-clouds" className="product-card-link">
+          <a href="/products/clouds" className="product-card-link">
             <div className="product-card web-services-card">
               <div className="card-header">
                 <div className="title-geo-row">
