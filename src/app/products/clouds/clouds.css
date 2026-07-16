@@ -318,7 +318,7 @@
 
 .ac-orbs {
   position: absolute;
-  left: 497px;
+  left: 457px;
   top: 92px;
   width: 131px;
   height: auto;
@@ -407,7 +407,11 @@
 
 .ac-features-diagram {
   flex-shrink: 0;
-  width: min(700px, 52%);
+  width: min(700px, 58%);
+}
+
+.ac-mobile-only {
+  display: none;
 }
 
 .ac-features-diagram img {
@@ -733,6 +737,19 @@
   .ac-midcta-line {
     font-size: 26px;
     line-height: 1.25;
+  }
+
+  /* Mobile frame 84:183 uses shortened copy */
+  .ac-desktop-only {
+    display: none;
+  }
+
+  .ac-mobile-only {
+    display: block;
+  }
+
+  span.ac-mobile-only {
+    display: inline;
   }
 
   .ac-midcta-serif {

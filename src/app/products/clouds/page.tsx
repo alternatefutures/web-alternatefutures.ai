@@ -86,14 +86,18 @@ export default function CloudsPage() {
           <div className="ac-midcta-copy">
             <h2 className="ac-midcta-heading">
               <span className="ac-midcta-line">Compute costs kill momentum.</span>
-              <span className="ac-midcta-line">Cheap workarounds add complexity.</span>
+              <span className="ac-midcta-line ac-desktop-only">Cheap workarounds add complexity.</span>
               <span className="ac-midcta-serif">We fixed both.</span>
             </h2>
-            <p className="ac-midcta-body">
+            <p className="ac-midcta-body ac-desktop-only">
               Cost is the hardest part of building, testing, and scaling anything AI — we know, because it kept
               throttling us too. So we built <strong>Alternate Clouds: real savings on compute, one-command deploys,
               no vendor lock-in, straightforward UX</strong>. Made by builders, for builders. The future just got
               cheaper (<em>and easier</em>) to ship.
+            </p>
+            <p className="ac-midcta-body ac-mobile-only">
+              Cost is the hardest part of building, testing, and scaling AI. Alternate Clouds brings real savings
+              and one-command deploys.
             </p>
           </div>
           <a href={DEMO_URL} className="ac-btn ac-btn-terra" target="_blank" rel="noopener noreferrer">
