@@ -238,7 +238,7 @@ export default function CloudsPage() {
               <img src="/products/clouds/icon-linkedin.svg" alt="" width={20} height={20} />
             </a>
             <a href="https://discord.gg/YW6zZfZZUU" aria-label="Discord" target="_blank" rel="noopener noreferrer">
-              <img src="/products/clouds/icon-circle-x.svg" alt="" width={20} height={20} />
+              <img src="/products/clouds/icon-discord.svg" alt="" width={20} height={20} />
             </a>
           </div>
         </div>
