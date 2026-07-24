@@ -28,7 +28,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="hero-section">
         <BrandWordmark height={100} className="title-graphic" />
-        <p className="tagline">Building the infrastructure for human-computer alignment.</p>
+        <p className="tagline">Welcome to the future</p>
         <img
           src="/landing/decorative-top.svg"
           alt=""
