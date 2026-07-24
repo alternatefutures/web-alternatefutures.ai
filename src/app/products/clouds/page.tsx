@@ -196,7 +196,7 @@ export default function CloudsPage() {
         <section className="ac-midcta ac-finalcta">
           <div className="ac-midcta-copy">
             <h2 className="ac-finalcta-heading">
-              Welcome to the <span className="ac-finalcta-serif">future.</span>
+              The future, <span className="ac-finalcta-serif">deployed.</span>
             </h2>
             <p className="ac-finalcta-sub">See how much you can get done with more affordable compute.</p>
           </div>
@@ -220,7 +220,7 @@ export default function CloudsPage() {
                 height={62}
               />
             </a>
-            <p className="ac-footer-tagline">The future, deployed.</p>
+            <p className="ac-footer-tagline">Welcome to the future</p>
           </div>
           <div className="ac-footer-social">
             <a href="https://x.com/AltFuturesAI" aria-label="Twitter/X" target="_blank" rel="noopener noreferrer">
