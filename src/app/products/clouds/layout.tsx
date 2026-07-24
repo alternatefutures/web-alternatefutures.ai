@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 
-const CLOUDS_TITLE = 'Alternate Clouds | Deploy Anywhere. Pay Less. Stay Online.'
-const CLOUDS_DESCRIPTION = 'Ship apps on distributed infrastructure in minutes. Lower costs, always-on uptime, and developer-first tooling. Host anything on distributed nodes keeping you up even when centralized services are down. No surprise charges, no rate limits.'
+const CLOUDS_TITLE = 'Alternate Clouds | 30–80% Cheaper Than Big Tech. One Command to Deploy.'
+const CLOUDS_DESCRIPTION =
+  'Alternate Clouds: real savings on compute, one-command deploys, no vendor lock-in, straightforward UX. 30–80% cheaper than big tech like AWS or Vercel. Flat pricing, no surprises. Made by builders, for builders.'
 
 export const metadata: Metadata = {
   title: 'Alternate Clouds',
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: 'website',
-    url: '/products/alternate-clouds',
+    url: '/products/clouds',
     title: CLOUDS_TITLE,
     description: CLOUDS_DESCRIPTION,
     siteName: 'Alternate Futures',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
         url: 'https://www.alternatefutures.ai/og-image-alternate-clouds.png?v=2',
         width: 1200,
         height: 630,
-        alt: 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.',
+        alt: 'Alternate Clouds — 30–80% cheaper than big tech. One command to deploy.',
         type: 'image/png',
       },
     ],
@@ -35,13 +36,13 @@ export const metadata: Metadata = {
         url: 'https://www.alternatefutures.ai/og-image-alternate-clouds.png?v=2',
         width: 1200,
         height: 630,
-        alt: 'Alternate Clouds — A more affordable, more stable way to deploy everything from sites to AI agents.',
+        alt: 'Alternate Clouds — 30–80% cheaper than big tech. One command to deploy.',
       },
     ],
   },
 }
 
-export default function AlternateCloudsLayout({
+export default function CloudsLayout({
   children,
 }: {
   children: React.ReactNode

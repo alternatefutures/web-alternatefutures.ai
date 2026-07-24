@@ -14,6 +14,20 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/products/alternate-clouds',
+        destination: '/products/clouds',
+        permanent: true,
+      },
+      {
+        source: '/products/alternate-clouds/:path*',
+        destination: '/products/clouds/:path*',
+        permanent: true,
+      },
+    ]
+  },
   // Security headers (also defined in public/_headers for deployment)
   async headers() {
     return [
