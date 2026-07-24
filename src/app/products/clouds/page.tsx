@@ -172,7 +172,7 @@ export default function CloudsPage() {
               <ChevronRight />
             </a>
             <a
-              href="https://github.com/alternatefutures/package-cloud-cli"
+              href="https://github.com/alternatefutures/alternate-clouds-cli"
               className="ac-btn ac-btn-outline"
               target="_blank"
               rel="noopener noreferrer"
