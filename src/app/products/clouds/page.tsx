@@ -220,7 +220,7 @@ export default function CloudsPage() {
                 height={62}
               />
             </a>
-            <p className="ac-footer-tagline">Building the infrastructure for human-computer alignment.</p>
+            <p className="ac-footer-tagline">The future, deployed.</p>
           </div>
           <div className="ac-footer-social">
             <a href="https://x.com/AltFuturesAI" aria-label="Twitter/X" target="_blank" rel="noopener noreferrer">
