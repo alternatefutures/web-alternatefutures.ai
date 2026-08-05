@@ -51,10 +51,10 @@ export default function LandingPage() {
             Deploy anything on distributed infrastructure in minutes with{' '}
             <span className="highlight">Alternate Clouds</span>.
           </p>
-          <button className="cta-button" onClick={() => openModal('request-access')}>
-            Request access
+          <a href="https://clouds.alternatefutures.ai" className="cta-button">
+            Start Trial
             <img src="/landing/star.svg" alt="" className="button-star" />
-          </button>
+          </a>
         </div>
       </section>
 
