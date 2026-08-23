@@ -4,11 +4,13 @@
 User-agent: *
 Allow: /
 
-# Disallow crawling of potential future API endpoints
 Disallow: /api/
+Disallow: /admin/
+Disallow: /login
 
 # Sitemap
-Sitemap: https://alternatefutures.ai/sitemap.xml
+Sitemap: https://www.alternatefutures.ai/sitemap.xml
+Host: https://www.alternatefutures.ai
 
 # Privacy-respecting crawlers are welcome
 # We don't use any tracking or analytics

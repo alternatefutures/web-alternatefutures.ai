@@ -3,10 +3,10 @@ import '../styles/design-tokens.css'
 import '../styles/geometric-shapes.css'
 import { Metadata } from 'next'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://alternatefutures.ai'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.alternatefutures.ai'
 const SITE_NAME = 'Alternate Futures'
-const DEFAULT_TITLE = 'Alternate Futures | Human-Computer Alignment'
-const DEFAULT_DESCRIPTION = 'Building the infrastructure that ensures AI serves human flourishing. Deploy on decentralized cloud with lower costs and always-on uptime.'
+const DEFAULT_TITLE = 'Alternate Futures | AI Infrastructure, Cloud & Education'
+const DEFAULT_DESCRIPTION = 'Build and deploy AI systems with distributed cloud infrastructure, CPU, scalable GPU, storage, education, and human-centered AI expertise from Alternate Futures.'
 
 export const metadata: Metadata = {
   title: {
@@ -14,6 +14,31 @@ export const metadata: Metadata = {
     template: '%s | Alternate Futures',
   },
   description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: 'technology',
+  keywords: [
+    'AI infrastructure',
+    'distributed cloud',
+    'GPU cloud',
+    'CPU cloud',
+    'AI agent infrastructure',
+    'AI education',
+    'human-centered AI',
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   referrer: 'no-referrer',
   metadataBase: new URL(SITE_URL),
 
@@ -27,7 +52,7 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: 'https://www.alternatefutures.ai/og-image.png?v=2',
+        url: '/og-image.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Alternate Futures — Welcome to the future',
@@ -45,7 +70,7 @@ export const metadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: 'https://www.alternatefutures.ai/og-image.png?v=2',
+        url: '/og-image.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Alternate Futures — Welcome to the future',

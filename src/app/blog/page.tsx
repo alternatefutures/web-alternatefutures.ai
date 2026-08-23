@@ -8,10 +8,27 @@ interface BlogPageProps {
 
 const POSTS_PER_PAGE = 12
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description:
-    'Insights on decentralized cloud, AI agents, Web3 hosting, and the future of infrastructure from the Alternate Futures team.',
+export async function generateMetadata({
+  searchParams,
+}: BlogPageProps): Promise<Metadata> {
+  const params = await searchParams
+  const page = Math.max(1, parseInt(params.page || '1', 10))
+  const filtered = Boolean(params.tag)
+  const canonical = page > 1 ? `/blog?page=${page}` : '/blog'
+
+  return {
+    title: page > 1 ? `Blog — Page ${page}` : 'Blog',
+    description:
+      'Insights on AI infrastructure, cloud computing, agent systems, Web3 hosting, and human-computer alignment from Alternate Futures.',
+    alternates: { canonical: filtered ? '/blog' : canonical },
+    robots: filtered ? { index: false, follow: true } : undefined,
+    openGraph: {
+      title: page > 1 ? `Alternate Futures Blog — Page ${page}` : 'Alternate Futures Blog',
+      description:
+        'Practical writing about AI infrastructure, cloud computing, agent systems, and human-computer alignment.',
+      url: canonical,
+    },
+  }
 }
 
 function formatDate(dateStr: string | null): string {

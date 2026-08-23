@@ -38,11 +38,13 @@ export async function generateMetadata({
 
   const title = post.seoTitle || post.title
   const description = post.seoDescription || post.excerpt || ''
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alternatefutures.ai'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.alternatefutures.ai'
+  const postUrl = `${siteUrl}/blog/${post.slug}`
 
   return {
     title,
     description,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title,
       description,
@@ -53,7 +55,7 @@ export async function generateMetadata({
       images: post.coverImage
         ? [{ url: post.coverImage, width: 1200, height: 630 }]
         : undefined,
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: postUrl,
     },
     twitter: {
       card: 'summary_large_image',
@@ -73,13 +75,38 @@ export default async function BlogPostPage({ params }: PostPageProps) {
   }
 
   const htmlContent = marked.parse(post.content)
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://alternatefutures.ai'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.alternatefutures.ai'
   const postUrl = `${siteUrl}/blog/${post.slug}`
   const shareText = encodeURIComponent(post.title)
   const shareUrl = encodeURIComponent(postUrl)
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.seoDescription || post.excerpt || undefined,
+    image: post.coverImage ? [post.coverImage] : undefined,
+    datePublished: post.publishedAt || undefined,
+    author: post.authorName
+      ? { '@type': 'Person', name: post.authorName }
+      : { '@type': 'Organization', name: 'Alternate Futures' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Alternate Futures',
+      url: siteUrl,
+      logo: { '@type': 'ImageObject', url: `${siteUrl}/landing/logo.svg` },
+    },
+    mainEntityOfPage: postUrl,
+  }
+
   return (
     <article className="blog-post-detail">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c'),
+        }}
+      />
       <Link href="/blog" className="blog-post-back">
         ← Back to Blog
       </Link>

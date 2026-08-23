@@ -5,6 +5,11 @@ import './admin.css'
 
 export const metadata = {
   title: 'Admin | Alternate Futures',
+  robots: {
+    index: false,
+    follow: false,
+    noarchive: true,
+  },
 }
 
 export default async function AdminLayout({

@@ -4,8 +4,9 @@ import Footer from '@/components/Footer'
 import './products.css'
 
 export const metadata = {
-  title: 'Products - Alternate Futures',
-  description: 'Approachable AI, Agentic technologies, and the tools that support them. Explore our decentralized web services and AI consulting solutions.',
+  title: 'AI Products and Distributed Cloud Infrastructure',
+  description: 'Explore Alternate Clouds and the AI products Alternate Futures is building for application hosting, agent infrastructure, CPU, GPU, storage, and social commerce.',
+  alternates: { canonical: '/products' },
 }
 
 export default function ProductsPage() {
@@ -15,7 +16,7 @@ export default function ProductsPage() {
 
       <div className="products-scrollable">
         <section className="products-list-section">
-        <p className="products-intro">We are dedicated to creating approachable AI, Agentic technologies, and the tools that support&nbsp;them.</p>
+        <h1 className="products-intro">Approachable AI products and infrastructure built for real deployment.</h1>
         <div className="products-list-content">
           {/* Alternate Clouds Card */}
           <a href="/products/clouds" className="product-card-link">

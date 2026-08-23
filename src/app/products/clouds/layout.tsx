@@ -7,6 +7,9 @@ const CLOUDS_DESCRIPTION =
 export const metadata: Metadata = {
   title: 'Alternate Clouds',
   description: CLOUDS_DESCRIPTION,
+  alternates: {
+    canonical: '/products/clouds',
+  },
 
   openGraph: {
     type: 'website',

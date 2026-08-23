@@ -4,8 +4,9 @@ import Footer from '@/components/Footer'
 import './consulting.css'
 
 export const metadata = {
-  title: 'AI Consulting - Alternate Futures',
-  description: 'Expert AI consulting services to help your organization navigate the future of technology. From strategy to implementation, we guide you through AI transformation.',
+  title: 'AI Agent, AEO and Human-Centered AI Consulting',
+  description: 'Work with Alternate Futures on AI agent strategy, implementation, agent experience design, AEO/GEO, model workflows, and human-centered AI systems.',
+  alternates: { canonical: '/consulting' },
 }
 
 export default function ConsultingPage() {
