@@ -66,6 +66,13 @@ const  Footer: React.FC<FooterProps> = ({ variant = 'cream' }) => {
             <a href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>Privacy Policy</a>
             <span style={{ margin: '0 12px' }}>·</span>
             <a href="/terms" style={{ color: 'inherit', textDecoration: 'underline' }}>Terms of Service</a>
+            <span style={{ margin: '0 12px' }}>·</span>
+            <a
+              href="https://answerready.alternatefutures.ai/?utm_source=alternate-futures&utm_medium=referral&utm_campaign=network-footer"
+              style={{ color: 'inherit', textDecoration: 'underline' }}
+            >
+              AnswerReady
+            </a>
           </p>
         </div>
         <div className="footer-right">
