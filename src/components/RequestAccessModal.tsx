@@ -27,6 +27,10 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
+  useEffect(() => {
+    setFormData((current) => ({ ...current, source }))
+  }, [source])
+
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -107,8 +111,14 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
           ×
         </button>
 
-        <h2 className="modal-title" id="request-access-title">Request Access</h2>
-        <p className="modal-subtitle">Fill out the form below and we'll get back to you soon.</p>
+        <h2 className="modal-title" id="request-access-title">
+          {source === 'get-in-touch' ? 'Talk with Alternate Futures' : 'Request Access'}
+        </h2>
+        <p className="modal-subtitle">
+          {source === 'get-in-touch'
+            ? 'Tell us what you are building and where you need help.'
+            : "Fill out the form below and we'll get back to you soon."}
+        </p>
 
         <form onSubmit={handleSubmit} className="modal-form">
           <div className="form-group">
