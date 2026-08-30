@@ -268,37 +268,40 @@
 .answerready-card {
   position: relative;
   display: grid;
-  grid-template-rows: 52% 48%;
+  grid-template-rows: 48% 52%;
   border-color: #000AFF;
-  background: #000AFF;
+  background: #F8F5EE;
 }
 
 .answerready-card-header {
   position: relative;
   overflow: hidden;
-  padding: 32px 28px;
-  background: #000AFF;
-  color: #F8F5EE;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 92% 18%, rgba(0, 10, 255, 0.08), transparent 30%),
+    #F8F5EE;
+  color: #000AFF;
 }
 
 .answerready-label {
   position: relative;
   z-index: 2;
   font-family: "Instrument Sans", sans-serif;
-  font-size: 11px;
+  color: #BE4200;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
 }
 
 .answerready-title {
   position: relative;
   z-index: 2;
-  margin-top: 42px;
+  margin-top: 31px;
   font-family: "Instrument Sans", sans-serif;
-  font-size: 43px;
-  font-weight: 600;
-  letter-spacing: -0.05em;
-  line-height: 0.95;
+  font-size: 46px;
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.88;
 }
 
 .answerready-title span {
@@ -307,13 +310,23 @@
   font-weight: 400;
 }
 
+.answerready-tagline {
+  position: relative;
+  z-index: 2;
+  max-width: 240px;
+  margin-top: 22px;
+  color: #4A463F;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
 .answerready-orbit {
   position: absolute;
-  right: -58px;
-  bottom: -72px;
-  width: 220px;
-  height: 220px;
-  border: 1px solid rgba(255, 199, 170, 0.65);
+  right: -72px;
+  top: -64px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(0, 10, 255, 0.22);
   border-radius: 50%;
 }
 
@@ -321,7 +334,7 @@
 .answerready-orbit::after {
   content: '';
   position: absolute;
-  border: 1px solid rgba(248, 245, 238, 0.28);
+  border: 1px solid rgba(0, 10, 255, 0.12);
   border-radius: 50%;
 }
 
@@ -335,39 +348,77 @@
 
 .answerready-orbit span {
   position: absolute;
-  top: 31px;
-  left: 18px;
-  width: 24px;
-  height: 24px;
+  top: 142px;
+  left: 5px;
+  width: 22px;
+  height: 22px;
   background: #FFC7AA;
   clip-path: polygon(50% 0, 61% 37%, 100% 50%, 61% 63%, 50% 100%, 39% 63%, 0 50%, 39% 37%);
 }
 
 .answerready-card-content {
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 30px 28px 26px;
-  background: #FFC7AA;
-  color: #1A1815;
+  gap: 10px;
+  padding: 22px 24px 20px;
+  overflow: hidden;
+  background: #000AFF;
+  color: #F8F5EE;
 }
 
-.answerready-card-content p {
+.answerready-card-content::before {
+  content: '';
+  position: absolute;
+  right: -72px;
+  bottom: -95px;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+}
+
+.answerready-question,
+.answerready-answer {
+  position: relative;
+  z-index: 2;
+  padding: 12px 14px;
+}
+
+.answerready-question {
+  margin-right: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.answerready-answer {
+  margin-left: 28px;
+  background: #F8F5EE;
+  color: #000AFF;
+}
+
+.answerready-question span,
+.answerready-answer span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.answerready-question p,
+.answerready-answer p {
   font-family: "Instrument Sans", sans-serif;
-  font-size: 22px;
+  font-size: 13px;
   font-weight: 500;
-  line-height: 1.15;
-}
-
-.answerready-card-content strong {
-  margin-top: 16px;
-  font-size: 14px;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .answerready-card-link {
+  position: relative;
+  z-index: 2;
   margin-top: auto;
-  color: #000AFF;
-  font-size: 14px;
+  color: #F8F5EE;
+  font-size: 13px;
   font-weight: 600;
 }
 

@@ -46,15 +46,22 @@ export default function ProductsPage() {
           <a href="/products/answerready" className="product-card-link">
             <div className="product-card answerready-card">
               <div className="answerready-card-header">
-                <p className="answerready-label">AI SEARCH OPTIMIZATION</p>
+                <p className="answerready-label">AN ALTERNATE FUTURES PRODUCT</p>
                 <h2 className="answerready-title">Answer<span>Ready</span></h2>
+                <p className="answerready-tagline">Make your best pages answer ready.</p>
                 <div className="answerready-orbit" aria-hidden="true">
                   <span></span>
                 </div>
               </div>
               <div className="answerready-card-content">
-                <p>Turn the pages closest to revenue into clear, source-backed answers.</p>
-                <strong>Free homepage checker + publish-ready five-page Fix Pack.</strong>
+                <div className="answerready-question">
+                  <span>BUYER QUESTION</span>
+                  <p>What does it cost, and what do I receive?</p>
+                </div>
+                <div className="answerready-answer">
+                  <span>PUBLISH-READY ANSWER</span>
+                  <p>Price, scope, evidence, and the next step.</p>
+                </div>
                 <span className="answerready-card-link">Explore AnswerReady ↗</span>
               </div>
             </div>
