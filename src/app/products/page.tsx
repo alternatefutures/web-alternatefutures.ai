@@ -20,19 +20,24 @@ export default function ProductsPage() {
         <div className="products-list-content">
           {/* Alternate Clouds Card */}
           <a href="/products/clouds" className="product-card-link">
-            <div className="product-card web-services-card">
-              <div className="card-header">
-                <div className="title-geo-row">
-                  <h2 className="web-services-title">Alternate Clouds</h2>
-                  <img src="/assets/web_services_geo_cluster.svg" alt="Alternate Clouds" className="geo-cluster" />
+            <div className="product-card alternate-clouds-card">
+              <div className="alternate-clouds-card-copy">
+                <p className="alternate-clouds-label">DISTRIBUTED CLOUD INFRASTRUCTURE</p>
+                <div className="alternate-clouds-title-row">
+                  <h2>Alternate Clouds</h2>
+                  <span className="alternate-clouds-beta">BETA</span>
                 </div>
+                <p className="alternate-clouds-tagline">30–80% cheaper than big tech. One command to deploy.</p>
+                <span className="alternate-clouds-card-link">Explore Alternate Clouds ↗</span>
               </div>
-              <svg className="wavy-divider" viewBox="0 0 400 48" preserveAspectRatio="none">
-                <path d="M0,24 Q25,0 50,24 T100,24 T150,24 T200,24 T250,24 T300,24 T350,24 T400,24 L400,48 L0,48 Z" fill="#FFC7AA"/>
-              </svg>
-              <div className="card-content peach-section">
-                <p className="bullet-text">Ship apps on distributed infrastructure in minutes.</p>
-                <p className="bullet-text">Host anything on distributed nodes keeping you up even when centralized services are down.</p>
+              <div className="alternate-clouds-preview">
+                <div className="alternate-clouds-preview-frame">
+                  <img
+                    src="/products/clouds/hero-mockup.png"
+                    alt="Alternate Clouds dashboard with a live deployment"
+                  />
+                </div>
+                <span className="alternate-clouds-orbit" aria-hidden="true"></span>
               </div>
             </div>
           </a>

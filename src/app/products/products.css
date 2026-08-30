@@ -73,6 +73,130 @@
   box-shadow: 0 8px 24px rgba(0, 38, 255, 0.15);
 }
 
+/* Alternate Clouds Card — mirrors the product landing page */
+.alternate-clouds-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: 55% 45%;
+  border-color: #000AFF;
+  background: #F8F7F4;
+}
+
+.alternate-clouds-card-copy {
+  position: relative;
+  z-index: 2;
+  padding: 28px 28px 22px;
+  background: #F8F7F4;
+}
+
+.alternate-clouds-label {
+  color: #4868D8;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.alternate-clouds-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 30px;
+}
+
+.alternate-clouds-title-row h2 {
+  color: #000AFF;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+
+.alternate-clouds-beta {
+  flex: 0 0 auto;
+  margin-top: -7px;
+  padding: 3px 8px;
+  border: 1.5px solid #000AFF;
+  border-radius: 999px;
+  color: #000AFF;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.alternate-clouds-tagline {
+  max-width: 280px;
+  margin-top: 20px;
+  color: #4A5060;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.alternate-clouds-card-link {
+  position: absolute;
+  left: 28px;
+  bottom: 18px;
+  color: #000AFF;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.alternate-clouds-preview {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 20px 0;
+  background:
+    linear-gradient(180deg, rgba(213, 230, 255, 0) 0%, #C8D9F7 100%),
+    #EEF4FF;
+}
+
+.alternate-clouds-preview::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 10, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 10, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.alternate-clouds-preview-frame {
+  position: relative;
+  z-index: 2;
+  height: 190px;
+  overflow: hidden;
+  border: 7px solid #FFFFFF;
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  background: #0F1118;
+  box-shadow: 0 10px 30px rgba(31, 62, 121, 0.24);
+}
+
+.alternate-clouds-preview-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+
+.alternate-clouds-orbit {
+  position: absolute;
+  z-index: 1;
+  right: -52px;
+  top: -55px;
+  width: 160px;
+  height: 160px;
+  border: 1px solid rgba(0, 10, 255, 0.24);
+  border-radius: 50%;
+}
+
+.alternate-clouds-orbit::after {
+  content: '';
+  position: absolute;
+  inset: 32px;
+  border: 1px solid rgba(0, 10, 255, 0.16);
+  border-radius: 50%;
+}
+
 /* Web Services Card */
 .web-services-card {
   position: relative;
