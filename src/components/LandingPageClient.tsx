@@ -31,6 +31,7 @@ const pathways = [
       'Run agent services, tools, memory, and private endpoints on infrastructure you can actually operate.',
     keywords: ['AI agent infrastructure', 'private services'],
     href: '/products/clouds',
+    cta: 'Explore agent infrastructure',
   },
   {
     number: '02',
@@ -39,6 +40,7 @@ const pathways = [
       'Move model inference, training experiments, and accelerated workloads onto scalable GPU compute.',
     keywords: ['GPU cloud', 'AI inference'],
     href: '/products/clouds',
+    cta: 'Explore scalable GPU',
   },
   {
     number: '03',
@@ -47,6 +49,7 @@ const pathways = [
       'Deploy APIs, workers, web applications, and the ordinary services every serious AI system still needs.',
     keywords: ['CPU cloud', 'application hosting'],
     href: '/products/clouds',
+    cta: 'Explore CPU deployment',
   },
   {
     number: '04',
@@ -54,8 +57,9 @@ const pathways = [
     description:
       'Keep artifacts, data, and application state close to the workloads that use them.',
     keywords: ['cloud storage', 'data infrastructure'],
-    href: DOCS_URL,
+    href: `${DOCS_URL}/guides/storage`,
     external: true,
+    cta: 'Open the storage guide',
   },
   {
     number: '05',
@@ -63,7 +67,9 @@ const pathways = [
     description:
       'Design responsive AI experiences that divide work intelligently between the browser, edge, and cloud.',
     keywords: ['edge AI', 'browser AI'],
-    href: '/blog',
+    href: `${DOCS_URL}/guides/functions`,
+    external: true,
+    cta: 'Open the edge functions guide',
   },
   {
     number: '06',
@@ -71,8 +77,9 @@ const pathways = [
     description:
       'Take a hands-on course and finish with a working project—not a folder of slides.',
     keywords: ['AI education', 'hands-on workshops'],
-    href: EDUCATION_URL,
+    href: `${EDUCATION_URL}/#programs`,
     external: true,
+    cta: 'Explore the pathways',
   },
 ]
 
@@ -255,7 +262,7 @@ export default function LandingPageClient({
                         <li key={keyword}>{keyword}</li>
                       ))}
                     </ul>
-                    <span className="home-card-link">Follow this path <Arrow /></span>
+                    <span className="home-card-link">{pathway.cta} <Arrow /></span>
                   </>
                 )
 
