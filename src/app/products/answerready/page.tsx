@@ -32,12 +32,12 @@ const faqs = [
   {
     question: 'What is included in the Fix Pack?',
     answer:
-      'The one-time $149 Fix Pack covers five high-value pages and includes rewritten answer blocks, page-specific structured data, a source and proof-gap checklist, and a prioritized 30-day implementation map.',
+      'The $69 founding Fix Pack covers five high-value pages and includes rewritten answer blocks, page-specific structured data, a source and proof-gap checklist, and a prioritized 30-day implementation map. Five founding packs are available.',
   },
   {
     question: 'Can Alternate Futures implement the changes?',
     answer:
-      'Yes. Implementation and launch on Alternate Clouds can be scoped separately after the Fix Pack. Hosting is never added automatically to the $149 purchase.',
+      'Yes. Implementation and launch on Alternate Clouds can be scoped separately after the Fix Pack. Hosting is never added automatically to the $69 purchase.',
   },
 ]
 
@@ -55,7 +55,7 @@ const structuredData = {
       offers: {
         '@type': 'Offer',
         name: 'AnswerReady Fix Pack',
-        price: '149',
+        price: '69',
         priceCurrency: 'USD',
       },
     },
@@ -104,7 +104,7 @@ export default function AnswerReadyPage() {
                   Check your homepage free <Arrow />
                 </a>
                 <a className="ar-button ar-button-outline" href={`${ANSWERREADY_URL}/ai-seo-audit-service`}>
-                  Get the $149 Fix Pack
+                  Get the $69 Fix Pack
                 </a>
               </div>
               <p className="ar-microcopy">
@@ -190,7 +190,7 @@ export default function AnswerReadyPage() {
             <article className="ar-price-card">
               <div className="ar-price-top">
                 <span>AnswerReady Fix Pack</span>
-                <p><strong>$149</strong> one time</p>
+                <p><strong>$69</strong> one time</p>
               </div>
               <ul>
                 <li>AI-crawl and entity clarity review</li>
@@ -222,7 +222,7 @@ export default function AnswerReadyPage() {
               <article className="ar-publish-card">
                 <span>PUBLISH</span>
                 <p>
-                  “AnswerReady costs $149 for a one-time, five-page
+                  “AnswerReady costs $69 for a one-time, five-page
                   implementation pack. It includes rewritten answer blocks,
                   page-specific schema, source gaps, and a 30-day action map.”
                 </p>
