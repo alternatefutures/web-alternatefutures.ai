@@ -33,10 +33,10 @@
 }
 
 .products-list-content {
-  max-width: 1120px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  gap: 64px;
+  gap: 32px;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -138,6 +138,113 @@
 
 .bullet-text:last-child {
   margin-bottom: 0;
+}
+
+/* AnswerReady Card */
+.answerready-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: 52% 48%;
+  border-color: #000AFF;
+  background: #000AFF;
+}
+
+.answerready-card-header {
+  position: relative;
+  overflow: hidden;
+  padding: 32px 28px;
+  background: #000AFF;
+  color: #F8F5EE;
+}
+
+.answerready-label {
+  position: relative;
+  z-index: 2;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.answerready-title {
+  position: relative;
+  z-index: 2;
+  margin-top: 42px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 43px;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.answerready-title span {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.answerready-orbit {
+  position: absolute;
+  right: -58px;
+  bottom: -72px;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(255, 199, 170, 0.65);
+  border-radius: 50%;
+}
+
+.answerready-orbit::before,
+.answerready-orbit::after {
+  content: '';
+  position: absolute;
+  border: 1px solid rgba(248, 245, 238, 0.28);
+  border-radius: 50%;
+}
+
+.answerready-orbit::before {
+  inset: 28px;
+}
+
+.answerready-orbit::after {
+  inset: 66px;
+}
+
+.answerready-orbit span {
+  position: absolute;
+  top: 31px;
+  left: 18px;
+  width: 24px;
+  height: 24px;
+  background: #FFC7AA;
+  clip-path: polygon(50% 0, 61% 37%, 100% 50%, 61% 63%, 50% 100%, 39% 63%, 0 50%, 39% 37%);
+}
+
+.answerready-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px 26px;
+  background: #FFC7AA;
+  color: #1A1815;
+}
+
+.answerready-card-content p {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.answerready-card-content strong {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.answerready-card-link {
+  margin-top: auto;
+  color: #000AFF;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 /* Printshot Card */

@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Header from '@/components/Header'
 import './clouds.css'
 
 const APP_URL = 'https://clouds.alternatefutures.ai'
@@ -31,20 +32,7 @@ export default function CloudsPage() {
         <span className="ac-banner-link">Join our public beta today!</span>
       </a>
 
-      {/* Navbar */}
-      <header className="ac-navbar">
-        <a href="/" className="ac-navbar-logo" aria-label="Alternate Futures home">
-          <Image src="/products/clouds/af-mark.svg" alt="Alternate Futures" width={50} height={46} priority />
-        </a>
-        <nav className="ac-navbar-nav" aria-label="Main navigation">
-          <a href="/products" className="ac-nav-link">Products</a>
-          <a href="/consulting" className="ac-nav-link">Consulting</a>
-          <a href={DOCS_URL} className="ac-nav-link" target="_blank" rel="noopener noreferrer">Docs</a>
-          <a href={APP_URL} className="ac-btn ac-btn-primary ac-nav-signin" target="_blank" rel="noopener noreferrer">
-            Sign In
-          </a>
-        </nav>
-      </header>
+      <Header activePage="products" />
 
       <main>
         {/* Hero Section */}

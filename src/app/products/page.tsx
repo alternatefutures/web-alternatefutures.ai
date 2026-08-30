@@ -5,7 +5,7 @@ import './products.css'
 
 export const metadata = {
   title: 'AI Products and Distributed Cloud Infrastructure',
-  description: 'Explore Alternate Clouds and the AI products Alternate Futures is building for application hosting, agent infrastructure, CPU, GPU, storage, and social commerce.',
+  description: 'Explore Alternate Clouds, AnswerReady, and the AI products Alternate Futures is building for infrastructure, AI search optimization, deployment, and social commerce.',
   alternates: { canonical: '/products' },
 }
 
@@ -33,6 +33,24 @@ export default function ProductsPage() {
               <div className="card-content peach-section">
                 <p className="bullet-text">Ship apps on distributed infrastructure in minutes.</p>
                 <p className="bullet-text">Host anything on distributed nodes keeping you up even when centralized services are down.</p>
+              </div>
+            </div>
+          </a>
+
+          {/* AnswerReady Card */}
+          <a href="/products/answerready" className="product-card-link">
+            <div className="product-card answerready-card">
+              <div className="answerready-card-header">
+                <p className="answerready-label">AI SEARCH OPTIMIZATION</p>
+                <h2 className="answerready-title">Answer<span>Ready</span></h2>
+                <div className="answerready-orbit" aria-hidden="true">
+                  <span></span>
+                </div>
+              </div>
+              <div className="answerready-card-content">
+                <p>Turn the pages closest to revenue into clear, source-backed answers.</p>
+                <strong>Free homepage checker + publish-ready five-page Fix Pack.</strong>
+                <span className="answerready-card-link">Explore AnswerReady ↗</span>
               </div>
             </div>
           </a>
