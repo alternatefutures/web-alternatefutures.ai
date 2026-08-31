@@ -329,7 +329,10 @@ export default function LandingPageClient({
           <div className="home-shell">
             <div className="home-section-heading home-section-heading-wide">
               <p className="home-eyebrow">One company, three ways forward</p>
-              <h2 id="company-title">Build it. Learn it. Make it work for people.</h2>
+              <h2 id="company-title" className="home-company-title">
+                <span>Build it. Learn it.</span>
+                <span>Make it work for people.</span>
+              </h2>
             </div>
             <div className="home-company-grid">
               <Link href="/products/clouds" className="home-company-card home-company-card-blue">

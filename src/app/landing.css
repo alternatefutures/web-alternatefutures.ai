@@ -558,6 +558,15 @@
   background: white;
 }
 
+.home-company-title {
+  font-size: clamp(32px, 8.6vw, 88px) !important;
+}
+
+.home-company-title span {
+  display: block;
+  white-space: nowrap;
+}
+
 .home-company-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
