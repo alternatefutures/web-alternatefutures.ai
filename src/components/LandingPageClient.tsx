@@ -426,7 +426,10 @@ export default function LandingPageClient({
           <div className="home-shell home-final-cta-inner">
             <div>
               <p className="home-kicker">Welcome to the future</p>
-              <h2 id="final-cta-title">Deploy something people can use.</h2>
+              <h2 id="final-cta-title" className="home-final-cta-title">
+                <span>Deploy something</span>
+                <span>people can use.</span>
+              </h2>
             </div>
             <div className="home-actions">
               <a className="home-button home-button-primary" href={CLOUDS_URL}>

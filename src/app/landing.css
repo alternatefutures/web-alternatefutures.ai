@@ -791,7 +791,15 @@
 
 .home-final-cta h2 {
   max-width: 820px;
-  font-size: clamp(46px, 5vw, 76px);
+  font-size: clamp(40px, 5vw, 76px);
+}
+
+.home-final-cta-title span {
+  display: block;
+}
+
+.home-final-cta-title span:last-child {
+  white-space: nowrap;
 }
 
 .home-final-cta .home-actions {
