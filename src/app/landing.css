@@ -663,16 +663,16 @@
   display: flex;
   flex-direction: column;
   padding: 30px;
-  border: 1px solid rgba(122, 44, 2, 0.55);
-  background: rgba(255,255,255,0.22);
-  color: #6c2803;
+  border: 1px solid rgba(0, 10, 255, 0.55);
+  background: var(--af-ultra-wash, #e8eaff);
+  color: var(--home-blue);
   text-decoration: none;
   transition: background 180ms ease, transform 180ms ease;
 }
 
 .home-resource-card:hover,
 .home-resource-card:focus-visible {
-  background: var(--home-cream);
+  background: #dfe2ff;
   transform: translateY(-6px);
 }
 
@@ -700,7 +700,7 @@
 
 .home-resource-card > p {
   margin: 0;
-  color: rgba(108,40,3,0.76);
+  color: rgba(0, 10, 175, 0.8);
   font-size: 15px;
   line-height: 1.55;
 }
@@ -711,7 +711,7 @@
   gap: 16px;
   margin-top: auto;
   padding-top: 28px;
-  border-top: 1px solid rgba(108,40,3,0.36);
+  border-top: 1px solid rgba(0, 10, 255, 0.36);
   font-size: 12px;
 }
 
