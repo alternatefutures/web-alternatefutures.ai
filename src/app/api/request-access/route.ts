@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { MARKETING_CONSENT_VERSION } from '@/lib/consent'
 
 // Lazy singleton: constructing `new Resend(undefined)` throws, which crashed
 // `next build` during page-data collection (route modules are evaluated then,
@@ -17,7 +18,13 @@ export async function POST(request: Request) {
   try {
     const resend = getResend()
     const body = await request.json()
-    const { firstName, lastName, email, workType, workTypeOther, github, projectLink, socialPlatform, socialLink, source } = body
+    const { firstName, lastName, email, workType, workTypeOther, github, projectLink, socialPlatform, socialLink, source, marketingConsent, consentVersion } = body
+
+    // Marketing consent must be an explicit opt-in. Anything other than a
+    // literal `true` from the form counts as "no consent" - a missing field, a
+    // string, or a submission from an older client all fall through to false.
+    const hasMarketingConsent = marketingConsent === true
+    const consentedAt = new Date().toISOString()
 
     // Validate required fields
     if (!firstName || !lastName || !email || !workType) {
@@ -57,6 +64,7 @@ New Access Request (${segmentName})
 Name: ${firstName} ${lastName}
 Email: ${email}
 Type of Work: ${displayWorkType}
+Marketing consent: ${hasMarketingConsent ? `YES (v${consentVersion || MARKETING_CONSENT_VERSION}, ${consentedAt})` : 'NO - do not add to marketing sends'}
 `
 
     if (github) {
@@ -71,27 +79,37 @@ Type of Work: ${displayWorkType}
       emailContent += `Social (${socialPlatform}): ${socialLink}\n`
     }
 
-    // Add contact to Resend audience with all form data
-    try {
-      await resend.contacts.create({
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        audienceId: audienceId,
-        unsubscribed: false,
-        properties: {
-          workType: workType,
-          workTypeOther: workTypeOther || '',
-          github: github || '',
-          projectLink: projectLink || '',
-          socialPlatform: socialPlatform || '',
-          socialLink: socialLink || '',
-          source: source || 'request-access'
-        }
-      } as any)
-    } catch (contactError) {
-      // Log error but don't fail the request if contact creation fails
-      console.error('Error adding contact to Resend:', contactError)
+    // Only enter someone into a Resend marketing audience when they have
+    // actually opted in. Without consent we still reply to them and notify the
+    // team - that rests on contract / legitimate interests - but they must not
+    // land on a marketing list (GDPR Art. 6(1)(a), ePrivacy Art. 13).
+    if (hasMarketingConsent) {
+      try {
+        await resend.contacts.create({
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          audienceId: audienceId,
+          unsubscribed: false,
+          properties: {
+            workType: workType,
+            workTypeOther: workTypeOther || '',
+            github: github || '',
+            projectLink: projectLink || '',
+            socialPlatform: socialPlatform || '',
+            socialLink: socialLink || '',
+            source: source || 'request-access',
+            // Consent evidence - Art. 7(1) requires us to be able to
+            // demonstrate what was agreed to and when.
+            marketingConsent: 'true',
+            consentedAt: consentedAt,
+            consentVersion: consentVersion || MARKETING_CONSENT_VERSION
+          }
+        } as any)
+      } catch (contactError) {
+        // Log error but don't fail the request if contact creation fails
+        console.error('Error adding contact to Resend:', contactError)
+      }
     }
 
     // Send notification email to internal team
