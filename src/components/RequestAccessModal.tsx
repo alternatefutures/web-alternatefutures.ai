@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useDialog } from '@/hooks/useDialog'
+import { MARKETING_CONSENT_TEXT, MARKETING_CONSENT_VERSION } from '@/lib/consent'
 import './RequestAccessModal.css'
 
 interface RequestAccessModalProps {
@@ -22,6 +23,8 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
     projectLink: '',
     socialPlatform: 'twitter',
     socialLink: '',
+    marketingConsent: false,
+    consentVersion: MARKETING_CONSENT_VERSION,
     source: source
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -82,6 +85,8 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
           projectLink: '',
           socialPlatform: 'twitter',
           socialLink: '',
+          marketingConsent: false,
+          consentVersion: MARKETING_CONSENT_VERSION,
           source: source
         })
         setSubmitStatus('idle')
@@ -96,9 +101,13 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const target = e.target
+    const value =
+      target instanceof HTMLInputElement && target.type === 'checkbox' ? target.checked : target.value
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [target.name]: value
     })
   }
 
@@ -254,6 +263,26 @@ export default function RequestAccessModal({ isOpen, onClose, source = 'request-
                 className="social-link-input"
               />
             </div>
+          </div>
+
+          <div className="consent-group">
+            <label className="consent-checkbox">
+              <input
+                type="checkbox"
+                name="marketingConsent"
+                checked={formData.marketingConsent}
+                onChange={handleChange}
+              />
+              <span>{MARKETING_CONSENT_TEXT}</span>
+            </label>
+            <p className="consent-notice">
+              We use these details to reply to you and to administer beta access. We never sell your
+              data. Read our{' '}
+              <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                Privacy Policy
+              </a>{' '}
+              for how we handle it and how to have it deleted.
+            </p>
           </div>
 
           {submitStatus === 'success' && (
