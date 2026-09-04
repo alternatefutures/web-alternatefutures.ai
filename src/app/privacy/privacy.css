@@ -23,12 +23,14 @@
 
 .privacy-content h1 {
   font-size: 2.5rem;
+  font-weight: 600;
   margin-bottom: 1rem;
   color: #000AFF;
 }
 
 .privacy-content h2 {
   font-size: 1.5rem;
+  font-weight: 600;
   margin-bottom: 1rem;
   color: #000AFF;
 }
@@ -42,6 +44,14 @@
   line-height: 1.8;
   margin-left: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.privacy-content code {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  padding: 0.1em 0.3em;
+  background: #e8e4dc;
+  border-radius: 3px;
 }
 
 .privacy-content a {

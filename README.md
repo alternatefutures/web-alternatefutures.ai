@@ -139,7 +139,7 @@ This is required for proper routing on IPFS/AF Cloud deployments.
 ### Privacy & Security
 - **Privacy Policy**: Available at [/privacy](/privacy)
 - **Security Headers**: Comprehensive CSP, frame protection, referrer policy
-- **No Tracking**: Zero analytics, cookies, or user data collection
+- **No Tracking**: No analytics or advertising scripts; only strictly necessary session cookies
 - **Censorship Resistant**: IPFS deployment with multiple access methods
 
 ## Security Features
@@ -151,20 +151,24 @@ This project implements defense-in-depth security:
 - ✅ **Referrer Policy** - No referrer leakage to external sites
 - ✅ **DNS Prefetch Control** - Privacy-focused DNS handling
 - ✅ **No External Resources** - All assets self-hosted
-- ✅ **Static Site** - No server-side processing or data collection
+- ✅ **Data Minimization** - Only the data the site needs to function; no analytics or ad trackers
 - ✅ **Regular Audits** - Automated security scanning via Dependabot
 - ✅ **Open Source** - Fully auditable codebase
 
 ## Privacy Commitment
 
-We collect **nothing**:
-- No analytics or tracking
-- No cookies or local storage
-- No user accounts or authentication
-- No IP logging or fingerprinting
-- No third-party requests (except social links on click)
+We collect as little as possible:
+- No analytics, advertising, or profiling scripts on public pages
+- No cookies on public pages; only strictly necessary session cookies once you sign in to a restricted area
+- No selling, renting, or brokering of personal data
+- No fingerprinting or cross-site tracking
+- No third-party tracking scripts embedded in our pages
 
-See [Privacy Policy](/privacy) for full details.
+We do process server access logs (including IP addresses, via our hosting provider), the details you submit
+through our beta access and contact forms, and login sessions for restricted areas.
+
+See [Privacy Policy](/privacy) for the full GDPR notice, including legal bases, processors, retention periods,
+and how to exercise your rights.
 
 ## Censorship Resistance
 
