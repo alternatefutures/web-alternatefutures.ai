@@ -1,7 +1,8 @@
-name: Deploy to Production (IPFS)
+name: Deploy to Production (Alternate Clouds)
 
 permissions:
   contents: read
+  packages: write
 
 on:
   workflow_dispatch:
@@ -9,50 +10,65 @@ on:
     branches:
       - main
 
+concurrency:
+  group: alternate-clouds-production
+  cancel-in-progress: false
+
 env:
-  AF_API_KEY: ${{ secrets.AF_API_KEY }}
+  IMAGE_NAME: ghcr.io/${{ github.repository }}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: production
     steps:
+      - name: Validate deployment configuration
+        shell: bash
+        env:
+          AF_TOKEN: ${{ secrets.AF_TOKEN }}
+          AF_PROJECT_ID: ${{ vars.AF_PROJECT_ID }}
+          AF_SERVICE_ID: ${{ vars.AF_SERVICE_ID }}
+        run: |
+          set -euo pipefail
+          test -n "$AF_TOKEN" || { echo "Missing production secret: AF_TOKEN"; exit 1; }
+          test -n "$AF_PROJECT_ID" || { echo "Missing repository variable: AF_PROJECT_ID"; exit 1; }
+          test -n "$AF_SERVICE_ID" || { echo "Missing repository variable: AF_SERVICE_ID"; exit 1; }
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           ref: main
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          node-version: '20'
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: pnpm/action-setup@v4
+      - name: Build and publish website image
+        uses: docker/build-push-action@v6
         with:
-          version: 9
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          build-args: |
+            NEXT_PUBLIC_STAGING=false
 
-      - name: Get pnpm store directory
-        shell: bash
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+      - name: Install Alternate Clouds CLI
+        run: npm install -g @alternatefutures/acc@1.8.0
 
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      - name: Verify Alternate Clouds CLI
+        run: acc --version
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build static export
-        run: pnpm build
+      - name: Redeploy production service
         env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-
-      - name: Install Alternate Futures CLI
-        run: npm install -g @alternatefutures/cli
-
-      - name: Deploy to Alternate Futures
-        run: af sites deploy
+          AF_TOKEN: ${{ secrets.AF_TOKEN }}
+          AF_PROJECT_ID: ${{ vars.AF_PROJECT_ID }}
+          AF_SERVICE_ID: ${{ vars.AF_SERVICE_ID }}
+        run: acc services deploy "$AF_SERVICE_ID" --yes

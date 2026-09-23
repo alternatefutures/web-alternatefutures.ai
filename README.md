@@ -20,27 +20,27 @@ Next.js-based company website featuring homepage, consulting services, and produ
 
 3. **Build for production:**
    ```bash
-   npm run build
+   pnpm build
    ```
-   This generates static files in the `out` directory.
+   This generates the Next.js standalone application used by the production container.
 
 ## Deployment
 
-### Fleek Configuration
+### Alternate Clouds production deployment
 
-**Build Settings:**
-- **Framework:** Next.js
-- **Base Directory:** `./`
-- **Build Command:** `npm install && npm run build`
-- **Publish Directory:** `out`
-- **Docker Image:** `node:20-alpine`
+Production is a Next.js standalone container deployed as an Alternate Clouds service. A push to
+`main` builds and publishes `ghcr.io/alternatefutures/web-alternatefutures.ai:latest`, then redeploys
+the configured service with the official `@alternatefutures/acc` CLI.
 
-**Environment Variables:**
-Add the following environment variable in Fleek:
-- **Key:** `NODE_VERSION`
-- **Value:** `20`
+The GitHub production environment requires:
 
-**Important:** The Docker Image setting is required for Next.js 15.5.3 to build successfully. Fleek's default image uses Node.js 18.17.1, which is incompatible with this version of Next.js.
+- Secret `AF_TOKEN`: an Alternate Clouds personal access token
+- Variable `AF_PROJECT_ID`: the project that owns the website service
+- Variable `AF_SERVICE_ID`: the production website service
+- An Alternate Clouds service configured to use the public `:latest` GHCR image above and expose port 3000
+
+The workflow fails closed when any required value is missing. It does not report a successful
+deployment unless the official `acc services deploy` command succeeds.
 
 ### Requirements
 - Node.js version 20 or higher (specified in `.nvmrc`)
@@ -57,7 +57,7 @@ Add the following environment variable in Fleek:
 │   │   └── products/          # Products page
 │   └── components/  # React components
 ├── styles.css       # Global styles
-└── out/            # Build output (generated)
+└── .next/          # Standalone build output (generated)
 ```
 
 ## Pages
@@ -80,7 +80,7 @@ This website showcases our products. For developer resources:
 - Next.js 15.5.3
 - React 19
 - TypeScript
-- Static Export (SSG)
+- Next.js standalone server output
 
 ## Performance Optimizations
 
@@ -118,7 +118,7 @@ Clean URLs are enabled via `public/_redirects` file:
 - `/consulting` → `consulting.html`
 - `/products` → `products.html`
 
-This is required for proper routing on IPFS/AF Cloud deployments.
+Legacy static-host redirects remain for mirrors; production runs as a container on Alternate Clouds.
 
 ## Documentation
 
@@ -139,7 +139,7 @@ This is required for proper routing on IPFS/AF Cloud deployments.
 ### Privacy & Security
 - **Privacy Policy**: Available at [/privacy](/privacy)
 - **Security Headers**: Comprehensive CSP, frame protection, referrer policy
-- **No Tracking**: Zero analytics, cookies, or user data collection
+- **Consent-Based Analytics**: Google Analytics loads only after a visitor opts in; advertising signals are disabled
 - **Censorship Resistant**: IPFS deployment with multiple access methods
 
 ## Security Features
@@ -150,19 +150,19 @@ This project implements defense-in-depth security:
 - ✅ **Security Headers** - X-Frame-Options, X-Content-Type-Options, etc.
 - ✅ **Referrer Policy** - No referrer leakage to external sites
 - ✅ **DNS Prefetch Control** - Privacy-focused DNS handling
-- ✅ **No External Resources** - All assets self-hosted
+- ✅ **Limited External Resources** - Site assets are self-hosted; consented analytics is loaded from Google
 - ✅ **Static Site** - No server-side processing or data collection
 - ✅ **Regular Audits** - Automated security scanning via Dependabot
 - ✅ **Open Source** - Fully auditable codebase
 
 ## Privacy Commitment
 
-We collect **nothing**:
-- No analytics or tracking
-- No cookies or local storage
-- No user accounts or authentication
-- No IP logging or fingerprinting
-- No third-party requests (except social links on click)
+Public-site analytics is **optional**:
+- Google Analytics loads only after an explicit opt-in
+- Google Signals and advertising personalization are disabled
+- Administrative and login routes are excluded from analytics
+- Visitors can change their choice on the privacy page
+- Contact and access-request information is used only for the stated business purpose
 
 See [Privacy Policy](/privacy) for full details.
 

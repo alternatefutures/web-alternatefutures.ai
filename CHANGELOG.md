@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Consent-based Google Analytics 4 measurement for public website routes
+- Visitor controls for accepting, declining, or changing analytics consent
 - Comprehensive security headers (X-Frame-Options, CSP, Referrer-Policy, etc.)
 - GNU GPLv3 license for strong copyleft protection
 - CONTRIBUTING.md with detailed contribution guidelines
@@ -20,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependencies transparency documentation
 
 ### Changed
+- Replaced the obsolete no-op sites workflow with a fail-closed Alternate Clouds service deployment
+- Applied the analytics Content Security Policy to Next.js responses as well as static mirrors
+- Limited analytics page URLs to approved campaign and public-filter query parameters
+- Prevented delayed analytics loads from overriding newer consent or excluded-route state
+- Scoped the Alternate Clouds deployment token only to validation and deploy steps
+- Updated the privacy policy and Content Security Policy for optional analytics
 - Removed DNS prefetch for LinkedIn and Twitter (privacy improvement)
 - Updated Next.js metadata with privacy-focused settings
 

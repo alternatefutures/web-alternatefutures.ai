@@ -1,9 +1,0 @@
-{
-  "sites": [
-    {
-      "slug": "alternatefutures-web",
-      "distDir": "out",
-      "buildCommand": "pnpm build"
-    }
-  ]
-}

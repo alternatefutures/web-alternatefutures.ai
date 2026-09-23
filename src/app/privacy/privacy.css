@@ -74,3 +74,40 @@
   margin-bottom: 0;
   font-weight: 600;
 }
+
+.privacy-controls {
+  padding: 1.25rem;
+  background: var(--af-ultra-wash, #e8eaff);
+  border: 2px solid var(--af-ultra, #000aff);
+  border-radius: var(--af-radius-worn, 8px 12px 10px 6px);
+}
+
+.privacy-controls p {
+  margin-bottom: 0.75rem;
+}
+
+.privacy-controls__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.privacy-controls button {
+  padding: 0.7rem 1rem;
+  color: #fff;
+  background: var(--af-ultra, #000aff);
+  border: 2px solid var(--af-ultra, #000aff);
+  border-radius: 999px;
+  font: 700 0.9rem/1 var(--af-font-architect, "Instrument Sans", sans-serif);
+  cursor: pointer;
+}
+
+.privacy-controls button:last-child {
+  color: var(--af-ultra, #000aff);
+  background: transparent;
+}
+
+.privacy-controls button:focus-visible {
+  outline: 3px solid var(--af-terra, #be4200);
+  outline-offset: 3px;
+}
