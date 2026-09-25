@@ -35,9 +35,15 @@ the configured service with the official `@alternatefutures/acc` CLI.
 The GitHub production environment requires:
 
 - Secret `AF_TOKEN`: an Alternate Clouds personal access token
+- Variable `AF_ORG_ID`: `MJ2XOZuDV31PX55QFth9D` (the preferred **Alternate Futures** organization)
 - Variable `AF_PROJECT_ID`: the project that owns the website service
 - Variable `AF_SERVICE_ID`: the production website service
-- An Alternate Clouds service configured to use the public `:latest` GHCR image above and expose port 3000
+- An Alternate Clouds service configured to expose port 3000
+
+All Alternate Futures production deployments must target the team organization above, not a
+personal organization. The workflow publishes an immutable image for the commit, updates the
+service's image reference through the Alternate Clouds GraphQL API, and then deploys that exact
+release.
 
 The workflow fails closed when any required value is missing. It does not report a successful
 deployment unless the official `acc services deploy` command succeeds.
