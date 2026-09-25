@@ -32,7 +32,7 @@ const faqs = [
   {
     question: 'What is included in the Fix Pack?',
     answer:
-      'The $69 founding Fix Pack covers five high-value pages and includes rewritten answer blocks, page-specific structured data, a source and proof-gap checklist, and a prioritized 30-day implementation map. Five founding packs are available.',
+      'The $69 one-time Fix Pack covers five high-value pages and includes rewritten answer blocks, page-specific structured data, a source and proof-gap checklist, and a prioritized 30-day implementation map.',
   },
   {
     question: 'Can Alternate Futures implement the changes?',
