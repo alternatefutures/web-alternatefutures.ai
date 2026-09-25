@@ -1,10 +1,11 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import AnalyticsPrivacyControls from '@/components/AnalyticsPrivacyControls'
 import './privacy.css'
 
 export const metadata = {
   title: 'Privacy Policy - Alternate Futures',
-  description: 'Our commitment to privacy: no tracking, no data collection, complete transparency.',
+  description: 'How Alternate Futures handles website analytics, access requests, and visitor privacy.',
 }
 
 export default function PrivacyPage() {
@@ -14,51 +15,64 @@ export default function PrivacyPage() {
       <div className="privacy-scrollable">
         <main className="privacy-content">
           <h1>Privacy Policy</h1>
-          <p className="privacy-date">Last Updated: January 12, 2025</p>
+          <p className="privacy-date">Last Updated: September 23, 2026</p>
 
           <section className="privacy-section">
             <h2>Our Commitment</h2>
             <p>
-              At Alternate Futures, privacy is not a feature—it's a fundamental right. This website is built from the ground up with privacy as a core principle.
+              At Alternate Futures, privacy is a fundamental right. We collect only what helps us
+              operate the site, understand which public resources are useful, and respond when you
+              intentionally contact us. Optional analytics are off until you accept them.
             </p>
           </section>
 
           <section className="privacy-section">
-            <h2>What We Don't Collect</h2>
+            <h2>Optional Website Analytics</h2>
             <p>
-              We believe the best privacy policy is one where there's nothing to disclose. This website has:
+              If you select “Accept analytics,” we use Google Analytics 4 to understand how people
+              find and use our public website. This may include:
             </p>
             <ul>
-              <li><strong>No analytics or tracking</strong> — We don't use Google Analytics, Facebook Pixel, or any similar services</li>
-              <li><strong>No cookies</strong> — We don't set any cookies or use local storage</li>
-              <li><strong>No user accounts</strong> — No registration, no login, no user data</li>
-              <li><strong>No server-side logging of personal data</strong> — We don't log IP addresses or browsing behavior</li>
-              <li><strong>No third-party requests</strong> — All resources are self-hosted (except social links when you click them)</li>
-              <li><strong>No email tracking</strong> — If you email us, we don't use tracking pixels or read receipts</li>
-              <li><strong>No fingerprinting</strong> — We don't attempt to identify or track you</li>
+              <li>Pages viewed and interactions such as scrolling or outbound-link clicks</li>
+              <li>The referral source or campaign that brought you to the site</li>
+              <li>Approximate geography, device category, browser, and operating system</li>
+              <li>Technical information needed to measure sessions and diagnose site performance</li>
             </ul>
+            <p>
+              Google Analytics may set cookies after you consent. We disable Google Signals and
+              advertising personalization, and we do not use this website analytics data to target ads.
+              Declining analytics does not change the way the website works.
+            </p>
           </section>
 
           <section className="privacy-section">
-            <h2>What We Do Collect</h2>
+            <h2>Your Analytics Choice</h2>
             <p>
-              <strong>Nothing.</strong> This website collects zero personal information.
+              Your choice is saved in browser storage and an essential preference cookie so we can
+              remember it. You can change that choice below at any time. Declining disables further
+              Google Analytics measurement from this browser.
             </p>
+            <AnalyticsPrivacyControls />
+          </section>
+
+          <section className="privacy-section">
+            <h2>Information You Choose to Send</h2>
             <p>
-              Our hosting provider may maintain standard web server logs for operational purposes,
-              but we do not have access to or control over this data. These are decentralized systems that
-              inherently provide additional privacy protections.
+              When you submit a contact or access request, we use the information you provide to
+              respond, evaluate the request, and maintain the business relationship. Required and
+              optional fields are identified on the form. We do not sell this information.
             </p>
           </section>
 
           <section className="privacy-section">
             <h2>How We Protect Your Privacy</h2>
             <ul>
-              <li><strong>Static Site Generation</strong> — No server-side processing means no opportunity to collect data</li>
+              <li><strong>Consent First</strong> — Google Analytics does not load unless you accept it</li>
+              <li><strong>Limited Scope</strong> — Analytics is disabled on administrative and login routes</li>
+              <li><strong>No Advertising Signals</strong> — Google Signals and ad personalization are disabled</li>
               <li><strong>IPFS Deployment</strong> — Decentralized hosting through our own Alternate Cloud provides censorship resistance</li>
               <li><strong>Security Headers</strong> — We implement strict Content Security Policy and other protective headers</li>
               <li><strong>No Referrer Leakage</strong> — We use referrer policy to prevent leaking your browsing to other sites</li>
-              <li><strong>DNS Prefetch Disabled</strong> — We don't prefetch external domains that could leak your intent</li>
               <li><strong>Open Source</strong> — All code is public and auditable on GitHub</li>
             </ul>
           </section>
@@ -75,17 +89,29 @@ export default function PrivacyPage() {
           <section className="privacy-section">
             <h2>Email Contact</h2>
             <p>
-              If you contact us via email at <a href="mailto:system@alternatefutures.ai">system@alternatefutures.ai</a>,
-              we will only use your email address to respond to your inquiry. We do not add you to mailing lists,
-              share your information with third parties, or use your email for any purpose other than responding to you.
+              If you contact us at <a href="mailto:system@alternatefutures.ai">system@alternatefutures.ai</a>,
+              we use your message and contact information to respond and handle your request. We do
+              not add you to marketing lists without a separate choice.
+            </p>
+          </section>
+
+          <section className="privacy-section">
+            <h2>Service Providers and Retention</h2>
+            <p>
+              Google processes optional analytics data on our behalf under its terms and privacy
+              documentation. Our hosting and email providers may process the limited technical or
+              contact information needed to provide their services. We retain information only as
+              long as needed for the purposes described here, legal obligations, and security.
+              Learn more in <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.
             </p>
           </section>
 
           <section className="privacy-section">
             <h2>Your Rights</h2>
             <p>
-              Since we collect no data about you, there's nothing to request, delete, or modify.
-              You have complete privacy by default.
+              Depending on where you live, you may have rights to access, correct, delete, restrict,
+              or receive a copy of personal information associated with you. Contact us at{' '}
+              <a href="mailto:system@alternatefutures.ai">system@alternatefutures.ai</a> to make a request.
             </p>
           </section>
 
@@ -94,7 +120,7 @@ export default function PrivacyPage() {
             <p>
               If we ever change our privacy practices, we will update this page and note the change in our
               <a href="https://github.com/alternatefutures/web-alternatefutures.ai/blob/main/CHANGELOG.md"> CHANGELOG</a>.
-              However, we are deeply committed to privacy, and any changes will only strengthen protections, never weaken them.
+              We will describe our current practices here and update the date above when they change.
             </p>
           </section>
 
@@ -105,8 +131,8 @@ export default function PrivacyPage() {
             </p>
             <ul>
               <li>Review the source code on <a href="https://github.com/alternatefutures/web-alternatefutures.ai" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li>Inspect the built site for tracking scripts (there are none)</li>
-              <li>Check your browser's developer tools—no cookies, no tracking requests</li>
+              <li>Inspect the analytics implementation and consent controls</li>
+              <li>Check your browser's developer tools to confirm Google Analytics loads only after consent</li>
               <li>Use browser extensions to verify no fingerprinting or tracking</li>
             </ul>
           </section>
@@ -122,7 +148,8 @@ export default function PrivacyPage() {
           <section className="privacy-tldr">
             <h2>TL;DR</h2>
             <p>
-              We collect nothing. We track nothing. We share nothing. Your visit to this site is completely private.
+              Analytics is optional and off until you accept it. We do not use analytics for advertising,
+              and you can change your choice at any time.
             </p>
           </section>
         </main>

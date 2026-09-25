@@ -1,7 +1,10 @@
 import '../../styles.css'
 import '../styles/design-tokens.css'
 import '../styles/geometric-shapes.css'
+import '@/components/GoogleAnalytics.css'
 import { Metadata } from 'next'
+import { Suspense } from 'react'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.alternatefutures.ai'
 const SITE_NAME = 'Alternate Futures'
@@ -130,7 +133,12 @@ export default function RootLayout({
         <link rel="preload" href="/fonts/InstrumentSerif-Italic.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/assets/logo.svg" as="image" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
+      </body>
     </html>
   )
 }
