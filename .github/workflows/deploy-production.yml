@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository }}
+  IMAGE_NAME: ghcr.io/alternatefutures/gbufejdluqos2lh3mljds--alternatefutures-web-alternatefutures-ai
 
 jobs:
   deploy:
@@ -26,11 +26,13 @@ jobs:
         shell: bash
         env:
           AF_TOKEN: ${{ secrets.AF_TOKEN }}
+          AF_ORG_ID: ${{ vars.AF_ORG_ID }}
           AF_PROJECT_ID: ${{ vars.AF_PROJECT_ID }}
           AF_SERVICE_ID: ${{ vars.AF_SERVICE_ID }}
         run: |
           set -euo pipefail
           test -n "$AF_TOKEN" || { echo "Missing production secret: AF_TOKEN"; exit 1; }
+          test -n "$AF_ORG_ID" || { echo "Missing production variable: AF_ORG_ID"; exit 1; }
           test -n "$AF_PROJECT_ID" || { echo "Missing repository variable: AF_PROJECT_ID"; exit 1; }
           test -n "$AF_SERVICE_ID" || { echo "Missing repository variable: AF_SERVICE_ID"; exit 1; }
 
@@ -66,9 +68,38 @@ jobs:
       - name: Verify Alternate Clouds CLI
         run: acc --version
 
+      - name: Point service at release image
+        shell: bash
+        env:
+          AF_TOKEN: ${{ secrets.AF_TOKEN }}
+          AF_ORG_ID: ${{ vars.AF_ORG_ID }}
+          AF_SERVICE_ID: ${{ vars.AF_SERVICE_ID }}
+        run: |
+          set -euo pipefail
+          release_image="${IMAGE_NAME}:${GITHUB_SHA}"
+          payload="$(jq -cn \
+            --arg serviceId "$AF_SERVICE_ID" \
+            --arg dockerImage "$release_image" \
+            '{
+              query: "mutation UpdateService($serviceId: ID!, $input: UpdateServiceInput!) { updateService(serviceId: $serviceId, input: $input) { id dockerImage } }",
+              variables: {
+                serviceId: $serviceId,
+                input: { dockerImage: $dockerImage }
+              }
+            }')"
+          response="$(curl --fail-with-body --silent --show-error \
+            https://api.alternatefutures.ai/graphql \
+            -H "Authorization: Bearer ${AF_TOKEN}" \
+            -H "X-Organization-Id: ${AF_ORG_ID}" \
+            -H "Content-Type: application/json" \
+            --data "$payload")"
+          jq -e '(.errors // []) | length == 0' <<<"$response" >/dev/null
+          test "$(jq -r '.data.updateService.dockerImage // empty' <<<"$response")" = "$release_image"
+
       - name: Redeploy production service
         env:
           AF_TOKEN: ${{ secrets.AF_TOKEN }}
+          AF_ORG_ID: ${{ vars.AF_ORG_ID }}
           AF_PROJECT_ID: ${{ vars.AF_PROJECT_ID }}
           AF_SERVICE_ID: ${{ vars.AF_SERVICE_ID }}
         run: acc services deploy "$AF_SERVICE_ID" --yes
