@@ -3,10 +3,13 @@
 import { useEffect, useState } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 
-export const ANALYTICS_CONSENT_KEY = 'af-analytics-consent-v1'
+export const ANALYTICS_CONSENT_KEY = 'af-analytics-consent-v2'
 export const ANALYTICS_CONSENT_EVENT = 'af:analytics-consent'
+export const ANALYTICS_CONSENT_VERSION = '2026-09-25'
 
 const MEASUREMENT_ID = 'G-2PDRFVML9M'
+const CONSENT_MAX_AGE_SECONDS = 60 * 60 * 24 * 180
+const LEGACY_CONSENT_KEY = 'af-analytics-consent-v1'
 const SAFE_QUERY_PARAMETERS = new Set([
   'page',
   'ref',
@@ -19,6 +22,12 @@ const SAFE_QUERY_PARAMETERS = new Set([
 ])
 
 export type ConsentChoice = 'accepted' | 'declined'
+
+type ConsentRecord = {
+  choice: ConsentChoice
+  updatedAt: string
+  version: string
+}
 
 declare global {
   interface Window {
@@ -57,6 +66,15 @@ export function readAnalyticsConsent(): ConsentChoice | null {
   try {
     const saved = window.localStorage?.getItem(ANALYTICS_CONSENT_KEY)
     if (saved === 'accepted' || saved === 'declined') return saved
+    if (saved) {
+      const record = JSON.parse(saved) as Partial<ConsentRecord>
+      if (
+        record.version === ANALYTICS_CONSENT_VERSION &&
+        (record.choice === 'accepted' || record.choice === 'declined')
+      ) {
+        return record.choice
+      }
+    }
   } catch {
     // Some privacy modes disable localStorage; the essential preference cookie is the fallback.
   }
@@ -67,6 +85,29 @@ export function readAnalyticsConsent(): ConsentChoice | null {
     ?.split('=')[1]
 
   return cookieChoice === 'accepted' || cookieChoice === 'declined' ? cookieChoice : null
+}
+
+function analyticsCookieDomain() {
+  const hostname = window.location.hostname
+  return hostname === 'alternatefutures.ai' || hostname.endsWith('.alternatefutures.ai')
+    ? '; Domain=.alternatefutures.ai'
+    : ''
+}
+
+export function clearGoogleAnalyticsCookies() {
+  const secure = window.location.protocol === 'https:' ? '; Secure' : ''
+  const cookieNames = document.cookie
+    .split('; ')
+    .map((cookie) => cookie.split('=')[0])
+    .filter((name) => name === '_ga' || name.startsWith('_ga_'))
+
+  cookieNames.forEach((name) => {
+    document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax${secure}`
+    const domain = analyticsCookieDomain()
+    if (domain) {
+      document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax${secure}${domain}`
+    }
+  })
 }
 
 function setAnalyticsDisabled(disabled: boolean) {
@@ -98,6 +139,8 @@ function loadGoogleAnalytics(): Promise<void> {
         send_page_view: false,
         allow_google_signals: false,
         allow_ad_personalization_signals: false,
+        anonymize_ip: true,
+        cookie_expires: CONSENT_MAX_AGE_SECONDS,
       })
       resolve()
     }
@@ -132,14 +175,23 @@ function loadGoogleAnalytics(): Promise<void> {
 }
 
 export function saveAnalyticsConsent(choice: ConsentChoice) {
+  const record: ConsentRecord = {
+    choice,
+    updatedAt: new Date().toISOString(),
+    version: ANALYTICS_CONSENT_VERSION,
+  }
+
   try {
-    window.localStorage?.setItem(ANALYTICS_CONSENT_KEY, choice)
+    window.localStorage?.removeItem(LEGACY_CONSENT_KEY)
+    window.localStorage?.setItem(ANALYTICS_CONSENT_KEY, JSON.stringify(record))
   } catch {
     // The cookie below keeps the choice durable when localStorage is unavailable.
   }
 
   const secure = window.location.protocol === 'https:' ? '; Secure' : ''
-  document.cookie = `${ANALYTICS_CONSENT_KEY}=${choice}; Max-Age=31536000; Path=/; SameSite=Lax${secure}`
+  document.cookie = `${LEGACY_CONSENT_KEY}=; Max-Age=0; Path=/; SameSite=Lax${secure}`
+  document.cookie = `${ANALYTICS_CONSENT_KEY}=${choice}; Max-Age=${CONSENT_MAX_AGE_SECONDS}; Path=/; SameSite=Lax${secure}`
+  if (choice === 'declined') clearGoogleAnalyticsCookies()
   window.dispatchEvent(new CustomEvent(ANALYTICS_CONSENT_EVENT, { detail: choice }))
 }
 
@@ -174,7 +226,13 @@ export default function GoogleAnalytics() {
   useEffect(() => {
     if (!shouldEnableAnalytics(pathname, consent)) {
       setAnalyticsDisabled(true)
-      window.gtag?.('consent', 'update', { analytics_storage: 'denied' })
+      window.gtag?.('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      })
+      if (consent === 'declined') clearGoogleAnalyticsCookies()
       lastTrackedUrl = ''
       return
     }
@@ -194,7 +252,12 @@ export default function GoogleAnalytics() {
         }
 
         setAnalyticsDisabled(false)
-        window.gtag?.('consent', 'update', { analytics_storage: 'granted' })
+        window.gtag?.('consent', 'update', {
+          analytics_storage: 'granted',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        })
 
         const pagePath = getAnalyticsPagePath(window.location.pathname, window.location.search)
         if (lastTrackedUrl === pagePath) return
@@ -233,7 +296,7 @@ export default function GoogleAnalytics() {
           Accept analytics
         </button>
         <button type="button" className="analytics-consent__decline" onClick={() => saveAnalyticsConsent('declined')}>
-          No thanks
+          Decline analytics
         </button>
       </div>
     </aside>

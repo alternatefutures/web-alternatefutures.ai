@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Consent-based Google Analytics 4 measurement for public website routes
 - Visitor controls for accepting, declining, or changing analytics consent
+- Versioned, timestamped analytics consent receipts stored in the visitor's browser
 - Comprehensive security headers (X-Frame-Options, CSP, Referrer-Policy, etc.)
 - GNU GPLv3 license for strong copyleft protection
 - CONTRIBUTING.md with detailed contribution guidelines
@@ -22,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dependencies transparency documentation
 
 ### Changed
+- Expanded the privacy notice with controller identity, legal bases, recipients, international transfers, retention periods, GDPR rights, and complaint rights
+- Limited consent and Google Analytics cookies to six months and renamed the rejection action to “Decline analytics”
 - Replaced the obsolete no-op sites workflow with a fail-closed Alternate Clouds service deployment
 - Applied the analytics Content Security Policy to Next.js responses as well as static mirrors
 - Limited analytics page URLs to approved campaign and public-filter query parameters
@@ -32,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated Next.js metadata with privacy-focused settings
 
 ### Security
+- Delete Google Analytics cookies when a visitor withdraws or declines consent
+- Keep all advertising consent signals denied even when analytics measurement is accepted
 - Enhanced Content Security Policy
 - Disabled DNS prefetching globally
 - Added comprehensive security headers to all routes
