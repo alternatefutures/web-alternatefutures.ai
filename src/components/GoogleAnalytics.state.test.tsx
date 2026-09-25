@@ -12,6 +12,8 @@ vi.mock('next/navigation', () => ({
 
 import GoogleAnalytics, {
   ANALYTICS_CONSENT_KEY,
+  ANALYTICS_CONSENT_VERSION,
+  readAnalyticsConsent,
   saveAnalyticsConsent,
 } from './GoogleAnalytics'
 
@@ -25,6 +27,39 @@ afterEach(() => {
 })
 
 describe('GoogleAnalytics state transitions', () => {
+  it('stores a versioned consent receipt and removes analytics cookies on withdrawal', () => {
+    const storedValues = new Map<string, string>()
+    Object.defineProperty(window, 'localStorage', {
+      configurable: true,
+      value: {
+        clear: () => storedValues.clear(),
+        getItem: (key: string) => storedValues.get(key) ?? null,
+        key: (index: number) => Array.from(storedValues.keys())[index] ?? null,
+        get length() {
+          return storedValues.size
+        },
+        removeItem: (key: string) => storedValues.delete(key),
+        setItem: (key: string, value: string) => storedValues.set(key, value),
+      } satisfies Storage,
+    })
+
+    document.cookie = '_ga=test-client; Path=/'
+    document.cookie = '_ga_TEST=test-session; Path=/'
+
+    act(() => saveAnalyticsConsent('declined'))
+
+    expect(readAnalyticsConsent()).toBe('declined')
+    expect(document.cookie).not.toContain('_ga=')
+    expect(document.cookie).not.toContain('_ga_TEST=')
+
+    const receipt = JSON.parse(
+      window.localStorage.getItem(ANALYTICS_CONSENT_KEY) ?? '{}',
+    ) as { choice?: string; updatedAt?: string; version?: string }
+    expect(receipt.choice).toBe('declined')
+    expect(receipt.version).toBe(ANALYTICS_CONSENT_VERSION)
+    expect(Number.isNaN(Date.parse(receipt.updatedAt ?? ''))).toBe(false)
+  })
+
   it('removes a failed script and never lets an in-flight load override current consent or route', async () => {
     const storedValues = new Map<string, string>()
     Object.defineProperty(window, 'localStorage', {

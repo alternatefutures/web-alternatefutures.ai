@@ -33,6 +33,12 @@
   color: #000AFF;
 }
 
+.privacy-content h3 {
+  margin: 1.25rem 0 0.5rem;
+  color: var(--af-text-heading, #2e2b27);
+  font-size: 1.05rem;
+}
+
 .privacy-content p {
   line-height: 1.6;
   margin-bottom: 1rem;
