@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  IMAGE_NAME: ghcr.io/alternatefutures/gbufejdluqos2lh3mljds--alternatefutures-web-alternatefutures-ai
+  IMAGE_NAME: ghcr.io/${{ github.repository }}
 
 jobs:
   deploy:
