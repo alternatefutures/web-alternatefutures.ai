@@ -22,6 +22,7 @@ interface LandingPageClientProps {
 const CLOUDS_URL = 'https://clouds.alternatefutures.ai'
 const DOCS_URL = 'https://docs.alternatefutures.ai'
 const EDUCATION_URL = 'https://education.alternatefutures.ai'
+const BLOG_URL = 'https://blog.alternatefutures.ai'
 
 const pathways = [
   {
@@ -364,16 +365,16 @@ export default function LandingPageClient({
                 <p className="home-eyebrow">Answers for builders</p>
                 <h2 id="resources-title">Learn before you choose.</h2>
               </div>
-              <Link href="/blog" className="home-text-link home-text-link-dark">
+              <a href={BLOG_URL} className="home-text-link home-text-link-dark">
                 Read every article <Arrow />
-              </Link>
+              </a>
             </div>
 
             <div className="home-resource-grid">
               {resources.map((post, index) => {
                 const date = formatDate(post.publishedAt)
                 return (
-                  <Link href={`/blog/${post.slug}`} className="home-resource-card" key={post.slug}>
+                  <a href={`${BLOG_URL}/posts/${post.slug}`} className="home-resource-card" key={post.slug}>
                     <span className="home-resource-index">0{index + 1}</span>
                     <div className="home-resource-meta">
                       {post.tags.slice(0, 2).map((tag) => <span key={tag}>{tag}</span>)}
@@ -384,7 +385,7 @@ export default function LandingPageClient({
                       <span>{date || 'Practical guide'}</span>
                       {post.readingTimeMin && <span>{post.readingTimeMin} min read</span>}
                     </div>
-                  </Link>
+                  </a>
                 )
               })}
             </div>

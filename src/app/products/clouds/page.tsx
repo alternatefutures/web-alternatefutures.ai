@@ -160,7 +160,7 @@ export default function CloudsPage() {
               <ChevronRight />
             </a>
             <a
-              href="https://github.com/alternatefutures/alternate-clouds-cli"
+              href="https://www.npmjs.com/package/@alternatefutures/acc"
               className="ac-btn ac-btn-outline"
               target="_blank"
               rel="noopener noreferrer"

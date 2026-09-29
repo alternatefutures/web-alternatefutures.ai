@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 
+const BLOG_URL = 'https://blog.alternatefutures.ai'
+
 interface HeaderProps {
   activePage?: string
   subPage?: string
@@ -34,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ activePage, subPage }) => {
               )}
             </div>
             <div className="nav-column">
-              <a href="/blog" className={`nav-link ${activePage === 'blog' ? 'active' : ''}`}>Blog</a>
+              <a href={BLOG_URL} className={`nav-link ${activePage === 'blog' ? 'active' : ''}`}>Blog</a>
             </div>
             <div className="nav-column">
               <a href="https://education.alternatefutures.ai" className="nav-link">Education</a>
