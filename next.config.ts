@@ -38,6 +38,13 @@ const nextConfig: NextConfig = {
         destination: '/products/clouds/:path*',
         permanent: true,
       },
+      {
+        // Agentika hackathon registration (asked by Saad, 2026-10-12). Temporary
+        // so the target can change once the event is over.
+        source: '/agentika-hackathon',
+        destination: 'https://nascon.com.pk/events/register/98be43c6-adcb-4b39-8e46-fa71482f9ee3',
+        permanent: false,
+      },
     ]
   },
   // Security headers (also defined in public/_headers for deployment)
