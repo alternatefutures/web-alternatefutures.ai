@@ -29,6 +29,21 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/blog',
+        destination: 'https://blog.alternatefutures.ai',
+        permanent: true,
+      },
+      {
+        source: '/blog/rss.xml',
+        destination: 'https://blog.alternatefutures.ai/rss.xml',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug',
+        destination: 'https://blog.alternatefutures.ai/posts/:slug',
+        permanent: true,
+      },
+      {
         source: '/products/alternate-clouds',
         destination: '/products/clouds',
         permanent: true,
