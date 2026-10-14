@@ -122,6 +122,57 @@
   flex: 1;
 }
 
+.consent-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Deliberately not .form-group: the shared input styling assumes a text field
+   and would stretch the checkbox to full width. */
+.consent-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.consent-checkbox input[type='checkbox'] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: #000aff;
+  cursor: pointer;
+}
+
+.consent-checkbox input[type='checkbox']:focus-visible {
+  outline: 2px solid #000aff;
+  outline-offset: 2px;
+}
+
+.consent-notice {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+}
+
+.consent-notice a {
+  color: #000aff;
+  text-decoration: underline;
+}
+
+.consent-notice a:hover {
+  opacity: 0.8;
+}
+
 .status-message {
   padding: 12px 16px;
   border-radius: 8px;
