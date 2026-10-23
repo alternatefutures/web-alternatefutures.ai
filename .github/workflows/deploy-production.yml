@@ -96,6 +96,30 @@ jobs:
           jq -e '(.errors // []) | length == 0' <<<"$response" >/dev/null
           test "$(jq -r '.data.updateService.dockerImage // empty' <<<"$response")" = "$release_image"
 
+      - name: Record deploy-attempt baseline
+        id: baseline
+        shell: bash
+        env:
+          AF_TOKEN: ${{ secrets.AF_TOKEN }}
+          AF_ORG_ID: ${{ vars.AF_ORG_ID }}
+          AF_SERVICE_ID: ${{ vars.AF_SERVICE_ID }}
+        run: |
+          set -euo pipefail
+          payload="$(jq -cn \
+            --arg serviceId "$AF_SERVICE_ID" \
+            '{
+              query: "query ServiceAttempts($serviceId: ID!) { service(id: $serviceId) { metrics { totalAttempts } } }",
+              variables: { serviceId: $serviceId }
+            }')"
+          response="$(curl --fail-with-body --silent --show-error \
+            https://api.alternatefutures.ai/graphql \
+            -H "Authorization: Bearer ${AF_TOKEN}" \
+            -H "X-Organization-Id: ${AF_ORG_ID}" \
+            -H "Content-Type: application/json" \
+            --data "$payload")"
+          attempts="$(jq -r '.data.service.metrics.totalAttempts // 0' <<<"$response")"
+          echo "attempts=${attempts:-0}" >> "$GITHUB_OUTPUT"
+
       - name: Redeploy production service
         env:
           AF_TOKEN: ${{ secrets.AF_TOKEN }}
@@ -103,3 +127,35 @@ jobs:
           AF_PROJECT_ID: ${{ vars.AF_PROJECT_ID }}
           AF_SERVICE_ID: ${{ vars.AF_SERVICE_ID }}
         run: acc services deploy "$AF_SERVICE_ID" --yes
+
+      - name: Verify a deploy attempt was recorded
+        shell: bash
+        env:
+          AF_TOKEN: ${{ secrets.AF_TOKEN }}
+          AF_ORG_ID: ${{ vars.AF_ORG_ID }}
+          AF_SERVICE_ID: ${{ vars.AF_SERVICE_ID }}
+          BASELINE: ${{ steps.baseline.outputs.attempts }}
+        run: |
+          set -euo pipefail
+          payload="$(jq -cn \
+            --arg serviceId "$AF_SERVICE_ID" \
+            '{
+              query: "query ServiceAttempts($serviceId: ID!) { service(id: $serviceId) { metrics { totalAttempts lastDeployedAt } } }",
+              variables: { serviceId: $serviceId }
+            }')"
+          for i in $(seq 1 20); do
+            response="$(curl --fail-with-body --silent --show-error \
+              https://api.alternatefutures.ai/graphql \
+              -H "Authorization: Bearer ${AF_TOKEN}" \
+              -H "X-Organization-Id: ${AF_ORG_ID}" \
+              -H "Content-Type: application/json" \
+              --data "$payload")"
+            attempts="$(jq -r '.data.service.metrics.totalAttempts // 0' <<<"$response")"
+            if [ "${attempts:-0}" -gt "$BASELINE" ]; then
+              echo "Deploy attempt recorded: totalAttempts $BASELINE -> $attempts"
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "acc reported success but no deploy attempt was recorded after 5 minutes" >&2
+          exit 1
